@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 import 'rxjs/add/operator/map';
-import {HTTP_PROVIDERS} from "@angular/http";
+
 
 import {SearchPipe} from "./pipes/header-pipe";
 import {PaginationPipe} from "./pipes/pagination-pipe";
@@ -18,7 +18,7 @@ import {Pagination} from "./components/pagination/pagination.component";
 
 @Component({
   selector: 'ng2-table',
-  providers: [HttpService, FiltersService, ResourceService, ConfigService, HTTP_PROVIDERS],
+
   directives: [Header, Pagination, GlobalSearch, CsvExport],
   pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
   template: `
