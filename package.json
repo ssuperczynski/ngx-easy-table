@@ -69,5 +69,8 @@
     "angular2-table",
     "ng2-easy-table"
   ],
-  "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)"
+  "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)",
+  "contributors": [
+    "ssuperczynski"
+  ]
 }
