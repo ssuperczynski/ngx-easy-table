@@ -26,6 +26,7 @@
     '@angular/router',
     '@angular/router-deprecated',
     '@angular/testing',
+    '@angular/forms',
     '@angular/upgrade'
   ];
 
