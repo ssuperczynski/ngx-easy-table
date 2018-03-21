@@ -1,0 +1,15 @@
+/* ! Spectre.css Icons v0.4.5 | MIT License | github.com/picturepan2/spectre  */
+.ngx-icon{ box-sizing: border-box;display: inline-block;font-size: inherit;font-style: normal;height: 1em;position: relative;text-indent: -9999px;vertical-align: middle;width: 1em; }
+.ngx-icon::before,.ngx-icon::after{ display: block;left: 50%;position: absolute;top: 50%;transform: translate(-50%, -50%); }
+.ngx-icon.ngx-icon-2x{ font-size: 1.6rem; }
+.ngx-icon.ngx-icon-3x{ font-size: 2.4rem; }
+.ngx-icon.ngx-icon-4x{ font-size: 3.2rem; }
+.ngx-accordion .ngx-icon,.ngx-btn .ngx-icon,.ngx-toast .ngx-icon,.ngx-menu .ngx-icon{ vertical-align: -10%; }
+.ngx-btn-lg .ngx-icon{ vertical-align: -15%; }
+.ngx-icon-arrow-down::before,.ngx-icon-arrow-left::before,.ngx-icon-arrow-right::before,.ngx-icon-arrow-up::before,.ngx-icon-downward::before,.ngx-icon-back::before,.ngx-icon-forward::before,.ngx-icon-upward::before{ border: .1rem solid currentColor;border-bottom: 0;border-right: 0;content: "";height: .65em;width: .65em; }
+.ngx-icon-arrow-down::before{ transform: translate(-50%, -75%) rotate(225deg); }
+.ngx-icon-arrow-left::before{ transform: translate(-25%, -50%) rotate(-45deg); }
+.ngx-icon-arrow-right::before{ transform: translate(-75%, -50%) rotate(135deg); }
+.ngx-icon-arrow-up::before{ transform: translate(-50%, -25%) rotate(45deg); }
+.ngx-icon-caret::before{ border-left: .3em solid transparent;border-right: .3em solid transparent;border-top: .3em solid currentColor;content: "";height: 0;transform: translate(-50%, -25%);width: 0; }
+.ngx-icon-menu::before{ background: currentColor;box-shadow: 0 -.35em, 0 .35em;content: "";height: .1rem;width: 100%; }
