@@ -1,7 +1,17 @@
 import {
-  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnChanges,
-  OnInit, Output,
-  SimpleChange, SimpleChanges, TemplateRef
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChange,
+  SimpleChanges,
+  TemplateRef
 } from '@angular/core';
 
 import { ResourceService } from '../../services/resource-service';
@@ -44,11 +54,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(public resource: ResourceService,
-              private cdr: ChangeDetectorRef,
-              private logger: LoggerService) {
+  constructor(public resource: ResourceService, private cdr: ChangeDetectorRef, private logger: LoggerService) {
     // make random pagination ID to avoid situation when we have more than 1 table at page
-    this.id = Math.floor((Math.random() * 10000) + 1);
+    this.id = Math.floor(Math.random() * 10000 + 1);
   }
 
   ngOnInit() {
@@ -58,8 +66,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.config = ConfigService.config;
     this.limit = this.configuration.rows;
     if (this.groupRowsBy) {
-      Observable
-        .from(this.data)
+      Observable.from(this.data)
         .groupBy(row => row[this.groupRowsBy])
         .flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], []))
         .subscribe(row => this.grouped.push(row));
@@ -78,6 +85,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
     if (pagination && pagination.currentValue) {
       this.count = pagination.currentValue.count;
+    }
+    if (this.groupRowsBy) {
+      Observable.from(this.data)
+        .groupBy(row => row[this.groupRowsBy])
+        .flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], []))
+        .subscribe(row => this.grouped.push(row));
     }
   }
 
