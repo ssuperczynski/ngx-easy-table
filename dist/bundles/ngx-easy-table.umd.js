@@ -434,7 +434,7 @@ var HeaderComponent = /** @class */ (function () {
 HeaderComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'table-header',
-                template: "\n    <label for=\"search_{{ column['key'] }}\">\n      <div class=\"input-group mb-3  pt-3\">\n        <span class=\"input-group-addon\"><i _ngcontent-c3=\"\" class=\"fa fa-search\"></i></span>\n        <input type=\"text\"\n               id=\"search_{{ column['key'] }}\"\n               aria-label=\"Zoek\"\n               placeholder=\"Zoek: {{ column['title'] }}\"\n               class=\"ngx-table__header-search ngx-form-input ngx-input-sm form-control\"\n               #input\n               (input)=\"update.emit({value: input.value, key: column['key']})\">\n      </div>\n    </label>"
+                template: "\n    <label for=\"search_{{ column['key'] }}\">\n      <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i _ngcontent-c3=\"\" class=\"fa fa-search\"></i></span>\n        <input type=\"text\"\n               id=\"search_{{ column['key'] }}\"\n               aria-label=\"Zoek\"\n               placeholder=\"{{ column['title'] }}\"\n               class=\"ngx-table__header-search ngx-form-input ngx-input-sm form-control\"\n               #input\n               (input)=\"update.emit({value: input.value, key: column['key']})\">\n      </div>\n    </label>"
             },] },
 ];
 HeaderComponent.ctorParameters = function () { return []; };
