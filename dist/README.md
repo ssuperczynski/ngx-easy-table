@@ -5,13 +5,13 @@ As we needed some custom functionality for the Next tables, we've decided to for
 
 ### Release notes
 ####  Version 1.1 - 3th of April 2018
-- Added a button to remove all search entries
 - Translatable header
 
 ### Roadmap
 - Add date search dropdown
 - Add translatable headers for the search
 - Make it possible to combine searches
+- Added a button to remove all search entries
 
 
 
