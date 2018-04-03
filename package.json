@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "mv dist/.git .back-up && ng-packagr && cp src/assets/spectre.css dist/ && cp src/assets/spectre-icons.css dist/ && cp .back-up dist/.git"
+    "build:lib": "mv -r dist/.git/* .backup && ng-packagr && cp src/assets/spectre.css dist/ && cp src/assets/spectre-icons.css dist/ && mkdir dist/.git && cp -r .backup/* dist/.git/*"
   },
   "license": "MIT",
   "peerDependencies": {
