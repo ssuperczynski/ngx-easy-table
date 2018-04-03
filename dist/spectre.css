@@ -1,0 +1,871 @@
+/*! Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
+/* Manually forked from Normalize.css */
+/* normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
+/** 1. Change the default font family in all browsers (opinionated). 2. Correct the line height in all browsers. 3. Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS. */
+
+
+/** 1. Add the correct box sizing in IE 10-. 2. Remove the padding in IE 10-. */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/** Correct the cursor style of increment and decrement buttons in Chrome. */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/** 1. Correct the odd appearance in Chrome and Safari. 2. Correct the outline style in Safari. */
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/** Remove the inner padding and cancel buttons in Chrome and Safari on macOS. */
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/** 1. Correct the inability to style clickable types in iOS and Safari. 2. Change font properties to `inherit` in Safari. */
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive ========================================================================== */
+/* Add the correct display in IE 9-. 1. Add the correct display in Edge, IE, and Firefox. */
+details,
+menu {
+  display: block;
+}
+
+/* Add the correct display in all browsers. */
+summary {
+  display: list-item;
+  outline: none;
+}
+
+/* Scripting ========================================================================== */
+/** Add the correct display in IE 9-. */
+canvas {
+  display: inline-block;
+}
+
+/** Add the correct display in IE. */
+template {
+  display: none;
+}
+
+/* Hidden ========================================================================== */
+/** Add the correct display in IE 10-. */
+[hidden] {
+  display: none;
+}
+
+.ngx-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.ngx-table.ngx-table-striped tbody tr:nth-of-type(odd) {
+  background: #f8f9fa;
+}
+
+.ngx-table.ngx-table-hover tbody tr:hover {
+  background: #f0f1f4;
+}
+
+.ngx-table tbody tr.ngx-active,
+.ngx-table.ngx-table-striped tbody tr.ngx-active {
+  background: #f0f1f4;
+}
+
+.ngx-table td,
+.ngx-table th {
+  border-bottom: .05rem solid #e7e9ed;
+  padding: .4rem .4rem;
+}
+
+.ngx-table th {
+  border-bottom-width: .1rem;
+}
+
+.ngx-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: .4rem;
+  padding-right: .4rem;
+  width: 100%;
+}
+
+.ngx-container.ngx-grid-xl {
+  max-width: 1296px;
+}
+
+.ngx-container.ngx-grid-lg {
+  max-width: 976px;
+}
+
+.ngx-container.ngx-grid-md {
+  max-width: 856px;
+}
+
+.ngx-container.ngx-grid-sm {
+  max-width: 616px;
+}
+
+.ngx-container.ngx-grid-xs {
+  max-width: 496px;
+}
+
+.ngx-show-xs,
+.ngx-show-sm,
+.ngx-show-md,
+.ngx-show-lg,
+.ngx-show-xl {
+  display: none !important;
+}
+
+.ngx-columns {
+  display: flex;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-left: -.4rem;
+  margin-right: -.4rem;
+}
+
+.ngx-columns.ngx-col-gapless {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ngx-columns.ngx-col-gapless > .ngx-column {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ngx-columns.ngx-col-oneline {
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.ngx-column {
+  -ms-flex: 1;
+  flex: 1;
+  max-width: 100%;
+  padding-left: .4rem;
+  padding-right: .4rem;
+}
+
+.ngx-column.ngx-col-12,
+.ngx-column.ngx-col-11,
+.ngx-column.ngx-col-10,
+.ngx-column.ngx-col-9,
+.ngx-column.ngx-col-8,
+.ngx-column.ngx-col-7,
+.ngx-column.ngx-col-6,
+.ngx-column.ngx-col-5,
+.ngx-column.ngx-col-4,
+.ngx-column.ngx-col-3,
+.ngx-column.ngx-col-2,
+.ngx-column.ngx-col-1 {
+  -ms-flex: none;
+  flex: none;
+}
+
+.ngx-col-12 {
+  width: 100%;
+}
+
+.ngx-col-11 {
+  width: 91.66666667%;
+}
+
+.ngx-col-10 {
+  width: 83.33333333%;
+}
+
+.ngx-col-9 {
+  width: 75%;
+}
+
+.ngx-col-8 {
+  width: 66.66666667%;
+}
+
+.ngx-col-7 {
+  width: 58.33333333%;
+}
+
+.ngx-col-6 {
+  width: 50%;
+}
+
+.ngx-col-5 {
+  width: 41.66666667%;
+}
+
+.ngx-col-4 {
+  width: 33.33333333%;
+}
+
+.ngx-col-3 {
+  width: 25%;
+}
+
+.ngx-col-2 {
+  width: 16.66666667%;
+}
+
+.ngx-col-1 {
+  width: 8.33333333%;
+}
+
+.ngx-col-auto {
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  max-width: none;
+  width: auto;
+}
+
+.ngx-col-mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ngx-col-ml-auto {
+  margin-left: auto;
+}
+
+.ngx-col-mr-auto {
+  margin-right: auto;
+}
+
+@media (max-width: 1280px) {
+  .ngx-col-xl-12,
+  .ngx-col-xl-11,
+  .ngx-col-xl-10,
+  .ngx-col-xl-9,
+  .ngx-col-xl-8,
+  .ngx-col-xl-7,
+  .ngx-col-xl-6,
+  .ngx-col-xl-5,
+  .ngx-col-xl-4,
+  .ngx-col-xl-3,
+  .ngx-col-xl-2,
+  .ngx-col-xl-1 {
+    -ms-flex: none;
+    flex: none;
+  }
+  .ngx-col-xl-12 {
+    width: 100%;
+  }
+  .ngx-col-xl-11 {
+    width: 91.66666667%;
+  }
+  .ngx-col-xl-10 {
+    width: 83.33333333%;
+  }
+  .ngx-col-xl-9 {
+    width: 75%;
+  }
+  .ngx-col-xl-8 {
+    width: 66.66666667%;
+  }
+  .ngx-col-xl-7 {
+    width: 58.33333333%;
+  }
+  .ngx-col-xl-6 {
+    width: 50%;
+  }
+  .ngx-col-xl-5 {
+    width: 41.66666667%;
+  }
+  .ngx-col-xl-4 {
+    width: 33.33333333%;
+  }
+  .ngx-col-xl-3 {
+    width: 25%;
+  }
+  .ngx-col-xl-2 {
+    width: 16.66666667%;
+  }
+  .ngx-col-xl-1 {
+    width: 8.33333333%;
+  }
+  .ngx-hide-xl {
+    display: none !important;
+  }
+  .ngx-show-xl {
+    display: block !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .ngx-col-lg-12,
+  .ngx-col-lg-11,
+  .ngx-col-lg-10,
+  .ngx-col-lg-9,
+  .ngx-col-lg-8,
+  .ngx-col-lg-7,
+  .ngx-col-lg-6,
+  .ngx-col-lg-5,
+  .ngx-col-lg-4,
+  .ngx-col-lg-3,
+  .ngx-col-lg-2,
+  .ngx-col-lg-1 {
+    -ms-flex: none;
+    flex: none;
+  }
+  .ngx-col-lg-12 {
+    width: 100%;
+  }
+  .ngx-col-lg-11 {
+    width: 91.66666667%;
+  }
+  .ngx-col-lg-10 {
+    width: 83.33333333%;
+  }
+  .ngx-col-lg-9 {
+    width: 75%;
+  }
+  .ngx-col-lg-8 {
+    width: 66.66666667%;
+  }
+  .ngx-col-lg-7 {
+    width: 58.33333333%;
+  }
+  .ngx-col-lg-6 {
+    width: 50%;
+  }
+  .ngx-col-lg-5 {
+    width: 41.66666667%;
+  }
+  .ngx-col-lg-4 {
+    width: 33.33333333%;
+  }
+  .ngx-col-lg-3 {
+    width: 25%;
+  }
+  .ngx-col-lg-2 {
+    width: 16.66666667%;
+  }
+  .ngx-col-lg-1 {
+    width: 8.33333333%;
+  }
+  .ngx-hide-lg {
+    display: none !important;
+  }
+  .ngx-show-lg {
+    display: block !important;
+  }
+}
+
+@media (max-width: 840px) {
+  .ngx-col-md-12,
+  .ngx-col-md-11,
+  .ngx-col-md-10,
+  .ngx-col-md-9,
+  .ngx-col-md-8,
+  .ngx-col-md-7,
+  .ngx-col-md-6,
+  .ngx-col-md-5,
+  .ngx-col-md-4,
+  .ngx-col-md-3,
+  .ngx-col-md-2,
+  .ngx-col-md-1 {
+    -ms-flex: none;
+    flex: none;
+  }
+  .ngx-col-md-12 {
+    width: 100%;
+  }
+  .ngx-col-md-11 {
+    width: 91.66666667%;
+  }
+  .ngx-col-md-10 {
+    width: 83.33333333%;
+  }
+  .ngx-col-md-9 {
+    width: 75%;
+  }
+  .ngx-col-md-8 {
+    width: 66.66666667%;
+  }
+  .ngx-col-md-7 {
+    width: 58.33333333%;
+  }
+  .ngx-col-md-6 {
+    width: 50%;
+  }
+  .ngx-col-md-5 {
+    width: 41.66666667%;
+  }
+  .ngx-col-md-4 {
+    width: 33.33333333%;
+  }
+  .ngx-col-md-3 {
+    width: 25%;
+  }
+  .ngx-col-md-2 {
+    width: 16.66666667%;
+  }
+  .ngx-col-md-1 {
+    width: 8.33333333%;
+  }
+  .ngx-hide-md {
+    display: none !important;
+  }
+  .ngx-show-md {
+    display: block !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ngx-col-sm-12,
+  .ngx-col-sm-11,
+  .ngx-col-sm-10,
+  .ngx-col-sm-9,
+  .ngx-col-sm-8,
+  .ngx-col-sm-7,
+  .ngx-col-sm-6,
+  .ngx-col-sm-5,
+  .ngx-col-sm-4,
+  .ngx-col-sm-3,
+  .ngx-col-sm-2,
+  .ngx-col-sm-1 {
+    -ms-flex: none;
+    flex: none;
+  }
+  .ngx-col-sm-12 {
+    width: 100%;
+  }
+  .ngx-col-sm-11 {
+    width: 91.66666667%;
+  }
+  .ngx-col-sm-10 {
+    width: 83.33333333%;
+  }
+  .ngx-col-sm-9 {
+    width: 75%;
+  }
+  .ngx-col-sm-8 {
+    width: 66.66666667%;
+  }
+  .ngx-col-sm-7 {
+    width: 58.33333333%;
+  }
+  .ngx-col-sm-6 {
+    width: 50%;
+  }
+  .ngx-col-sm-5 {
+    width: 41.66666667%;
+  }
+  .ngx-col-sm-4 {
+    width: 33.33333333%;
+  }
+  .ngx-col-sm-3 {
+    width: 25%;
+  }
+  .ngx-col-sm-2 {
+    width: 16.66666667%;
+  }
+  .ngx-col-sm-1 {
+    width: 8.33333333%;
+  }
+  .ngx-hide-sm {
+    display: none !important;
+  }
+  .ngx-show-sm {
+    display: block !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ngx-col-xs-12,
+  .ngx-col-xs-11,
+  .ngx-col-xs-10,
+  .ngx-col-xs-9,
+  .ngx-col-xs-8,
+  .ngx-col-xs-7,
+  .ngx-col-xs-6,
+  .ngx-col-xs-5,
+  .ngx-col-xs-4,
+  .ngx-col-xs-3,
+  .ngx-col-xs-2,
+  .ngx-col-xs-1 {
+    -ms-flex: none;
+    flex: none;
+  }
+  .ngx-col-xs-12 {
+    width: 100%;
+  }
+  .ngx-col-xs-11 {
+    width: 91.66666667%;
+  }
+  .ngx-col-xs-10 {
+    width: 83.33333333%;
+  }
+  .ngx-col-xs-9 {
+    width: 75%;
+  }
+  .ngx-col-xs-8 {
+    width: 66.66666667%;
+  }
+  .ngx-col-xs-7 {
+    width: 58.33333333%;
+  }
+  .ngx-col-xs-6 {
+    width: 50%;
+  }
+  .ngx-col-xs-5 {
+    width: 41.66666667%;
+  }
+  .ngx-col-xs-4 {
+    width: 33.33333333%;
+  }
+  .ngx-col-xs-3 {
+    width: 25%;
+  }
+  .ngx-col-xs-2 {
+    width: 16.66666667%;
+  }
+  .ngx-col-xs-1 {
+    width: 8.33333333%;
+  }
+  .ngx-hide-xs {
+    display: none !important;
+  }
+  .ngx-show-xs {
+    display: block !important;
+  }
+}
+
+.ngx-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.ngx-dropdown .ngx-menu {
+  animation: slide-down .15s ease 1;
+  display: none;
+  left: 0;
+  max-height: 50vh;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+}
+
+.ngx-dropdown.ngx-dropdown-right .ngx-menu {
+  left: auto;
+  right: 0;
+}
+
+.ngx-dropdown.ngx-active .ngx-menu,
+.ngx-dropdown .ngx-dropdown-toggle:focus + .ngx-menu,
+.ngx-dropdown .ngx-menu:hover {
+  display: block;
+}
+
+.ngx-dropdown .ngx-btn-group .ngx-dropdown-toggle:nth-last-child(2) {
+  border-bottom-right-radius: .1rem;
+  border-top-right-radius: .1rem;
+}
+
+.ngx-menu {
+  background: #fff;
+  border-radius: .1rem;
+  box-shadow: 0 .05rem .2rem rgba(69, 77, 93, .3);
+  list-style: none;
+  margin: 0;
+  min-width: 180px;
+  padding: .4rem;
+  transform: translateY(.2rem);
+  z-index: 100;
+}
+
+.ngx-menu.ngx-menu-nav {
+  background: transparent;
+  box-shadow: none;
+}
+
+.ngx-menu .ngx-menu-item {
+  margin-top: 0;
+  padding: 0 .4rem;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ngx-menu .ngx-menu-item > a {
+  border-radius: .1rem;
+  color: inherit;
+  display: block;
+  margin: 0 -.4rem;
+  padding: .2rem .4rem;
+  text-decoration: none;
+}
+
+.ngx-menu .ngx-menu-item > a:focus,
+.ngx-menu .ngx-menu-item > a:hover {
+  background: #d5e4f3;
+  color: #3f86ca;
+}
+
+.ngx-menu .ngx-menu-item > a:active,
+.ngx-menu .ngx-menu-item > a.ngx-active {
+  background: #d5e4f3;
+  color: #3f86ca;
+}
+
+.ngx-menu .ngx-menu-item + .ngx-menu-item {
+  margin-top: .2rem;
+}
+
+.ngx-menu .ngx-menu-badge {
+  float: right;
+  padding: .2rem 0;
+}
+
+.ngx-menu .ngx-menu-badge .ngx-btn {
+  margin-top: -.1rem;
+}
+
+.ngx-pagination {
+  display: flex;
+  display: -ms-flexbox;
+  list-style: none;
+  margin: .2rem 0;
+  padding: .2rem 0;
+}
+
+.ngx-pagination .ngx-page-item {
+  margin: .2rem .05rem;
+}
+
+.ngx-pagination .ngx-page-item span {
+  display: inline-block;
+  padding: .2rem .2rem;
+}
+
+.ngx-pagination .ngx-page-item a {
+  border-radius: .1rem;
+  color: #667189;
+  display: inline-block;
+  padding: .2rem .4rem;
+  text-decoration: none;
+}
+
+.ngx-pagination .ngx-page-item a:focus,
+.ngx-pagination .ngx-page-item a:hover {
+  color: #3f86ca;
+}
+
+.ngx-pagination .ngx-page-item.ngx-disabled a {
+  cursor: default;
+  opacity: .5;
+  pointer-events: none;
+}
+
+.ngx-pagination .ngx-page-item.ngx-active a {
+  background: #3f86ca;
+  color: #fff;
+}
+
+.ngx-pagination .ngx-page-item.ngx-page-prev,
+.ngx-pagination .ngx-page-item.ngx-page-next {
+  -ms-flex: 1 0 50%;
+  flex: 1 0 50%;
+}
+
+.ngx-pagination .ngx-page-item.ngx-page-next {
+  text-align: right;
+}
+
+.ngx-pagination .ngx-page-item .ngx-page-item-title {
+  margin: 0;
+}
+
+.ngx-pagination .ngx-page-item .ngx-page-item-subtitle {
+  margin: 0;
+  opacity: .5;
+}
+
+.ngx-text-primary {
+  color: #3f86ca;
+}
+
+a.ngx-text-primary:focus,
+a.ngx-text-primary:hover {
+  color: #3479bc;
+}
+
+.ngx-text-secondary {
+  color: #c9ddf0;
+}
+
+a.ngx-text-secondary:focus,
+a.ngx-text-secondary:hover {
+  color: #b5d0eb;
+}
+
+.ngx-text-gray {
+  color: #acb3c2;
+}
+
+a.ngx-text-gray:focus,
+a.ngx-text-gray:hover {
+  color: #9ea6b7;
+}
+
+.ngx-text-light {
+  color: #fff;
+}
+
+a.ngx-text-light:focus,
+a.ngx-text-light:hover {
+  color: #f2f2f2;
+}
+
+.ngx-text-success {
+  color: #32b643;
+}
+
+a.ngx-text-success:focus,
+a.ngx-text-success:hover {
+  color: #2da23c;
+}
+
+.ngx-text-warning {
+  color: #ffb700;
+}
+
+a.ngx-text-warning:focus,
+a.ngx-text-warning:hover {
+  color: #e6a500;
+}
+
+.ngx-text-error {
+  color: #e85600;
+}
+
+a.ngx-text-error:focus,
+a.ngx-text-error:hover {
+  color: #cf4d00;
+}
+
+.ngx-bg-primary {
+  background: #3f86ca;
+}
+
+.ngx-bg-secondary {
+  background: #d5e4f3;
+}
+
+.ngx-bg-dark {
+  background: #454d5d;
+}
+
+.ngx-bg-gray {
+  background: #f8f9fa;
+}
+
+.ngx-bg-success {
+  background: #32b643;
+}
+
+.ngx-bg-warning {
+  background: #ffb700;
+}
+
+.ngx-bg-error {
+  background: #e85600;
+}
+
+.ngx-c-hand {
+  cursor: pointer;
+}
+
+.ngx-c-move {
+  cursor: move;
+}
+
+.ngx-c-zoom-in {
+  cursor: zoom-in;
+}
+
+.ngx-c-zoom-out {
+  cursor: zoom-out;
+}
+
+.ngx-c-not-allowed {
+  cursor: not-allowed;
+}
+
+.ngx-c-auto {
+  cursor: auto;
+}
+
+.ngx-d-block {
+  display: block;
+}
+
+.ngx-d-inline {
+  display: inline;
+}
+
+.ngx-d-inline-block {
+  display: inline-block;
+}
+
+.ngx-clearfix::after,
+.ngx-container::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.ngx-float-left {
+  float: left !important;
+}
+
+.ngx-float-right {
+  float: right !important;
+}
+
+.ngx-relative {
+  position: relative;
+}
+
+.ngx-absolute {
+  position: absolute;
+}
+
+.ngx-fixed {
+  position: fixed;
+}
+
+.ngx-centered {
+  display: block;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ngx-flex-centered {
+  align-items: center;
+  display: flex;
+  display: -ms-flexbox;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
