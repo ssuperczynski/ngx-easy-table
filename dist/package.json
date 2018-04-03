@@ -2,7 +2,7 @@
   "name": "ngx-easy-table",
   "version": "2.2.1",
   "description": "Angular easy table",
-  "typings": "index.ts",
+  "typings": "ngx-easy-table.d.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
   "scripts": {
     "ng": "ng",
@@ -65,7 +65,7 @@
     "url": "https://github.com/ssuperczynski/ngx-easy-table/issues"
   },
   "homepage": "https://github.com/ssuperczynski/ngx-easy-table",
-  "main": "main.js",
+  "main": "bundles/ngx-easy-table.umd.js",
   "keywords": [
     "angular",
     "angular2",
@@ -83,6 +83,10 @@
   ],
   "author": "Sebastian Superczynski <s.superczynski@gmail.com> (https://espeo.eu/)",
   "dependencies": {
-    "ngx-pagination": "^3.0.3"
-  }
+    "ngx-pagination": "^3.0.3",
+    "tslib": "^1.7.1"
+  },
+  "module": "esm5/ngx-easy-table.js",
+  "es2015": "esm2015/ngx-easy-table.js",
+  "metadata": "ngx-easy-table.metadata.json"
 }
