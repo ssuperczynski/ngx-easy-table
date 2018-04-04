@@ -4,47 +4,43 @@ import { ResourceService } from '../services/resource-service';
 @Pipe({
   name: 'search'
 })
-
 export class SearchPipe implements PipeTransform {
   constructor(public resource: ResourceService) {
   }
 
-  transform(value, filters) {
-    if (typeof value === 'undefined') {
+  transform(value: Array<any>, filters: Array<any>) {
+    console.log(filters);
+    // If there is no value, just return
+    if (!value) {
       return;
     }
-    this.resource.data = value.slice();
-
-    if (typeof filters === 'undefined' || Object.keys(filters).length === 0) {
-      return this.resource.data;
+    // If there are no filters, return a copy of the data
+    if (!filters || (filters && filters.length === 0)) {
+      return [ ...value ];
     }
 
-    const filtersArr = [];
-    filtersArr[filters.key] = filters.value;
-    value.forEach((item) => {
-      for (const filterKey in filtersArr) {
-        if (filtersArr.hasOwnProperty(filterKey)) {
-          let element = '';
-          if (typeof item[filterKey] === 'string') {
-            element = item[filterKey].toLocaleLowerCase();
-          }
-          if (typeof item[filterKey] === 'object') {
-            element = JSON.stringify(item[filterKey]);
-          }
-          if (typeof item[filterKey] === 'number') {
-            element = item[filterKey].toString();
-          }
-          if (typeof item[filterKey] === 'boolean') {
-            element = item[filterKey].toString();
-          }
-          if (element.indexOf(filtersArr[filterKey].toLocaleLowerCase()) === -1) {
-            this.resource.data.splice(this.resource.data.indexOf(item), 1);
-            return;
-          }
-        }
-      }
-    });
+    // Map the filters array and filter the data per array;
+    return this.filterBy([ ...value ], filters);
+  }
 
-    return this.resource.data;
+  filterBy(array, filters) {
+    let filteredArray = [...array];
+    for (const filter of filters) {
+      filteredArray = filteredArray.filter(item => {
+        switch (typeof item[ filter.key ]) {
+          case 'string':
+            return item[ filter.key ].toLowerCase().indexOf(filter.value.toLowerCase()) > -1;
+          case 'object':
+            // I have yet to find a usecase that has objects as a searchquery, but this case was in the original, so lets use it
+            return JSON.stringify(item[ filter.key ]).indexOf(filter.value.toLowerCase()) > -1;
+          case 'number':
+          case 'boolean':
+            return item[ filter.key ].toString().indexOf(filter.value.toString()) > -1;
+          default:
+            return false;
+        }
+      });
+    }
+    return filteredArray;
   }
 }

@@ -1,0 +1,3 @@
+[submodule "dist"]
+	path = dist
+	url = git@github.com:conclusion-digital-cx/ngx-easy-table-build.git

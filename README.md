@@ -1,16 +1,19 @@
-[![npm version](https://badge.fury.io/js/ngx-easy-table.svg)](https://badge.fury.io/js/ngx-easy-table)
-[![Build Status](https://travis-ci.org/ssuperczynski/ngx-easy-table.svg?branch=master)](https://travis-ci.org/ssuperczynski/ngx-easy-table)
+## NEXT
+As we needed some custom functionality for the Next tables, we've decided to fork this repo into our own. We will however start using our own versioning
 
-### Live edit
-<a href="https://stackblitz.com/edit/ngx-easy-table?embed=1&file=app/components/basic/basic.component.ts" target="_blank">
-<img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
-</a>
+**Current base version: 2.2.1**
 
-### Interactive demo
+### Release notes
+####  Version 1.1 - 3th of April 2018
+- Translatable header
 
-<a href="https://ngx-easy-table.stackblitz.io/">
-<img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
-</a>
+### Roadmap
+- Add date search dropdown
+- Add translatable headers for the search
+- Make it possible to combine searches
+- Added a button to remove all search entries
+
+
 
 # Installation
 

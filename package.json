@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng-packagr && cp src/assets/spectre.css dist/ && cp src/assets/spectre-icons.css dist/"
+    "build:lib": "cp -rf dist/.git/* .backup/ && ng-packagr && cp src/assets/spectre.css dist/ && cp src/assets/spectre-icons.css dist/ && mkdir dist/.git && cp -r .backup/* dist/.git/"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "core-js": "^2.4.0",
+    "font-awesome": "^4.7.0",
+    "ngx-bootstrap": "^2.0.3",
     "rxjs": "^5.5.0"
   },
   "devDependencies": {
@@ -83,6 +85,7 @@
   ],
   "author": "Sebastian Superczynski <s.superczynski@gmail.com> (https://espeo.eu/)",
   "dependencies": {
+    "font-awesome": "4.7.0",
     "ngx-pagination": "^3.0.3"
   }
 }
