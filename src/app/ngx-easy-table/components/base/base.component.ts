@@ -35,7 +35,7 @@ import 'rxjs/add/operator/groupBy';
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
-  public term;
+  public terms: Array<any> = [];
   public config: Config;
   public globalSearchTerm;
   grouped = [];
@@ -138,10 +138,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onSearch($event): void {
-    if (!ConfigService.config.serverPagination) {
-      this.term = $event;
-    }
-    this.emitEvent(Event.onSearch, $event);
+    this.terms = this.terms.filter(term => term.key !== $event.key);
+    this.terms.push($event);
+    this.emitEvent(Event.onSearch, this.terms);
   }
 
   onGlobalSearch($event): void {

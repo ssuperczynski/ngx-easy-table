@@ -54,7 +54,7 @@
       </thead>
       <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="rowTemplate">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+        <tr *ngFor="let row of data | search : terms | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index"
             (click)="clickedCell($event, row, '', '', rowIndex)"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
@@ -65,7 +65,7 @@
       </ng-container>
       <ng-container *ngIf="!rowTemplate && !config.groupRows">
         <ng-container
-          *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+          *ngFor="let row of data | search : terms | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index"
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <tr>
