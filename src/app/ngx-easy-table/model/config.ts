@@ -17,4 +17,5 @@ export interface Config {
   groupRows: boolean;
   paginationRangeEnabled: boolean;
   collapseAllRows: boolean;
+  horizontalScroll: boolean;
 }

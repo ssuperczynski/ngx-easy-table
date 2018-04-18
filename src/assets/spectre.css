@@ -1,4 +1,4 @@
-/*! Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
+/*! Spectre.css v0.5.1 | MIT License | github.com/picturepan2/spectre */
 /* Manually forked from Normalize.css */
 /* normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /** 1. Change the default font family in all browsers (opinionated). 2. Correct the line height in all browsers. 3. Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS. */
@@ -83,6 +83,13 @@ template {
 .ngx-table tbody tr.ngx-active,
 .ngx-table.ngx-table-striped tbody tr.ngx-active {
   background: #f0f1f4;
+}
+
+.ngx-table.ngx-table-scroll {
+  display: block;
+  overflow-x: auto;
+  padding-bottom: .75rem;
+  white-space: nowrap;
 }
 
 .ngx-table td,
