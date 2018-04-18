@@ -1,4 +1,4 @@
-/* ! Spectre.css Icons v0.4.5 | MIT License | github.com/picturepan2/spectre  */
+/* ! Spectre.css Icons v0.5.1 | MIT License | github.com/picturepan2/spectre   */
 .ngx-icon{ box-sizing: border-box;display: inline-block;font-size: inherit;font-style: normal;height: 1em;position: relative;text-indent: -9999px;vertical-align: middle;width: 1em; }
 .ngx-icon::before,.ngx-icon::after{ display: block;left: 50%;position: absolute;top: 50%;transform: translate(-50%, -50%); }
 .ngx-icon.ngx-icon-2x{ font-size: 1.6rem; }

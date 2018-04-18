@@ -9,7 +9,8 @@
     </div>
   </div>
   <div class="ngx-columns">
-    <table class="ngx-table ngx-table-striped ngx-table-hover">
+    <table class="ngx-table ngx-table-striped ngx-table-hover"
+           [class.ngx-table-scroll]="config.horizontalScroll">
       <thead>
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
         <ng-container *ngFor="let column of columns">
