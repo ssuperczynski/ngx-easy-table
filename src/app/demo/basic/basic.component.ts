@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+import { data } from '@assets/data';
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html',

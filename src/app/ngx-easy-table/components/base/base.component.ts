@@ -14,13 +14,14 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { ConfigService } from '../../services/config-service';
-import { Event } from '../../model/event.enum';
-import { Config } from '../../model/config';
+import { ConfigService } from '@core/ngx-easy-table/services/config-service';
+import { Event } from '@core/ngx-easy-table/model/event.enum';
+import { Config } from '@core/ngx-easy-table/model/config';
+import { Columns } from '@core/ngx-easy-table/model/columns';
+import { UtilsService } from '@core/ngx-easy-table/services/utils-service';
+
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
-import { Columns } from '../../model/columns';
-import { UtilsService } from '../../services/utils-service';
 
 @Component({
   selector: 'ngx-table',

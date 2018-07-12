@@ -1,8 +1,8 @@
 import {
   ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit,
 } from '@angular/core';
-import { ConfigService } from '../../services/config-service';
-import { Config } from '../../model/config';
+import { ConfigService } from '@core/ngx-easy-table/services/config-service';
+import { Config } from '@core/ngx-easy-table/model/config';
 
 @Component({
   selector: 'pagination',

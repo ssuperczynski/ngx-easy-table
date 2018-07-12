@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FiltersService } from '../services/filters.service';
+import { FiltersService } from '@core/ngx-easy-table/services/filters.service';
 
 @Pipe({
   name: 'search',
