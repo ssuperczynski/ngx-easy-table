@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { data } from '@assets/data';
-@Component({
-  selector: 'app-click-event',
-  templateUrl: './click-event.component.html',
-  providers: [ConfigService],
-  styleUrls: ['./click-event.component.css'],
-})
-export class ClickEventComponent {
 
+@Component({
+  selector: 'app-styles',
+  templateUrl: './summary-footer.component.html',
+  styleUrls: ['./summary-footer.component.css'],
+})
+export class SummaryFooterComponent implements OnInit {
+
+  configuration;
+  ageSummary = 0;
   columns = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -16,16 +18,16 @@ export class ClickEventComponent {
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
   ];
-  clicked;
+
   data = [];
-  configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
+    this.ageSummary = this.data.map(_ => _.age).reduce((acc, cur) => cur + acc , 0);
   }
 
-  eventEmitted($event) {
-    this.clicked = JSON.stringify($event, null, 2);
-    console.log('$event', $event);
+  ngOnInit() {
   }
+
 }

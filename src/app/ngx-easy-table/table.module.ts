@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BaseComponent } from './components/base/base.component';
-import { BaseModule } from './components/base/base.module';
 import { CommonModule } from '@angular/common';
+
+import { BaseComponent } from '@core/ngx-easy-table/components/base/base.component';
+import { BaseModule } from '@core/ngx-easy-table/components/base/base.module';
 
 @NgModule({
   imports: [

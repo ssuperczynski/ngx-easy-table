@@ -35,7 +35,7 @@ import {
   FixedWidthComponent,
   CustomizeThemeComponent,
   StylesComponent,
-  ColTemplateComponent,
+  ColTemplateComponent, SummaryFooterComponent,
 } from './demo';
 
 export const routes = [
@@ -73,6 +73,7 @@ export const routes = [
   { path: 'customize-theme', component: CustomizeThemeComponent },
   { path: 'styles', component: StylesComponent },
   { path: 'col-template', component: ColTemplateComponent },
+  { path: 'summary-footer', component: SummaryFooterComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });

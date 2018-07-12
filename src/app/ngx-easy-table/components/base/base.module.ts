@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseComponent } from './base.component';
-import { GlobalSearchComponent } from '../global-search/global-search.component';
-import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
-import { SearchPipe } from '../../pipes/search-pipe';
-import { HeaderComponent } from '../header/header.component';
-import { PaginationComponent } from '../pagination/pagination.component';
-import { CsvExportComponent } from '../csv-export.component';
+
+import { BaseComponent } from '@core/ngx-easy-table/components/base/base.component';
+import { GlobalSearchComponent } from '@core/ngx-easy-table/components/global-search/global-search.component';
+import { GlobalSearchPipe } from '@core/ngx-easy-table/pipes/global-search-pipe';
+import { SearchPipe } from '@core/ngx-easy-table/pipes/search-pipe';
+import { HeaderComponent } from '@core/ngx-easy-table/components/header/header.component';
+import { PaginationComponent } from '@core/ngx-easy-table/components/pagination/pagination.component';
+import { CsvExportComponent } from '@core/ngx-easy-table/components/csv-export.component';
+import { SortPipe } from '@core/ngx-easy-table/pipes/sort.pipe';
+import { RenderPipe } from '@core/ngx-easy-table/pipes/render-pipe';
+
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SortPipe } from '../../pipes/sort.pipe';
-import { RenderPipe } from '../../pipes/render-pipe';
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
 
 @NgModule({

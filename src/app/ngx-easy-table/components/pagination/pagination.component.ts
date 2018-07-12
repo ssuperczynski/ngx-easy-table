@@ -1,29 +1,12 @@
 import {
   ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit,
 } from '@angular/core';
-import { ConfigService } from '../../services/config-service';
-import { Config } from '../../model/config';
+import { ConfigService } from '@core/ngx-easy-table/services/config-service';
+import { Config } from '@core/ngx-easy-table/model/config';
 
 @Component({
   selector: 'pagination',
   templateUrl: './pagination.html',
-  styles: [
-      `
-      :host /deep/ #pagination-controls > pagination-template > ul {
-        -webkit-padding-start: 0px;
-        -webkit-margin-before: 7px;
-      }
-      :host /deep/ #pagination-controls > pagination-template > ul > li {
-        border: 1px solid #e7e9ed;
-      }
-      :host /deep/ #pagination-controls > pagination-template > ul > li.current {
-        border: 1px solid #a4c2ff;
-      }
-      :host /deep/ #pagination-controls > pagination-template > ul > li > a {
-        color: #50596c;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

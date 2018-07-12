@@ -233,6 +233,14 @@
       </td>
     </tr>
     </tbody>
+    <tfoot *ngIf="summaryTemplate">
+    <tr>
+      <ng-container
+        [ngTemplateOutlet]="summaryTemplate"
+        [ngTemplateOutletContext]="{ total: data.length, limit: limit, page: page  }">
+      </ng-container>
+    </tr>
+    </tfoot>
   </table>
   <pagination
     id="pagination"

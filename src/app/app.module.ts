@@ -44,6 +44,7 @@ import {
   CustomizeThemeComponent,
   StylesComponent,
   ColTemplateComponent,
+  SummaryFooterComponent,
 } from './demo';
 
 @NgModule({
@@ -92,7 +93,8 @@ import {
     FixedWidthComponent,
     CustomizeThemeComponent,
     StylesComponent,
-    ColTemplateComponent
+    ColTemplateComponent,
+    SummaryFooterComponent
   ],
   bootstrap: [AppComponent],
   providers: [],

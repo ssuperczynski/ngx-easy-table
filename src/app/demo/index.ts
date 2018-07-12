@@ -33,3 +33,4 @@ export * from './fixed-width/fixed-width.component';
 export * from './customize-theme/customize-theme.component';
 export * from './styles/styles.component';
 export * from './col-template/col-template.component';
+export * from './summary-footer/summary-footer.component';

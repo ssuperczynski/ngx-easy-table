@@ -191,6 +191,24 @@ $primary-color: #50596c !default;
       cursor: pointer;
       padding: 4px;
     }
+    &-style {
+      & /deep/ .ngx-pagination .current {
+        background: $blue;
+      }
+      & /deep/ pagination-template > ul {
+        -webkit-padding-start: 0;
+        -webkit-margin-before: 7px;
+      }
+      & /deep/ pagination-template > ul > li {
+        border: 1px solid $grey;
+      }
+      & /deep/ pagination-template > ul > li.current {
+        border: 1px solid $dark;
+      }
+      & /deep/ pagination-template > ul > li > a {
+        color: $dark;
+      }
+    }
   }
   &-form-icon {
     border-radius: .1rem;
@@ -227,7 +245,7 @@ $primary-color: #50596c !default;
         border-color: $blue;
       }
       &:active + .ngx-form-icon {
-        background: #454d5d;
+        background: $dark;
       }
       &:checked + .ngx-form-icon {
         &::before {

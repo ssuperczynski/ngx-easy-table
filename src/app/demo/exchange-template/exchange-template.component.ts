@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+import { data } from '@assets/data';
 @Component({
   selector: 'app-exchange-template',
   templateUrl: './exchange-template.component.html',

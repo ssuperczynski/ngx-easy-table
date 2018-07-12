@@ -36,6 +36,7 @@ export class AppComponent {
     { link: '/checkboxes2', name: 'Checkboxes2', },
     { link: '/customize-theme', name: 'Customize theme', },
     { link: '/styles', name: 'Styles', },
+    { link: '/summary-footer', name: 'Summary footer', },
   ];
   select = [
     { link: '/select-row', name: 'Select row', },

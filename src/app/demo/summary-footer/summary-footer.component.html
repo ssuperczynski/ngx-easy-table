@@ -1,0 +1,40 @@
+<h3>Footer summary</h3>
+<div class="mb-2">
+  <a class="btn"
+     href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Ffooter-summary%2Ffooter-summary.component.ts"
+     target="_blank">
+    See code here
+  </a>
+</div>
+<ngx-table [configuration]="configuration"
+           [summaryTemplate]="summaryTemplateRef"
+           [data]="data"
+           [columns]="columns">
+</ngx-table>
+<ng-template #summaryTemplateRef let-total="total" let-limit="limit" let-page="page">
+  <th colspan="5">
+    Total items: {{ total }} <br>
+    limit: {{ limit }} <br>
+    page: {{ page }} <br>
+  </th>
+</ng-template>
+<hr>
+<ngx-table [configuration]="configuration"
+           [summaryTemplate]="summaryTemplateRef2"
+           [data]="data"
+           [columns]="columns">
+</ngx-table>
+<ng-template #summaryTemplateRef2 let-total="total" let-limit="limit" let-page="page">
+  <th>
+    Total items: {{ total }}
+  </th>
+  <th>
+    Summary: {{ ageSummary }}
+  </th>
+  <th>
+    page: {{ page }}
+  </th>
+  <th>
+  </th>
+  <th></th>
+</ng-template>
