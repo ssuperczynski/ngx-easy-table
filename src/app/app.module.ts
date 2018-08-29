@@ -45,6 +45,7 @@ import {
   StylesComponent,
   ColTemplateComponent,
   SummaryFooterComponent,
+  FilterTemplateComponent,
 } from './demo';
 
 @NgModule({
@@ -94,7 +95,8 @@ import {
     CustomizeThemeComponent,
     StylesComponent,
     ColTemplateComponent,
-    SummaryFooterComponent
+    SummaryFooterComponent,
+    FilterTemplateComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

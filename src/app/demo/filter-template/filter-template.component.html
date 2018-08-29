@@ -1,0 +1,52 @@
+<h3>Filter Template</h3>
+<div class="mb-2">
+	<a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Ffilter-template%2Ffilter-template.component.ts"
+	 target="_blank">
+		See code here
+	</a>
+</div>
+<ngx-table [configuration]="configuration" [data]="rows" (event)="eventEmitted($event)" [columns]="columns">
+  <ng-template #filtersTemplate>
+    <th></th>
+    <th>
+      <select class="form-select" (change)="onAgeSearch($event.target.value)">
+        <option value="">
+          Select age
+        </option>
+        <option *ngFor="let age of ages" [ngValue]="age">
+          {{ age }}
+        </option>
+      </select>
+    </th>
+    <th>
+      <input class="form-input" (input)="onCompanySearch($event.target.value)" type="text" id="filter-company" placeholder="Company">
+    </th>
+    <th></th>
+    <th></th>
+  </ng-template>
+	<ng-template #rowTemplate let-row>
+		<td class="recruitments__table-row-recruitment">
+			<h5 class="color-green font-light">{{row.name}}</h5>
+		</td>
+		<td class="recruitments__table-row-progressbar">
+			<span class="font-small">Days left: {{row.age}}</span>
+			<div class="bar bar-sm">
+				<div class="bar-item" role="progressbar" [style.width]="row.age + '%'" aria-valuenow="row.age" aria-valuemin="0" aria-valuemax="70"></div>
+			</div>
+		</td>
+		<td>
+			<div class="font-small">
+				Company: {{row.company}}
+				<small class="d-block">{{row.date | date}}</small>
+			</div>
+		</td>
+		<td>
+			<span class="font-small display-block">Phone:</span>
+			<span class="font-small">{{row.phone}}</span>
+		</td>
+		<td>
+			<div>{{row.addres.street}}</div>
+		</td>
+	</ng-template>
+
+</ngx-table>

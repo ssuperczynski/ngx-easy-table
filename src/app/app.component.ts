@@ -37,6 +37,7 @@ export class AppComponent {
     { link: '/customize-theme', name: 'Customize theme', },
     { link: '/styles', name: 'Styles', },
     { link: '/summary-footer', name: 'Summary footer', },
+    { link: '/filter-template', name: 'Filter template', },
   ];
   select = [
     { link: '/select-row', name: 'Select row', },
