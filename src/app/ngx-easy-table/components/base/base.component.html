@@ -75,9 +75,7 @@
     </tr>
     <ng-container *ngIf="filtersTemplate">
       <tr>
-        <ng-container
-          [ngTemplateOutlet]="filtersTemplate"
-          [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
+        <ng-container [ngTemplateOutlet]="filtersTemplate">
         </ng-container>
       </tr>
     </ng-container>
