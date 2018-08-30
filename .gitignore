@@ -46,3 +46,4 @@ Thumbs.db
 dist.tgz
 
 cypress/videos
+/cypress/screenshots/

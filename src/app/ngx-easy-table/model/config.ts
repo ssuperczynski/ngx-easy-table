@@ -23,6 +23,8 @@ export interface Config {
   horizontalScroll: boolean;
   draggable: boolean;
   logger: boolean;
+  showDetailsArrow?: boolean;
+  showContextMenu?: boolean;
   tableLayout: {
     style: string,
     theme: string,

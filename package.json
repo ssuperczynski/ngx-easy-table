@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
@@ -26,7 +26,7 @@
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "ngx-pagination": "^3.1.1",
-    "rxjs": "^6.1.0"
+    "rxjs": "^6.2.0"
   },
   "husky": {
     "hooks": {
@@ -40,17 +40,17 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.3",
-    "@angular/animations": "6.0.9",
-    "@angular/cli": "6.0.8",
-    "@angular/common": "6.0.9",
-    "@angular/compiler": "6.0.9",
-    "@angular/compiler-cli": "6.0.9",
-    "@angular/core": "6.0.9",
-    "@angular/forms": "6.0.9",
-    "@angular/language-service": "6.0.9",
-    "@angular/platform-browser": "6.0.9",
-    "@angular/platform-browser-dynamic": "6.0.9",
-    "@angular/router": "6.0.9",
+    "@angular/animations": "6.1.4",
+    "@angular/cli": "6.1.5",
+    "@angular/common": "6.1.4",
+    "@angular/compiler": "6.1.4",
+    "@angular/compiler-cli": "6.1.4",
+    "@angular/core": "6.1.4",
+    "@angular/forms": "6.1.4",
+    "@angular/language-service": "6.1.4",
+    "@angular/platform-browser": "6.1.4",
+    "@angular/platform-browser-dynamic": "6.1.4",
+    "@angular/router": "6.1.4",
     "@types/jasmine": "~2.8.7",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~10.1.0",
@@ -67,13 +67,13 @@
     "karma-coverage-istanbul-reporter": "^2.0.0",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^1.1.0",
-    "ng-packagr": "3.0.2",
+    "ng-packagr": "4.1.0",
     "node-sass": "^4.9.0",
-    "rxjs": "^6.1.0",
+    "rxjs": "^6.2.2",
     "start-server-and-test": "^1.4.1",
     "ts-node": "^6.0.3",
     "tslint": "^5.10.0",
-    "typescript": "2.7.2",
+    "typescript": "2.9.2",
     "zone.js": "^0.8.26"
   },
   "engines": {

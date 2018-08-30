@@ -53,6 +53,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() data: Array<Object>;
   @Input() pagination;
   @Input() groupRowsBy;
+  @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
@@ -91,6 +92,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const pagination: SimpleChange = changes.pagination;
     const configuration: SimpleChange = changes.configuration;
     const groupRowsBy: SimpleChange = changes.groupRowsBy;
+    this.toggleRowIndex = changes.toggleRowIndex;
     if (data && data.currentValue) {
       this.data = [...data.currentValue];
     }
@@ -104,10 +106,18 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.doGroupRows();
     }
+    if (this.toggleRowIndex && this.toggleRowIndex.currentValue) {
+      const row = this.toggleRowIndex.currentValue;
+      this.collapseRow(row.index);
+    }
   }
 
-  orderBy(key: string): void {
-    if (!ConfigService.config.orderEnabled) {
+  orderBy(column: Columns): void {
+    if (typeof column.orderEnabled !== 'undefined' && !column.orderEnabled) {
+      return;
+    }
+    const key = column.key;
+    if (!ConfigService.config.orderEnabled || key === '') {
       return;
     }
     this.sortBy.key = key;
@@ -286,5 +296,28 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
 
   onRowDrop(event) {
     this.emitEvent(Event.onRowDrop, event);
+  }
+
+  getColumnDefinition(column: Columns): boolean {
+    return column.searchEnabled || typeof column.searchEnabled === 'undefined';
+  }
+
+  get arrowDefinition(): boolean {
+    return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
+  }
+
+  onContextMenu($event: any, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+    if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
+      return;
+    }
+    $event.preventDefault();
+    const value = {
+      event: $event,
+      row: row,
+      key: key,
+      rowId: rowIndex,
+      colId: colIndex,
+    };
+    this.emitEvent(Event.onRowContextMenu, value);
   }
 }

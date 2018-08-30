@@ -6,4 +6,6 @@ export interface Columns {
   placeholder?: string;
   width?: string;
   cellTemplate?: TemplateRef<any>;
+  orderEnabled?: boolean;
+  searchEnabled?: boolean;
 }

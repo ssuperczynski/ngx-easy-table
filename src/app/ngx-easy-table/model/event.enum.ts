@@ -14,4 +14,5 @@ export enum Event {
   onRowDrop,
   onRowCollapsedShow,
   onRowCollapsedHide,
+  onRowContextMenu,
 }
