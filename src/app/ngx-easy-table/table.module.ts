@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BaseComponent } from './components/base/base.component';
 import { BaseModule } from './components/base/base.module';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   ],
   bootstrap: [BaseComponent],
   exports: [BaseComponent],
-  providers: []
+  providers: [],
 })
 export class TableModule {
 }

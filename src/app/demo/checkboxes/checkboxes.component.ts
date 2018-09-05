@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+
 @Component({
   selector: 'app-checkboxes',
   templateUrl: './checkboxes.component.html',
-  styleUrls: ['./checkboxes.component.css']
+  styleUrls: ['./checkboxes.component.css'],
 })
 export class CheckboxesComponent {
   configuration;
@@ -16,7 +17,7 @@ export class CheckboxesComponent {
     { key: 'phone', title: 'Phone' },
   ];
 
-  data = [];
+  data: Company[] = [];
   selected = new Set();
 
   constructor() {

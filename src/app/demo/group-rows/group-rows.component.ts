@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { columns, Company, data } from '../../../assets/data';
+import { Columns } from '../../ngx-easy-table/model/columns';
 import { ConfigService } from './configuration.service';
-import { data, columns } from '../../../assets/data';
+
 @Component({
   selector: 'app-group-rows',
   templateUrl: './group-rows.component.html',
@@ -9,8 +11,8 @@ import { data, columns } from '../../../assets/data';
 })
 export class GroupRowsComponent {
   configuration;
-  columns = [];
-  data = [];
+  columns: Columns[] = [];
+  data: Company[] = [];
   groupBy = 'age';
 
   constructor() {

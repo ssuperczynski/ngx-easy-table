@@ -14,13 +14,15 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { ConfigService } from '../../services/config-service';
-import { Event } from '../../model/event.enum';
-import { Config } from '../../model/config';
-import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { Columns } from '../../model/columns';
+import { Config } from '../../model/config';
+import { Event } from '../../model/event.enum';
+import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
+
+type KeyType = string | number | boolean;
 
 @Component({
   selector: 'ngx-table',
@@ -34,7 +36,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public term;
   public config: Config;
   public globalSearchTerm;
-  grouped = [];
+  grouped: any = [];
   menuActive = false;
   isSelected = false;
   page = 1;
@@ -46,19 +48,23 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   };
   selectedDetailsTemplateRowId = new Set();
   id;
-  th = undefined;
+  th;
   startOffset;
   loadingHeight = '30px';
   @Input() configuration: Config;
-  @Input() data: Array<Object>;
+  @Input() data: any[];
   @Input() pagination;
-  @Input() groupRowsBy;
+  @Input() groupRowsBy: string;
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() event = new EventEmitter();
-  @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
+  // Backwards compatibility for row template
+  @ContentChild(TemplateRef) public rowTemplateOld: TemplateRef<any>;
+  @ContentChild('rowTemplate', { read: TemplateRef }) public rowTemplateNew: TemplateRef<any>;
+  public rowTemplate: TemplateRef<any>;
+  @ContentChild('filtersTemplate', { read: TemplateRef }) public filtersTemplate: TemplateRef<any>;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.id = UtilsService.randomId();
@@ -71,6 +77,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.configuration) {
       ConfigService.config = this.configuration;
     }
+    this.rowTemplate = this.rowTemplateOld || this.rowTemplateNew;
     this.config = ConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
@@ -131,22 +138,22 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+  onClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
-    if (ConfigService.config.selectCol) {
+    if (ConfigService.config.selectCol && colIndex) {
       this.selectedCol = colIndex;
     }
-    if (ConfigService.config.selectCell) {
+    if (ConfigService.config.selectCell && colIndex) {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
     if (ConfigService.config.clickEvent) {
       const value = {
         event: $event,
-        row: row,
-        key: key,
+        row,
+        key,
         rowId: rowIndex,
         colId: colIndex,
       };
@@ -154,11 +161,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  onDoubleClick($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+  onDoubleClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     const value = {
       event: $event,
-      row: row,
-      key: key,
+      row,
+      key,
       rowId: rowIndex,
       colId: colIndex,
     };
@@ -168,7 +175,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onCheckboxSelect($event: object, row: object, rowIndex: number): void {
     const value = {
       event: $event,
-      row: row,
+      row,
       rowId: rowIndex,
     };
     this.emitEvent(Event.onCheckboxSelect, value);
@@ -199,7 +206,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onPagination, $event);
   }
 
-  private emitEvent(event, value: Object): void {
+  private emitEvent(event, value: any): void {
     this.event.emit({ event: Event[event], value });
     if (this.config.logger) {
       console.log({ event: Event[event], value });
@@ -219,11 +226,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   private doGroupRows() {
     this.grouped = [];
     from(this.data).pipe(
-      groupBy(row => row[this.groupRowsBy]),
-      flatMap(group => group.pipe(
-        reduce((acc: Array<Object>, curr) => [...acc, curr], []),
+      groupBy((row) => row[this.groupRowsBy]),
+      flatMap((group) => group.pipe(
+        reduce((acc: object[], curr) => [...acc, curr], []),
       )),
-    ).subscribe(row => this.grouped.push(row));
+    ).subscribe((row) => this.grouped.push(row));
   }
 
   isRowCollapsed(rowIndex: number): boolean {
@@ -246,7 +253,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!this.config.resizeColumn) {
       return;
     }
-    if (this.th) {
+    if (this.th && this.th.style) {
       this.th.style.width = this.startOffset + event.pageX + 'px';
       this.th.style.cursor = 'col-resize';
       this.th.style['user-select'] = 'none';
@@ -263,9 +270,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   get isLoading(): boolean {
-    const rows = document.getElementById('table')['rows'];
-    if (rows.length > 3) {
-      this.getLoadingHeight(rows);
+    const table = document.getElementById('table');
+    if (table && table['rows'] && table['rows'].length > 3) {
+      this.getLoadingHeight(table['rows']);
     }
     return this.config.isLoading;
   }
@@ -278,7 +285,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
   }
 
-  getColumnWidth(column: any): string {
+  getColumnWidth(column: any): string | null {
     if (column.width) {
       return column.width;
     }
@@ -301,15 +308,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onContextMenu($event: any, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+  onContextMenu($event: any, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
       return;
     }
     $event.preventDefault();
     const value = {
       event: $event,
-      row: row,
-      key: key,
+      row,
+      key,
       rowId: rowIndex,
       colId: colIndex,
     };

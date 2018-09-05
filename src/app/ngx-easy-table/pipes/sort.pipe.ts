@@ -5,7 +5,7 @@ import { FiltersService } from '../services/filters.service';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
-  private static compare(a: Array<any>, b: Array<any>, key: string): number {
+  private static compare(a: any[], b: any[], key: string): number {
     const split = key.split('.');
     const aV = FiltersService.getPath(split, a);
     const bV = FiltersService.getPath(split, b);

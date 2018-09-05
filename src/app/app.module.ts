@@ -1,50 +1,51 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { TableModule } from './ngx-easy-table/table.module';
 import { AppComponent } from './app.component';
+import { TableModule } from './ngx-easy-table/table.module';
 
 import { routing } from './routes';
 
 import {
-  PaginationComponent,
-  GlobalSearchComponent,
-  SortComponent,
-  ExportComponent,
-  ClickEventComponent,
-  TemplateComponent,
-  SelectRowComponent,
-  SelectColComponent,
-  SelectCellComponent,
-  ModalComponent,
-  SearchComponent,
   BasicComponent,
-  LiveUpdateComponent,
-  ExchangeTemplateComponent,
-  ServerPaginationComponent,
-  RowTemplateComponent,
-  ServerSortComponent,
-  GroupRowsComponent,
-  ManyTablesComponent,
-  DynamicRowComponent,
-  CustomSortComponent,
-  CollapsedRowsComponent,
-  HorizontalScrollComponent,
-  CheckboxesComponent,
-  CustomFiltersComponent,
-  ToggleColumnComponent,
-  DynamicConfigurationComponent,
   CheckboxDefaultComponent,
-  ExportsComponent,
-  ResizableComponent,
-  ColumnWidthComponent,
-  FixedWidthComponent,
-  CustomizeThemeComponent,
-  StylesComponent,
+  CheckboxesComponent,
+  ClickEventComponent,
+  CollapsedRowsComponent,
   ColTemplateComponent,
+  ColumnWidthComponent,
+  CustomFiltersComponent,
+  CustomizeThemeComponent,
+  CustomSortComponent,
+  DynamicConfigurationComponent,
+  DynamicRowComponent,
+  ExchangeTemplateComponent,
+  ExportComponent,
+  ExportsComponent,
+  FilterTemplateComponent,
+  FixedWidthComponent,
+  GlobalSearchComponent,
+  GroupRowsComponent,
+  HorizontalScrollComponent,
+  LiveUpdateComponent,
+  ManyTablesComponent,
+  ModalComponent,
+  PaginationComponent,
+  ResizableComponent,
+  RowTemplateComponent,
+  SearchComponent,
+  SelectCellComponent,
+  SelectColComponent,
+  SelectRowComponent,
+  ServerPaginationComponent,
+  ServerSortComponent,
+  SortComponent,
+  StylesComponent,
   SummaryFooterComponent,
+  TemplateComponent,
+  ToggleColumnComponent,
 } from './demo';
 
 @NgModule({
@@ -94,9 +95,11 @@ import {
     CustomizeThemeComponent,
     StylesComponent,
     ColTemplateComponent,
-    SummaryFooterComponent
+    SummaryFooterComponent,
+    FilterTemplateComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {
+}

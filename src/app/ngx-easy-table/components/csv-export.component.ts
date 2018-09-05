@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <a (click)="exportCsv()" class="ngx-menu-item">
       CSV export
-    </a>`
+    </a>`,
 })
 
 /**
@@ -14,11 +14,12 @@ import { Component, Input } from '@angular/core';
  */
 export class CsvExportComponent {
   @Input() data;
+
   public exportCsv() {
     const data = this.data;
     let csvContent = 'data:text/csv;charset=utf-8,';
     let dataString = '';
-    const x: Array<any> = [];
+    const x: any[] = [];
     const keys = Object.keys(this.data[0]);
     data.forEach((row, index) => {
       x[index] = [];

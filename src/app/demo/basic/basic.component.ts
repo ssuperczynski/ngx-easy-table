@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html',
@@ -17,7 +18,7 @@ export class BasicComponent {
     { key: 'isActive', title: 'STATUS' },
   ];
 
-  data = [];
+  data: Company[] = [];
 
   constructor() {
     this.data = data;

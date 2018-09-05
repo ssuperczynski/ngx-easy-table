@@ -63,7 +63,7 @@
         </div>
       </th>
     </tr>
-    <tr *ngIf="config.searchEnabled"
+    <tr *ngIf="config.searchEnabled && !filtersTemplate"
         class="ngx-table__sort-header">
       <th *ngIf="config.checkboxes"></th>
       <ng-container *ngFor="let column of columns; let colIndex = index">
@@ -77,6 +77,12 @@
       </ng-container>
       <th *ngIf="config.additionalActions || config.detailsTemplate"></th>
     </tr>
+    <ng-container *ngIf="filtersTemplate">
+      <tr>
+        <ng-container [ngTemplateOutlet]="filtersTemplate">
+        </ng-container>
+      </tr>
+    </ng-container>
     </thead>
     <tbody *ngIf="data && !isLoading  && !config.draggable">
     <ng-container *ngIf="rowTemplate">

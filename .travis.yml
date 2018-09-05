@@ -3,6 +3,7 @@ node_js:
   - "8"
 script:
   - npm run lint
+  - npm run build
   - npm run cy:ci
   - npm run build:lib
 before_install:

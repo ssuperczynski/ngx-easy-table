@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+
 @Component({
   selector: 'app-column-width',
   templateUrl: './column-width.component.html',
@@ -15,8 +16,9 @@ export class ColumnWidthComponent {
     { key: 'name', title: 'Name', placeholder: 'поиск', width: '15%' },
     { key: 'isActive', title: 'STATUS', placeholder: 'Suche', width: '15%' },
   ];
-  data = [];
+  data: Company[] = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;

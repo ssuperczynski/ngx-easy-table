@@ -1,16 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { BaseComponent } from './base.component';
+
+import { CsvExportComponent } from '../csv-export.component';
 import { GlobalSearchComponent } from '../global-search/global-search.component';
-import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
-import { SearchPipe } from '../../pipes/search-pipe';
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
-import { CsvExportComponent } from '../csv-export.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { SortPipe } from '../../pipes/sort.pipe';
+
+import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
 import { RenderPipe } from '../../pipes/render-pipe';
+import { SearchPipe } from '../../pipes/search-pipe';
+import { SortPipe } from '../../pipes/sort.pipe';
+
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -27,9 +31,9 @@ import { NgxDnDModule } from '@swimlane/ngx-dnd';
   imports: [
     CommonModule,
     NgxPaginationModule,
-    NgxDnDModule
+    NgxDnDModule,
   ],
-  exports: [BaseComponent]
+  exports: [BaseComponent],
 })
 export class BaseModule {
 }

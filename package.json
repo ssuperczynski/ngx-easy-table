@@ -73,6 +73,7 @@
     "start-server-and-test": "^1.4.1",
     "ts-node": "^6.0.3",
     "tslint": "^5.10.0",
+    "tslint-sonarts": "^1.7.0",
     "typescript": "2.9.2",
     "zone.js": "^0.8.26"
   },

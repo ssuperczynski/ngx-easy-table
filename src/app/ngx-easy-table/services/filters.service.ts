@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 export class FiltersService {
   static getPath(p, o) {
     // https://github.com/dherges/ng-packagr/issues/696
-    const result = p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);
+    /* tslint:disable-next-line */
+    const result = p.reduce((xs, x) => (xs && typeof xs[x] !== 'undefined') ? xs[x] : null, o);
     return result;
   }
 }

@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit,
+  ChangeDetectionStrategy, Component, EventEmitter, Input, Output,
 } from '@angular/core';
 import { ConfigService } from '../../services/config-service';
 
@@ -30,7 +30,7 @@ export class PaginationComponent {
     this.limit = limit;
     this.updateRange.emit({
       page: 1,
-      limit: limit,
+      limit,
     });
   }
 }

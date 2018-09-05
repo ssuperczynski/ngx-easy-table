@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -8,9 +8,9 @@ export class CompanyService {
   constructor(private http: HttpClient) {
   }
 
-  getCompanies(params): Observable<Array<Company>> {
+  getCompanies(params): Observable<Company[]> {
     return this.http
-      .get<Array<Company>>(`https://simply-server.eu/company?${params}`);
+      .get<Company[]>(`https://simply-server.eu/company?${params}`);
   }
 }
 

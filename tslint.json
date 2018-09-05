@@ -2,6 +2,10 @@
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
+  "extends": [
+    "tslint:recommended",
+    "tslint-sonarts"
+  ],
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
@@ -20,6 +24,10 @@
     "indent": [
       true,
       "spaces"
+    ],
+    "interface-name": [
+      true,
+      "never-prefix"
     ],
     "interface-over-type-literal": true,
     "label-position": true,
@@ -41,6 +49,7 @@
     ],
     "no-arg": true,
     "no-bitwise": false,
+    "no-commented-code": false,
     "no-console": [
       true,
       "debug",
@@ -61,6 +70,7 @@
     ],
     "no-misused-new": true,
     "no-non-null-assertion": true,
+    "no-self-assignment": false,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
