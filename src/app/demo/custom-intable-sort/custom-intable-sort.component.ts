@@ -20,16 +20,16 @@ export class CustomIntableSortComponent {
   ];
   data: Company[] = [];
   configuration;
-  levels;
+  levels = {
+    '': 0,
+    'low': 1,
+    'medium': 2,
+    'high': 3,
+  };
 
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
-    this.levels = {
-      low: 1,
-      medium: 2,
-      high: 3,
-    };
   }
 
   sortByLastName(asc: boolean): void {
@@ -50,8 +50,10 @@ export class CustomIntableSortComponent {
   sortByLevel(asc: boolean): void {
     /* tslint:disable-next-line */
     this.data = [...this.data.sort((a, b) => {
-      const levelA = this.levels[a.level.toLowerCase()];
-      const levelB = this.levels[b.level.toLowerCase()];
+      const aData = a.level || '';
+      const bData = b.level || '';
+      const levelA = this.levels[aData.toLowerCase()];
+      const levelB = this.levels[bData.toLowerCase()];
       if (levelA < levelB) {
         return asc ? -1 : 1;
       }
