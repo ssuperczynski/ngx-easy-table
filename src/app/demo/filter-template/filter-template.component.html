@@ -5,26 +5,12 @@
 		See code here
 	</a>
 </div>
-<ngx-table [configuration]="configuration" [data]="rows" (event)="eventEmitted($event)" [columns]="columns">
-  <ng-template #filtersTemplate>
-    <th></th>
-    <th>
-      <select class="form-select" (change)="onAgeSearch($event.target.value)">
-        <option value="">
-          Select age
-        </option>
-        <option *ngFor="let age of ages" [ngValue]="age">
-          {{ age }}
-        </option>
-      </select>
-    </th>
-    <th>
-      <input class="form-input" (input)="onCompanySearch($event.target.value)" type="text" id="filter-company" placeholder="Company">
-    </th>
-    <th></th>
-    <th></th>
-  </ng-template>
-	<ng-template #rowTemplate let-row>
+<ngx-table [configuration]="configuration"
+           [data]="rows"
+           (event)="eventEmitted($event)"
+           [columns]="columns"
+           [filtersTemplate]="filtersTemplate">
+	<ng-template let-row>
 		<td class="recruitments__table-row-recruitment">
 			<h5 class="color-green font-light">{{row.name}}</h5>
 		</td>
@@ -48,5 +34,23 @@
 			<div>{{row.address.street}}</div>
 		</td>
 	</ng-template>
-
 </ngx-table>
+
+<ng-template #filtersTemplate>
+  <th></th>
+  <th>
+    <select class="form-select" (change)="onAgeSearch($event.target.value)">
+      <option value="">
+        Select age
+      </option>
+      <option *ngFor="let age of ages" [ngValue]="age">
+        {{ age }}
+      </option>
+    </select>
+  </th>
+  <th>
+    <input class="form-input" (input)="onCompanySearch($event.target.value)" type="text" id="filter-company" placeholder="Company">
+  </th>
+  <th></th>
+  <th></th>
+</ng-template>

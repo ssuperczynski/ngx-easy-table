@@ -58,13 +58,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
+  @Input() filtersTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() event = new EventEmitter();
-  // Backwards compatibility for row template
-  @ContentChild(TemplateRef) public rowTemplateOld: TemplateRef<any>;
-  @ContentChild('rowTemplate', { read: TemplateRef }) public rowTemplateNew: TemplateRef<any>;
-  public rowTemplate: TemplateRef<any>;
-  @ContentChild('filtersTemplate', { read: TemplateRef }) public filtersTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.id = UtilsService.randomId();
@@ -77,7 +74,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.configuration) {
       ConfigService.config = this.configuration;
     }
-    this.rowTemplate = this.rowTemplateOld || this.rowTemplateNew;
     this.config = ConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
