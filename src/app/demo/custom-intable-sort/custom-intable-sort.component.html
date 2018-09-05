@@ -1,0 +1,24 @@
+<h3>Custom in-table sort</h3>
+<small>
+  Use table events to attach custom sort to the headers click event.<br>
+  In this example:
+  <ul>
+    <li>The "Level" column is custom sorted by the level (low, medium, high) - and not alphabetically (high, low, medium)</li>
+    <li>The "Name" column is custom sorted by the last name portion</li>
+    <li>The rest of the columns use the default sort</li>
+  </ul>
+</small>
+<div class="mb-2">
+  <a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fcustom-intable-sort%2Fcustom-intable-sort.component.ts" target="_blank">
+    See code here
+  </a>
+</div>
+<div class="columns">
+	<div class="column col-12">
+		<ngx-table [configuration]="configuration"
+               [data]="data"
+               [columns]="columns"
+               (event)="eventEmitted($event)">
+		</ngx-table>
+	</div>
+</div>

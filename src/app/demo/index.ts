@@ -35,3 +35,4 @@ export * from './styles/styles.component';
 export * from './col-template/col-template.component';
 export * from './summary-footer/summary-footer.component';
 export * from './filter-template/filter-template.component';
+export * from './custom-intable-sort/custom-intable-sort.component';

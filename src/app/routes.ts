@@ -10,6 +10,7 @@ import {
   ColTemplateComponent,
   ColumnWidthComponent,
   CustomFiltersComponent,
+  CustomIntableSortComponent,
   CustomizeThemeComponent,
   CustomSortComponent,
   DynamicConfigurationComponent,
@@ -77,6 +78,7 @@ export const routes = [
   { path: 'col-template', component: ColTemplateComponent },
   { path: 'summary-footer', component: SummaryFooterComponent },
   { path: 'filter-template', component: FilterTemplateComponent },
+  { path: 'custom-intable-sort', component: CustomIntableSortComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });

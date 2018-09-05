@@ -32,11 +32,11 @@
             (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)">
             <div class="ngx-table__header-title">{{ column['title'] }}<span>&nbsp;</span>
-              <i *ngIf="sortBy.key === column['key'] && sortBy.order==='asc'"
+              <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='asc'"
                  [style.display]="config.orderEnabled?'':'none' "
                  class="ngx-icon ngx-icon-arrow-up">
               </i>
-              <i *ngIf="sortBy.key === column['key'] && sortBy.order==='desc'"
+              <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='desc'"
                  [style.display]="config.orderEnabled?'':'none' "
                  class="ngx-icon ngx-icon-arrow-down">
               </i>

@@ -53,5 +53,6 @@ export class AppComponent {
   sort = [
     { link: '/sort', name: 'Sort' },
     { link: '/custom-sort', name: 'Custom sort' },
+    { link: '/custom-intable-sort', name: 'Custom in-table sort' },
   ];
 }

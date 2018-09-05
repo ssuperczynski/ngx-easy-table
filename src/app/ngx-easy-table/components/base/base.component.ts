@@ -46,6 +46,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     key: '',
     order: 'asc',
   };
+  sortByIcon = {
+    key: '',
+    order: 'asc',
+  };
   selectedDetailsTemplateRowId = new Set();
   id;
   th;
@@ -122,19 +126,28 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!ConfigService.config.orderEnabled || key === '') {
       return;
     }
-    this.sortBy.key = key;
-    if (this.sortBy.order === 'asc') {
-      this.sortBy.order = 'desc';
+
+    this.sortByIcon.key = key;
+    if (this.sortByIcon.order === 'asc') {
+      this.sortByIcon.order = 'desc';
     } else {
-      this.sortBy.order = 'asc';
+      this.sortByIcon.order = 'asc';
     }
-    const value = {
-      key,
-      order: this.sortBy.order,
-    };
+
+    if (!ConfigService.config.orderEventOnly && !column.orderEventOnly) {
+      this.sortBy.key = this.sortByIcon.key;
+      this.sortBy.order = this.sortByIcon.order;
+    } else {
+      this.sortBy.key = '';
+      this.sortBy.order = '';
+    }
     if (!ConfigService.config.serverPagination) {
       this.data = [...this.data];
     }
+    const value = {
+      key,
+      order: this.sortByIcon.order,
+    };
     this.emitEvent(Event.onOrder, value);
   }
 
