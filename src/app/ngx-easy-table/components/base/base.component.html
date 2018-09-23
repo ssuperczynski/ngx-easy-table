@@ -7,14 +7,14 @@
   </div>
   <table id="table"
          class="ngx-table"
-         [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
-         [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
-         [class.ngx-table__table--big]="config.tableLayout.style === 'big'"
-         [class.ngx-table__table--borderless]="config.tableLayout.borderless"
-         [class.ngx-table__table--dark]="config.tableLayout.theme === 'dark'"
-         [class.ngx-table__table--hoverable]="config.tableLayout.hover"
-         [class.ngx-table__table--striped]="config.tableLayout.striped"
-         [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !isLoading">
+    [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
+    [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
+    [class.ngx-table__table--big]="config.tableLayout.style === 'big'"
+    [class.ngx-table__table--borderless]="config.tableLayout.borderless"
+    [class.ngx-table__table--dark]="config.tableLayout.theme === 'dark'"
+    [class.ngx-table__table--hoverable]="config.tableLayout.hover"
+    [class.ngx-table__table--striped]="config.tableLayout.striped"
+    [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !isLoading">
     <thead>
     <tr class="ngx-table__header" *ngIf="config.headerEnabled">
       <th *ngIf="config.checkboxes" width="3%">
@@ -25,20 +25,20 @@
       </th>
       <ng-container *ngFor="let column of columns;let colIndex = index">
         <th class="ngx-table__header-cell"
-            #th
-            [attr.width]="getColumnWidth(column)"
-            (mousedown)="onMouseDown($event, th)"
-            (mouseup)="onMouseUp($event)"
-            (mousemove)="onMouseMove($event)">
+          #th
+          [attr.width]="getColumnWidth(column)"
+          (mousedown)="onMouseDown($event, th)"
+          (mouseup)="onMouseUp($event)"
+          (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)">
             <div class="ngx-table__header-title">{{ column['title'] }}<span>&nbsp;</span>
               <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='asc'"
-                 [style.display]="config.orderEnabled?'':'none' "
-                 class="ngx-icon ngx-icon-arrow-up">
+                [style.display]="config.orderEnabled?'':'none' "
+                class="ngx-icon ngx-icon-arrow-up">
               </i>
               <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='desc'"
-                 [style.display]="config.orderEnabled?'':'none' "
-                 class="ngx-icon ngx-icon-arrow-down">
+                [style.display]="config.orderEnabled?'':'none' "
+                class="ngx-icon ngx-icon-arrow-down">
               </i>
             </div>
           </div>
@@ -46,17 +46,17 @@
         </th>
       </ng-container>
       <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows || config.groupRows"
-          class="ngx-table__header-cell-additional-actions">
+        class="ngx-table__header-cell-additional-actions">
         <div class="ngx-dropdown ngx-active"
-             *ngIf="config.additionalActions"
-             [class.ngx-active]="menuActive">
+          *ngIf="config.additionalActions"
+          [class.ngx-active]="menuActive">
           <a class="ngx-btn ngx-btn-link" (click)="menuActive = !menuActive">
             <span class="ngx-icon ngx-icon-menu"></span>
           </a>
           <ul class="ngx-menu ngx-table__table-menu">
             <li class="ngx-menu-item">
               <app-csv-export [data]="data"
-                              *ngIf="config.exportEnabled">
+                *ngIf="config.exportEnabled">
               </app-csv-export>
             </li>
           </ul>
@@ -64,7 +64,7 @@
       </th>
     </tr>
     <tr *ngIf="config.searchEnabled && !filtersTemplate"
-        class="ngx-table__sort-header">
+      class="ngx-table__sort-header">
       <th *ngIf="config.checkboxes"></th>
       <ng-container *ngFor="let column of columns; let colIndex = index">
         <th>
@@ -99,10 +99,9 @@
           </ng-container>
           <td *ngIf="config.detailsTemplate">
             <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
-                  [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
-                  (click)="collapseRow(rowIndex)">
+              *ngIf="arrowDefinition"
+              [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
+              (click)="collapseRow(rowIndex)">
             </span>
           </td>
         </tr>
@@ -125,18 +124,18 @@
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
-                     id="checkbox-{{rowIndex}}"
-                     [checked]="isSelected"
-                     (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                id="checkbox-{{rowIndex}}"
+                [checked]="isSelected"
+                (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
             <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
-                (contextmenu)="onContextMenu($event, row, column['key'], colIndex, rowIndex)"
-                (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
-                [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-                [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+              (contextmenu)="onContextMenu($event, row, column['key'], colIndex, rowIndex)"
+              (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
+              [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
+              [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >
               <div *ngIf="!column.cellTemplate">{{ row | render:column.key }}</div>
               <ng-container
@@ -148,10 +147,9 @@
           </ng-container>
           <td *ngIf="config.additionalActions || config.detailsTemplate">
             <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
-                  [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
-                  (click)="collapseRow(rowIndex)">
+              *ngIf="arrowDefinition"
+              [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
+              (click)="collapseRow(rowIndex)">
             </span>
           </td>
         </tr>
@@ -176,10 +174,9 @@
           </td>
           <td>
             <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
-                  [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
-                  (click)="collapseRow(rowIndex)">
+              *ngIf="arrowDefinition"
+              [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
+              (click)="collapseRow(rowIndex)">
             </span>
           </td>
         </tr>
@@ -196,31 +193,31 @@
     </ng-container>
     </tbody>
     <tbody *ngIf="data && !config.isLoading && config.draggable"
-           class="ngx-dnd-container"
-           (drag)="onRowDrag($event)"
-           (drop)="onRowDrop($event)"
-           ngxDroppable>
+      class="ngx-dnd-container"
+      (drag)="onRowDrag($event)"
+      (drop)="onRowDrop($event)"
+      ngxDroppable>
     <ng-container *ngIf="!rowTemplate && !config.groupRows">
       <ng-container
         *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
         <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell"
-            class="ngx-dnd-item"
-            ngxDraggable>
+          class="ngx-dnd-item"
+          ngxDraggable>
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
-                     id="checkbox-draggable-{{rowIndex}}"
-                     [checked]="isSelected"
-                     (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                id="checkbox-draggable-{{rowIndex}}"
+                [checked]="isSelected"
+                (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
             <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
-                (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
-                [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-                [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+              (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
+              [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
+              [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >
               <div>{{ row | render:column.key }}</div>
             </td>
@@ -242,7 +239,7 @@
     <tr class="ngx-table__body-loading">
       <td [attr.colspan]="columns && columns.length + 1">
         <div [style.height]="loadingHeight"
-             class="ngx-table__table-loader-wrapper">
+          class="ngx-table__table-loader-wrapper">
           <div class="ngx-table__table-loader"></div>
         </div>
       </td>
