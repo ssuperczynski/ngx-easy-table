@@ -34,6 +34,11 @@
       "pre-push": "ng lint"
     }
   },
+  "dependencies": {
+    "ngx-easy-table": "^8.0.0-alpha.1",
+    "spectre.css": "^0.5.7",
+    "typeface-lato": "0.0.54"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.10.6",
     "@angular-devkit/build-ng-packagr": "~0.11.0",
@@ -101,9 +106,5 @@
     "ng2-easy-table",
     "ngx-easy-table"
   ],
-  "author": "Sebastian Superczynski <s.superczynski@gmail.com> (https://espeo.eu/)",
-  "dependencies": {
-    "ngx-easy-table": "^8.0.0-alpha.1",
-    "spectre.css": "^0.5.7"
-  }
+  "author": "Sebastian Superczynski <s.superczynski@gmail.com> (https://espeo.eu/)"
 }

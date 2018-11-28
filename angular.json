@@ -30,6 +30,7 @@
               "node_modules/spectre.css/dist/spectre.css",
               "node_modules/spectre.css/dist/spectre-exp.css",
               "node_modules/spectre.css/dist/spectre-icons.css",
+              "node_modules/typeface-lato/index.css",
               "node_modules/ngx-easy-table/style.scss"
             ],
             "scripts": []
@@ -89,7 +90,9 @@
             "styles": [
               "node_modules/spectre.css/dist/spectre.css",
               "node_modules/spectre.css/dist/spectre-exp.css",
-              "node_modules/spectre.css/dist/spectre-icons.css"
+              "node_modules/spectre.css/dist/spectre-icons.css",
+              "node_modules/typeface-lato/index.css",
+              "node_modules/ngx-easy-table/style.scss"
             ],
             "assets": [
               "src/assets",
