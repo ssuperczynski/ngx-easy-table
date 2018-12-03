@@ -50,7 +50,7 @@ import {
   TemplateComponent,
   ToggleColumnComponent,
   InlineComponent,
-  InlineRowComponent,
+  InlineRowComponent, ContextMenuComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -110,6 +110,7 @@ import { TableModule } from 'ngx-easy-table';
     NoResultsTemplateComponent,
     InlineComponent,
     InlineRowComponent,
+    ContextMenuComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

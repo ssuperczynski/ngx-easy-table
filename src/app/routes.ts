@@ -44,7 +44,9 @@ import {
   SummaryFooterComponent,
   TemplateComponent,
   ToggleColumnComponent,
-  InlineComponent, InlineRowComponent,
+  InlineComponent,
+  InlineRowComponent,
+  ContextMenuComponent,
 } from './demo';
 
 export const routes = [
@@ -93,6 +95,7 @@ export const routes = [
   { path: 'no-results-template', component: NoResultsTemplateComponent },
   { path: 'inline-cell', component: InlineComponent },
   { path: 'inline-row', component: InlineRowComponent },
+  { path: 'context-menu', component: ContextMenuComponent },
   { path: '**', component: BasicComponent },
 ];
 

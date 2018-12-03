@@ -348,7 +348,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onContextMenu($event: any, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onRowContextMenu($event: any, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
       return;
     }
@@ -360,7 +360,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       rowId: rowIndex,
       colId: colIndex,
     };
-    this.emitEvent(Event.onRowContextMenu, value);
+    console.log('onRowContextMenu: ', value);
+
+    // this.emitEvent(Event.onRowContextMenu, value);
   }
 
   private doApplyData(data) {

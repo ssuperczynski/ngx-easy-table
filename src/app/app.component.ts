@@ -28,6 +28,7 @@ export class AppComponent {
       { link: 'column-width', name: 'Column width' },
       { link: 'fixed-width', name: 'Fixed width' },
       { link: 'persist-state', name: 'Persist state' },
+      { link: 'context-menu', name: 'Context menu' },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },

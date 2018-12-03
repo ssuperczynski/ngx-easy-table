@@ -43,3 +43,4 @@ export * from './select-all-template/select-all-template.component';
 export * from './no-results-template/no-results-template.component';
 export * from './inline/inline.component';
 export * from './inline-row/inline-row.component';
+export * from './context-menu/context-menu.component';

@@ -93,7 +93,7 @@
               let rowIndex = index">
         <tr
           (click)="onClick($event, row, '', null, rowIndex)"
-          (contextmenu)="onContextMenu($event, row, '', null, rowIndex)"
+          (contextmenu)="onRowContextMenu($event, row, '', null, rowIndex)"
           (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container
