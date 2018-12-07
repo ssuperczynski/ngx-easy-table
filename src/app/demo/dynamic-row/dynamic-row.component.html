@@ -1,11 +1,14 @@
 <div class="columns">
-	<div class="column col-12">
-		<button (click)=addRow() id="add-row-button" class="btn btn-primary">Add row</button>
-	</div>
+  <div class="column col-12">
+    <button (click)="addRow()" id="add-row-button" class="btn btn-primary">Add row</button>
+  </div>
 </div>
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+    </ngx-table>
+  </div>
 </div>
+<ng-template #actionTpl let-row let-rowIndex="rowIndex">
+  <div class="btn btn-primary" (click)="remove(rowIndex)">Remove</div>
+</ng-template>

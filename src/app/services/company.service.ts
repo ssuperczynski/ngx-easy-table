@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class CompanyService {
+  private readonly BACKEND_URL = 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?';
 
   constructor(private http: HttpClient) {
   }
 
   getCompanies(params: string): Observable<Company[]> {
     return this.http
-      .get<Company[]>(`https://simply-server.eu/company?${params}`);
+      .get<Company[]>(`${this.BACKEND_URL}${params}`);
   }
 }
 

@@ -12,28 +12,25 @@ export class ServerSortComponent implements OnInit {
   showSortDropdown = false;
   selectedOrder = '';
   columns = [
-    { key: 'email', title: 'Email' },
-    { key: 'company', title: 'COMPANY' },
-    { key: 'eyeColor', title: 'Color' },
+    { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
-    { key: 'balance', title: 'Balance' },
-    { key: 'surname', title: 'Surname' },
+    { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
-    { key: 'id', title: 'ID' },
+    { key: 'isActive', title: 'STATUS' },
   ];
 
   orderDropdown = [
     {
       id: 0,
-      key: 'email',
+      key: 'name',
       order: 'asc',
-      name: 'Email asc',
+      name: 'Name asc',
     },
     {
       id: 1,
-      key: 'email',
+      key: 'name',
       order: 'desc',
-      name: 'Email desc',
+      name: 'Name desc',
     },
     {
       id: 2,

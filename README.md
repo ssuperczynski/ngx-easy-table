@@ -17,6 +17,10 @@ https://ngx-easy-table.eu
 
 `npm install ngx-easy-table --save`
 
+Library requires `@angular/cdk`, please install it as well.
+
+`npm install @angular/cdk --save`
+
 ## Available config settings:
 
 See https://github.com/ssuperczynski/ngx-easy-table/wiki

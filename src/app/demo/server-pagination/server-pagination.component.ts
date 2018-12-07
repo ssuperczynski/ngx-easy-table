@@ -10,14 +10,11 @@ import { ConfigService } from './configuration.service';
 })
 export class ServerPaginationComponent implements OnInit {
   columns = [
-    { key: 'email', title: 'Email' },
-    { key: 'company', title: 'Company' },
-    { key: 'eyeColor', title: 'Color' },
+    { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
-    { key: 'balance', title: 'Balance' },
-    { key: 'surname', title: 'Surname' },
+    { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
-    { key: 'id', title: 'ID' },
+    { key: 'isActive', title: 'STATUS' },
   ];
   data;
   configuration;
