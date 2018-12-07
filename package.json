@@ -27,13 +27,14 @@
     }
   },
   "dependencies": {
-    "ngx-easy-table": "^8.0.0-alpha.1",
+    "ngx-easy-table": "^8.0.0-alpha.3",
     "spectre.css": "^0.5.7",
     "typeface-lato": "0.0.54"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.11.1",
     "@angular-devkit/build-ng-packagr": "^0.11.1",
+    "@angular/cdk": "^7.1.1",
     "@angular/cli": "^7.1.1",
     "@angular/common": "^7.1.1",
     "@angular/compiler": "^7.1.1",
