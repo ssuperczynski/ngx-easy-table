@@ -1,9 +1,19 @@
 <div class="columns">
   <div class="column col-12">
     <ngx-table [data]="data"
-               (event)="onEvent($event)"
                [configuration]="configuration"
+               [rowContextMenu]="rowContextMenu"
                [columns]="columns">
     </ngx-table>
   </div>
 </div>
+<ng-template #rowContextMenu let-row>
+  <ul class="menu">
+    <li class="menu-item">
+      <div class="c-hand" (click)="copyRow(row)">Copy row</div>
+      <div class="c-hand" (click)="copyRow(row)">Edit</div>
+      <div class="divider"></div>
+      <div class="c-hand" (click)="copyRow(row)">Print</div>
+    </li>
+  </ul>
+</ng-template>

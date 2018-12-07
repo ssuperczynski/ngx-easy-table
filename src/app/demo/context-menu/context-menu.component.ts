@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
@@ -25,7 +25,7 @@ export class ContextMenuComponent {
     this.data = data;
   }
 
-  onEvent($event: any) {
-    console.log('$event', $event);
+  copyRow($event: any) {
+    // copy
   }
 }

@@ -10,5 +10,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
  * and from version 6.0 moved to GlobalSearchComponent plugin
  */
 export class GlobalSearchComponent {
-  @Output() globalUpdate = new EventEmitter();
+  @Output() globalUpdate = new EventEmitter<{value: string}>();
 }

@@ -69,6 +69,10 @@ $primary-color: #50596c !default;
     &__table-menu {
     }
 
+    &__table-row-context-menu {
+      position: absolute;
+    }
+
     &__header {
     }
 
@@ -452,6 +456,7 @@ $primary-color: #50596c !default;
   &-btn-group {
     display: inline;
   }
+
   &-draggable-row {
     cursor: pointer;
   }

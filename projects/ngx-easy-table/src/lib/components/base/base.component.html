@@ -89,6 +89,14 @@
     </thead>
     <tbody *ngIf="data && !isLoading  && !config.draggable">
     <ng-container *ngIf="rowTemplate">
+      <ul class="ngx-table__table-row-context-menu"
+          [ngStyle]="{'position': 'absolute', 'top': rowContextMenuPosition.top, 'left': rowContextMenuPosition.left }"
+          *ngIf="rowContextMenuPosition.top">
+        <ng-container
+          [ngTemplateOutlet]="rowContextMenu"
+          [ngTemplateOutletContext]="{ $implicit: rowContextMenuPosition.value}">
+        </ng-container>
+      </ul>
       <ng-container *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index">
         <tr
@@ -120,6 +128,14 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="!rowTemplate && !config.groupRows">
+      <ul class="ngx-table__table-row-context-menu"
+          [ngStyle]="{'position': 'absolute', 'top': rowContextMenuPosition.top, 'left': rowContextMenuPosition.left }"
+          *ngIf="rowContextMenuPosition.top">
+        <ng-container
+          [ngTemplateOutlet]="rowContextMenu"
+          [ngTemplateOutletContext]="{ $implicit: rowContextMenuPosition.value}">
+        </ng-container>
+      </ul>
       <ng-container
         *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
@@ -127,15 +143,15 @@
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
-                id="checkbox-{{rowIndex}}"
-                [checked]="isSelected"
-                (change)="onCheckboxSelect($event, row, rowIndex)">
+                     id="checkbox-{{rowIndex}}"
+                     [checked]="isSelected"
+                     (change)="onCheckboxSelect($event, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
             <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
-                (contextmenu)="onContextMenu($event, row, column.key, colIndex, rowIndex)"
+                (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
                 (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
                 [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                 [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
@@ -217,9 +233,9 @@
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
-                id="checkbox-draggable-{{rowIndex}}"
-                [checked]="isSelected"
-                (change)="onCheckboxSelect($event, row, rowIndex)">
+                     id="checkbox-draggable-{{rowIndex}}"
+                     [checked]="isSelected"
+                     (change)="onCheckboxSelect($event, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>

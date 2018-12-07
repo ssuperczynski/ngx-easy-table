@@ -24,6 +24,12 @@ import { PaginationObject } from '../pagination/pagination.component';
 
 type KeyType = string | number | boolean;
 
+interface RowContextMenuPosition {
+  top: string | null;
+  left: string | null;
+  value: any | null;
+}
+
 @Component({
   selector: 'ngx-table',
   providers: [ConfigService, UtilsService],
@@ -40,6 +46,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public isSelected = false;
   public page = 1;
   public count = null;
+  public rowContextMenuPosition: RowContextMenuPosition = {
+    top: null,
+    left: null,
+    value: null,
+  };
   public limit;
   public sortBy: { key: string } & { order: string } = {
     key: '',
@@ -76,8 +87,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() filtersTemplate: TemplateRef<any>;
   @Input() selectAllTemplate: TemplateRef<any>;
   @Input() noResultsTemplate: TemplateRef<any>;
+  @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
-  @Output() event = new EventEmitter();
+  @Output() event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
@@ -161,7 +173,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -184,7 +196,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  onDoubleClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onDoubleClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     const value = {
       event: $event,
       row,
@@ -209,14 +221,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
-  onSearch($event): void {
+  onSearch($event: string): void {
     if (!ConfigService.config.serverPagination) {
       this.term = $event;
     }
     this.emitEvent(Event.onSearch, $event);
   }
 
-  onGlobalSearch($event): void {
+  onGlobalSearch($event: string): void {
     if (!ConfigService.config.serverPagination) {
       this.globalSearchTerm = $event;
     }
@@ -348,8 +360,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onRowContextMenu($event: any, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
-    if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
+  onRowContextMenu($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+    if (!this.config.showContextMenu) {
       return;
     }
     $event.preventDefault();
@@ -360,9 +372,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       rowId: rowIndex,
       colId: colIndex,
     };
-    console.log('onRowContextMenu: ', value);
+    this.rowContextMenuPosition = {
+      top: `${$event.y - 10}px`,
+      left: `${$event.x - 10}px`,
+      value,
+    };
 
-    // this.emitEvent(Event.onRowContextMenu, value);
+    this.emitEvent(Event.onRowContextMenu, value);
   }
 
   private doApplyData(data) {
