@@ -50,7 +50,8 @@ import {
   TemplateComponent,
   ToggleColumnComponent,
   InlineComponent,
-  InlineRowComponent, ContextMenuComponent,
+  InlineRowComponent,
+  ContextMenuComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 

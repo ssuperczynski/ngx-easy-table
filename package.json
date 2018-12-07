@@ -17,6 +17,7 @@
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
     "watch:table": "ng build ngx-easy-table --watch",
     "publish:lib": "cd dist/ngx-easy-table && npm publish",
+    "prepublish:lib": "cd dist/ngx-easy-table && npm publish --tag next",
     "build:lib": "ng build ngx-easy-table && node-sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss"
   },
   "license": "MIT",
@@ -52,7 +53,6 @@
     "http-server": "^0.11.1",
     "husky": "^1.2.0",
     "ng-packagr": "4.4.5",
-    "json-server": "^0.14.0",
     "node-sass": "^4.10.0",
     "rxjs": "^6.3.3",
     "start-server-and-test": "^1.7.11",

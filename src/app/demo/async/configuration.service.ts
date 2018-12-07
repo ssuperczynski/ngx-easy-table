@@ -29,7 +29,7 @@ export class ConfigService {
     draggable: false,
     logger: false,
     showDetailsArrow: false,
-    showContextMenu: true,
+    showContextMenu: false,
     persistState: false,
     tableLayout: {
       style: STYLE.NORMAL,
