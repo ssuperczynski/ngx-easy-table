@@ -405,13 +405,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   private bindApi() {
     this.api.subscribe((event) => {
       switch (event.type) {
-        case API.contextMenuClicked:
+        case API.rowContextMenuClicked:
           this.rowContextMenuPosition = {
             top: null,
             left: null,
             value: null,
           };
-          console.log('API contextMenuClicked');
           break;
         default:
           console.warn('unrecognized API value');

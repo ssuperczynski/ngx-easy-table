@@ -1,5 +1,5 @@
 export enum API {
-  contextMenuClicked,
+  rowContextMenuClicked,
 }
 
 export type ApiType = { type: API } & { value?: any | null};

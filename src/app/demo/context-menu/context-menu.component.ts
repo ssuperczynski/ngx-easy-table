@@ -29,6 +29,6 @@ export class ContextMenuComponent {
   }
 
   copyRow($event: any = null) {
-    this.api.next({ type: API.contextMenuClicked });
+    this.api.next({ type: API.rowContextMenuClicked });
   }
 }
