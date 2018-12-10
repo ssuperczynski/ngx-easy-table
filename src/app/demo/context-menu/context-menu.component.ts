@@ -1,7 +1,9 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
+import { Subject } from 'rxjs';
+import { API, ApiType } from '../../../../projects/ngx-easy-table/src/lib/model/api';
 
 @Component({
   selector: 'app-context-menu',
@@ -10,22 +12,23 @@ import { ConfigService } from './configuration.service';
   providers: [ConfigService, CompanyService],
 })
 export class ContextMenuComponent {
-  columns = [
-    { key: 'phone', title: 'Phone', placeholder: 'Search', width: '15%' },
-    { key: 'age', title: 'Age', placeholder: 'Søg', width: '10%' },
-    { key: 'company', title: 'Company', placeholder: 'Pesquisa', width: '15%' },
-    { key: 'name', title: 'Name', placeholder: 'поиск', width: '15%' },
-    { key: 'isActive', title: 'STATUS', placeholder: 'Suche', width: '15%' },
+  public columns = [
+    { key: 'phone', title: 'Phone', width: '15%' },
+    { key: 'age', title: 'Age', width: '10%' },
+    { key: 'company', title: 'Company', width: '15%' },
+    { key: 'name', title: 'Name', width: '15%' },
+    { key: 'isActive', title: 'STATUS', width: '15%' },
   ];
-  data: Company[] = [];
-  configuration;
+  public data: Company[] = [];
+  public configuration;
+  public api = new Subject<ApiType>();
 
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
   }
 
-  copyRow($event: any) {
-    // copy
+  copyRow($event: any = null) {
+    this.api.next({ type: API.contextMenuClicked });
   }
 }

@@ -15,12 +15,14 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { from } from 'rxjs';
+import { from, Subject } from 'rxjs';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { Columns, Config, Event } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';
+import { Pagination } from '../../model/pagination';
+import { API, ApiType } from '../../model/api';
 
 type KeyType = string | number | boolean;
 
@@ -77,8 +79,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config;
   }
 
+  @Input() api: Subject<ApiType>;
   @Input() data: any[];
-  @Input() pagination;
+  @Input() pagination: Pagination;
   @Input() groupRowsBy: string;
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
@@ -104,6 +107,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       ConfigService.config = this.configuration;
     }
     this.config = ConfigService.config;
+    if (this.api) {
+      this.bindApi();
+    }
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.doGroupRows();
@@ -394,5 +400,22 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onDrop(event: CdkDragDrop<string[]>) {
     this.emitEvent(Event.onRowDrop, event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
+  }
+
+  private bindApi() {
+    this.api.subscribe((event) => {
+      switch (event.type) {
+        case API.contextMenuClicked:
+          this.rowContextMenuPosition = {
+            top: null,
+            left: null,
+            value: null,
+          };
+          console.log('API contextMenuClicked');
+          break;
+        default:
+          console.warn('unrecognized API value');
+      }
+    });
   }
 }
