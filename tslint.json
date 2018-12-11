@@ -176,10 +176,11 @@
     "pipe-impure": true,
     "template-conditional-complexity": [
       true,
-      10
+      8
     ],
     "no-duplicate-string": false,
     "ordered-imports": false,
-    "prefer-output-readonly": true
+    "prefer-output-readonly": true,
+    "template-cyclomatic-complexity": [true, 60]
   }
 }
