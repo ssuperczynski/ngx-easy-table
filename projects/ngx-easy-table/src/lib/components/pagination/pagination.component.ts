@@ -19,7 +19,7 @@ export class PaginationComponent {
   @Input() pagination;
   @Input() config: Config;
   @Input() id;
-  @Output() updateRange: EventEmitter<PaginationObject> = new EventEmitter();
+  @Output() readonly updateRange: EventEmitter<PaginationObject> = new EventEmitter();
   public ranges = [5, 10, 25, 50, 100];
   public limit: number = ConfigService.config.rows;
   public showRange = false;

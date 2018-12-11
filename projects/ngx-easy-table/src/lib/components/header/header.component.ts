@@ -8,7 +8,7 @@ import { Columns } from '../..';
 
 export class HeaderComponent {
   @Input() column: Columns;
-  @Output() update = new EventEmitter<{ key: string; value: string }>();
+  @Output() readonly update = new EventEmitter<{ key: string; value: string }>();
 
   unifyKey(key: string): string {
     return key.replace('.', '_');

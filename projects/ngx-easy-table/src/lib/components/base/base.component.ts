@@ -92,7 +92,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() noResultsTemplate: TemplateRef<any>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
-  @Output() event = new EventEmitter<{ event: string, value: any }>();
+  @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
   constructor(private readonly cdr: ChangeDetectorRef) {

@@ -179,6 +179,7 @@
       10
     ],
     "no-duplicate-string": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "prefer-output-readonly": true
   }
 }
