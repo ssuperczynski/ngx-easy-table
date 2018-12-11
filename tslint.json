@@ -181,6 +181,14 @@
     "no-duplicate-string": false,
     "ordered-imports": false,
     "prefer-output-readonly": true,
-    "template-cyclomatic-complexity": [true, 60]
+    "template-cyclomatic-complexity": [
+      true,
+      60
+    ],
+    "no-array-delete": true,
+    "no-collapsible-if": true,
+    "no-empty-nested-blocks": true,
+    "no-return-type-any": true,
+    "parameters-max-number": [true, 5]
   }
 }
