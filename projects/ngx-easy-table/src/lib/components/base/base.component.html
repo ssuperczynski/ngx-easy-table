@@ -186,7 +186,7 @@
     </ng-container>
     <ng-container *ngIf="!rowTemplate && config.groupRows">
       <ng-container
-        *ngFor="let group of grouped; let rowIndex = index">
+        *ngFor="let group of grouped | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id }; let rowIndex = index">
         <tr>
           <ng-container *ngIf="!groupRowsHeaderTemplate">
             <td [attr.colspan]="columns.length">
