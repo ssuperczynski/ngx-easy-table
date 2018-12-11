@@ -412,6 +412,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
             value: null,
           };
           break;
+        case API.toolPanelClicked:
+          // TODO
+          break;
         default:
           console.warn('unrecognized API value');
       }
