@@ -33,7 +33,7 @@ export class GroupRowsComponent {
 
   private static generateData() {
     return Array(31).fill('').map((val, key) => ({
-      amount: 200,
+      amount: faker.random.number(300),
       debit: 300,
       company: faker.company.companyName(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
