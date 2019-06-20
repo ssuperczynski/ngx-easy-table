@@ -13,6 +13,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 before_script:
   - npm install
+install:
+  - npm install
 notifications:
   webhooks:
   - https://www.travisbuddy.com/
