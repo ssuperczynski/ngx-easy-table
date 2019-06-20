@@ -8,9 +8,9 @@ context('Nested table', () => {
 
   it('shows row template', () => {
     cy
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1)').contains('Deanne Contreras')
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('KONGENE')
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(5) > span').contains('+1 (949) 527-2108')
+      .get('#parent-table > tbody > tr:nth-child(1) > td:nth-child(1)').contains('Deanne Contreras')
+      .get('#parent-table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('KONGENE')
+      .get('#parent-table > tbody > tr:nth-child(1) > td:nth-child(5) > span').contains('+1 (949) 527-2108')
     ;
   });
   it('shows additional nested table when "Show nested table" button clicked', () => {
