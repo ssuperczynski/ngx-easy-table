@@ -26,11 +26,16 @@
       ],
       "ngx-easy-table/*": [
         "dist/ngx-easy-table/*"
-      ]
+      ],
+      "core-js/es7/reflect": ["node_modules/core-js/proposals/reflect-metadata"],
+      "core-js/es6/reflect": ["node_modules/core-js/es/reflect"]
     }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "preserveWhiteSpace": false
+    "strictFunctionTypes": true,
+    "skipLibCheck": true,
+    "preserveWhiteSpace": false,
+    "enableIvy": false
   }
 }

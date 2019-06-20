@@ -10,12 +10,10 @@
     "@angular/common": ">=6.0.0",
     "@angular/compiler": ">=6.0.0",
     "@angular/core": ">=6.0.0",
-    "ngx-pagination": "^3.2.1",
-    "rxjs": "^6.1.0",
-    "typescript": ">=3.0.0"
+    "ngx-pagination": "^4.0.0"
   },
   "dependencies": {
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^4.0.0"
   },
   "engines": {
     "node": ">=8.9.0",
