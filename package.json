@@ -74,6 +74,7 @@
     "node": ">=11.0.0",
     "npm": ">=6.0.0"
   },
+  "engineStrict": true,
   "bugs": {
     "url": "https://github.com/ssuperczynski/ngx-easy-table/issues"
   },

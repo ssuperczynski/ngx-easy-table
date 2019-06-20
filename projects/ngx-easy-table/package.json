@@ -10,15 +10,16 @@
     "@angular/common": ">=6.0.0",
     "@angular/compiler": ">=6.0.0",
     "@angular/core": ">=6.0.0",
-    "ngx-pagination": "^4.0.0"
+    "ngx-pagination": "^3.2.1"
   },
   "dependencies": {
-    "ngx-pagination": "^4.0.0"
+    "ngx-pagination": "^3.2.1"
   },
   "engines": {
-    "node": ">=8.9.0",
-    "npm": ">=5.3.0"
+    "node": ">=11.0.0",
+    "npm": ">=6.0.0"
   },
+  "engineStrict": true,
   "bugs": {
     "url": "https://github.com/ssuperczynski/ngx-easy-table/issues"
   },
