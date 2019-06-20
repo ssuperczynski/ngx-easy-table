@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
       { link: 'column-width', name: 'Column width' },
       { link: 'fixed-width', name: 'Fixed width' },
       { link: 'persist-state', name: 'Persist state' },
+      { link: 'persist-state-router/column=phone&sort=desc', name: 'Persist state router' },
       { link: 'context-menu', name: 'Context menu', experimental: true },
       { link: 'pinned', name: 'Pinned column' },
       { link: 'column-class', name: 'Column Class' },

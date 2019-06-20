@@ -67,6 +67,7 @@ import {
   PinnedComponent,
   ColumnClassComponent,
   NestedTableComponent,
+  PersistStateRouterComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -136,6 +137,7 @@ import { TableModule } from 'ngx-easy-table';
     PinnedComponent,
     ColumnClassComponent,
     NestedTableComponent,
+    PersistStateRouterComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

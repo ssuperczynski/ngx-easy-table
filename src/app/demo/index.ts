@@ -51,3 +51,4 @@ export * from './installation/installation.component';
 export * from './pinned/pinned.component';
 export * from './column-class/column-class.component';
 export * from './nested-table/nested-table.component';
+export * from './persist-state-router/persist-state-router.component';

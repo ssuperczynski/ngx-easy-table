@@ -4,7 +4,7 @@ import { Columns, DefaultConfig } from 'ngx-easy-table';
 import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
-  selector: 'app-template',
+  selector: 'app-nested-table',
   templateUrl: './nested-table.component.html',
   styleUrls: ['./nested-table.component.css'],
 })
