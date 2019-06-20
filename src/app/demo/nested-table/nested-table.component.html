@@ -1,0 +1,44 @@
+<ngx-table
+  [configuration]="configuration"
+  [data]="data"
+  [id]="'parent-table'"
+  #table
+  [detailsTemplate]="detailsTemplate"
+  [columns]="columns">
+  <ng-template let-row let-index="index">
+    <td>
+      {{row.name}}
+    </td>
+    <td>
+      {{row.age}}
+    </td>
+    <td>
+      {{row.company}}
+    </td>
+    <td>
+      {{row.name}}
+    </td>
+    <td>
+      {{row.phone}}
+    </td>
+    <td>
+      <div>{{row.address.street}}</div>
+    </td>
+    <td>
+      <button class="btn btn-primary"
+              id="expandButton-{{index}}"
+              (click)="onRowClickEvent($event, index)"><i class="icon icon-arrow-left"></i>
+        Show nested table
+      </button>
+    </td>
+  </ng-template>
+
+</ngx-table>
+<ng-template #detailsTemplate let-row>
+  <ngx-table
+    [id]="'nested-table'"
+    [configuration]="nestedConfiguration"
+    [data]="nestedData"
+    [columns]="nestedColumns">
+  </ngx-table>
+</ng-template>

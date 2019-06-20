@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
       { link: 'checkboxes', name: 'Checkboxes' },
       { link: 'checkbox-default', name: 'Checkboxes template' },
       { link: 'customize-theme', name: 'Customize theme' },
+      { link: 'nested-table', name: 'Nested table' },
       { link: 'inline-cell', name: 'Inline cell' },
       { link: 'inline-row', name: 'Inline row' },
       { link: 'styles', name: 'Styles' },
