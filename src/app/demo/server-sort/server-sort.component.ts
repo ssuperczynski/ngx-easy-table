@@ -1,17 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, DefaultConfig } from 'ngx-easy-table';
+
+interface EventObject {
+  event: string;
+  value: {
+    limit: number;
+    page: number;
+    key: number;
+    order: number;
+  };
+}
 
 @Component({
   selector: 'app-server-sort',
   templateUrl: './server-sort.component.html',
   styleUrls: ['./server-sort.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [CompanyService],
 })
 export class ServerSortComponent implements OnInit {
-  showSortDropdown = false;
-  selectedOrder = '';
+  public showSortDropdown = false;
+  public selectedOrder = '';
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -20,7 +29,7 @@ export class ServerSortComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
 
-  orderDropdown = [
+  public orderDropdown = [
     {
       id: 0,
       key: 'name',
@@ -41,18 +50,19 @@ export class ServerSortComponent implements OnInit {
     },
   ];
 
-  data;
-  configuration;
-  pagination = {
+  public data;
+  public configuration;
+  public pagination = {
     limit: 10,
     offset: 0,
     count: -1,
   };
 
-  constructor(private companyService: CompanyService) {
+  constructor(private readonly companyService: CompanyService) {
   }
 
   ngOnInit() {
+    this.configuration = DefaultConfig;
     this.getData('');
   }
 
@@ -72,11 +82,10 @@ export class ServerSortComponent implements OnInit {
   }
 
   private getData(params: string) {
-    this.configuration = ConfigService.config;
     this.companyService.getCompanies(params)
       .subscribe((response: Company[]) => {
           this.data = response;
-          // ensure this.pagination.count is set only once and contains count of whole array not just paginated one
+          // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
           this.pagination.count = (this.pagination.count === -1) ? response.length : this.pagination.count;
           this.pagination = { ...this.pagination };
         },
@@ -95,9 +104,4 @@ export class ServerSortComponent implements OnInit {
     this.showSortDropdown = false;
   }
 
-}
-
-interface EventObject {
-  event: string;
-  value: any;
 }

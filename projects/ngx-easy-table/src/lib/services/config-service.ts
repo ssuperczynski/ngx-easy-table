@@ -31,6 +31,7 @@ export const DefaultConfig: Config = {
   persistState: false,
   paginationMaxSize: 5,
   threeWaySort: false,
+  infiniteScroll: false,
   tableLayout: {
     style: STYLE.NORMAL,
     theme: THEME.LIGHT,

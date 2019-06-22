@@ -10,7 +10,7 @@ import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib'
 })
 export class NestedTableComponent {
   @ViewChild('table', { static: true }) table: APIDefinition;
-
+  public toggledRows = new Set<number>();
   public columns: Columns[] = [
     { key: 'name', title: 'Name', width: '15%' },
     { key: 'age', title: 'Age', width: '15%' },
@@ -37,11 +37,12 @@ export class NestedTableComponent {
   constructor() {
     this.configuration = DefaultConfig;
     this.configuration.detailsTemplate = true;
-    this.configuration.tableLayout.hover = false;
+    this.configuration.tableLayout.hover = true;
     this.data = data;
 
-    this.nestedConfiguration = DefaultConfig;
+    this.nestedConfiguration = { ...DefaultConfig };
     this.nestedConfiguration.detailsTemplate = true;
+    this.nestedConfiguration.rows = 5;
     this.nestedData = data;
   }
 
@@ -51,5 +52,10 @@ export class NestedTableComponent {
       type: API.toggleRowIndex,
       value: index,
     });
+    if (this.toggledRows.has(index)) {
+      this.toggledRows.delete(index);
+    } else {
+      this.toggledRows.add(index);
+    }
   }
 }

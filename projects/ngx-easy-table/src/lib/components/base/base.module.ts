@@ -1,4 +1,5 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -30,6 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     NgxPaginationModule,
     DragDropModule,
+    ScrollingModule,
   ],
   exports: [BaseComponent],
 })

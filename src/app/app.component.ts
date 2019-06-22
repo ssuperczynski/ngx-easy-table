@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
       { link: 'context-menu', name: 'Context menu', experimental: true },
       { link: 'pinned', name: 'Pinned column' },
       { link: 'column-class', name: 'Column Class' },
+      { link: 'infinite-scroll', name: 'Infinite scroll', experimental: true },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },
@@ -108,6 +109,6 @@ export class AppComponent implements OnInit {
   }
 
   get excludedLinks() {
-    return ['basic', 'api-doc', 'doc', 'installation'].indexOf(this.selected.link) !== -1;
+    return ['basic', 'api-doc', 'doc', 'installation'].includes(this.selected.link);
   }
 }

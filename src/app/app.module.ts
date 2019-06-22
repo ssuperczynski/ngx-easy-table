@@ -68,6 +68,7 @@ import {
   ColumnClassComponent,
   NestedTableComponent,
   PersistStateRouterComponent,
+  InfiniteScrollComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -138,6 +139,7 @@ import { TableModule } from 'ngx-easy-table';
     ColumnClassComponent,
     NestedTableComponent,
     PersistStateRouterComponent,
+    InfiniteScrollComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

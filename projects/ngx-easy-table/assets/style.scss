@@ -41,6 +41,11 @@ $primary-color: #50596c !default;
       text-align: center;
     }
 
+    &__infinite-scroll {
+      height: 300px; // TODO
+      width: 600px; // TODO
+    }
+
     &__table-loader-wrapper {
       display: flex;
       justify-content: center;

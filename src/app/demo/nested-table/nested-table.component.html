@@ -27,7 +27,9 @@
     <td>
       <button class="btn btn-primary"
               id="expandButton-{{index}}"
-              (click)="onRowClickEvent($event, index)"><i class="icon icon-arrow-left"></i>
+              (click)="onRowClickEvent($event, index)">
+        <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+        <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
         Show nested table
       </button>
     </td>

@@ -28,6 +28,7 @@ export interface Config {
   persistState?: boolean;
   paginationMaxSize?: number;
   threeWaySort?: boolean;
+  infiniteScroll?: boolean;
   tableLayout: {
     style: STYLE | string | null,
     theme: THEME | string | null,
