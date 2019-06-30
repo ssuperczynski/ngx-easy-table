@@ -4,11 +4,12 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnChanges,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Config } from '../..';
-import { DefaultConfigService } from '../../services/config-service';
 import { PaginationControlsDirective } from 'ngx-pagination';
 
 export interface PaginationRange {
@@ -21,7 +22,7 @@ export interface PaginationRange {
   templateUrl: './pagination.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnChanges {
   @ViewChild('paginationDirective', { static: true }) paginationDirective: PaginationControlsDirective;
   @ViewChild('paginationRange', { static: false }) paginationRange;
   @Input() pagination;
@@ -29,7 +30,7 @@ export class PaginationComponent {
   @Input() id;
   @Output() readonly updateRange: EventEmitter<PaginationRange> = new EventEmitter();
   public ranges: number[] = [5, 10, 25, 50, 100];
-  public selectedLimit: number = DefaultConfigService.config.rows;
+  public selectedLimit: number;
   public showRange = false;
   public screenReaderPaginationLabel = 'Pagination';
   public screenReaderPageLabel = 'page';
@@ -43,6 +44,13 @@ export class PaginationComponent {
     const clickedInside = this.paginationRange.nativeElement.contains(targetElement);
     if (!clickedInside) {
       this.showRange = false;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const { config } = changes;
+    if (config && config.currentValue) {
+      this.selectedLimit = this.config.rows;
     }
   }
 

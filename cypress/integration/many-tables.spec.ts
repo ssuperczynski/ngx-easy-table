@@ -29,6 +29,11 @@ context('Many tables', () => {
         .get('#configurationBasic > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ZILLANET')
       ;
     });
+    it('has rows limit set to 3', () => {
+      cy
+        .get('#paginationconfigurationBasic > div > div.ngx-pagination-range > div > div > div')
+        .contains('3');
+    });
   });
 
   describe('configurationAdvanced', () => {
@@ -53,6 +58,11 @@ context('Many tables', () => {
         .get('#configurationAdvanced > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (949) 527-2108')
         .get('#configurationAdvanced > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('KONGENE')
       ;
+    });
+    it('has rows limit set to 4', () => {
+      cy
+        .get('#paginationconfigurationAdvanced > div > div.ngx-pagination-range > div > div > div')
+        .contains('4');
     });
   });
 });

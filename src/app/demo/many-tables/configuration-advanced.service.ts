@@ -13,7 +13,7 @@ export class ConfigurationAdvancedService {
     selectRow: true,
     selectCol: false,
     selectCell: false,
-    rows: 10,
+    rows: 4,
     additionalActions: false,
     serverPagination: false,
     isLoading: false,

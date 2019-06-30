@@ -13,6 +13,7 @@
     "e2e": "npm run cy:ci",
     "cy:serve": "http-server dist/demo -p 4201",
     "cy:local": "ng serve --port=4201",
+    "cy:test": "cypress open",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",

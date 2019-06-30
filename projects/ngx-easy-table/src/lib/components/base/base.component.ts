@@ -9,7 +9,6 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChange,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -68,15 +67,7 @@ export class BaseComponent implements OnInit, OnChanges {
   public config: Config;
   onSelectAllBinded = this.onSelectAll.bind(this);
 
-  @Input('configuration')
-  set configuration(value: Config) {
-    this.config = value;
-  }
-
-  get configuration(): Config {
-    return this.config;
-  }
-
+  @Input() configuration: Config;
   @Input() data: any[];
   @Input() pagination: Pagination;
   @Input() groupRowsBy: string;
@@ -108,10 +99,10 @@ export class BaseComponent implements OnInit, OnChanges {
       console.error('[columns] property required!');
     }
     if (this.configuration) {
-      DefaultConfigService.config = this.configuration;
+      this.config = this.configuration;
+    } else {
+      this.config = DefaultConfigService.config;
     }
-
-    this.config = DefaultConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
@@ -120,10 +111,11 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const data: SimpleChange = changes.data;
-    const pagination: SimpleChange = changes.pagination;
-    const groupRowsBy: SimpleChange = changes.groupRowsBy;
+    const { configuration, data, pagination, groupRowsBy } = changes;
     this.toggleRowIndex = changes.toggleRowIndex;
+    if (configuration && configuration.currentValue) {
+      this.config = configuration.currentValue;
+    }
     if (data && data.currentValue) {
       this.doApplyData(data);
     }
@@ -141,7 +133,7 @@ export class BaseComponent implements OnInit, OnChanges {
 
   isOrderEnabled(column: Columns) {
     const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
-    return DefaultConfigService.config.orderEnabled && columnOrderEnabled;
+    return this.config.orderEnabled && columnOrderEnabled;
   }
 
   orderBy(column: Columns): void {
@@ -149,19 +141,19 @@ export class BaseComponent implements OnInit, OnChanges {
       return;
     }
     this.sortKey = column.key;
-    if (!DefaultConfigService.config.orderEnabled || this.sortKey === '') {
+    if (!this.config.orderEnabled || this.sortKey === '') {
       return;
     }
 
     this.setColumnOrder(this.sortKey);
-    if (!DefaultConfigService.config.orderEventOnly && !column.orderEventOnly) {
+    if (!this.config.orderEventOnly && !column.orderEventOnly) {
       this.sortBy.key = this.sortKey;
       this.sortBy.order = this.sortState.get(this.sortKey);
     } else {
       this.sortBy.key = '';
       this.sortBy.order = '';
     }
-    if (!DefaultConfigService.config.serverPagination) {
+    if (!this.config.serverPagination) {
       this.data = [...this.data];
     }
     this.sortBy = { ...this.sortBy };
@@ -173,17 +165,17 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
-    if (DefaultConfigService.config.selectRow) {
+    if (this.config.selectRow) {
       this.selectedRow = rowIndex;
     }
-    if (DefaultConfigService.config.selectCol && colIndex) {
+    if (this.config.selectCol && colIndex) {
       this.selectedCol = colIndex;
     }
-    if (DefaultConfigService.config.selectCell && colIndex) {
+    if (this.config.selectCell && colIndex) {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
-    if (DefaultConfigService.config.clickEvent) {
+    if (this.config.clickEvent) {
       const value: TableMouseEvent = {
         event: $event,
         row,
@@ -221,14 +213,14 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   onSearch($event: Array<{ key: string; value: string }>): void {
-    if (!DefaultConfigService.config.serverPagination) {
+    if (!this.config.serverPagination) {
       this.term = $event;
     }
     this.emitEvent(Event.onSearch, $event);
   }
 
   onGlobalSearch(value: string): void {
-    if (!DefaultConfigService.config.serverPagination) {
+    if (!this.config.serverPagination) {
       this.globalSearchTerm = value;
     }
     this.emitEvent(Event.onGlobalSearch, value);
