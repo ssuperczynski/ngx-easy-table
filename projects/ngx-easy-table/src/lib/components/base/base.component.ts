@@ -111,10 +111,10 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const { config, data, pagination, groupRowsBy } = changes;
+    const { configuration, data, pagination, groupRowsBy } = changes;
     this.toggleRowIndex = changes.toggleRowIndex;
-    if (config && config.currentValue) {
-      this.config = config.currentValue;
+    if (configuration && configuration.currentValue) {
+      this.config = configuration.currentValue;
     }
     if (data && data.currentValue) {
       this.doApplyData(data);
