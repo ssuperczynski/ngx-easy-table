@@ -40,7 +40,7 @@ context('Server sort', () => {
         ],
       });
     });
-    it('gets correct default order by "Age" descending', () => {
+    it('gets correct default order', () => {
       cy
         .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (949) 527-2108')
         .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('KONGENE')

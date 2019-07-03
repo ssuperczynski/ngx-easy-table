@@ -13,9 +13,11 @@ export class DynamicRowComponent implements OnInit {
   public data;
   public columns: Columns[];
   public configuration;
+  public toggled = false;
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
+    this.configuration.animations = false;
     this.columns = [
       { key: 'status', title: 'Status' },
       { key: 'amount', title: 'Amount' },
@@ -39,7 +41,8 @@ export class DynamicRowComponent implements OnInit {
   }
 
   addRow() {
-    this.data.push(
+    this.data = [
+      ...this.data,
       {
         status: 'ACTIVE',
         amount: this.randNumber(1, 5),
@@ -47,12 +50,16 @@ export class DynamicRowComponent implements OnInit {
         limit: this.randNumber(800, 1200),
         balance: this.randNumber(800, 3000),
       },
-    );
-    this.data = [...this.data];
+    ];
   }
 
   remove(rowIndex: number): void {
-    this.data.splice(rowIndex, 1);
-    this.data = [...this.data];
+    this.data = [...this.data.filter((_v, k) => k !== rowIndex)];
+  }
+
+  toggleAnimation() {
+    this.toggled = !this.toggled;
+    this.configuration.animations = this.toggled;
+    this.configuration = { ...this.configuration };
   }
 }

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from '../../services/company.service';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Company, CompanyService } from '../../services/company.service';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-async',
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [CompanyService],
 })
 export class AsyncComponent implements OnInit {
-  public configuration;
-  public data;
+  public configuration: Config;
+  public data$: Observable<Company[]>;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -21,10 +22,15 @@ export class AsyncComponent implements OnInit {
   ];
 
   constructor(private companyService: CompanyService) {
-    this.configuration = ConfigService.config;
+    this.configuration = DefaultConfig;
   }
 
   ngOnInit(): void {
-    this.data = this.companyService.getCompanies('');
+    this.configuration.isLoading = true;
+    this.data$ = this.companyService.getCompanies().pipe(
+      tap(() => {
+        this.configuration.isLoading = false;
+      }),
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Company } from '../../../assets/data';
-import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { Columns, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-infinite-scroll',
@@ -8,7 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./infinite-scroll.component.css'],
 })
 export class InfiniteScrollComponent {
-  public configuration: Config;
+  public configuration;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -21,14 +21,15 @@ export class InfiniteScrollComponent {
 
   constructor() {
 
-    this.data = Array.from({ length: 10000 }).map((_, i) => ({
+    this.data = Array.from({ length: 1000 }).map((_, i) => ({
       phone: `+1 (949) 527-210${i}`,
       age: 36,
       company: 'KONGENE',
       name: 'Deanne Contreras',
       isActive: true,
     }));
-    this.configuration = DefaultConfig;
+    this.configuration = { ...DefaultConfig };
     this.configuration.infiniteScroll = true;
+    this.configuration.rows = 1000;
   }
 }

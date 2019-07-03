@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Config, STYLE, THEME } from 'ngx-easy-table';
+import { STYLE, THEME } from 'ngx-easy-table';
 
 @Injectable()
 export class ConfigService {
-  public static config: Config = {
+  public static config = {
     searchEnabled: false,
     headerEnabled: true,
     orderEnabled: false,
@@ -30,6 +30,10 @@ export class ConfigService {
     showDetailsArrow: false,
     showContextMenu: false,
     persistState: false,
+    paginationMaxSize: 5,
+    threeWaySort: false,
+    infiniteScroll: false,
+    animations: false,
     tableLayout: {
       style: STYLE.NORMAL,
       theme: THEME.LIGHT,

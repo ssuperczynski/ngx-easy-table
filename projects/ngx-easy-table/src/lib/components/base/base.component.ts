@@ -4,11 +4,9 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
-  EventEmitter,
   Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -20,6 +18,8 @@ import { PaginationComponent, PaginationRange } from '../pagination/pagination.c
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
 import { Subject, Subscription } from 'rxjs';
+import { LoggingService } from '../../services/logging.service';
+import { rowsAnimation } from './base.animations';
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -29,13 +29,18 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [DefaultConfigService, GroupRowsService, StyleService],
+  providers: [
+    DefaultConfigService,
+    GroupRowsService,
+    StyleService,
+    LoggingService,
+  ],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [rowsAnimation],
 })
 export class BaseComponent implements OnInit, OnChanges {
-  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
-  @ViewChild('th', { static: false }) private th;
+
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -45,7 +50,6 @@ export class BaseComponent implements OnInit, OnChanges {
   public tableClass = null;
   public globalSearchTerm: string;
   public grouped: any = [];
-  public menuActive = false;
   public isSelected = false;
   public page = 1;
   public count = null;
@@ -62,10 +66,8 @@ export class BaseComponent implements OnInit, OnChanges {
     order: 'asc',
   };
   public selectedDetailsTemplateRowId = new Set();
-  public startOffset;
   public loadingHeight = '30px';
   public config: Config;
-  onSelectAllBinded = this.onSelectAll.bind(this);
 
   @Input() configuration: Config;
   @Input() data: any[];
@@ -74,19 +76,20 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() id = 'table';
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
-  @Input() summaryTemplate: TemplateRef<any>;
+  @Input() summaryTemplate: TemplateRef<{ total: number; limit: number; page: number }>;
   @Input() groupRowsHeaderTemplate: TemplateRef<any>;
   @Input() filtersTemplate: TemplateRef<any>;
   @Input() selectAllTemplate: TemplateRef<any>;
   @Input() noResultsTemplate: TemplateRef<any>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
-  @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
+  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
     public readonly styleService: StyleService,
+    private readonly logger: LoggingService,
   ) {
     this.subscription = this.filteredCountSubject.subscribe((count) => {
       this.filterCount = count;
@@ -102,6 +105,7 @@ export class BaseComponent implements OnInit, OnChanges {
       this.config = this.configuration;
     } else {
       this.config = DefaultConfigService.config;
+      this.logger.setConfig(this.config);
     }
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
@@ -115,6 +119,7 @@ export class BaseComponent implements OnInit, OnChanges {
     this.toggleRowIndex = changes.toggleRowIndex;
     if (configuration && configuration.currentValue) {
       this.config = configuration.currentValue;
+      this.logger.setConfig(this.config);
     }
     if (data && data.currentValue) {
       this.doApplyData(data);
@@ -129,11 +134,6 @@ export class BaseComponent implements OnInit, OnChanges {
       const row = this.toggleRowIndex.currentValue;
       this.collapseRow(row.index);
     }
-  }
-
-  isOrderEnabled(column: Columns) {
-    const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
-    return this.config.orderEnabled && columnOrderEnabled;
   }
 
   orderBy(column: Columns): void {
@@ -161,7 +161,7 @@ export class BaseComponent implements OnInit, OnChanges {
       key: this.sortKey,
       order: this.sortState.get(this.sortKey),
     };
-    this.emitEvent(Event.onOrder, value);
+    this.logger.emitEvent(Event.onOrder, value);
   }
 
   onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
@@ -175,6 +175,7 @@ export class BaseComponent implements OnInit, OnChanges {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
+    console.log('onClick');
     if (this.config.clickEvent) {
       const value: TableMouseEvent = {
         event: $event,
@@ -183,7 +184,7 @@ export class BaseComponent implements OnInit, OnChanges {
         rowId: rowIndex,
         colId: colIndex,
       };
-      this.emitEvent(Event.onClick, value);
+      this.logger.emitEvent(Event.onClick, value);
     }
   }
 
@@ -195,7 +196,7 @@ export class BaseComponent implements OnInit, OnChanges {
       rowId: rowIndex,
       colId: colIndex,
     };
-    this.emitEvent(Event.onDoubleClick, value);
+    this.logger.emitEvent(Event.onDoubleClick, value);
   }
 
   onCheckboxSelect($event: object, row: object, rowIndex: number): void {
@@ -204,52 +205,41 @@ export class BaseComponent implements OnInit, OnChanges {
       row,
       rowId: rowIndex,
     };
-    this.emitEvent(Event.onCheckboxSelect, value);
+    this.logger.emitEvent(Event.onCheckboxSelect, value);
   }
 
   onSelectAll() {
     this.isSelected = !this.isSelected;
-    this.emitEvent(Event.onSelectAll, this.isSelected);
+    this.logger.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
   onSearch($event: Array<{ key: string; value: string }>): void {
     if (!this.config.serverPagination) {
       this.term = $event;
     }
-    this.emitEvent(Event.onSearch, $event);
+    this.logger.emitEvent(Event.onSearch, $event);
   }
 
   onGlobalSearch(value: string): void {
     if (!this.config.serverPagination) {
       this.globalSearchTerm = value;
     }
-    this.emitEvent(Event.onGlobalSearch, value);
+    this.logger.emitEvent(Event.onGlobalSearch, value);
   }
 
   onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
-    this.emitEvent(Event.onPagination, pagination);
-  }
-
-  private emitEvent(event: string, value: any): void {
-    this.event.emit({ event, value });
-    if (this.config.persistState) {
-      localStorage.setItem(event, JSON.stringify(value));
-    }
-    if (this.config.logger) {
-      // tslint:disable-next-line:no-console
-      console.log({ event, value });
-    }
+    this.logger.emitEvent(Event.onPagination, pagination);
   }
 
   collapseRow(rowIndex: number): void {
     if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
       this.selectedDetailsTemplateRowId.delete(rowIndex);
-      this.emitEvent(Event.onRowCollapsedHide, rowIndex);
+      this.logger.emitEvent(Event.onRowCollapsedHide, rowIndex);
     } else {
       this.selectedDetailsTemplateRowId.add(rowIndex);
-      this.emitEvent(Event.onRowCollapsedShow, rowIndex);
+      this.logger.emitEvent(Event.onRowCollapsedShow, rowIndex);
     }
   }
 
@@ -285,35 +275,6 @@ export class BaseComponent implements OnInit, OnChanges {
     return this.selectedDetailsTemplateRowId.has(rowIndex);
   }
 
-  onMouseDown(event, th) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    this.th = th;
-    this.startOffset = th.offsetWidth - event.pageX;
-    this.emitEvent(Event.onColumnResizeMouseDown, event);
-  }
-
-  onMouseMove(event) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    if (this.th && this.th.style) {
-      this.th.style.width = this.startOffset + event.pageX + 'px';
-      this.th.style.cursor = 'col-resize';
-      this.th.style['user-select'] = 'none';
-    }
-  }
-
-  onMouseUp(event) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    this.emitEvent(Event.onColumnResizeMouseUp, event);
-    this.th.style.cursor = 'default';
-    this.th = undefined;
-  }
-
   get isLoading(): boolean {
     const table = document.getElementById(this.id) as HTMLTableElement;
     if (table && table.rows && table.rows.length > 3) {
@@ -328,17 +289,6 @@ export class BaseComponent implements OnInit, OnChanges {
     const borderTrHeight = 1;
     const borderDivHeight = 2;
     this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
-  }
-
-  getColumnWidth(column: any): string | null {
-    if (column.width) {
-      return column.width;
-    }
-    return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
-  }
-
-  getColumnDefinition(column: Columns): boolean {
-    return column.searchEnabled || typeof column.searchEnabled === 'undefined';
   }
 
   get arrowDefinition(): boolean {
@@ -363,13 +313,7 @@ export class BaseComponent implements OnInit, OnChanges {
       value,
     };
 
-    this.emitEvent(Event.onRowContextMenu, value);
-  }
-
-  pinnedWidth(pinned: boolean, column: number): string {
-    if (pinned) {
-      return 150 * column + 'px'; //
-    }
+    this.logger.emitEvent(Event.onRowContextMenu, value);
   }
 
   private doApplyData(data) {
@@ -383,7 +327,7 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
-    this.emitEvent(Event.onRowDrop, event);
+    this.logger.emitEvent(Event.onRowDrop, event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 

@@ -19,35 +19,12 @@ interface EventObject {
   providers: [CompanyService],
 })
 export class ServerSortComponent implements OnInit {
-  public showSortDropdown = false;
-  public selectedOrder = '';
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
-  ];
-
-  public orderDropdown = [
-    {
-      id: 0,
-      key: 'name',
-      order: 'asc',
-      name: 'Name asc',
-    },
-    {
-      id: 1,
-      key: 'name',
-      order: 'desc',
-      name: 'Name desc',
-    },
-    {
-      id: 2,
-      key: 'company',
-      order: 'asc',
-      name: 'Company asc',
-    },
   ];
 
   public data;
@@ -93,15 +70,4 @@ export class ServerSortComponent implements OnInit {
           console.error('ERROR: ', error.message);
         });
   }
-
-  orderBy(sort): void {
-    this.selectedOrder = sort.id;
-    const event = {
-      event: 'onOrder',
-      value: sort,
-    };
-    this.eventEmitted(event);
-    this.showSortDropdown = false;
-  }
-
 }

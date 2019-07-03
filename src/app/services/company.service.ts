@@ -9,7 +9,7 @@ export class CompanyService {
   constructor(private http: HttpClient) {
   }
 
-  getCompanies(params: string): Observable<Company[]> {
+  getCompanies(params: string = ''): Observable<Company[]> {
     return this.http
       .get<Company[]>(`${this.BACKEND_URL}${params}`);
   }

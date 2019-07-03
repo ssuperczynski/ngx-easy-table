@@ -71,12 +71,14 @@ import {
   InfiniteScrollComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
     TableModule,
     routing,
     HighlightModule.forRoot({

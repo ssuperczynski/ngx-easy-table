@@ -80,7 +80,7 @@ export class AppComponent  {
   // instead just do like below (you can still use previous version)
   // this one is just shorter, produces less code and is easier, especially when you have many tables in the project
   ngOnInit() {
-    this.configuration = DefaultConfig;
+    this.configuration = { ...DefaultConfig };
     this.configuration.orderEnabled = false;
     // ... etc.
     this.data = data;
@@ -90,7 +90,7 @@ export class AppComponent  {
 
   public readonly appComponentServiceCode = `
 import { Injectable } from '@angular/core';
-import { Config } from './ngx-easy-table/model/config';
+import { Config } from 'ngx-easy-table';
 
 @Injectable()
 export class ConfigurationService {

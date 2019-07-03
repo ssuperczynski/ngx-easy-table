@@ -74,4 +74,19 @@ public columns: Columns[] = [
     { key: 'phone', title: 'Phone', orderEventOnly: true },
 ];
 `;
+  public readonly pinnedCode = `
+import { Columns } from 'ngx-easy-table';
+
+public columns: Columns[] = [
+    { key: 'phone', title: 'Phone', pinned: true },
+];
+`;
+  public readonly cssClassCode = `
+import { Columns } from 'ngx-easy-table';
+
+public columns: Columns[] = [
+    { key: 'company', title: 'Company', cssClass: { includeHeader: false, name: 'blue' } },
+    { key: 'phone', title: 'Phone', cssClass: { includeHeader: true, name: 'red' } },
+];
+`;
 }

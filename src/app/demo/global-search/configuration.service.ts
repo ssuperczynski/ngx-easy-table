@@ -25,7 +25,7 @@ export class ConfigService {
     resizeColumn: false,
     fixedColumnWidth: true,
     horizontalScroll: false,
-    draggable: true,
+    draggable: false,
     logger: false,
     showDetailsArrow: false,
     showContextMenu: false,
