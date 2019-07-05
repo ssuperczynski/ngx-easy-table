@@ -175,7 +175,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  sortBy(column: string, order: string): void {
+  sortBy(column: string, order: 'asc' | 'desc'): void {
     this.table.apiEvent({
       type: API.sortBy,
       value: { column, order },

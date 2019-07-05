@@ -19,7 +19,9 @@
       [columns]="columns"
       (selectAll)="onSelectAll()"
       (filter)="onSearch($event)"
-      (order)="orderBy($event)">
+      (order)="orderBy($event)"
+      (event)="emitEvent($event.event, $event.value)"
+    >
     </thead>
     <tbody *ngIf="data && !isLoading && !config.draggable && !config.infiniteScroll">
     <ng-container *ngIf="rowTemplate">

@@ -45,7 +45,9 @@ export class ServerPaginationComponent implements OnInit {
   }
 
   eventEmitted($event) {
-    this.parseEvent($event);
+    if ($event.event !== 'onClick') {
+      this.parseEvent($event);
+    }
   }
 
   private parseEvent(obj: EventObject) {

@@ -23,7 +23,7 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
   public data: Company[] = [];
   public configuration: Config;
   public sortColumn: string;
-  public sortOrder: string;
+  public sortOrder: 'asc' | 'desc';
 
   constructor(private route: ActivatedRoute) {
   }

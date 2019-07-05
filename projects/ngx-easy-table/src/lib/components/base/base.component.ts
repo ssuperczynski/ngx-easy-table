@@ -3,10 +3,10 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
+  ContentChild, EventEmitter,
   Input,
   OnChanges,
-  OnInit,
+  OnInit, Output,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -18,7 +18,6 @@ import { PaginationComponent, PaginationRange } from '../pagination/pagination.c
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
 import { Subject, Subscription } from 'rxjs';
-import { LoggingService } from '../../services/logging.service';
 import { rowsAnimation } from './base.animations';
 
 interface RowContextMenuPosition {
@@ -33,7 +32,6 @@ interface RowContextMenuPosition {
     DefaultConfigService,
     GroupRowsService,
     StyleService,
-    LoggingService,
   ],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -83,13 +81,13 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() noResultsTemplate: TemplateRef<any>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
+  @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
   @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
     public readonly styleService: StyleService,
-    private readonly logger: LoggingService,
   ) {
     this.subscription = this.filteredCountSubject.subscribe((count) => {
       this.filterCount = count;
@@ -105,7 +103,6 @@ export class BaseComponent implements OnInit, OnChanges {
       this.config = this.configuration;
     } else {
       this.config = DefaultConfigService.config;
-      this.logger.setConfig(this.config);
     }
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
@@ -119,7 +116,6 @@ export class BaseComponent implements OnInit, OnChanges {
     this.toggleRowIndex = changes.toggleRowIndex;
     if (configuration && configuration.currentValue) {
       this.config = configuration.currentValue;
-      this.logger.setConfig(this.config);
     }
     if (data && data.currentValue) {
       this.doApplyData(data);
@@ -161,7 +157,7 @@ export class BaseComponent implements OnInit, OnChanges {
       key: this.sortKey,
       order: this.sortState.get(this.sortKey),
     };
-    this.logger.emitEvent(Event.onOrder, value);
+    this.emitEvent(Event.onOrder, value);
   }
 
   onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
@@ -175,7 +171,7 @@ export class BaseComponent implements OnInit, OnChanges {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
-    console.log('onClick');
+
     if (this.config.clickEvent) {
       const value: TableMouseEvent = {
         event: $event,
@@ -184,7 +180,7 @@ export class BaseComponent implements OnInit, OnChanges {
         rowId: rowIndex,
         colId: colIndex,
       };
-      this.logger.emitEvent(Event.onClick, value);
+      this.emitEvent(Event.onClick, value);
     }
   }
 
@@ -196,7 +192,7 @@ export class BaseComponent implements OnInit, OnChanges {
       rowId: rowIndex,
       colId: colIndex,
     };
-    this.logger.emitEvent(Event.onDoubleClick, value);
+    this.emitEvent(Event.onDoubleClick, value);
   }
 
   onCheckboxSelect($event: object, row: object, rowIndex: number): void {
@@ -205,41 +201,41 @@ export class BaseComponent implements OnInit, OnChanges {
       row,
       rowId: rowIndex,
     };
-    this.logger.emitEvent(Event.onCheckboxSelect, value);
+    this.emitEvent(Event.onCheckboxSelect, value);
   }
 
   onSelectAll() {
     this.isSelected = !this.isSelected;
-    this.logger.emitEvent(Event.onSelectAll, this.isSelected);
+    this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
   onSearch($event: Array<{ key: string; value: string }>): void {
     if (!this.config.serverPagination) {
       this.term = $event;
     }
-    this.logger.emitEvent(Event.onSearch, $event);
+    this.emitEvent(Event.onSearch, $event);
   }
 
   onGlobalSearch(value: string): void {
     if (!this.config.serverPagination) {
       this.globalSearchTerm = value;
     }
-    this.logger.emitEvent(Event.onGlobalSearch, value);
+    this.emitEvent(Event.onGlobalSearch, value);
   }
 
   onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
-    this.logger.emitEvent(Event.onPagination, pagination);
+    this.emitEvent(Event.onPagination, pagination);
   }
 
   collapseRow(rowIndex: number): void {
     if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
       this.selectedDetailsTemplateRowId.delete(rowIndex);
-      this.logger.emitEvent(Event.onRowCollapsedHide, rowIndex);
+      this.emitEvent(Event.onRowCollapsedHide, rowIndex);
     } else {
       this.selectedDetailsTemplateRowId.add(rowIndex);
-      this.logger.emitEvent(Event.onRowCollapsedShow, rowIndex);
+      this.emitEvent(Event.onRowCollapsedShow, rowIndex);
     }
   }
 
@@ -313,7 +309,7 @@ export class BaseComponent implements OnInit, OnChanges {
       value,
     };
 
-    this.logger.emitEvent(Event.onRowContextMenu, value);
+    this.emitEvent(Event.onRowContextMenu, value);
   }
 
   private doApplyData(data) {
@@ -327,7 +323,7 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
-    this.logger.emitEvent(Event.onRowDrop, event);
+    this.emitEvent(Event.onRowDrop, event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
@@ -453,6 +449,17 @@ export class BaseComponent implements OnInit, OnChanges {
       const temp = this.sortState.get(key);
       this.sortState.clear();
       this.sortState.set(key, temp);
+    }
+  }
+
+  public emitEvent(event: string, value: any): void {
+    this.event.emit({ event, value });
+    if (this.config.persistState) {
+      localStorage.setItem(event, JSON.stringify(value));
+    }
+    if (this.config.logger) {
+      // tslint:disable-next-line:no-console
+      console.log({ event, value });
     }
   }
 }

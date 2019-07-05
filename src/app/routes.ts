@@ -54,7 +54,8 @@ import {
   PinnedComponent,
   ColumnClassComponent,
   NestedTableComponent,
-  PersistStateRouterComponent, InfiniteScrollComponent,
+  PersistStateRouterComponent,
+  InfiniteScrollComponent,
 } from './demo';
 
 export const routes = [

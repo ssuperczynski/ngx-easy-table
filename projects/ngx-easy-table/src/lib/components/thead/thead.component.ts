@@ -1,17 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Columns, Config, Event } from '../..';
-import { LoggingService } from '../../services/logging.service';
 import { StyleService } from '../../services/style.service';
 
 @Component({
   selector: '[table-thead]',
   templateUrl: './thead.component.html',
-  providers: [
-    StyleService,
-    LoggingService,
-  ],
+  providers: [StyleService],
 })
-export class TableTHeadComponent implements OnChanges {
+export class TableTHeadComponent {
   @Input() config: Config;
   @Input() columns: Columns[];
   @Input() sortKey;
@@ -21,6 +17,7 @@ export class TableTHeadComponent implements OnChanges {
   @Output() readonly filter = new EventEmitter<Array<{ key: string; value: string }>>();
   @Output() readonly order = new EventEmitter<Columns>();
   @Output() readonly selectAll = new EventEmitter<void>();
+  @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ViewChild('th', { static: false }) private th;
 
   public menuActive = false;
@@ -28,14 +25,9 @@ export class TableTHeadComponent implements OnChanges {
   public onSelectAllBinded = this.onSelectAll.bind(this);
 
   constructor(
-    private readonly logger: LoggingService,
     public readonly styleService: StyleService,
   ) {
 
-  }
-
-  ngOnChanges(): void {
-    this.logger.setConfig(this.config);
   }
 
   getColumnDefinition(column: Columns): boolean {
@@ -72,7 +64,10 @@ export class TableTHeadComponent implements OnChanges {
     }
     this.th = th;
     this.startOffset = th.offsetWidth - event.pageX;
-    this.logger.emitEvent(Event.onColumnResizeMouseDown, event);
+    this.event.emit({
+      event: Event.onColumnResizeMouseDown,
+      value: event,
+    });
   }
 
   onMouseMove(event) {
@@ -90,8 +85,10 @@ export class TableTHeadComponent implements OnChanges {
     if (!this.config.resizeColumn) {
       return;
     }
-
-    this.logger.emitEvent(Event.onColumnResizeMouseUp, event);
+    this.event.emit({
+      event: Event.onColumnResizeMouseUp,
+      value: event,
+    });
     this.th.style.cursor = 'default';
     this.th = undefined;
   }
