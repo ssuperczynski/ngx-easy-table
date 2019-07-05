@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   public readonly version = environment.VERSION;
-  public showMenu = false;
+  public showMenu = true;
   public selected: Link;
   public readonly menu = {
     basic: [
@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
       { link: 'pinned', name: 'Pinned column' },
       { link: 'column-class', name: 'Column Class' },
       { link: 'infinite-scroll', name: 'Infinite scroll', experimental: true },
+      { link: 'mobile', name: 'Mobile view' },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },

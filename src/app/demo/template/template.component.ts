@@ -23,6 +23,7 @@ export class TemplateComponent {
   ];
   public data: Company[] = [];
   public configuration;
+  public toggledRows = new Set<number>();
 
   constructor() {
     this.configuration = ConfigService.config;
@@ -35,5 +36,10 @@ export class TemplateComponent {
       type: API.toggleRowIndex,
       value: index,
     });
+    if (this.toggledRows.has(index)) {
+      this.toggledRows.delete(index);
+    } else {
+      this.toggledRows.add(index);
+    }
   }
 }
