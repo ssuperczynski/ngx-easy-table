@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, DefaultConfig } from 'ngx-easy-table';
-import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-nested-table',

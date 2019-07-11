@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { API, Columns, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, Columns, APIDefinition } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-api',

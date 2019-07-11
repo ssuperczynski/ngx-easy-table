@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { API, APIDefinition, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition, TableMouseEvent } from 'ngx-easy-table';
 import { Columns } from 'ngx-easy-table';
 
 @Component({

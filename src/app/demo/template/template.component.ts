@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
-import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-template',

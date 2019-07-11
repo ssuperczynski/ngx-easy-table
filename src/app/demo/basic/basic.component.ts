@@ -10,14 +10,14 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 export class BasicComponent {
   public configuration: Config;
   public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
+    { key: 'level', title: 'Level' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
   ];
 
-  data: Company[] = [];
+  public data: Company[] = [];
 
   constructor() {
     this.data = data;
