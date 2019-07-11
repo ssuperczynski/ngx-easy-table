@@ -16,6 +16,7 @@ export class MobileComponent implements OnInit {
   public toggledRows = new Set<number>();
 
   @ViewChild('table', { static: true }) table: APIDefinition;
+
   @HostListener('window:resize', [])
   onResize() {
     this.checkView();
@@ -25,6 +26,7 @@ export class MobileComponent implements OnInit {
     this.data = data;
     this.configuration = DefaultConfig;
     this.configuration.detailsTemplate = true;
+    this.configuration.paginationRangeEnabled = false;
     this.checkView();
   }
 

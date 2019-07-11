@@ -41,8 +41,7 @@ export class PaginationComponent implements OnChanges {
 
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement) {
-    const clickedInside = this.paginationRange.nativeElement.contains(targetElement);
-    if (!clickedInside) {
+    if (this.paginationRange && !this.paginationRange.nativeElement.contains(targetElement)) {
       this.showRange = false;
     }
   }
