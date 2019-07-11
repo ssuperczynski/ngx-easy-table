@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "highlight.js": "^9.15.8",
-    "ngx-easy-table": "^10.1.1",
+    "ngx-easy-table": "^10.1.2",
     "ngx-highlightjs": "^3.0.3",
     "spectre.css": "^0.5.8",
     "typeface-montserrat": "0.0.54",
