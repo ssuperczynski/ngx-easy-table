@@ -68,6 +68,7 @@ import {
   ColumnClassComponent,
   NestedTableComponent,
   PersistStateRouterComponent,
+  InfiniteScrollComponent,
   MobileComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
@@ -141,6 +142,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ColumnClassComponent,
     NestedTableComponent,
     PersistStateRouterComponent,
+    InfiniteScrollComponent,
     MobileComponent,
   ],
   bootstrap: [AppComponent],

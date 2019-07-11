@@ -55,7 +55,7 @@ import {
   ColumnClassComponent,
   NestedTableComponent,
   PersistStateRouterComponent,
-  MobileComponent,
+  InfiniteScrollComponent, MobileComponent,
 } from './demo';
 
 export const routes = [
@@ -112,6 +112,7 @@ export const routes = [
   { path: 'pinned', component: PinnedComponent },
   { path: 'column-class', component: ColumnClassComponent },
   { path: 'nested-table', component: NestedTableComponent },
+  { path: 'infinite-scroll', component: InfiniteScrollComponent },
   { path: 'persist-state-router/:state', component: PersistStateRouterComponent },
   { path: 'mobile', component: MobileComponent },
   { path: '**', component: BasicComponent },
