@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
       { link: 'context-menu', name: 'Context menu', experimental: true },
       { link: 'pinned', name: 'Pinned column' },
       { link: 'column-class', name: 'Column Class' },
-      { link: 'infinite-scroll', name: 'Infinite scroll', experimental: true },
       { link: 'mobile', name: 'Mobile view' },
     ],
     templates: [
