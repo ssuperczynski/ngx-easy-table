@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { NavigationEnd, Router } from '@angular/router';
 
-interface Link {
+export interface Link {
   link: string;
   name: string;
   experimental?: boolean;
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   public readonly version = environment.VERSION;
   public showMenu = true;
   public selected: Link;
+  public searchTerm = '';
   public readonly menu = {
     basic: [
       { link: 'basic', name: 'Basic' },
@@ -82,7 +83,7 @@ export class AppComponent implements OnInit {
       { link: 'custom-sort', name: 'Custom sort' },
       { link: 'custom-intable-sort', name: 'Custom in-table sort' },
     ],
-    tableApi: [
+    api: [
       { link: 'api', name: 'API', experimental: true },
       { link: 'bootstrap', name: 'Bootstrap', experimental: true },
     ],
@@ -111,5 +112,9 @@ export class AppComponent implements OnInit {
 
   get excludedLinks() {
     return ['basic', 'api-doc', 'doc', 'installation'].includes(this.selected.link);
+  }
+
+  onMenuSearch(value: string) {
+    this.searchTerm = value;
   }
 }

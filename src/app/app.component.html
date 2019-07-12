@@ -41,6 +41,15 @@
             </ul>
           </div>
         </div>
+        <div class="form-group">
+          <label class="form-label">
+            <input class="form-input input-sm menu-search"
+                   type="text"
+                   (input)="onMenuSearch($event.target.value)"
+                   id="menu-search"
+                   placeholder="Search">
+          </label>
+        </div>
         <div class="accordion" *ngFor="let position of menu | keyvalue">
           <input type="checkbox" title="{{position.key}}" id="accordion-{{position.key}}"
                  name="accordion-{{position.key}}"
@@ -49,7 +58,7 @@
           <div class="accordion-body">
             <ul class="menu menu-nav">
               <li class="divider" [attr.data-content]="position.key"></li>
-              <li class="menu-item" *ngFor="let row of position.value">
+              <li class="menu-item" *ngFor="let row of position.value | menuSearch:searchTerm">
                 <a href="#" [routerLink]="[row.link]"
                    (click)="select(row)"
                    id="{{row.link}}">
@@ -57,7 +66,8 @@
                   <span *ngIf="row.experimental"
                         class="text-error d-inline tooltip"
                         data-tooltip="Experimental"
-                        title="Experimental"><b>E</b></span>
+                        title="Experimental"><b>E</b>
+                  </span>
                 </a>
               </li>
             </ul>

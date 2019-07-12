@@ -73,6 +73,7 @@ import {
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuSearchPipe } from './pipes/menu-search-pipe';
 
 @NgModule({
   imports: [
@@ -87,6 +88,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
   ],
   declarations: [
+    // pipes
+    MenuSearchPipe,
+
+    // components
     AppComponent,
     BasicComponent,
     SearchComponent,
