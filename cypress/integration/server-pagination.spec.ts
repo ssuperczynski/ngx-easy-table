@@ -1,44 +1,12 @@
 /// <reference types="cypress" />
-/* tslint:disable:no-big-function no-identical-functions */
+
+/* tslint:disable:no-big-function */
 context('Server pagination', () => {
   before(() => {
       cy.visit('http://127.0.0.1:4201/#/server-pagination');
-    },
-  );
-
-  describe('2 pagination clicked', () => {
-    before(() => {
       cy.server();
       cy.route({
         url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?_limit=10&_page=2',
-        method: 'GET',
-        status: 200,
-        response: [{
-          phone: '+1 (902) 500-3661',
-          age: 28,
-          address: {
-            street: 'Southeast street',
-            number: 12,
-          },
-          company: 'CALCULA',
-          name: 'Wilson Hatfield',
-          isActive: true,
-          level: 'Medium',
-        }],
-      });
-    });
-    it('gets correct phone', () => {
-      cy.get('#pagination-controls > ul > li:nth-child(4) > a')
-        .click()
-        .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-        .contains('+1 (902) 500-3661');
-    });
-  });
-  describe('3 pagination clicked', () => {
-    before(() => {
-      cy.server();
-      cy.route({
-        url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?_limit=10&_page=3',
         method: 'GET',
         status: 200,
         response: [{
@@ -54,51 +22,12 @@ context('Server pagination', () => {
           level: 'Medium',
         }],
       });
-    });
-    it('gets correct phone', () => {
-      cy.get('#pagination-controls > ul > li:nth-child(5) > a')
-        .click()
-        .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-        .contains('+1 (882) 527-2652');
-    });
-  });
-  describe('go back to 2 pagination', () => {
-    before(() => {
-      cy.server();
-      cy.route({
-        url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?_limit=10&_page=2',
-        method: 'GET',
-        status: 200,
-        response: [{
-          phone: '+1 (902) 500-3661',
-          age: 28,
-          address: {
-            street: 'Southeast street',
-            number: 12,
-          },
-          company: 'CALCULA',
-          name: 'Wilson Hatfield',
-          isActive: true,
-          level: 'Medium',
-        }],
-      });
-    });
-    it('gets correct phone', () => {
-      cy.get('#pagination-controls > ul > li:nth-child(4) > a')
-        .click()
-        .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-        .contains('+1 (902) 500-3661');
-    });
-  });
-  describe('pagination NEXT button clicked', () => {
-    before(() => {
-      cy.server();
       cy.route({
         url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?_limit=10&_page=3',
         method: 'GET',
         status: 200,
         response: [{
-          phone: '+1 (882) 527-2652',
+          phone: '+1 (990) 527-2652',
           age: 28,
           address: {
             street: 'Southeast street',
@@ -110,45 +39,6 @@ context('Server pagination', () => {
           level: 'Medium',
         }],
       });
-    });
-    it('gets correct phone', () => {
-      cy.get('#pagination-controls > ul > li.pagination-next > a')
-        .click()
-        .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-        .contains('+1 (882) 527-2652');
-    });
-  });
-  describe('pagination PREV button clicked', () => {
-    before(() => {
-      cy.server();
-      cy.route({
-        url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?_limit=10&_page=2',
-        method: 'GET',
-        status: 200,
-        response: [{
-          phone: '+1 (902) 500-3661',
-          age: 28,
-          address: {
-            street: 'Southeast street',
-            number: 12,
-          },
-          company: 'CALCULA',
-          name: 'Wilson Hatfield',
-          isActive: true,
-          level: 'Medium',
-        }],
-      });
-    });
-    it('gets correct phone', () => {
-      cy.get('#pagination-controls > ul > li.pagination-previous > a')
-        .click()
-        .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-        .contains('+1 (902) 500-3661');
-    });
-  });
-  describe('25 range clicked', () => {
-    before(() => {
-      cy.server();
       cy.route({
         url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?_limit=25&_page=1',
         method: 'GET',
@@ -481,13 +371,39 @@ context('Server pagination', () => {
           },
         ],
       });
-    });
+    },
+  );
+  describe('test pagination flow', () => {
     it('gets correct phone', () => {
+      const phoneCell = '#table > tbody > tr:nth-child(1) > td:nth-child(1) > div';
+      cy.get('#pagination-controls > ul > li:nth-child(4) > a')
+        .click()
+        .get(phoneCell)
+        .contains('+1 (882) 527-2652');
+
+      cy.get('#pagination-controls > ul > li:nth-child(5) > a')
+        .click()
+        .get(phoneCell)
+        .contains('+1 (990) 527-2652');
+
+      cy.get('#pagination-controls > ul > li:nth-child(4) > a')
+        .click()
+        .get(phoneCell)
+        .contains('+1 (882) 527-2652');
+
+      cy.get('#pagination-controls > ul > li.pagination-next > a')
+        .click()
+        .get(phoneCell)
+        .contains('+1 (990) 527-2652');
+      cy.get('#pagination-controls > ul > li.pagination-previous > a')
+        .click()
+        .get(phoneCell)
+        .contains('+1 (882) 527-2652');
       cy.get('#rowAmount > div > div')
         .click()
         .get('#rowAmount > div > ul > li:nth-child(3)')
         .click()
-        .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
+        .get(phoneCell)
         .contains('+1 (949) 527-2108')
         .get('#table > tbody > tr:nth-child(21) > td:nth-child(1) > div')
         .contains('+1 (882) 527-2652');
