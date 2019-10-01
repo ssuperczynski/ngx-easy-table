@@ -7,13 +7,10 @@ script:
   - npm run lint
   - npm run build:lib
   - npm run build
-  - npm run cy:ci
+  - xvfb-run npm run cy:ci
 services:
   - xvfb
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
   - npm ci
 notifications:
   webhooks:
