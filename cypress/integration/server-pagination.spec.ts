@@ -6,6 +6,23 @@ context('Server pagination', () => {
       cy.visit('http://127.0.0.1:4201/#/server-pagination');
       cy.server();
       cy.route({
+        url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?',
+        method: 'GET',
+        status: 200,
+        response: [{
+          phone: '+1 (882) 527-2652',
+          age: 28,
+          address: {
+            street: 'Southeast street',
+            number: 12,
+          },
+          company: 'CALCULA',
+          name: 'Wilson Hatfield',
+          isActive: true,
+          level: 'Medium',
+        }],
+      });
+      cy.route({
         url: 'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?_limit=10&_page=2',
         method: 'GET',
         status: 200,

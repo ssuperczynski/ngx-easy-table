@@ -72,6 +72,10 @@ import { API, APIDefinition } from 'ngx-easy-table';
   type: API.getPaginationTotalItems,
 });`;
 
+  public readonly getNumberOfRowsPerPageCode = `this.table.apiEvent({
+  type: API.getNumberOfRowsPerPage,
+});`;
+
   public readonly getPaginationCurrentPageCode = `this.table.apiEvent({
   type: API.getPaginationCurrentPage,
 });`;

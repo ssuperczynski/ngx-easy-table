@@ -80,4 +80,14 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(4)').should('be.visible')
     ;
   });
+  it('uses API to get number of rows per page', () => {
+    cy
+      .get('#accordionHeaderPagination').click()
+      .get('#buttonGetNumberOfRowsPerPage').click()
+      .get('#itemsPerPage').contains('10')
+      .get('#pagination-controls > ul > li:nth-child(7) > a').click()
+      .get('#buttonGetNumberOfRowsPerPage').click()
+      .get('#itemsPerPage').contains('1')
+    ;
+  });
 });
