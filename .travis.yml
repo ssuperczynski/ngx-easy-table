@@ -8,7 +8,7 @@ script:
   - npm run lint
   - npm run build:lib
   - npm run build
-  - xvfb-run npm run cy:ci
+  - npm run cy:ci
 install:
   - npm ci
 notifications:
