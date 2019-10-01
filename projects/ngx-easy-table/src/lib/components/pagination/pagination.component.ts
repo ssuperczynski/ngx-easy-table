@@ -47,12 +47,9 @@ export class PaginationComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const { config, pagination } = changes;
+    const { config } = changes;
     if (config && config.currentValue) {
       this.selectedLimit = this.config.rows;
-    }
-    if (pagination && pagination.currentValue) {
-      console.log('pagination directive', pagination);
     }
   }
 
