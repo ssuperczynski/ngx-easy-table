@@ -1,16 +1,18 @@
 env:
   - NG_CLI_ANALYTICS=false
 language: node_js
+dist: trusty
 node_js:
   - "12"
 script:
   - npm run lint
   - npm run build:lib
   - npm run build
-  - xvfb-run npm run cy:ci
-services:
-  - xvfb
+  - npm run cy:ci
 before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
   - npm ci
 notifications:
   webhooks:
