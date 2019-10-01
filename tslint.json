@@ -49,7 +49,7 @@
     ],
     "no-arg": true,
     "no-bitwise": false,
-    "no-commented-code": false,
+    "no-commented-code": true,
     "no-console": [
       true,
       "log",

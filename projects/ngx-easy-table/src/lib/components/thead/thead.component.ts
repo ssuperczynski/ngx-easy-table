@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { Columns, Config, Event } from '../..';
 import { StyleService } from '../../services/style.service';
 
@@ -8,21 +8,29 @@ import { StyleService } from '../../services/style.service';
   providers: [StyleService],
 })
 export class TableTHeadComponent {
+  public menuActive = false;
+  public startOffset;
+  public onSelectAllBinded = this.onSelectAll.bind(this);
+
   @Input() config: Config;
   @Input() columns: Columns[];
   @Input() sortKey;
   @Input() sortState;
   @Input() selectAllTemplate;
   @Input() filtersTemplate;
+  @Input() additionalActionsTemplate: TemplateRef<void>;
   @Output() readonly filter = new EventEmitter<Array<{ key: string; value: string }>>();
   @Output() readonly order = new EventEmitter<Columns>();
   @Output() readonly selectAll = new EventEmitter<void>();
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ViewChild('th', { static: false }) private th;
-
-  public menuActive = false;
-  public startOffset;
-  public onSelectAllBinded = this.onSelectAll.bind(this);
+  @ViewChild('additionalActionMenu', { static: false }) additionalActionMenu;
+  @HostListener('document:click', ['$event.target'])
+  public onClick(targetElement) {
+    if (this.additionalActionMenu && !this.additionalActionMenu.nativeElement.contains(targetElement)) {
+      this.menuActive = false;
+    }
+  }
 
   constructor(
     public readonly styleService: StyleService,
@@ -91,5 +99,12 @@ export class TableTHeadComponent {
     });
     this.th.style.cursor = 'default';
     this.th = undefined;
+  }
+
+  showMenu() {
+    if (!this.additionalActionsTemplate) {
+      console.error('[additionalActionsTemplate] property not defined');
+    }
+    this.menuActive = !this.menuActive;
   }
 }

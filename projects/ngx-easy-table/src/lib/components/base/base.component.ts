@@ -3,7 +3,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild, EventEmitter,
+  ContentChild,
+  EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   OnInit, Output,
@@ -18,7 +20,6 @@ import { PaginationComponent, PaginationRange } from '../pagination/pagination.c
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
 import { Subject, Subscription } from 'rxjs';
-import { rowsAnimation } from './base.animations';
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -35,7 +36,6 @@ interface RowContextMenuPosition {
   ],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [rowsAnimation],
 })
 export class BaseComponent implements OnInit, OnChanges {
 
@@ -78,12 +78,26 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() groupRowsHeaderTemplate: TemplateRef<any>;
   @Input() filtersTemplate: TemplateRef<any>;
   @Input() selectAllTemplate: TemplateRef<any>;
-  @Input() noResultsTemplate: TemplateRef<any>;
+  @Input() noResultsTemplate: TemplateRef<void>;
+  @Input() loadingTemplate: TemplateRef<void>;
+  @Input() additionalActionsTemplate: TemplateRef<void>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
   @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
+  @ViewChild('contextMenu', { static: false }) contextMenu;
+
+  @HostListener('document:click', ['$event.target'])
+  public onContextMenuClick(targetElement) {
+    if (this.contextMenu && !this.contextMenu.nativeElement.contains(targetElement)) {
+      this.rowContextMenuPosition = {
+        top: null,
+        left: null,
+        value: null,
+      };
+    }
+  }
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
@@ -405,6 +419,10 @@ export class BaseComponent implements OnInit, OnChanges {
         return this.paginationComponent.paginationDirective.getCurrent();
       case API.getPaginationLastPage:
         return this.paginationComponent.paginationDirective.getLastPage();
+      case API.getNumberOfRowsPerPage:
+        return this.paginationComponent.paginationDirective.isLastPage() ?
+          (this.paginationComponent.paginationDirective.getTotalItems() % this.limit) :
+          this.limit;
       case API.setPaginationCurrentPage:
         this.paginationComponent.paginationDirective.setCurrent(event.value);
         break;

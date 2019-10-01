@@ -52,5 +52,6 @@ export * from './pinned/pinned.component';
 export * from './column-class/column-class.component';
 export * from './nested-table/nested-table.component';
 export * from './persist-state-router/persist-state-router.component';
-export * from './infinite-scroll/infinite-scroll.component';
 export * from './mobile/mobile.component';
+export * from './loading-template/loading-template.component';
+export * from './additional-actions-template/additional-actions-template.component';

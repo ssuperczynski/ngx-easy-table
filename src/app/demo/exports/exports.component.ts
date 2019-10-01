@@ -4,6 +4,7 @@ import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
 
 import * as XLSX from 'xlsx';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-exports',
@@ -44,33 +45,18 @@ export class ExportsComponent {
   }
 
   exportToCSV() {
-    const rows = this.data;
-    let csvContent = 'data:text/csv;charset=utf-8,';
-    let dataString = '';
-    const x: any[] = [];
-    const keys = Object.keys(this.data[0]);
-    rows.forEach((row, index) => {
-      x[index] = [];
-      keys.forEach((i) => {
-        if (row.hasOwnProperty(i)) {
-          if (typeof row[i] === 'object') {
-            row[i] = 'Object'; // so far just change object to "Object" string
-          }
-          x[index].push(row[i]);
-        }
-      });
-    });
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true,
+      showTitle: false,
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+    };
+    const csvExporter = new ExportToCsv(options);
 
-    csvContent += keys + '\n';
-    x.forEach((row, index) => {
-      dataString = row.join(',');
-      csvContent += index < data.length ? dataString + '\n' : dataString;
-    });
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', 'my_data.csv');
-
-    link.click();
+    csvExporter.generateCsv(this.data);
   }
 }

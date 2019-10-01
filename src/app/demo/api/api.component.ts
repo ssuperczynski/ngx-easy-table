@@ -16,6 +16,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   public configuration;
   public total;
   public current;
+  public itemsPerPage;
   public last;
   public checked = {
     paginationEnabled: true,
@@ -101,6 +102,12 @@ export class ApiComponent implements OnInit, AfterViewInit {
   getLastPage() {
     this.last = this.table.apiEvent({
       type: API.getPaginationLastPage,
+    });
+  }
+
+  getNumberOfRowsPerPage() {
+    this.itemsPerPage = this.table.apiEvent({
+      type: API.getNumberOfRowsPerPage,
     });
   }
 

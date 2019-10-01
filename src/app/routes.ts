@@ -55,7 +55,8 @@ import {
   ColumnClassComponent,
   NestedTableComponent,
   PersistStateRouterComponent,
-  InfiniteScrollComponent, MobileComponent,
+  MobileComponent,
+  LoadingTemplateComponent, AdditionalActionsTemplateComponent,
 } from './demo';
 
 export const routes = [
@@ -112,9 +113,10 @@ export const routes = [
   { path: 'pinned', component: PinnedComponent },
   { path: 'column-class', component: ColumnClassComponent },
   { path: 'nested-table', component: NestedTableComponent },
-  { path: 'infinite-scroll', component: InfiniteScrollComponent },
   { path: 'persist-state-router/:state', component: PersistStateRouterComponent },
   { path: 'mobile', component: MobileComponent },
+  { path: 'loading-template', component: LoadingTemplateComponent },
+  { path: 'additional-actions-template', component: AdditionalActionsTemplateComponent },
   { path: '**', component: BasicComponent },
 ];
 

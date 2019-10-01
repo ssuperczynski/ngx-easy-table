@@ -2,10 +2,7 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-easy-table",
   "lib": {
-    "entryFile": "src/public_api.ts",
-    "externals": {
-      "michaelbromley/ngx-pagination": "ngx-pagination"
-    }
+    "entryFile": "src/public_api.ts"
   },
   "whitelistedNonPeerDependencies": [
     "ngx-pagination",

@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
       { link: 'context-menu', name: 'Context menu', experimental: true },
       { link: 'pinned', name: 'Pinned column' },
       { link: 'column-class', name: 'Column Class' },
-      { link: 'infinite-scroll', name: 'Infinite scroll', experimental: true },
       { link: 'mobile', name: 'Mobile view' },
     ],
     templates: [
@@ -66,6 +65,8 @@ export class AppComponent implements OnInit {
       { link: 'pagination-range', name: 'Pagination range' },
       { link: 'select-all-template', name: 'Select All template' },
       { link: 'no-results-template', name: 'No Results template' },
+      { link: 'loading-template', name: 'Loading template' },
+      { link: 'additional-actions-template', name: 'Additional actions' },
     ],
     select: [
       { link: 'select-row', name: 'Select row' },

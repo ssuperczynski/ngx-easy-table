@@ -381,4 +381,15 @@ export const data = [
     name: 'Mónica Glover',
     isActive: false,
     level: 'Low',
-  }];
+  },
+  {
+    imgUrl: 'https://i.imgur.com/GLqxxnn.png',
+    phone: '+1 (949) 527-2108',
+    age: 32,
+    address: { street: 'Some street', number: 12 },
+    company: 'DOE',
+    name: 'John Doe',
+    isActive: true,
+    level: 'Low',
+  },
+];

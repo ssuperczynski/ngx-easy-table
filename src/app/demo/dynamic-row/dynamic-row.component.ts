@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-dynamic-row',
@@ -12,12 +12,11 @@ export class DynamicRowComponent implements OnInit {
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
   public data;
   public columns: Columns[];
-  public configuration;
+  public configuration: Config;
   public toggled = false;
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
-    this.configuration.animations = false;
     this.columns = [
       { key: 'status', title: 'Status' },
       { key: 'amount', title: 'Amount' },
@@ -59,7 +58,6 @@ export class DynamicRowComponent implements OnInit {
 
   toggleAnimation() {
     this.toggled = !this.toggled;
-    this.configuration.animations = this.toggled;
     this.configuration = { ...this.configuration };
   }
 }

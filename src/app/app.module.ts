@@ -68,11 +68,11 @@ import {
   ColumnClassComponent,
   NestedTableComponent,
   PersistStateRouterComponent,
-  InfiniteScrollComponent,
   MobileComponent,
+  LoadingTemplateComponent,
+  AdditionalActionsTemplateComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
 
 @NgModule({
@@ -80,7 +80,6 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    BrowserAnimationsModule,
     TableModule,
     routing,
     HighlightModule.forRoot({
@@ -147,8 +146,9 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     ColumnClassComponent,
     NestedTableComponent,
     PersistStateRouterComponent,
-    InfiniteScrollComponent,
     MobileComponent,
+    LoadingTemplateComponent,
+    AdditionalActionsTemplateComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

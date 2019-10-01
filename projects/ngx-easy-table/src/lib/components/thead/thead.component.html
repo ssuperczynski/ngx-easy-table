@@ -40,14 +40,17 @@
   <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows || config.groupRows"
       class="ngx-table__header-cell-additional-actions">
     <div class="ngx-dropdown"
+         #additionalActionMenu
          *ngIf="config.additionalActions">
-      <a class="ngx-btn ngx-btn-link" (click)="menuActive = !menuActive">
+      <a class="ngx-btn ngx-btn-link" (click)="showMenu()">
         <span class="ngx-icon ngx-icon-menu"></span>
       </a>
-      <ul class="ngx-menu ngx-table__table-menu">
-        <li class="ngx-menu-item">
-          <!-- TODO add ngTemplate for menu -->
-        </li>
+      <ul class="ngx-menu ngx-table__table-menu"
+          *ngIf="menuActive">
+        <ng-container
+          *ngIf="additionalActionsTemplate"
+          [ngTemplateOutlet]="additionalActionsTemplate">
+        </ng-container>
       </ul>
     </div>
   </th>
