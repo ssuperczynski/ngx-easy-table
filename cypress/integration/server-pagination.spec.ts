@@ -393,35 +393,37 @@ context('Server pagination', () => {
   describe('test pagination flow', () => {
     it('gets correct phone', () => {
       const phoneCell = '#table > tbody > tr:nth-child(1) > td:nth-child(1) > div';
-      cy.get('#pagination-controls > ul > li:nth-child(4) > a')
+      // 2nd page
+      cy.get('#content > div > div > h3').click()
+        .get('#pagination-controls > ul > li:nth-child(4) > a')
         .click()
         .get(phoneCell)
         .contains('+1 (882) 527-2652');
-
+      // 3rd page
       cy.get('#pagination-controls > ul > li:nth-child(5) > a')
         .click()
         .get(phoneCell)
         .contains('+1 (990) 527-2652');
-
+      // 2nd page
       cy.get('#pagination-controls > ul > li:nth-child(4) > a')
         .click()
         .get(phoneCell)
         .contains('+1 (882) 527-2652');
-
+      // next page
       cy.get('#pagination-controls > ul > li.pagination-next > a')
         .click()
         .get(phoneCell)
         .contains('+1 (990) 527-2652');
+      // previous page
       cy.get('#pagination-controls > ul > li.pagination-previous > a')
         .click()
         .get(phoneCell)
         .contains('+1 (882) 527-2652');
+      // range 25 items clicked
       cy.get('#rowAmount > div > div')
         .click()
         .get('#rowAmount > div > ul > li:nth-child(3)')
         .click()
-        .get(phoneCell)
-        .contains('+1 (949) 527-2108')
         .get('#table > tbody > tr:nth-child(21) > td:nth-child(1) > div')
         .contains('+1 (882) 527-2652');
     });
