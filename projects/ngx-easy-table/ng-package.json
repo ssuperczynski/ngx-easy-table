@@ -6,6 +6,7 @@
   },
   "whitelistedNonPeerDependencies": [
     "ngx-pagination",
+    "material-design-lite",
     "@angular/cdk"
   ]
 }

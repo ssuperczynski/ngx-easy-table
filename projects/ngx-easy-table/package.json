@@ -13,7 +13,8 @@
     "ngx-pagination": "^3.2.1"
   },
   "dependencies": {
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^3.2.1",
+    "material-design-lite": "^1.3.0"
   },
   "engines": {
     "node": ">=11.0.0",

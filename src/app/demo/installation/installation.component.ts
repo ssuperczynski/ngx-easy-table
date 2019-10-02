@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./installation.component.css'],
 })
 export class InstallationComponent {
+  public readonly npmInstallCode = `
+npm install ngx-easy-table --save
+npm install @angular/cdk --save
+`;
   public readonly appModuleCode = `
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns, API, APIDefinition } from 'ngx-easy-table';
+import { Columns, API, APIDefinition, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-bootstrap',
@@ -9,7 +8,6 @@ import { Columns, API, APIDefinition } from 'ngx-easy-table';
   styleUrls: ['./bootstrap.component.scss'],
   // tslint:disable-next-line:use-view-encapsulation
   encapsulation: ViewEncapsulation.None,
-  providers: [ConfigService],
 })
 export class BootstrapComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
@@ -18,7 +16,8 @@ export class BootstrapComponent implements OnInit {
   public configuration;
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = DefaultConfig;
+    this.configuration.checkboxes = true;
     this.columns = [
       { key: 'phone', title: 'Phone', width: '15%' },
       { key: 'age', title: 'Age', width: '10%' },
@@ -30,17 +29,21 @@ export class BootstrapComponent implements OnInit {
   }
 
   setBootstrap() {
-    this.table.apiEvent({
-      type: API.setTableClass,
-      value: 'table table-bordered table-striped table-sm',
-    });
+    this.setClass('table table-bordered table-striped table-sm');
   }
 
-  // tslint:disable-next-line:no-identical-functions
+  setMaterial() {
+    this.setClass('material');
+  }
+
   setNormal() {
+    this.setClass('');
+  }
+
+  private setClass(name: string): void {
     this.table.apiEvent({
       type: API.setTableClass,
-      value: '',
+      value: name,
     });
   }
 

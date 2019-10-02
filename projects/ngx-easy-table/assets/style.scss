@@ -5,6 +5,8 @@ $dark: #50596c;
 $blue: #3f86ca;
 $primary-color: #50596c !default;
 /*! Based on Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
+@import "~material-design-lite/src/data-table/data-table";
+@import "~material-design-lite/src/shadow/shadow";
 .ngx {
   &-container {
     margin-left: auto;
@@ -159,6 +161,15 @@ $primary-color: #50596c !default;
       tbody > tr > td, thead > tr > th {
         border-bottom: 1px solid $grey;
         padding: 10px 6px;
+      }
+    }
+
+    &__table--material > {
+      @extend .mdl-data-table;
+      @extend .mdl-shadow--2dp;
+      tbody > tr > td,
+      thead > tr > th {
+        text-align: left;
       }
     }
 
