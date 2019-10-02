@@ -1,12 +1,12 @@
 <tr class="ngx-table__header" *ngIf="config.headerEnabled">
-  <th *ngIf="config.checkboxes" width="3%">
+  <th *ngIf="config.checkboxes" [style.width]="'3%'">
     <ng-container
       *ngIf="selectAllTemplate"
       [ngTemplateOutlet]="selectAllTemplate"
       [ngTemplateOutletContext]="{ $implicit: onSelectAllBinded }">
     </ng-container>
-    <label class="ngx-form-checkbox" *ngIf="!selectAllTemplate">
-      <input type="checkbox" (change)="onSelectAll()">
+    <label class="ngx-form-checkbox" for="selectAllCheckboxes" *ngIf="!selectAllTemplate">
+      <input type="checkbox" id="selectAllCheckboxes" (change)="onSelectAll()">
       <i class="ngx-form-icon" id="selectAllCheckbox"></i>
     </label>
   </th>
