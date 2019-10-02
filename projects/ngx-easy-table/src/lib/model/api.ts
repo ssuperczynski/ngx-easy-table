@@ -7,6 +7,7 @@ export enum API {
   setPaginationCurrentPage = 'setPaginationCurrentPage',
   getPaginationCurrentPage = 'getPaginationCurrentPage',
   getPaginationTotalItems = 'getPaginationTotalItems',
+  getNumberOfRowsPerPage = 'getNumberOfRowsPerPage',
   getPaginationLastPage = 'getPaginationLastPage',
   setPaginationRange = 'setPaginationRange',
   setPaginationPreviousLabel = 'setPaginationPreviousLabel',
@@ -35,6 +36,7 @@ export type ApiType =
   | { type: API.getPaginationCurrentPage; }
   | { type: API.getPaginationTotalItems; }
   | { type: API.getPaginationLastPage; }
+  | { type: API.getNumberOfRowsPerPage; }
   | { type: API.setPaginationRange; value: number[]; }
   | { type: API.setPaginationPreviousLabel; value: string; }
   | { type: API.setPaginationNextLabel; value: string; }
@@ -44,7 +46,7 @@ export type ApiType =
   | { type: API.setCellClass; value: cellClass | cellClass[] }
   | { type: API.setRowStyle; value: rowStyle | rowStyle[] }
   | { type: API.setCellStyle; value: cellStyle | cellStyle[] }
-  | { type: API.sortBy; value: { column: string, order: string } }
+  | { type: API.sortBy; value: { column: string, order: 'asc' | 'desc' } }
   ;
 
 export interface APIDefinition {

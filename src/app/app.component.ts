@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { NavigationEnd, Router } from '@angular/router';
 
-interface Link {
+export interface Link {
   link: string;
   name: string;
   experimental?: boolean;
@@ -19,8 +19,9 @@ export class AppComponent implements OnInit {
   }
 
   public readonly version = environment.VERSION;
-  public showMenu = false;
+  public showMenu = true;
   public selected: Link;
+  public searchTerm = '';
   public readonly menu = {
     basic: [
       { link: 'basic', name: 'Basic' },
@@ -39,9 +40,10 @@ export class AppComponent implements OnInit {
       { link: 'fixed-width', name: 'Fixed width' },
       { link: 'persist-state', name: 'Persist state' },
       { link: 'persist-state-router/column=phone&sort=desc', name: 'Persist state router' },
-      { link: 'context-menu', name: 'Context menu', experimental: true },
+      { link: 'context-menu', name: 'Context menu' },
       { link: 'pinned', name: 'Pinned column' },
       { link: 'column-class', name: 'Column Class' },
+      { link: 'mobile', name: 'Mobile view' },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },
@@ -55,14 +57,16 @@ export class AppComponent implements OnInit {
       { link: 'checkbox-default', name: 'Checkboxes template' },
       { link: 'customize-theme', name: 'Customize theme' },
       { link: 'nested-table', name: 'Nested table' },
-      { link: 'inline-cell', name: 'Inline cell' },
-      { link: 'inline-row', name: 'Inline row' },
+      { link: 'inline-cell', name: 'Edit cell' },
+      { link: 'inline-row', name: 'Edit row' },
       { link: 'styles', name: 'Styles' },
       { link: 'summary-footer', name: 'Summary footer' },
       { link: 'filter-template', name: 'Filter template' },
       { link: 'pagination-range', name: 'Pagination range' },
       { link: 'select-all-template', name: 'Select All template' },
       { link: 'no-results-template', name: 'No Results template' },
+      { link: 'loading-template', name: 'Loading template' },
+      { link: 'additional-actions-template', name: 'Additional actions' },
     ],
     select: [
       { link: 'select-row', name: 'Select row' },
@@ -80,7 +84,7 @@ export class AppComponent implements OnInit {
       { link: 'custom-sort', name: 'Custom sort' },
       { link: 'custom-intable-sort', name: 'Custom in-table sort' },
     ],
-    tableApi: [
+    api: [
       { link: 'api', name: 'API', experimental: true },
       { link: 'bootstrap', name: 'Bootstrap', experimental: true },
     ],
@@ -108,6 +112,10 @@ export class AppComponent implements OnInit {
   }
 
   get excludedLinks() {
-    return ['basic', 'api-doc', 'doc', 'installation'].indexOf(this.selected.link) !== -1;
+    return ['basic', 'api-doc', 'doc', 'installation'].includes(this.selected.link);
+  }
+
+  onMenuSearch(value: string) {
+    this.searchTerm = value;
   }
 }

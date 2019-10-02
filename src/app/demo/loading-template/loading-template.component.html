@@ -1,0 +1,15 @@
+<div class="columns">
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      [loadingTemplate]="loadingTemplate">
+    </ngx-table>
+  </div>
+</div>
+<ng-template #loadingTemplate>
+  <td [attr.colspan]="columns.length">
+    <div class="loader">Loading...</div>
+  </td>
+</ng-template>

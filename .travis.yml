@@ -1,5 +1,6 @@
 env:
   - NG_CLI_ANALYTICS=false
+dist: xenial
 language: node_js
 node_js:
   - "12"
@@ -8,20 +9,24 @@ script:
   - npm run build:lib
   - npm run build
   - npm run cy:ci
-before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-before_script:
-  - npm install
+install:
+  - npm ci
 notifications:
   webhooks:
   - https://www.travisbuddy.com/
   email: false
 sudo: required
+services:
+  - xvfb
 addons:
   chrome: stable
+  apt:
+    packages:
+      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
+      - libgconf-2-4
 cache:
   npm: true
   directories:
     # we also need to cache folder with Cypress binary
     - ~/.cache
+    - ~/.cache/Cypress

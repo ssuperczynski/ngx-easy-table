@@ -1,13 +1,20 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
-import { ConfigService } from './configuration.service';
-import { API, APIDefinition, Columns } from 'ngx-easy-table';
+import { API, APIDefinition, Columns, DefaultConfig } from 'ngx-easy-table';
+
+interface EventObject {
+  event: string;
+  value: {
+    limit: number;
+    page: number;
+  };
+}
 
 @Component({
   selector: 'app-server-pagination',
   templateUrl: './server-pagination.component.html',
   styleUrls: ['./server-pagination.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [CompanyService],
 })
 export class ServerPaginationComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
@@ -18,26 +25,29 @@ export class ServerPaginationComponent implements OnInit {
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
   ];
-  data;
-  configuration;
-  pagination = {
+  public data;
+  public configuration;
+  public pagination = {
     limit: 10,
     offset: 0,
     count: -1,
   };
 
   constructor(
-    private companyService: CompanyService,
+    private readonly companyService: CompanyService,
     private readonly cdr: ChangeDetectorRef,
   ) {
   }
 
   ngOnInit() {
+    this.configuration = DefaultConfig;
     this.getData('');
   }
 
   eventEmitted($event) {
-    this.parseEvent($event);
+    if ($event.event !== 'onClick') {
+      this.parseEvent($event);
+    }
   }
 
   private parseEvent(obj: EventObject) {
@@ -49,12 +59,11 @@ export class ServerPaginationComponent implements OnInit {
   }
 
   private getData(params: string): void {
-    this.configuration = ConfigService.config;
     this.configuration.isLoading = true;
     this.companyService.getCompanies(params)
       .subscribe((response: Company[]) => {
           this.data = response;
-          // ensure this.pagination.count is set only once and contains count of whole array not just paginated one
+          // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
           this.pagination.count = (this.pagination.count === -1) ? response.length : this.pagination.count;
           this.pagination = { ...this.pagination };
           this.configuration.isLoading = false;
@@ -73,9 +82,4 @@ export class ServerPaginationComponent implements OnInit {
     });
   }
 
-}
-
-interface EventObject {
-  event: string;
-  value: any;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { API, APIDefinition, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition, Config, DefaultConfig, TableMouseEvent } from 'ngx-easy-table';
 import { Columns } from 'ngx-easy-table';
 
 @Component({
@@ -16,11 +16,12 @@ export class ContextMenuComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
   public edit: number;
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.showContextMenu = true;
     this.columns = [
       { key: 'phone', title: 'Phone', width: '15%', cellTemplate: this.phoneTpl },
       { key: 'age', title: 'Age', width: '10%' },

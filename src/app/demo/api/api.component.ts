@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { API, Columns, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, Columns, APIDefinition } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-api',
@@ -16,6 +16,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   public configuration;
   public total;
   public current;
+  public itemsPerPage;
   public last;
   public checked = {
     paginationEnabled: true,
@@ -104,6 +105,12 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getNumberOfRowsPerPage() {
+    this.itemsPerPage = this.table.apiEvent({
+      type: API.getNumberOfRowsPerPage,
+    });
+  }
+
   setRowClass(row: number, className: string): void {
     this.table.apiEvent({
       type: API.setRowClass,
@@ -175,7 +182,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  sortBy(column: string, order: string): void {
+  sortBy(column: string, order: 'asc' | 'desc'): void {
     this.table.apiEvent({
       type: API.sortBy,
       value: { column, order },

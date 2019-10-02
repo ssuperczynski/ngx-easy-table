@@ -1,0 +1,18 @@
+<div class="columns">
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      [additionalActionsTemplate]="additionalActionsTemplate"
+    >
+    </ngx-table>
+  </div>
+</div>
+<ng-template #additionalActionsTemplate>
+  <ul>
+    <li class="position" (click)="csvExportWhole()">CSV export</li>
+    <li class="position" (click)="enableSearch()">Enable search</li>
+    <li class="position" (click)="toggle()">Toggle Phone</li>
+  </ul>
+</ng-template>

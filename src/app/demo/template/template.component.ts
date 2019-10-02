@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
-import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-template',
@@ -23,6 +23,7 @@ export class TemplateComponent {
   ];
   public data: Company[] = [];
   public configuration;
+  public toggledRows = new Set<number>();
 
   constructor() {
     this.configuration = ConfigService.config;
@@ -35,5 +36,10 @@ export class TemplateComponent {
       type: API.toggleRowIndex,
       value: index,
     });
+    if (this.toggledRows.has(index)) {
+      this.toggledRows.delete(index);
+    } else {
+      this.toggledRows.add(index);
+    }
   }
 }

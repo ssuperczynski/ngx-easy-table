@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-dynamic-row',
@@ -12,7 +12,8 @@ export class DynamicRowComponent implements OnInit {
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
   public data;
   public columns: Columns[];
-  public configuration;
+  public configuration: Config;
+  public toggled = false;
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
@@ -39,7 +40,8 @@ export class DynamicRowComponent implements OnInit {
   }
 
   addRow() {
-    this.data.push(
+    this.data = [
+      ...this.data,
       {
         status: 'ACTIVE',
         amount: this.randNumber(1, 5),
@@ -47,12 +49,15 @@ export class DynamicRowComponent implements OnInit {
         limit: this.randNumber(800, 1200),
         balance: this.randNumber(800, 3000),
       },
-    );
-    this.data = [...this.data];
+    ];
   }
 
   remove(rowIndex: number): void {
-    this.data.splice(rowIndex, 1);
-    this.data = [...this.data];
+    this.data = [...this.data.filter((_v, k) => k !== rowIndex)];
+  }
+
+  toggleAnimation() {
+    this.toggled = !this.toggled;
+    this.configuration = { ...this.configuration };
   }
 }

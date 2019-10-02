@@ -65,9 +65,14 @@
         <button class="btn btn-primary mx-1"
                 (click)="getLastPage()">Get last
         </button>
-        <div class="d-inline" *ngIf="total">Total: {{total}}</div>
-        <div class="d-inline" *ngIf="current">Current: {{current}}</div>
-        <div class="d-inline" *ngIf="last">Last: {{last}}</div>
+        <button class="btn btn-primary mx-1"
+                id="buttonGetNumberOfRowsPerPage"
+                (click)="getNumberOfRowsPerPage()">Get number of rows per page
+        </button>
+        <div class="d-inline" id="totalItems" *ngIf="total">Total: {{total}}</div>
+        <div class="d-inline" id="currentPaginationPage" *ngIf="current">Current pagination page: {{current}}</div>
+        <div class="d-inline" id="lastItem" *ngIf="last">Last: {{last}}</div>
+        <div class="d-inline" id="itemsPerPage" *ngIf="itemsPerPage">Items per page: {{itemsPerPage}}</div>
       </div>
     </div>
     <div class="accordion" id="accordionHeaderRow">

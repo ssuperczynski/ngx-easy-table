@@ -5,10 +5,10 @@ import {
   Component,
   ContentChild,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
-  OnInit,
-  Output,
+  OnInit, Output,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -29,13 +29,16 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [DefaultConfigService, GroupRowsService, StyleService],
+  providers: [
+    DefaultConfigService,
+    GroupRowsService,
+    StyleService,
+  ],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges {
-  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
-  @ViewChild('th', { static: false }) private th;
+
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -45,7 +48,6 @@ export class BaseComponent implements OnInit, OnChanges {
   public tableClass = null;
   public globalSearchTerm: string;
   public grouped: any = [];
-  public menuActive = false;
   public isSelected = false;
   public page = 1;
   public count = null;
@@ -62,10 +64,8 @@ export class BaseComponent implements OnInit, OnChanges {
     order: 'asc',
   };
   public selectedDetailsTemplateRowId = new Set();
-  public startOffset;
   public loadingHeight = '30px';
   public config: Config;
-  onSelectAllBinded = this.onSelectAll.bind(this);
 
   @Input() configuration: Config;
   @Input() data: any[];
@@ -74,15 +74,30 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() id = 'table';
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
-  @Input() summaryTemplate: TemplateRef<any>;
+  @Input() summaryTemplate: TemplateRef<{ total: number; limit: number; page: number }>;
   @Input() groupRowsHeaderTemplate: TemplateRef<any>;
   @Input() filtersTemplate: TemplateRef<any>;
   @Input() selectAllTemplate: TemplateRef<any>;
-  @Input() noResultsTemplate: TemplateRef<any>;
+  @Input() noResultsTemplate: TemplateRef<void>;
+  @Input() loadingTemplate: TemplateRef<void>;
+  @Input() additionalActionsTemplate: TemplateRef<void>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
+  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
+  @ViewChild('contextMenu', { static: false }) contextMenu;
+
+  @HostListener('document:click', ['$event.target'])
+  public onContextMenuClick(targetElement) {
+    if (this.contextMenu && !this.contextMenu.nativeElement.contains(targetElement)) {
+      this.rowContextMenuPosition = {
+        top: null,
+        left: null,
+        value: null,
+      };
+    }
+  }
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
@@ -131,11 +146,6 @@ export class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  isOrderEnabled(column: Columns) {
-    const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
-    return this.config.orderEnabled && columnOrderEnabled;
-  }
-
   orderBy(column: Columns): void {
     if (typeof column.orderEnabled !== 'undefined' && !column.orderEnabled) {
       return;
@@ -175,6 +185,7 @@ export class BaseComponent implements OnInit, OnChanges {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
+
     if (this.config.clickEvent) {
       const value: TableMouseEvent = {
         event: $event,
@@ -232,17 +243,6 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onPagination, pagination);
   }
 
-  private emitEvent(event: string, value: any): void {
-    this.event.emit({ event, value });
-    if (this.config.persistState) {
-      localStorage.setItem(event, JSON.stringify(value));
-    }
-    if (this.config.logger) {
-      // tslint:disable-next-line:no-console
-      console.log({ event, value });
-    }
-  }
-
   collapseRow(rowIndex: number): void {
     if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
       this.selectedDetailsTemplateRowId.delete(rowIndex);
@@ -285,35 +285,6 @@ export class BaseComponent implements OnInit, OnChanges {
     return this.selectedDetailsTemplateRowId.has(rowIndex);
   }
 
-  onMouseDown(event, th) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    this.th = th;
-    this.startOffset = th.offsetWidth - event.pageX;
-    this.emitEvent(Event.onColumnResizeMouseDown, event);
-  }
-
-  onMouseMove(event) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    if (this.th && this.th.style) {
-      this.th.style.width = this.startOffset + event.pageX + 'px';
-      this.th.style.cursor = 'col-resize';
-      this.th.style['user-select'] = 'none';
-    }
-  }
-
-  onMouseUp(event) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    this.emitEvent(Event.onColumnResizeMouseUp, event);
-    this.th.style.cursor = 'default';
-    this.th = undefined;
-  }
-
   get isLoading(): boolean {
     const table = document.getElementById(this.id) as HTMLTableElement;
     if (table && table.rows && table.rows.length > 3) {
@@ -328,17 +299,6 @@ export class BaseComponent implements OnInit, OnChanges {
     const borderTrHeight = 1;
     const borderDivHeight = 2;
     this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
-  }
-
-  getColumnWidth(column: any): string | null {
-    if (column.width) {
-      return column.width;
-    }
-    return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
-  }
-
-  getColumnDefinition(column: Columns): boolean {
-    return column.searchEnabled || typeof column.searchEnabled === 'undefined';
   }
 
   get arrowDefinition(): boolean {
@@ -364,12 +324,6 @@ export class BaseComponent implements OnInit, OnChanges {
     };
 
     this.emitEvent(Event.onRowContextMenu, value);
-  }
-
-  pinnedWidth(pinned: boolean, column: number): string {
-    if (pinned) {
-      return 150 * column + 'px'; //
-    }
   }
 
   private doApplyData(data) {
@@ -465,6 +419,10 @@ export class BaseComponent implements OnInit, OnChanges {
         return this.paginationComponent.paginationDirective.getCurrent();
       case API.getPaginationLastPage:
         return this.paginationComponent.paginationDirective.getLastPage();
+      case API.getNumberOfRowsPerPage:
+        return this.paginationComponent.paginationDirective.isLastPage() ?
+          (this.paginationComponent.paginationDirective.getTotalItems() % this.limit) :
+          this.limit;
       case API.setPaginationCurrentPage:
         this.paginationComponent.paginationDirective.setCurrent(event.value);
         break;
@@ -509,6 +467,17 @@ export class BaseComponent implements OnInit, OnChanges {
       const temp = this.sortState.get(key);
       this.sortState.clear();
       this.sortState.set(key, temp);
+    }
+  }
+
+  public emitEvent(event: string, value: any): void {
+    this.event.emit({ event, value });
+    if (this.config.persistState) {
+      localStorage.setItem(event, JSON.stringify(value));
+    }
+    if (this.config.logger) {
+      // tslint:disable-next-line:no-console
+      console.log({ event, value });
     }
   }
 }

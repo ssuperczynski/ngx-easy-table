@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 import { BaseComponent } from './base.component';
 
-import { CsvExportComponent } from '../csv-export.component';
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 
@@ -14,13 +13,16 @@ import { SearchPipe } from '../../pipes/search-pipe';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TableTHeadComponent } from '../thead/thead.component';
 
 @NgModule({
   declarations: [
     BaseComponent,
-    CsvExportComponent,
     HeaderComponent,
     PaginationComponent,
+    TableTHeadComponent,
+
+    // Pipes
     SearchPipe,
     RenderPipe,
     GlobalSearchPipe,

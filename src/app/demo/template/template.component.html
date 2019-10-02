@@ -21,7 +21,7 @@
       </div>
     </td>
     <td>
-      <span>Supervisor: </span><br>
+      <span class="mb-2">Supervisor: </span>
       <strong>{{row.name}}</strong>
     </td>
     <td>
@@ -33,12 +33,13 @@
     <td>
       <button class="btn btn-primary"
               id="expandButton-{{index}}"
-              (click)="onRowClickEvent($event, index)"><i class="icon icon-arrow-left"></i>
+              (click)="onRowClickEvent($event, index)">
+        <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+        <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
         Expand
       </button>
     </td>
   </ng-template>
-
 </ngx-table>
 <ng-template #detailsTemplate let-row>
   <div>

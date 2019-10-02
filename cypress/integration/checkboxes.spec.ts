@@ -30,6 +30,6 @@ context('Checkboxes', () => {
     cy.get('#selectAllCheckbox')
       .click()
       .get('#selected')
-      .contains('Selected: 40');
+      .contains('Selected: 41');
   });
 });

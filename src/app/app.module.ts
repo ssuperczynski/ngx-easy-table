@@ -68,8 +68,12 @@ import {
   ColumnClassComponent,
   NestedTableComponent,
   PersistStateRouterComponent,
+  MobileComponent,
+  LoadingTemplateComponent,
+  AdditionalActionsTemplateComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
+import { MenuSearchPipe } from './pipes/menu-search-pipe';
 
 @NgModule({
   imports: [
@@ -83,6 +87,10 @@ import { TableModule } from 'ngx-easy-table';
     }),
   ],
   declarations: [
+    // pipes
+    MenuSearchPipe,
+
+    // components
     AppComponent,
     BasicComponent,
     SearchComponent,
@@ -138,6 +146,9 @@ import { TableModule } from 'ngx-easy-table';
     ColumnClassComponent,
     NestedTableComponent,
     PersistStateRouterComponent,
+    MobileComponent,
+    LoadingTemplateComponent,
+    AdditionalActionsTemplateComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

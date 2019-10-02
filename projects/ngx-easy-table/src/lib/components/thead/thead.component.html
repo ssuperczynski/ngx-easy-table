@@ -1,0 +1,80 @@
+<tr class="ngx-table__header" *ngIf="config.headerEnabled">
+  <th *ngIf="config.checkboxes" width="3%">
+    <ng-container
+      *ngIf="selectAllTemplate"
+      [ngTemplateOutlet]="selectAllTemplate"
+      [ngTemplateOutletContext]="{ $implicit: onSelectAllBinded }">
+    </ng-container>
+    <label class="ngx-form-checkbox" *ngIf="!selectAllTemplate">
+      <input type="checkbox" (change)="onSelectAll()">
+      <i class="ngx-form-icon" id="selectAllCheckbox"></i>
+    </label>
+  </th>
+  <ng-container *ngFor="let column of columns; let colIndex = index">
+    <th class="ngx-table__header-cell"
+        [class.pinned-left]="column.pinned"
+        [ngClass]="column.cssClass && column.cssClass.includeHeader ? column.cssClass.name : ''"
+        [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
+        #th
+        [style.width]="getColumnWidth(column)"
+        (mousedown)="onMouseDown($event, th)"
+        (mouseup)="onMouseUp($event)"
+        (mousemove)="onMouseMove($event)">
+      <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
+        <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
+          <i class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></i>
+          <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
+            <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
+            <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
+               class="ngx-icon ngx-icon-arrow-up">
+            </i>
+            <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'desc'"
+               class="ngx-icon ngx-icon-arrow-down">
+            </i>
+          </div>
+        </div>
+      </div>
+      <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn"></div>
+    </th>
+  </ng-container>
+  <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows || config.groupRows"
+      class="ngx-table__header-cell-additional-actions">
+    <div class="ngx-dropdown"
+         #additionalActionMenu
+         *ngIf="config.additionalActions">
+      <a class="ngx-btn ngx-btn-link" (click)="showMenu()">
+        <span class="ngx-icon ngx-icon-menu"></span>
+      </a>
+      <ul class="ngx-menu ngx-table__table-menu"
+          *ngIf="menuActive">
+        <ng-container
+          *ngIf="additionalActionsTemplate"
+          [ngTemplateOutlet]="additionalActionsTemplate">
+        </ng-container>
+      </ul>
+    </div>
+  </th>
+</tr>
+<tr *ngIf="config.searchEnabled && !filtersTemplate"
+    class="ngx-table__sort-header">
+  <th *ngIf="config.checkboxes"></th>
+  <ng-container *ngFor="let column of columns; let colIndex = index">
+    <th
+      [ngClass]="column.cssClass && column.cssClass.includeHeader ? column.cssClass.name : ''"
+      [class.pinned-left]="column.pinned"
+      [style.left]="styleService.pinnedWidth(column.pinned, colIndex)">
+      <table-header
+        *ngIf="getColumnDefinition(column)"
+        (update)="onSearch($event)"
+        [column]="column">
+      </table-header>
+    </th>
+  </ng-container>
+  <th *ngIf="config.additionalActions || config.detailsTemplate"></th>
+</tr>
+<ng-container *ngIf="filtersTemplate">
+  <tr>
+    <ng-container [ngTemplateOutlet]="filtersTemplate">
+    </ng-container>
+  </tr>
+</ng-container>
