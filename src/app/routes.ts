@@ -56,7 +56,9 @@ import {
   NestedTableComponent,
   PersistStateRouterComponent,
   MobileComponent,
-  LoadingTemplateComponent, AdditionalActionsTemplateComponent,
+  LoadingTemplateComponent,
+  AdditionalActionsTemplateComponent,
+  NestedObjectComponent,
 } from './demo';
 
 export const routes = [
@@ -117,6 +119,7 @@ export const routes = [
   { path: 'mobile', component: MobileComponent },
   { path: 'loading-template', component: LoadingTemplateComponent },
   { path: 'additional-actions-template', component: AdditionalActionsTemplateComponent },
+  { path: 'nested-object', component: NestedObjectComponent },
   { path: '**', component: BasicComponent },
 ];
 

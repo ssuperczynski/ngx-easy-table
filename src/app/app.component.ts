@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
       { link: 'pinned', name: 'Pinned column' },
       { link: 'column-class', name: 'Column Class' },
       { link: 'mobile', name: 'Mobile view' },
+      { link: 'nested-object', name: 'Nested object' },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },

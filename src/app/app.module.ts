@@ -71,6 +71,7 @@ import {
   MobileComponent,
   LoadingTemplateComponent,
   AdditionalActionsTemplateComponent,
+  NestedObjectComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -149,6 +150,7 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     MobileComponent,
     LoadingTemplateComponent,
     AdditionalActionsTemplateComponent,
+    NestedObjectComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

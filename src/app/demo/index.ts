@@ -55,3 +55,4 @@ export * from './persist-state-router/persist-state-router.component';
 export * from './mobile/mobile.component';
 export * from './loading-template/loading-template.component';
 export * from './additional-actions-template/additional-actions-template.component';
+export * from './nested-object/nested-object.component';
