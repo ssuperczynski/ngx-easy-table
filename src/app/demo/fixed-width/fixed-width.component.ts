@@ -25,7 +25,7 @@ export class FixedWidthComponent {
     this.data = data;
   }
 
-  onChange() {
+  onChange(): void {
     this.configuration.fixedColumnWidth = !this.configuration.fixedColumnWidth;
     this.configuration = { ...this.configuration };
   }

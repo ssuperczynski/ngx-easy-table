@@ -26,7 +26,7 @@ export class StylesComponent implements OnInit {
     this.data = data;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

@@ -58,7 +58,7 @@ export class CustomIntableSortComponent {
     })];
   }
 
-  eventEmitted($event) {
+  eventEmitted($event: { event: string, value: any }): void {
     if ($event.event === Event.onOrder) {
       if ($event.value.key === 'level') {
         this.sortByLevel($event.value.order === 'asc');

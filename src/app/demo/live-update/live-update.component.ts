@@ -42,11 +42,11 @@ export class LiveUpdateComponent implements OnInit {
     this.configuration = ConfigService.config;
   }
 
-  static random(min, max) {
+  static random(min: number, max: number): number {
     return Math.floor(min + (Math.random() * (max - min + 1)));
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     interval(800)
       .pipe(
         map(() => {

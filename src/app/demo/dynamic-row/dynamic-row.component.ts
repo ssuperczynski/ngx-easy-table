@@ -35,11 +35,11 @@ export class DynamicRowComponent implements OnInit {
     ];
   }
 
-  randNumber(min, max) {
+  randNumber(min: number, max: number): number {
     return ~~(Math.random() * (max - min) + min);
   }
 
-  addRow() {
+  addRow(): void {
     this.data = [
       ...this.data,
       {
@@ -54,10 +54,5 @@ export class DynamicRowComponent implements OnInit {
 
   remove(rowIndex: number): void {
     this.data = [...this.data.filter((_v, k) => k !== rowIndex)];
-  }
-
-  toggleAnimation() {
-    this.toggled = !this.toggled;
-    this.configuration = { ...this.configuration };
   }
 }

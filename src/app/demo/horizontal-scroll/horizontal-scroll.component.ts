@@ -34,7 +34,7 @@ export class HorizontalScrollComponent implements OnInit {
     this.configuration = ConfigService.config;
   }
 
-  private static generateData() {
+  private static generateData(): any[] {
     return Array(20).fill('').map(() => {
       return {
         phone: phone.phoneNumberFormat(),

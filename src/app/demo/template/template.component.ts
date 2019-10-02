@@ -30,7 +30,7 @@ export class TemplateComponent {
     this.data = data;
   }
 
-  onRowClickEvent($event, index: number): void {
+  onRowClickEvent($event: MouseEvent, index: number): void {
     $event.preventDefault();
     this.table.apiEvent({
       type: API.toggleRowIndex,

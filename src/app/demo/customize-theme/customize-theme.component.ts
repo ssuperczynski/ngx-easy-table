@@ -39,7 +39,7 @@ export class CustomizeThemeComponent {
     this.configuration = { ...this.configuration };
   }
 
-  setTheme(theme: string) {
+  setTheme(theme: string): void {
     this.configuration.tableLayout.theme = theme;
     this.configuration = { ...this.configuration };
   }

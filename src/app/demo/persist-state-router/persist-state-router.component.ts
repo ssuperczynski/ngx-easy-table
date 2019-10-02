@@ -28,7 +28,7 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
   constructor(private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.configuration = DefaultConfig;
     this.data = data;
     this.route.params
@@ -42,7 +42,7 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }

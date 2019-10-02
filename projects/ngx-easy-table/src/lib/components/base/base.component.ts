@@ -8,7 +8,7 @@ import {
   HostListener,
   Input,
   OnChanges,
-  OnInit, Output,
+  OnInit, Output, SimpleChange,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -89,7 +89,7 @@ export class BaseComponent implements OnInit, OnChanges {
   @ViewChild('contextMenu', { static: false }) contextMenu;
 
   @HostListener('document:click', ['$event.target'])
-  public onContextMenuClick(targetElement) {
+  public onContextMenuClick(targetElement: any): void {
     if (this.contextMenu && !this.contextMenu.nativeElement.contains(targetElement)) {
       this.rowContextMenuPosition = {
         top: null,
@@ -109,7 +109,7 @@ export class BaseComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.columns) {
       console.error('[columns] property required!');
     }
@@ -125,7 +125,7 @@ export class BaseComponent implements OnInit, OnChanges {
     this.doDecodePersistedState();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     const { configuration, data, pagination, groupRowsBy } = changes;
     this.toggleRowIndex = changes.toggleRowIndex;
     if (configuration && configuration.currentValue) {
@@ -218,7 +218,7 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onCheckboxSelect, value);
   }
 
-  onSelectAll() {
+  onSelectAll(): void {
     this.isSelected = !this.isSelected;
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
@@ -253,7 +253,7 @@ export class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  private doDecodePersistedState() {
+  private doDecodePersistedState(): void {
     if (!this.config.persistState) {
       return;
     }
@@ -326,7 +326,7 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onRowContextMenu, value);
   }
 
-  private doApplyData(data) {
+  private doApplyData(data: SimpleChange): void {
     const order = this.columns.find((c) => !!c.orderBy);
     if (order) {
       this.sortState.set(this.sortKey, (order.orderBy === 'asc') ? 'desc' : 'asc');
@@ -336,7 +336,7 @@ export class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  onDrop(event: CdkDragDrop<string[]>) {
+  onDrop(event: CdkDragDrop<string[]>): void {
     this.emitEvent(Event.onRowDrop, event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }

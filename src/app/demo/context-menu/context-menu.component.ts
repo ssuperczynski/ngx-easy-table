@@ -32,7 +32,7 @@ export class ContextMenuComponent implements OnInit {
     this.data = data;
   }
 
-  copyCell(object: TableMouseEvent) {
+  copyCell(object: TableMouseEvent): void {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
@@ -47,12 +47,12 @@ export class ContextMenuComponent implements OnInit {
     this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
-  editCell(object: TableMouseEvent) {
+  editCell(object: TableMouseEvent): void {
     this.edit = object.rowId;
     this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
-  update($event) {
+  update($event: any): void {
     this.data[this.edit].phone = $event.target.value;
     this.edit = -1;
   }

@@ -75,7 +75,7 @@ export class AppComponent  {
   }];
 
   // version 9.1 and below
-  ngOnInit() {
+  ngOnInit(): void {
     this.configuration = ConfigurationService.config;
     this.data = data;
   }
@@ -83,7 +83,7 @@ export class AppComponent  {
   // since version 9.2 you can skip injecting ConfigService
   // instead just do like below (you can still use previous version)
   // this one is just shorter, produces less code and is easier, especially when you have many tables in the project
-  ngOnInit() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.orderEnabled = false;
     // ... etc.

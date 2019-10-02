@@ -31,7 +31,7 @@ export class SearchPipe implements PipeTransform {
     return this.filterGroup(array, filteredCountSubject);
   }
 
-  private filterGroup(array: any[], filteredCountSubject) {
+  private filterGroup(array: any[], filteredCountSubject: Subject<number>): any[] {
     const arr = array.filter((obj) => {
       return Object.keys(this.filters).every((c) => {
         const split = c.split('.');

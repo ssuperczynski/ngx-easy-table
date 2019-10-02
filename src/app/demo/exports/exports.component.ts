@@ -28,7 +28,7 @@ export class ExportsComponent {
     this.data = data;
   }
 
-  exportToExcel() {
+  exportToExcel(): void {
     try {
       /* generate worksheet */
       const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
@@ -44,7 +44,7 @@ export class ExportsComponent {
     }
   }
 
-  exportToCSV() {
+  exportToCSV(): void {
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',

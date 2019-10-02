@@ -25,10 +25,10 @@ export class CollapsedRowsComponent implements OnInit {
     this.data = data;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  toggleRows() {
+  toggleRows(): void {
     this.toggled = !this.toggled;
     this.configuration.collapseAllRows = this.toggled;
     this.configuration = { ...this.configuration };

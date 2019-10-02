@@ -27,15 +27,15 @@ export class ModalComponent {
     this.data = data;
   }
 
-  onEvent(event) {
+  onEvent(event: { event: string, value: any }): void {
     this.selected = JSON.stringify(event.value.row, null, 2);
   }
 
-  showModal() {
+  showModal(): void {
     this.modal = true;
   }
 
-  hideModal() {
+  hideModal(): void {
     this.modal = false;
   }
 }

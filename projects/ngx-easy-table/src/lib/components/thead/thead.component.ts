@@ -1,4 +1,12 @@
-import { Component, EventEmitter, HostListener, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { Columns, Config, Event } from '../..';
 import { StyleService } from '../../services/style.service';
 
@@ -26,7 +34,7 @@ export class TableTHeadComponent {
   @ViewChild('th', { static: false }) private th;
   @ViewChild('additionalActionMenu', { static: false }) additionalActionMenu;
   @HostListener('document:click', ['$event.target'])
-  public onClick(targetElement) {
+  public onClick(targetElement: any): void {
     if (this.additionalActionMenu && !this.additionalActionMenu.nativeElement.contains(targetElement)) {
       this.menuActive = false;
     }
@@ -46,7 +54,7 @@ export class TableTHeadComponent {
     this.order.emit(column);
   }
 
-  isOrderEnabled(column: Columns) {
+  isOrderEnabled(column: Columns): boolean {
     const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
     return this.config.orderEnabled && columnOrderEnabled;
   }
@@ -62,11 +70,11 @@ export class TableTHeadComponent {
     return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
   }
 
-  onSelectAll() {
+  onSelectAll(): void {
     this.selectAll.emit();
   }
 
-  onMouseDown(event, th) {
+  onMouseDown(event: MouseEvent, th: HTMLTableHeaderCellElement): void {
     if (!this.config.resizeColumn) {
       return;
     }
@@ -78,7 +86,7 @@ export class TableTHeadComponent {
     });
   }
 
-  onMouseMove(event) {
+  onMouseMove(event: MouseEvent): void {
     if (!this.config.resizeColumn) {
       return;
     }
@@ -89,7 +97,7 @@ export class TableTHeadComponent {
     }
   }
 
-  onMouseUp(event) {
+  onMouseUp(event: MouseEvent): void {
     if (!this.config.resizeColumn) {
       return;
     }
@@ -101,7 +109,7 @@ export class TableTHeadComponent {
     this.th = undefined;
   }
 
-  showMenu() {
+  showMenu(): void {
     if (!this.additionalActionsTemplate) {
       console.error('[additionalActionsTemplate] property not defined');
     }

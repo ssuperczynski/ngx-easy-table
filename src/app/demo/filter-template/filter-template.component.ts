@@ -35,7 +35,7 @@ export class FilterTemplateComponent {
     this.ages.sort();
   }
 
-  onAgeSearch(value): void {
+  onAgeSearch(value: string): void {
     if (value === '') {
       this.rows = this.data;
     } else {
@@ -43,7 +43,7 @@ export class FilterTemplateComponent {
     }
   }
 
-  onCompanySearch(value): void {
+  onCompanySearch(value: string): void {
     this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
   }
 

@@ -7,7 +7,7 @@ import { routing } from './routes';
 import { HighlightModule } from 'ngx-highlightjs';
 import typescript from 'highlight.js/lib/languages/typescript';
 
-export function hljsLanguages() {
+export function hljsLanguages(): Array<{name: string, func: any}> {
   return [
     { name: 'typescript', func: typescript },
   ];

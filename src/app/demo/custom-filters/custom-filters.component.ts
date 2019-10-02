@@ -27,15 +27,15 @@ export class CustomFiltersComponent {
     this.rows = data;
   }
 
-  onCompanySearch(value): void {
+  onCompanySearch(value: string): void {
     this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
   }
 
-  onAgeSearch(value): void {
+  onAgeSearch(value: number): void {
     this.rows = this.data.filter((_) => _.age > value);
   }
 
-  onStatusChange(value): void {
+  onStatusChange(value: string): void {
     this.rows = this.data.filter((_) => _.isActive === (value === 'true'));
   }
 

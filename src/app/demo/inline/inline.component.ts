@@ -31,13 +31,13 @@ export class InlineComponent implements OnInit {
     ];
   }
 
-  eventEmitted($event) {
+  eventEmitted($event: { event: string, value: any }): void {
     if ($event.event === Event.onDoubleClick) {
       this.edit = $event.value.rowId;
     }
   }
 
-  update($event) {
+  update($event: any): void {
     this.data[this.edit].phone = $event.target.value;
     this.edit = -1;
   }

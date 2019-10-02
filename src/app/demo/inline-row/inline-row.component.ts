@@ -40,11 +40,11 @@ export class InlineRowComponent implements OnInit {
     ];
   }
 
-  edit(rowIndex: number) {
+  edit(rowIndex: number): void {
     this.editRow = rowIndex;
   }
 
-  update() {
+  update(): void {
     this.data = [...this.data.map((obj, index) => {
       if (index === this.editRow) {
         return Object.assign({}, {

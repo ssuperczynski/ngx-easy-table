@@ -50,7 +50,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     this.configuration = { ...this.configuration };
   }
 
-  resetSearchInput() {
+  resetSearchInput(): void {
     this.table.apiEvent({
       type: API.setInputValue,
       value: [
@@ -61,7 +61,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setPhone() {
+  setPhone(): void {
     this.table.apiEvent({
       type: API.setInputValue,
       value: [
@@ -71,7 +71,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   }
 
   // tslint:disable-next-line:no-identical-functions
-  setAge() {
+  setAge(): void {
     this.table.apiEvent({
       type: API.setInputValue,
       value: [
@@ -80,32 +80,32 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setPagination(page: number) {
+  setPagination(page: number): void {
     this.table.apiEvent({
       type: API.setPaginationCurrentPage,
       value: page,
     });
   }
 
-  getPaginationCurrent() {
+  getPaginationCurrent(): void {
     this.current = this.table.apiEvent({
       type: API.getPaginationCurrentPage,
     });
   }
 
-  getTotal() {
+  getTotal(): void {
     this.total = this.table.apiEvent({
       type: API.getPaginationTotalItems,
     });
   }
 
-  getLastPage() {
+  getLastPage(): void {
     this.last = this.table.apiEvent({
       type: API.getPaginationLastPage,
     });
   }
 
-  getNumberOfRowsPerPage() {
+  getNumberOfRowsPerPage(): void {
     this.itemsPerPage = this.table.apiEvent({
       type: API.getNumberOfRowsPerPage,
     });
@@ -189,7 +189,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setPaginationDisplayLimit(limit: number) {
+  setPaginationDisplayLimit(limit: number): void {
     this.table.apiEvent({
       type: API.setPaginationDisplayLimit,
       value: limit,

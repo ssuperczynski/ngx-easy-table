@@ -27,13 +27,13 @@ export class SelectAllTemplateComponent {
     this.data = data.splice(1, 5);
   }
 
-  tableEventEmitted(event: any) {
+  tableEventEmitted(event: { event: string, value: any }): void {
     if (event.event === 'onSelectAll') {
       this.data.forEach((row: any) => row.selected = event.value);
     }
   }
 
-  rowSelected() {
+  rowSelected(): void {
     this.allSelected = this.data.every((row) => !!row.selected);
   }
 

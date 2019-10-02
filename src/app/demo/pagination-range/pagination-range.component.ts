@@ -26,7 +26,13 @@ export class PaginationRangeComponent {
     this.data = PaginationRangeComponent.generateData();
   }
 
-  private static generateData() {
+  private static generateData(): Array<{
+    phone: string,
+    age: string,
+    company: string,
+    name: string,
+    isActive: boolean,
+  }> {
     return Array(170).fill('').map(() => {
       return {
         phone: phone.phoneNumberFormat(),

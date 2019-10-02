@@ -28,15 +28,15 @@ export class BootstrapComponent implements OnInit {
     this.data = data;
   }
 
-  setBootstrap() {
+  setBootstrap(): void {
     this.setClass('table table-bordered table-striped table-sm');
   }
 
-  setMaterial() {
+  setMaterial(): void {
     this.setClass('material');
   }
 
-  setNormal() {
+  setNormal(): void {
     this.setClass('');
   }
 

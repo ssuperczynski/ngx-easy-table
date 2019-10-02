@@ -26,7 +26,7 @@ export class CustomSortComponent implements OnInit {
     this.data = data;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sortByAge();
   }
 

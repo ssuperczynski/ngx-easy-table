@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { NavigationEnd, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 export interface Link {
   link: string;
@@ -13,11 +15,11 @@ export interface Link {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   constructor(private router: Router) {
-
   }
 
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   public readonly version = environment.VERSION;
   public showMenu = true;
   public selected: Link;
@@ -92,19 +94,26 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.router.events.subscribe((route) => {
-      if (route instanceof NavigationEnd) {
-        const url = route.url.replace('/', '');
-        Object.values(this.menu).forEach((value) => value.forEach((entry) => {
-          if (entry.link === url) {
-            this.select({
-              link: url,
-              name: entry.name,
-            });
-          }
-        }));
-      }
-    });
+    this.router.events
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((route) => {
+        if (route instanceof NavigationEnd) {
+          const url = route.url.replace('/', '');
+          Object.values(this.menu).forEach((value) => value.forEach((entry) => {
+            if (entry.link === url) {
+              this.select({
+                link: url,
+                name: entry.name,
+              });
+            }
+          }));
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   select(selected: Link): void {
@@ -112,11 +121,11 @@ export class AppComponent implements OnInit {
     this.showMenu = !this.showMenu;
   }
 
-  get excludedLinks() {
+  get excludedLinks(): boolean {
     return ['basic', 'api-doc', 'doc', 'installation'].includes(this.selected.link);
   }
 
-  onMenuSearch(value: string) {
+  onMenuSearch(value: string): void {
     this.searchTerm = value;
   }
 }

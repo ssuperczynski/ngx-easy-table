@@ -30,13 +30,13 @@ export class AdditionalActionsTemplateComponent implements OnInit {
   public data: Company[] = [];
   public configuration: Config;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.additionalActions = true;
     this.data = data;
   }
 
-  public csvExportWhole() {
+  public csvExportWhole(): void {
     const csvExporter = new ExportToCsv(this.csvOptions);
     csvExporter.generateCsv(this.data);
   }
@@ -61,7 +61,7 @@ export class AdditionalActionsTemplateComponent implements OnInit {
     }
   }
 
-  public enableSearch() {
+  public enableSearch(): void {
     this.configuration.searchEnabled = !this.configuration.searchEnabled;
   }
 }

@@ -25,7 +25,7 @@ export class CheckboxDefaultComponent {
     this.data = data;
   }
 
-  eventEmitted($event) {
+  eventEmitted($event: { event: string, value: any }): void {
     switch ($event.event) {
       case 'onCheckboxSelect':
         if (this.selected.has($event.value.rowId)) {

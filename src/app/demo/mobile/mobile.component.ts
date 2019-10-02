@@ -18,7 +18,7 @@ export class MobileComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
 
   @HostListener('window:resize', [])
-  onResize() {
+  onResize(): void {
     this.checkView();
   }
 
@@ -34,7 +34,7 @@ export class MobileComponent implements OnInit {
     return this.innerWidth <= 768;
   }
 
-  private checkView() {
+  private checkView(): void {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.columns = [
@@ -52,7 +52,7 @@ export class MobileComponent implements OnInit {
     }
   }
 
-  onRowClickEvent($event, index: number): void {
+  onRowClickEvent($event: MouseEvent, index: number): void {
     $event.preventDefault();
     this.table.apiEvent({
       type: API.toggleRowIndex,
