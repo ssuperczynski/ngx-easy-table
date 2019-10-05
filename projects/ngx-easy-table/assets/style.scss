@@ -5,14 +5,12 @@ $dark: #50596c;
 $blue: #3f86ca;
 $primary-color: #50596c !default;
 /*! Based on Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
-@import "~material-design-lite/src/data-table/data-table";
-@import "~material-design-lite/src/shadow/shadow";
+@import "../node_modules/material-design-lite/src/data-table/data-table";
+@import "../node_modules/material-design-lite/src/shadow/shadow.scss";
 .ngx {
   &-container {
     margin-left: auto;
     margin-right: auto;
-    padding-left: .4rem;
-    padding-right: .4rem;
     width: 100%;
   }
 
@@ -331,6 +329,7 @@ $primary-color: #50596c !default;
     width: 1em;
 
     &::before, &::after {
+      content: "";
       display: block;
       left: 50%;
       position: absolute;
@@ -343,9 +342,8 @@ $primary-color: #50596c !default;
     border: .1rem solid $dark;
     border-bottom: 0;
     border-right: 0;
-    content: "";
-    height: .45em;
-    width: .45em;
+    height: .65em;
+    width: .65em
   }
 
   &-icon-arrow-down::before {
@@ -375,8 +373,16 @@ $primary-color: #50596c !default;
     height: 11px;
   }
 
+  &-icon-more::before {
+    background: $dark;
+    border-radius: 50%;
+    box-shadow: 0 -.4em, 0 .4em;
+    height: 3px;
+    width: 3px
+  }
+
   &-dropdown {
-    display: inline-block;
+    display: inline;
     position: relative;
 
     .ngx-menu {
@@ -384,6 +390,10 @@ $primary-color: #50596c !default;
       top: 100%;
       right: 0;
       left: auto;
+    }
+
+    a {
+      color: $primary-color;
     }
   }
 

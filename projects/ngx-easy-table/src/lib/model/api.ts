@@ -50,5 +50,13 @@ export type ApiType =
   ;
 
 export interface APIDefinition {
-  apiEvent(event: ApiType): void | number;
+  apiEvent<B extends ApiType>(event: B): IAPIDefinition<B>;
 }
+
+export type IAPIDefinition<B> = B extends
+  | { type: API.getPaginationCurrentPage; }
+  | { type: API.getPaginationTotalItems; }
+  | { type: API.getPaginationLastPage; }
+  | { type: API.getNumberOfRowsPerPage; }
+  ? number
+  : void;

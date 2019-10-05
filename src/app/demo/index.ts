@@ -56,3 +56,5 @@ export * from './mobile/mobile.component';
 export * from './loading-template/loading-template.component';
 export * from './additional-actions-template/additional-actions-template.component';
 export * from './nested-object/nested-object.component';
+export * from './custom-pagination/custom-pagination.component';
+export * from './filter-header-template/filter-header-template.component';

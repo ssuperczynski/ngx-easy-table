@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
-import { ConfigService } from './configuration.service';
 import { API, APIDefinition, Config, DefaultConfig, TableMouseEvent } from 'ngx-easy-table';
 import { Columns } from 'ngx-easy-table';
 
@@ -9,7 +8,7 @@ import { Columns } from 'ngx-easy-table';
   selector: 'app-context-menu',
   templateUrl: './context-menu.component.html',
   styleUrls: ['./context-menu.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [CompanyService],
 })
 export class ContextMenuComponent implements OnInit {
   @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;

@@ -178,6 +178,7 @@
     "increment-decrement": true,
     "unnecessary-constructor": true,
     "no-alphabetical-sort": false,
-    "unnecessary-bind": true
+    "unnecessary-bind": true,
+    "max-union-size": false
   }
 }

@@ -17,6 +17,7 @@ import { StyleService } from '../../services/style.service';
 })
 export class TableTHeadComponent {
   public menuActive = false;
+  public openedHeaderActionTemplate = null;
   public startOffset;
   public onSelectAllBinded = this.onSelectAll.bind(this);
 
@@ -107,6 +108,17 @@ export class TableTHeadComponent {
     });
     this.th.style.cursor = 'default';
     this.th = undefined;
+  }
+
+  showHeaderActionTemplateMenu(column: Columns): void {
+    if (!column.headerActionTemplate) {
+      console.error('Column [headerActionTemplate] property not defined');
+    }
+    if (this.openedHeaderActionTemplate === column.key) {
+      this.openedHeaderActionTemplate = null;
+      return;
+    }
+    this.openedHeaderActionTemplate = column.key;
   }
 
   showMenu(): void {

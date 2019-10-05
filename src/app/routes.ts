@@ -59,6 +59,7 @@ import {
   LoadingTemplateComponent,
   AdditionalActionsTemplateComponent,
   NestedObjectComponent,
+  CustomPaginationComponent, FilterHeaderTemplateComponent,
 } from './demo';
 
 export const routes = [
@@ -98,6 +99,7 @@ export const routes = [
   { path: 'col-template', component: ColTemplateComponent },
   { path: 'summary-footer', component: SummaryFooterComponent },
   { path: 'filter-template', component: FilterTemplateComponent },
+  { path: 'filter-header-template', component: FilterHeaderTemplateComponent },
   { path: 'custom-intable-sort', component: CustomIntableSortComponent },
   { path: 'persist-state', component: PersistStateComponent },
   { path: 'pagination-range', component: PaginationRangeComponent },
@@ -120,6 +122,7 @@ export const routes = [
   { path: 'loading-template', component: LoadingTemplateComponent },
   { path: 'additional-actions-template', component: AdditionalActionsTemplateComponent },
   { path: 'nested-object', component: NestedObjectComponent },
+  { path: 'custom-pagination', component: CustomPaginationComponent },
   { path: '**', component: BasicComponent },
 ];
 

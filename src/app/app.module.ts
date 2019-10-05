@@ -72,9 +72,12 @@ import {
   LoadingTemplateComponent,
   AdditionalActionsTemplateComponent,
   NestedObjectComponent,
+  CustomPaginationComponent, FilterHeaderTemplateComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -86,6 +89,8 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     HighlightModule.forRoot({
       languages: hljsLanguages,
     }),
+    NoopAnimationsModule,
+    MatPaginatorModule,
   ],
   declarations: [
     // pipes
@@ -151,6 +156,8 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     LoadingTemplateComponent,
     AdditionalActionsTemplateComponent,
     NestedObjectComponent,
+    CustomPaginationComponent,
+    FilterHeaderTemplateComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

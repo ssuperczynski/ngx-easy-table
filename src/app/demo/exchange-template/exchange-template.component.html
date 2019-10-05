@@ -3,10 +3,10 @@
       [data]="data"
       [columns]="columns">
   <ng-template let-row>
-    <td class="recruitments__table-row-recruitment">
+    <td>
       <h5 class="color-green font-light">{{row.name}}</h5>
     </td>
-    <td class="recruitments__table-row-progressbar">
+    <td>
       <span class="font-small">Days left: {{row.age}}</span>
       <div style="border:solid 1px #ddd;">
         <div style="background:#28a745;height:9px" [style.width]="'50%'"></div>

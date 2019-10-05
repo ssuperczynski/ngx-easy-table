@@ -65,11 +65,13 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: 'styles', name: 'Styles' },
       { link: 'summary-footer', name: 'Summary footer' },
       { link: 'filter-template', name: 'Filter template' },
+      { link: 'filter-header-template', name: 'Filter header template' },
       { link: 'pagination-range', name: 'Pagination range' },
       { link: 'select-all-template', name: 'Select All template' },
       { link: 'no-results-template', name: 'No Results template' },
       { link: 'loading-template', name: 'Loading template' },
       { link: 'additional-actions-template', name: 'Additional actions' },
+      { link: 'custom-pagination', name: 'Custom pagination' },
     ],
     select: [
       { link: 'select-row', name: 'Select row' },

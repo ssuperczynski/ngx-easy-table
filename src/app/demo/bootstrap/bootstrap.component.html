@@ -1,7 +1,8 @@
 <div class="columns">
   <div class="column col-12">
-    <small  class="mb-2">To disable default table layout use solution provided in <code>setBootstrap()</code> method</small>.
-    <small>NOTE: this feature is experimental, and might have some issues, but feel free to test it.</small>
+    <small class="mb-2">
+      To disable default table layout use solution provided in <code>setBootstrap()</code> method.
+    </small>
   </div>
   <div class="column col-12 my-1">
     <button class="btn"
@@ -37,8 +38,16 @@
   <div class="column col-12 my-1">
     <ngx-table [data]="data"
                #table
+               [additionalActionsTemplate]="additionalActionsTemplate"
                [configuration]="configuration"
                [columns]="columns">
     </ngx-table>
   </div>
 </div>
+<ng-template #additionalActionsTemplate>
+  <ul>
+    <li class="position">CSV export</li>
+    <li class="position">Enable search</li>
+    <li class="position">Toggle Phone</li>
+  </ul>
+</ng-template>

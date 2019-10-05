@@ -20,7 +20,7 @@
         (mousedown)="onMouseDown($event, th)"
         (mouseup)="onMouseUp($event)"
         (mousemove)="onMouseMove($event)">
-      <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
+      <div (click)="orderBy(column)" style="display: inline" [class.pointer]="isOrderEnabled(column)">
         <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
           <i class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></i>
           <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
@@ -32,6 +32,18 @@
                class="ngx-icon ngx-icon-arrow-down">
             </i>
           </div>
+        </div>
+      </div>
+      <div class="ngx-dropdown"
+           *ngIf="!!column.headerActionTemplate">
+        <a class="ngx-btn ngx-btn-link" (click)="showHeaderActionTemplateMenu(column)">
+          <span class="ngx-icon ngx-icon-more"></span>
+        </a>
+        <div class="ngx-menu ngx-table__table-menu"
+            *ngIf="column.key === openedHeaderActionTemplate">
+          <ng-container
+            [ngTemplateOutlet]="column.headerActionTemplate">
+          </ng-container>
         </div>
       </div>
       <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn"></div>

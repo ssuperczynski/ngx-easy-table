@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-filter-template',
   templateUrl: './filter-template.component.html',
   styleUrls: ['./filter-template.component.css'],
-  providers: [ConfigService],
 })
 export class FilterTemplateComponent {
 
@@ -24,7 +22,7 @@ export class FilterTemplateComponent {
   configuration;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = {...DefaultConfig};
     this.data = data;
     this.rows = data;
     data.map((row) => row.age).forEach((age) => {
@@ -39,12 +37,12 @@ export class FilterTemplateComponent {
     if (value === '') {
       this.rows = this.data;
     } else {
-      this.rows = this.data.filter((_) => _.age.toString() === value);
+      this.rows = this.data.filter(({age}) => age.toString() === value);
     }
   }
 
   onCompanySearch(value: string): void {
-    this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
+    this.rows = this.data.filter(({company}) => company.toLowerCase().indexOf(value) > -1);
   }
 
 }

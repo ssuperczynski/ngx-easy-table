@@ -135,7 +135,10 @@ export class BaseComponent implements OnInit, OnChanges {
       this.doApplyData(data);
     }
     if (pagination && pagination.currentValue) {
-      this.count = pagination.currentValue.count;
+      const { count, limit, offset } = pagination.currentValue as Pagination;
+      this.count = count;
+      this.limit = limit;
+      this.page = offset;
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
