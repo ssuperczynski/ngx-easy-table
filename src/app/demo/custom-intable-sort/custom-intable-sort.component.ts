@@ -43,7 +43,6 @@ export class CustomIntableSortComponent implements OnInit {
       }
       return nameB.localeCompare(nameA);
     })];
-    console.log('sortByLastName', this.data);
   }
 
   sortByLevel(asc: boolean): void {
@@ -58,11 +57,9 @@ export class CustomIntableSortComponent implements OnInit {
       }
       return 0;
     })];
-    console.log('sortByLevel', this.data);
   }
 
   eventEmitted($event: { event: string, value: any }): void {
-    console.log('eventEmitted', $event);
     if ($event.event === Event.onOrder) {
       if ($event.value.key === 'level') {
         this.sortByLevel($event.value.order === 'asc');
