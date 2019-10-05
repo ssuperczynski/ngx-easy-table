@@ -35,7 +35,11 @@
           [ngTemplateOutletContext]="{ $implicit: rowContextMenuPosition.value}">
         </ng-container>
       </ul>
-      <ng-container *ngFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+      <ng-container *ngFor="let row of data |
+      sort:sortBy |
+      search:term:filteredCountSubject |
+      global:globalSearchTerm:filteredCountSubject |
+      paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index">
         <tr
           (click)="onClick($event, row, '', null, rowIndex)"
@@ -76,7 +80,11 @@
         </ng-container>
       </ul>
       <ng-container
-        *ngFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+        *ngFor="let row of data |
+        sort:sortBy |
+        search:term:filteredCountSubject |
+        global:globalSearchTerm:filteredCountSubject |
+        paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
         <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <td *ngIf="config.checkboxes">
@@ -85,7 +93,7 @@
                      id="checkbox-{{rowIndex}}"
                      [checked]="isSelected"
                      (change)="onCheckboxSelect($event, row, rowIndex)">
-              <i class="ngx-form-icon"></i>
+              <em class="ngx-form-icon"></em>
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
@@ -129,7 +137,12 @@
     </ng-container>
     <ng-container *ngIf="!rowTemplate && config.groupRows">
       <ng-container
-        *ngFor="let group of grouped | sort:sortBy:config | search:term:filteredCountSubject:config | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id }; let rowIndex = index">
+        *ngFor="let group of grouped |
+        sort:sortBy:config |
+        search:term:filteredCountSubject:config |
+        global:globalSearchTerm:filteredCountSubject |
+        paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+        let rowIndex = index">
         <tr>
           <ng-container *ngIf="!groupRowsHeaderTemplate">
             <td [attr.colspan]="columns.length">
@@ -170,7 +183,11 @@
     <tbody *ngIf="data && !config.isLoading && config.draggable" cdkDropList (cdkDropListDropped)="onDrop($event)">
     <ng-container *ngIf="!rowTemplate && !config.groupRows">
       <ng-container
-        *ngFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+        *ngFor="let row of data |
+        sort:sortBy |
+        search:term:filteredCountSubject |
+        global:globalSearchTerm:filteredCountSubject |
+        paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
         <tr class="ngx-draggable-row" cdkDrag>
           <td *ngIf="config.checkboxes">
@@ -179,7 +196,7 @@
                      id="checkbox-draggable-{{rowIndex}}"
                      [checked]="isSelected"
                      (change)="onCheckboxSelect($event, row, rowIndex)">
-              <i class="ngx-form-icon"></i>
+              <em class="ngx-form-icon"></em>
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">

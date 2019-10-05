@@ -10,6 +10,7 @@
     "build": "ng build demo --prod --configuration=production",
     "build-high-memory": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --prod --configuration=production",
     "lint": "ng lint",
+    "full-test": "npm run lint && npm run build:lib && npm run build && npm run cy:ci",
     "e2e": "npm run cy:ci",
     "cy:serve": "http-server dist/demo -p 4201",
     "cy:local": "ng serve --port=4201",

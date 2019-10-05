@@ -7,7 +7,7 @@
     </ng-container>
     <label class="ngx-form-checkbox" for="selectAllCheckboxes" *ngIf="!selectAllTemplate">
       <input type="checkbox" id="selectAllCheckboxes" (change)="onSelectAll()">
-      <i class="ngx-form-icon" id="selectAllCheckbox"></i>
+      <em class="ngx-form-icon" id="selectAllCheckbox"></em>
     </label>
   </th>
   <ng-container *ngFor="let column of columns; let colIndex = index">
@@ -22,15 +22,15 @@
         (mousemove)="onMouseMove($event)">
       <div (click)="orderBy(column)" style="display: inline" [class.pointer]="isOrderEnabled(column)">
         <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
-          <i class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></i>
+          <em class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></em>
           <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
             <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
-            <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
+            <em *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
                class="ngx-icon ngx-icon-arrow-up">
-            </i>
-            <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'desc'"
+            </em>
+            <em *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'desc'"
                class="ngx-icon ngx-icon-arrow-down">
-            </i>
+            </em>
           </div>
         </div>
       </div>

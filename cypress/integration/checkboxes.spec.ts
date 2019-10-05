@@ -7,21 +7,21 @@ context('Checkboxes', () => {
   );
 
   it('selects 3 checkboxes', () => {
-    cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > label > i')
+    cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > label > em')
       .click()
-      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > label > i')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > label > em')
       .click()
-      .get('#table > tbody > tr:nth-child(3) > td:nth-child(1) > label > i')
+      .get('#table > tbody > tr:nth-child(3) > td:nth-child(1) > label > em')
       .click()
       .get('#selected')
       .contains('Selected: 3');
   });
   it('unselect all selected checkboxes', () => {
-    cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > label > i')
+    cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > label > em')
       .click()
-      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > label > i')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > label > em')
       .click()
-      .get('#table > tbody > tr:nth-child(3) > td:nth-child(1) > label > i')
+      .get('#table > tbody > tr:nth-child(3) > td:nth-child(1) > label > em')
       .click()
       .get('#selected')
       .contains('Selected: 0');

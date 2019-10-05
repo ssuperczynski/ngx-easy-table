@@ -384,6 +384,7 @@ $primary-color: #50596c !default;
   &-dropdown {
     display: inline;
     position: relative;
+    float: right;
 
     .ngx-menu {
       position: absolute;
