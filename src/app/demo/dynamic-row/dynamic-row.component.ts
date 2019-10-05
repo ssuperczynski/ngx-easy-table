@@ -1,12 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ConfigService } from './configuration.service';
-import { Columns, Config } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-dynamic-row',
   templateUrl: './dynamic-row.component.html',
   styleUrls: ['./dynamic-row.component.css'],
-  providers: [ConfigService],
 })
 export class DynamicRowComponent implements OnInit {
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
@@ -16,7 +14,7 @@ export class DynamicRowComponent implements OnInit {
   public toggled = false;
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.columns = [
       { key: 'status', title: 'Status' },
       { key: 'amount', title: 'Amount' },

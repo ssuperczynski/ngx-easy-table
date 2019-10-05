@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, DefaultConfig } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { API, APIDefinition } from 'ngx-easy-table';
 
 @Component({
@@ -21,7 +21,7 @@ export class NestedTableComponent {
     { key: '', title: 'Action', width: '5%' },
   ];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
 
   public nestedData: Company[] = [];
   public nestedConfiguration;
@@ -35,7 +35,7 @@ export class NestedTableComponent {
   ];
 
   constructor() {
-    this.configuration = DefaultConfig;
+    this.configuration = { ...DefaultConfig };
     this.configuration.detailsTemplate = true;
     this.configuration.tableLayout.hover = true;
     this.data = data;

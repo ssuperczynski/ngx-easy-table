@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-styles',
@@ -10,7 +9,7 @@ import { Columns } from 'ngx-easy-table';
 })
 export class StylesComponent implements OnInit {
 
-  configuration;
+  public configuration: Config;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -22,7 +21,7 @@ export class StylesComponent implements OnInit {
   data: Company[] = [];
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 interface Data {
   status: string;
@@ -16,7 +15,6 @@ interface Data {
   selector: 'app-live-update',
   templateUrl: './live-update.component.html',
   styleUrls: ['./live-update.component.css'],
-  providers: [ConfigService],
 })
 export class LiveUpdateComponent implements OnInit {
   data: Data[] = [
@@ -36,17 +34,14 @@ export class LiveUpdateComponent implements OnInit {
     { key: 'limit', title: 'Limit' },
     { key: 'balance', title: 'Balance' },
   ];
-  configuration;
-
-  constructor() {
-    this.configuration = ConfigService.config;
-  }
+  public configuration: Config;
 
   static random(min: number, max: number): number {
     return Math.floor(min + (Math.random() * (max - min + 1)));
   }
 
   ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
     interval(800)
       .pipe(
         map(() => {

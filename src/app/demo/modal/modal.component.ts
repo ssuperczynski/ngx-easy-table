@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
-  providers: [ConfigService],
 })
 export class ModalComponent {
   modal = false;
@@ -20,10 +18,10 @@ export class ModalComponent {
     { key: 'isActive', title: 'Edit' },
   ];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

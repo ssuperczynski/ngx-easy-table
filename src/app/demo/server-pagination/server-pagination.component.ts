@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
-import { API, APIDefinition, Columns, DefaultConfig } from 'ngx-easy-table';
+import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -28,7 +28,7 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
     { key: 'isActive', title: 'STATUS' },
   ];
   public data;
-  public configuration;
+  public configuration: Config;
   public pagination = {
     limit: 10,
     offset: 0,
@@ -42,7 +42,7 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = { ...DefaultConfig };
     this.getData('');
   }
 

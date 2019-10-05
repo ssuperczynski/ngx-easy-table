@@ -1,29 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-click-event',
   templateUrl: './click-event.component.html',
-  providers: [ConfigService],
   styleUrls: ['./click-event.component.css'],
 })
-export class ClickEventComponent {
+export class ClickEventComponent implements OnInit {
+  public columns: Columns[];
+  public clicked: string;
+  public data: Company[] = [];
+  public configuration: Config;
 
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-  ];
-  clicked;
-  data: Company[] = [];
-  configuration;
-
-  constructor() {
-    this.configuration = ConfigService.config;
+  ngOnInit(): void {
+    this.columns = [
+      { key: 'phone', title: 'Phone' },
+      { key: 'age', title: 'Age' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'isActive', title: 'STATUS' },
+    ];
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

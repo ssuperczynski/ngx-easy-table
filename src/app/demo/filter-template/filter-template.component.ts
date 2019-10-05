@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, DefaultConfig } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-filter-template',
@@ -19,7 +19,7 @@ export class FilterTemplateComponent {
   data: Company[] = [];
   rows: Company[] = [];
   ages: number[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
     this.configuration = {...DefaultConfig};

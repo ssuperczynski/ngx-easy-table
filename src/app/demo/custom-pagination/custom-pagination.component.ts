@@ -21,7 +21,7 @@ export class CustomPaginationComponent implements OnInit, AfterViewInit {
   public total;
   constructor(private cdr: ChangeDetectorRef) {}
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = {...DefaultConfig};
     this.configuration.checkboxes = true;
     this.configuration.fixedColumnWidth = true;
     this.configuration.paginationRangeEnabled = false;

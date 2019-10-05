@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 import * as XLSX from 'xlsx';
 import { ExportToCsv } from 'export-to-csv';
@@ -12,7 +11,6 @@ import { ExportToCsv } from 'export-to-csv';
   styleUrls: ['./exports.component.css'],
 })
 export class ExportsComponent {
-
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -21,10 +19,10 @@ export class ExportsComponent {
     { key: 'isActive', title: 'STATUS' },
   ];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-select-row',
   templateUrl: './select-row.component.html',
-  providers: [ConfigService],
   styles: [],
 })
 export class SelectRowComponent implements OnInit {
@@ -19,10 +17,10 @@ export class SelectRowComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

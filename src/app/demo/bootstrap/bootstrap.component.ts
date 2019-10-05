@@ -16,7 +16,7 @@ export class BootstrapComponent implements OnInit {
   public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = {...DefaultConfig};
     this.configuration.checkboxes = true;
     this.configuration.additionalActions = true;
     this.configuration.fixedColumnWidth = true;

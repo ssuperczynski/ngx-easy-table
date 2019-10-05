@@ -1,26 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, Event } from 'ngx-easy-table';
-import { ConfigService } from './configuration.service';
+import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-custom-intable-sort',
   templateUrl: './custom-intable-sort.component.html',
   styleUrls: ['./custom-intable-sort.component.css'],
-  providers: [ConfigService],
 })
-export class CustomIntableSortComponent {
-
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name', orderEventOnly: true },
-    { key: 'isActive', title: 'STATUS' },
-    { key: 'level', title: 'Level', orderEventOnly: true },
-  ];
-  data: Company[] = [];
-  configuration;
+export class CustomIntableSortComponent implements OnInit {
+  public columns: Columns[];
+  public data: Company[] = [];
+  public configuration: Config;
   levels = {
     '': 0,
     'Low': 1,
@@ -28,8 +18,19 @@ export class CustomIntableSortComponent {
     'High': 3,
   };
 
-  constructor() {
-    this.configuration = ConfigService.config;
+  ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
+    this.configuration.orderEnabled = true;
+    this.configuration.orderEventOnly = true;
+    this.configuration.headerEnabled = true;
+    this.columns = [
+      { key: 'phone', title: 'Phone' },
+      { key: 'age', title: 'Age' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name', orderEventOnly: true },
+      { key: 'isActive', title: 'STATUS' },
+      { key: 'level', title: 'Level', orderEventOnly: true },
+    ];
     this.data = data;
   }
 
@@ -42,6 +43,7 @@ export class CustomIntableSortComponent {
       }
       return nameB.localeCompare(nameA);
     })];
+    console.log('sortByLastName', this.data);
   }
 
   sortByLevel(asc: boolean): void {
@@ -56,9 +58,11 @@ export class CustomIntableSortComponent {
       }
       return 0;
     })];
+    console.log('sortByLevel', this.data);
   }
 
   eventEmitted($event: { event: string, value: any }): void {
+    console.log('eventEmitted', $event);
     if ($event.event === Event.onOrder) {
       if ($event.value.key === 'level') {
         this.sortByLevel($event.value.order === 'asc');

@@ -13,20 +13,21 @@ import { tap } from 'rxjs/operators';
 export class AsyncComponent implements OnInit {
   public configuration: Config;
   public data$: Observable<Company[]>;
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-  ];
+  public columns: Columns[];
 
   constructor(private companyService: CompanyService) {
-    this.configuration = DefaultConfig;
   }
 
   ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
     this.configuration.isLoading = true;
+    this.columns = [
+      { key: 'phone', title: 'Phone' },
+      { key: 'age', title: 'Age' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'isActive', title: 'STATUS' },
+    ];
     this.data$ = this.companyService.getCompanies().pipe(
       tap(() => {
         this.configuration.isLoading = false;

@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { random, company, name } from 'faker';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-group-rows',
   templateUrl: './group-rows.component.html',
   styleUrls: ['./group-rows.component.css'],
-  providers: [ConfigService],
 })
 export class GroupRowsComponent {
-  configuration;
+  public configuration: Config;
   toggleRowIndex;
   amountSummary = 0;
   debitSummary = 0;
@@ -19,7 +17,9 @@ export class GroupRowsComponent {
   groupBy = 'isActive';
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.groupRows = true;
+    this.configuration.searchEnabled = true;
     this.data = GroupRowsComponent.generateData();
     this.columns = [
       { key: 'amount', title: 'Amount' },

@@ -1,19 +1,17 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { API, Columns, APIDefinition } from 'ngx-easy-table';
+import { API, Columns, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-api',
   templateUrl: './api.component.html',
   styleUrls: ['./api.component.css'],
-  providers: [ConfigService],
 })
 export class ApiComponent implements OnInit, AfterViewInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
   public total;
   public current;
   public itemsPerPage;
@@ -28,7 +26,8 @@ export class ApiComponent implements OnInit, AfterViewInit {
   };
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.searchEnabled = true;
     this.columns = [
       { key: 'phone', title: 'Phone', width: '15%' },
       { key: 'age', title: 'Age', width: '10%' },

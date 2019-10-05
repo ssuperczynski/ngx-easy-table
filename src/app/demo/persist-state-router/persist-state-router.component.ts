@@ -29,7 +29,7 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
     this.route.params
       .pipe(takeUntil(this.unsubscribe))

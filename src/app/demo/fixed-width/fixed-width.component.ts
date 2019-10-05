@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-fixed-width',
   templateUrl: './fixed-width.component.html',
   styleUrls: ['./fixed-width.component.css'],
-  providers: [ConfigService],
 })
 export class FixedWidthComponent {
 
@@ -19,9 +17,9 @@ export class FixedWidthComponent {
     { key: 'isActive', title: 'STATUS' },
   ];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

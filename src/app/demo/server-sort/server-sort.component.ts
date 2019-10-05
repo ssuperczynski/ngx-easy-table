@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
-import { Columns, DefaultConfig } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -30,7 +30,7 @@ export class ServerSortComponent implements OnInit, OnDestroy {
   ];
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public data;
-  public configuration;
+  public configuration: Config;
   public pagination = {
     limit: 10,
     offset: 0,
@@ -41,7 +41,8 @@ export class ServerSortComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = {...DefaultConfig};
+    this.configuration.serverPagination = true;
     this.getData('');
   }
 

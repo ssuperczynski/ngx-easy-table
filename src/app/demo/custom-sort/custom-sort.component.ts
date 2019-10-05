@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-custom-sort',
   templateUrl: './custom-sort.component.html',
   styleUrls: ['./custom-sort.component.css'],
-  providers: [ConfigService],
 })
 export class CustomSortComponent implements OnInit {
 
@@ -19,10 +17,10 @@ export class CustomSortComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

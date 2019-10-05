@@ -13,7 +13,7 @@ export class NestedObjectComponent implements OnInit {
   public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = {...DefaultConfig};
     this.configuration.searchEnabled = false;
     this.configuration.checkboxes = false;
     this.data = data;

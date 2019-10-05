@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-persist-state',
@@ -9,8 +8,7 @@ import { Columns } from 'ngx-easy-table';
   styleUrls: ['./persist-state.component.css'],
 })
 export class PersistStateComponent {
-
-  configuration;
+  public configuration: Config;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -22,7 +20,8 @@ export class PersistStateComponent {
   data: Company[] = [];
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.persistState = true;
     this.data = data;
   }
 }

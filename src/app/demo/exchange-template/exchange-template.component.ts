@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-exchange-template',
   templateUrl: './exchange-template.component.html',
   styleUrls: ['./exchange-template.component.css'],
-  providers: [ConfigService],
 })
 export class ExchangeTemplateComponent implements OnInit {
 
@@ -19,10 +17,10 @@ export class ExchangeTemplateComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

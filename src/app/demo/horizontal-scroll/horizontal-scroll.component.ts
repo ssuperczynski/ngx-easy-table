@@ -1,17 +1,15 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { phone, company, random, name } from 'faker';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-horizontal-scroll',
   templateUrl: './horizontal-scroll.component.html',
   styleUrls: ['./horizontal-scroll.component.css'],
-  providers: [ConfigService],
 })
 export class HorizontalScrollComponent implements OnInit {
   data;
-  configuration;
+  public configuration: Config;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -31,7 +29,7 @@ export class HorizontalScrollComponent implements OnInit {
   ];
 
   constructor(private zone: NgZone) {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
   }
 
   private static generateData(): any[] {

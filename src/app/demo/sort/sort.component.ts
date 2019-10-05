@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-sort',
   templateUrl: './sort.component.html',
-  providers: [ConfigService],
   styles: [],
 })
 export class SortComponent {
-
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age', orderBy: 'desc' },
@@ -19,10 +16,12 @@ export class SortComponent {
     { key: 'isActive', title: 'STATUS' },
   ];
   data: Company[] = [];
-  configuration;
+  configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.orderEnabled = true;
+    this.configuration.threeWaySort = true;
     this.data = data;
   }
 }
