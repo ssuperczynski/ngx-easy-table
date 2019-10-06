@@ -59,7 +59,9 @@ import {
   LoadingTemplateComponent,
   AdditionalActionsTemplateComponent,
   NestedObjectComponent,
-  CustomPaginationComponent, FilterHeaderTemplateComponent,
+  CustomPaginationComponent,
+  FilterHeaderTemplateComponent,
+  ReorderComponent,
 } from './demo';
 
 export const routes = [
@@ -123,6 +125,7 @@ export const routes = [
   { path: 'additional-actions-template', component: AdditionalActionsTemplateComponent },
   { path: 'nested-object', component: NestedObjectComponent },
   { path: 'custom-pagination', component: CustomPaginationComponent },
+  { path: 'reorder', component: ReorderComponent },
   { path: '**', component: BasicComponent },
 ];
 

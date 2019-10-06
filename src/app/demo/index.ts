@@ -10,7 +10,6 @@ export * from './select-col/select-col.component';
 export * from './select-cell/select-cell.component';
 export * from './modal/modal.component';
 export * from './live-update/live-update.component';
-export * from './exchange-template/exchange-template.component';
 export * from './server-pagination/server-pagination.component';
 export * from './server-sort/server-sort.component';
 export * from './row-template/row-template.component';
@@ -58,3 +57,4 @@ export * from './additional-actions-template/additional-actions-template.compone
 export * from './nested-object/nested-object.component';
 export * from './custom-pagination/custom-pagination.component';
 export * from './filter-header-template/filter-header-template.component';
+export * from './reorder/reorder.component';

@@ -12,9 +12,9 @@
 			</div>
 		</td>
 		<td>
-			<div class="d-inline circle" [style.color]="row.balance < 1000 ? 'red': 'green'"></div> {{row.balance}}
+			<div class="d-inline circle" [style.color]="row.balance < 2000 ? 'red': 'green'"></div> {{row.balance}}
 		</td>
-		<td [style.backgroundColor]="row.limit <= 1000 ? '#FFB6C1': '' ">
+		<td [style.backgroundColor]="row.limit <= 2000 ? '#FFB6C1': '' ">
 			<span class="font-small">{{row.limit}}</span>
 		</td>
 	</ng-template>

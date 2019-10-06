@@ -42,12 +42,12 @@ export class LiveUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    interval(800)
+    interval(500)
       .pipe(
         map(() => {
-          this.data[LiveUpdateComponent.random(0, 7)].limit = LiveUpdateComponent.random(500, 4000);
+          this.data[LiveUpdateComponent.random(0, 7)].limit = LiveUpdateComponent.random(500, 3000);
           this.data[LiveUpdateComponent.random(0, 7)].balance = LiveUpdateComponent.random(900, 1100);
-          this.data[LiveUpdateComponent.random(0, 7)].amount = LiveUpdateComponent.random(100, 9100);
+          this.data[LiveUpdateComponent.random(0, 7)].amount = LiveUpdateComponent.random(100, 7100);
         }),
       )
       .subscribe();

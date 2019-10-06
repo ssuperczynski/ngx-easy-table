@@ -1,7 +1,6 @@
 <div class="ngx-container">
   <table [id]="id"
          [ngClass]="(tableClass === null || tableClass === '') ? 'ngx-table' : tableClass"
-         [class.ngx-table__table--material]="tableClass === 'material'"
          [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
          [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
          [class.ngx-table__table--big]="config.tableLayout.style === 'big'"
@@ -36,10 +35,10 @@
         </ng-container>
       </ul>
       <ng-container *ngFor="let row of data |
-      sort:sortBy |
-      search:term:filteredCountSubject |
-      global:globalSearchTerm:filteredCountSubject |
-      paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+              sort:sortBy |
+              search:term:filteredCountSubject |
+              global:globalSearchTerm:filteredCountSubject |
+              paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index">
         <tr
           (click)="onClick($event, row, '', null, rowIndex)"
@@ -180,7 +179,10 @@
       </ng-container>
     </ng-container>
     </tbody>
-    <tbody *ngIf="data && !config.isLoading && config.draggable" cdkDropList (cdkDropListDropped)="onDrop($event)">
+    <tbody *ngIf="data && !config.isLoading && config.draggable"
+           class="ngx-draggable-row-area"
+           cdkDropList
+           (cdkDropListDropped)="onDrop($event)">
     <ng-container *ngIf="!rowTemplate && !config.groupRows">
       <ng-container
         *ngFor="let row of data |
@@ -189,7 +191,7 @@
         global:globalSearchTerm:filteredCountSubject |
         paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
-        <tr class="ngx-draggable-row" cdkDrag>
+        <tr class="ngx-draggable-row" cdkDrag cdkDragLockAxis="y">
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"

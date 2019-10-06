@@ -1,14 +1,14 @@
-import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, DefaultConfig } from '../../../../projects/ngx-easy-table/src/lib';
-import { API, APIDefinition, Config } from 'ngx-easy-table';
+import { APIDefinition, Config } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-filter-template',
   templateUrl: './filter-header-template.component.html',
   styleUrls: ['./filter-header-template.component.css'],
 })
-export class FilterHeaderTemplateComponent implements OnInit, AfterViewInit {
+export class FilterHeaderTemplateComponent implements OnInit {
 
   @ViewChild('levelHeaderActionTemplate', { static: true }) levelHeaderActionTemplate: TemplateRef<any>;
   @ViewChild('companyHeaderActionTemplate', { static: true }) companyHeaderActionTemplate: TemplateRef<any>;
@@ -34,13 +34,6 @@ export class FilterHeaderTemplateComponent implements OnInit, AfterViewInit {
     ];
     this.data = data;
     this.dataCopy = data;
-  }
-
-  ngAfterViewInit(): void {
-    this.table.apiEvent({
-      type: API.setTableClass,
-      value: 'material',
-    });
   }
 
   filter(field: string, value: string): void {

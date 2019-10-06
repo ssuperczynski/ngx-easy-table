@@ -8,23 +8,21 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./collapsed-rows.component.css'],
 })
 export class CollapsedRowsComponent implements OnInit {
-  toggled = true;
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-  ];
-  data: Company[] = [];
+  public toggled = true;
+  public columns: Columns[];
+  public data: Company[] = [];
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
+    this.columns = [
+      { key: 'phone', title: 'Phone' },
+      { key: 'age', title: 'Age' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'isActive', title: 'STATUS' },
+    ];
     this.configuration = { ...DefaultConfig };
     this.data = data;
-  }
-
-  ngOnInit(): void {
   }
 
   toggleRows(): void {

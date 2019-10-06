@@ -28,7 +28,6 @@ import {
   CustomSortComponent,
   DynamicConfigurationComponent,
   DynamicRowComponent,
-  ExchangeTemplateComponent,
   ExportsComponent,
   FilterTemplateComponent,
   FixedWidthComponent,
@@ -72,7 +71,9 @@ import {
   LoadingTemplateComponent,
   AdditionalActionsTemplateComponent,
   NestedObjectComponent,
-  CustomPaginationComponent, FilterHeaderTemplateComponent,
+  CustomPaginationComponent,
+  FilterHeaderTemplateComponent,
+  ReorderComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -110,7 +111,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     SelectCellComponent,
     ModalComponent,
     LiveUpdateComponent,
-    ExchangeTemplateComponent,
     ServerPaginationComponent,
     RowTemplateComponent,
     ServerSortComponent,
@@ -158,6 +158,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NestedObjectComponent,
     CustomPaginationComponent,
     FilterHeaderTemplateComponent,
+    ReorderComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

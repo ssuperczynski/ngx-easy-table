@@ -9,8 +9,6 @@ context('Bootstrap', () => {
     cy
       .get('#buttonSetBootstrap').click()
       .get('#table').should('have.class', 'table table-bordered table-striped table-sm')
-      .get('#buttonSetMaterial').click()
-      .get('#table').should('have.class', 'ngx-table__table--material')
       .get('#buttonSetSpectre').click()
       .get('#table').should('have.class', 'ngx-table')
       .get('#buttonSetBootstrapRow').click()

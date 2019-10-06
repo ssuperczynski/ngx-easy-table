@@ -9,10 +9,37 @@ import {
 } from '@angular/core';
 import { Columns, Config, Event } from '../..';
 import { StyleService } from '../../services/style.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: '[table-thead]',
   templateUrl: './thead.component.html',
+  styles: [`
+    .ngx-table__header-cell--draggable {
+      cursor: move;
+      background-color: white;
+    }
+
+    .cdk-drag-preview {
+      text-align: left;
+      padding-top: 9px;
+      padding-left: 4px;
+      color: #50596c;
+      border: 1px solid #e7e9ed;
+    }
+
+    .cdk-drag-placeholder {
+      opacity: 0;
+    }
+
+    .cdk-drag-animating {
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    .ngx-table__header--draggable.cdk-drop-list-dragging .ngx-table__header-cell--draggable:not(.cdk-drag-placeholder) {
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
+    }
+  `],
   providers: [StyleService],
 })
 export class TableTHeadComponent {
@@ -58,6 +85,10 @@ export class TableTHeadComponent {
   isOrderEnabled(column: Columns): boolean {
     const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
     return this.config.orderEnabled && columnOrderEnabled;
+  }
+
+  columnDrop(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
   }
 
   onSearch($event: Array<{ key: string; value: string }>): void {

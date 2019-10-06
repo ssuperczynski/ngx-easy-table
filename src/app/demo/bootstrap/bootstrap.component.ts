@@ -34,10 +34,6 @@ export class BootstrapComponent implements OnInit {
     this.setClass('table table-bordered table-striped table-sm');
   }
 
-  setMaterial(): void {
-    this.setClass('material');
-  }
-
   setNormal(): void {
     this.setClass('');
   }

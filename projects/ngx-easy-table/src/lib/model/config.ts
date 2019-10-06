@@ -28,6 +28,8 @@ export interface Config {
   persistState?: boolean;
   paginationMaxSize?: number;
   threeWaySort?: boolean;
+  columnReorder?: boolean;
+  rowReorder?: boolean;
   tableLayout: {
     style: STYLE | string | null,
     theme: THEME | string | null,

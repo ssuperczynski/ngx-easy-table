@@ -47,6 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: 'column-class', name: 'Column Class' },
       { link: 'mobile', name: 'Mobile view' },
       { link: 'nested-object', name: 'Nested object' },
+      { link: 'reorder', name: 'Reorder' },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },

@@ -37,22 +37,10 @@ export class CustomPaginationComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.setMaterial();
-  }
-
-  setMaterial(): void {
-    this.setClass('material');
     this.paginationTotalItems = this.table.apiEvent({
       type: API.getPaginationTotalItems,
     });
     this.cdr.detectChanges();
-  }
-
-  private setClass(name: string): void {
-    this.table.apiEvent({
-      type: API.setTableClass,
-      value: name,
-    });
   }
 
   paginationEvent($event: PageEvent): void {

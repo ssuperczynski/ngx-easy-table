@@ -22,6 +22,7 @@ export class SelectAllTemplateComponent {
 
   constructor() {
     this.configuration = { ...DefaultConfig };
+    this.configuration.checkboxes = true;
     this.data = data.splice(1, 5);
   }
 
