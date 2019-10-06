@@ -45,7 +45,7 @@
           #contextMenu
           (contextmenu)="onRowContextMenu($event, row, '', null, rowIndex)"
           (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
-          [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+          [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
           <ng-container
             [ngTemplateOutlet]="rowTemplate"
             [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
@@ -85,7 +85,7 @@
         global:globalSearchTerm:filteredCountSubject |
         paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
-        <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+        <tr [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
@@ -103,8 +103,8 @@
                 [class.pinned-left]="column.pinned"
                 [ngClass]="column.cssClass ? column.cssClass.name : ''"
                 [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
-                [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-                [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+                [class.ngx-table__table-col--selected]="colIndex === selectedCol && !config.selectCell"
+                [class.ngx-table__table-cell--selected]="colIndex === selectedCol && rowIndex === selectedRow && !config.selectCol && !config.selectRow"
             >
               <div *ngIf="!column.cellTemplate">{{ row | render:column.key }}</div>
               <ng-container
@@ -204,8 +204,8 @@
           <ng-container *ngFor="let column of columns; let colIndex = index">
             <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
                 (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
-                [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-                [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+                [class.ngx-table__table-col--selected]="colIndex === selectedCol && !config.selectCell"
+                [class.ngx-table__table-cell--selected]="colIndex === selectedCol && rowIndex === selectedRow && !config.selectCol && !config.selectRow"
             >
               <div>{{ row | render:column.key }}</div>
             </td>

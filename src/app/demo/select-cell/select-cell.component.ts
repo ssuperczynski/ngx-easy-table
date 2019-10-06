@@ -21,6 +21,7 @@ export class SelectCellComponent implements OnInit {
       { key: 'isActive', title: 'STATUS' },
     ];
     this.configuration = { ...DefaultConfig };
+    this.configuration.selectCell = true;
     this.data = data;
   }
 

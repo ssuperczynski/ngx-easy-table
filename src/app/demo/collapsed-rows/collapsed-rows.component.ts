@@ -8,7 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./collapsed-rows.component.css'],
 })
 export class CollapsedRowsComponent implements OnInit {
-  public toggled = true;
+  public toggled = false;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;

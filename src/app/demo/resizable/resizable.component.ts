@@ -20,6 +20,8 @@ export class ResizableComponent {
 
   constructor() {
     this.configuration = { ...DefaultConfig };
+    this.configuration.resizeColumn = true;
+    this.configuration.fixedColumnWidth = false;
     this.data = data;
   }
 

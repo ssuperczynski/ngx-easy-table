@@ -21,6 +21,7 @@ export class SelectRowComponent implements OnInit {
       { key: 'isActive', title: 'STATUS' },
     ];
     this.configuration = { ...DefaultConfig };
+    this.configuration.selectRow = true;
     this.data = data;
   }
 

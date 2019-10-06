@@ -21,6 +21,7 @@ export class SelectColComponent implements OnInit {
       { key: 'isActive', title: 'STATUS' },
     ];
     this.configuration = { ...DefaultConfig };
+    this.configuration.selectCol = true;
     this.data = data;
   }
 

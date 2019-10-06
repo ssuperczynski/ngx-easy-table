@@ -30,6 +30,7 @@ export class HorizontalScrollComponent implements OnInit {
 
   constructor(private zone: NgZone) {
     this.configuration = { ...DefaultConfig };
+    this.configuration.horizontalScroll = true;
   }
 
   private static generateData(): any[] {
