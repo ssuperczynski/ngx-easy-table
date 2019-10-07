@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
-import { Columns, DefaultConfig } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 interface EventObject {
   event: string;
@@ -18,7 +20,7 @@ interface EventObject {
   styleUrls: ['./server-sort.component.css'],
   providers: [CompanyService],
 })
-export class ServerSortComponent implements OnInit {
+export class ServerSortComponent implements OnInit, OnDestroy {
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -26,9 +28,9 @@ export class ServerSortComponent implements OnInit {
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
   ];
-
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   public data;
-  public configuration;
+  public configuration: Config;
   public pagination = {
     limit: 10,
     offset: 0,
@@ -38,18 +40,24 @@ export class ServerSortComponent implements OnInit {
   constructor(private readonly companyService: CompanyService) {
   }
 
-  ngOnInit() {
-    this.configuration = DefaultConfig;
+  ngOnInit(): void {
+    this.configuration = {...DefaultConfig};
+    this.configuration.serverPagination = true;
     this.getData('');
   }
 
-  eventEmitted(event) {
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  eventEmitted(event: { event: string, value: any }): void {
     if (event.event !== 'onClick') {
       this.parseEvent(event);
     }
   }
 
-  private parseEvent(obj: EventObject) {
+  private parseEvent(obj: EventObject): void {
     this.pagination.limit = obj.value.limit ? obj.value.limit : this.pagination.limit;
     this.pagination.offset = obj.value.page ? obj.value.page : this.pagination.offset;
     this.pagination = { ...this.pagination };
@@ -60,8 +68,9 @@ export class ServerSortComponent implements OnInit {
     this.getData(params);
   }
 
-  private getData(params: string) {
+  private getData(params: string): void {
     this.companyService.getCompanies(params)
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((response: Company[]) => {
           this.data = response;
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one

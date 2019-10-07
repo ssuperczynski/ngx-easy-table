@@ -19,7 +19,7 @@ export class LoadingTemplateComponent implements OnInit {
   public data: Company[] = [];
   public configuration: Config;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.isLoading = true;
     this.data = data;

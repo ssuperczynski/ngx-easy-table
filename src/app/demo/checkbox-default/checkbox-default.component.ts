@@ -1,31 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-checkbox-default',
   templateUrl: './checkbox-default.component.html',
   styleUrls: ['./checkbox-default.component.css'],
 })
-export class CheckboxDefaultComponent {
-  configuration;
-  public columns: Columns[] = [
-    { key: 'name', title: 'Name' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'phone', title: 'Phone' },
-  ];
+export class CheckboxDefaultComponent implements OnInit {
+  public configuration: Config;
+  public columns: Columns[];
+  public data: Company[] = [];
+  public selected = new Set();
 
-  data: Company[] = [];
-  selected = new Set();
-
-  constructor() {
-    this.configuration = ConfigService.config;
+  ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
+    this.configuration.checkboxes = true;
+    this.columns = [
+      { key: 'name', title: 'Name' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'phone', title: 'Phone' },
+    ];
     this.data = data;
   }
 
-  eventEmitted($event) {
+  eventEmitted($event: { event: string, value: any }): void {
     switch ($event.event) {
       case 'onCheckboxSelect':
         if (this.selected.has($event.value.rowId)) {

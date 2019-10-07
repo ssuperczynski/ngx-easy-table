@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-select-all-template',
   templateUrl: './select-all-template.component.html',
   styleUrls: ['./select-all-template.component.css'],
-  providers: [ConfigService],
 })
 export class SelectAllTemplateComponent {
 
@@ -20,20 +18,21 @@ export class SelectAllTemplateComponent {
   ];
   data: any[] = [];
   allSelected = false;
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.checkboxes = true;
     this.data = data.splice(1, 5);
   }
 
-  tableEventEmitted(event: any) {
+  tableEventEmitted(event: { event: string, value: any }): void {
     if (event.event === 'onSelectAll') {
       this.data.forEach((row: any) => row.selected = event.value);
     }
   }
 
-  rowSelected() {
+  rowSelected(): void {
     this.allSelected = this.data.every((row) => !!row.selected);
   }
 

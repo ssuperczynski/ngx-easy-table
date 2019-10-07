@@ -1,0 +1,17 @@
+.position {
+  cursor: pointer;
+  font-weight: lighter;
+}
+
+.position:hover {
+  background-color: #e6e6e6;
+}
+
+.level-template {
+  width: 110px;
+  padding: 1px 7px;
+}
+.search-template {
+  width: 130px;
+  padding: 7px 7px;
+}

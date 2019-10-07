@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./installation.component.css'],
 })
 export class InstallationComponent {
+  public readonly npmInstallCode = `
+npm install ngx-easy-table --save
+npm install @angular/cdk --save
+`;
   public readonly appModuleCode = `
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -35,24 +39,16 @@ export class AppModule {
 `;
   public readonly appComponentTsCode = `
 import { Component } from '@angular/core';
-import { ConfigurationService } from './configuration.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ],
-  providers: [ConfigurationService],
 })
 export class AppComponent  {
   public configuration: Config;
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-  ];
+  public columns: Columns[];
 
   public data = [{
     phone: '+1 (934) 551-2224',
@@ -70,69 +66,18 @@ export class AppComponent  {
     isActive: true,
   }];
 
-  // version 9.1 and below
-  ngOnInit() {
-    this.configuration = ConfigurationService.config;
-    this.data = data;
-  }
-
-  // since version 9.2 you can skip injecting ConfigService
-  // instead just do like below (you can still use previous version)
-  // this one is just shorter, produces less code and is easier, especially when you have many tables in the project
-  ngOnInit() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.orderEnabled = false;
     // ... etc.
-    this.data = data;
+    this.columns = [
+      { key: 'phone', title: 'Phone' },
+      { key: 'age', title: 'Age' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'isActive', title: 'STATUS' },
+    ];
   }
-}
-`;
-
-  public readonly appComponentServiceCode = `
-import { Injectable } from '@angular/core';
-import { Config } from 'ngx-easy-table';
-
-@Injectable()
-export class ConfigurationService {
-  public static config: Config = {
-    searchEnabled: true,
-    headerEnabled: true,
-    orderEnabled: true,
-    orderEventOnly: false,
-    globalSearchEnabled: true,
-    paginationEnabled: true,
-    exportEnabled: false,
-    clickEvent: false,
-    selectRow: false,
-    selectCol: false,
-    selectCell: false,
-    rows: 10,
-    additionalActions: false,
-    serverPagination: false,
-    isLoading: false,
-    detailsTemplate: false,
-    groupRows: false,
-    paginationRangeEnabled: true,
-    collapseAllRows: false,
-    checkboxes: false,
-    resizeColumn: true,
-    fixedColumnWidth: false,
-    horizontalScroll: false,
-    draggable: false,
-    logger: false,
-    showDetailsArrow: false,
-    showContextMenu: false,
-    persistState: false,
-    paginationMaxSize: 5,
-    threeWaySort: false,
-    tableLayout: {
-      style: STYLE.NORMAL, // or STYLE.BIG or STYLE.TINY
-      theme: THEME.LIGHT, // or THEME.DARK
-      borderless: true,
-      hover: true,
-      striped: false,
-    }
-  };
 }
 `;
 

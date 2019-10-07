@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { columns, Company, data } from '../../../assets/data';
-import { Columns } from 'ngx-easy-table';
-import { ConfigService } from './configuration.service';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-dynamic-configuration',
@@ -22,10 +21,10 @@ export class DynamicConfigurationComponent {
     fixedColumnWidth: false,
     logger: false,
   };
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
     this.columns = columns;
   }

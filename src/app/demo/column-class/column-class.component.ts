@@ -13,7 +13,7 @@ export class ColumnClassComponent implements OnInit {
   public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = {...DefaultConfig};
     this.configuration.searchEnabled = true;
     this.data = data;
     this.columns = [

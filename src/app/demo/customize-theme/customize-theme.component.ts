@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { columns, Company, data } from '../../../assets/data';
-import { Columns } from 'ngx-easy-table';
-import { ConfigService } from './configuration.service';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-customize-theme',
@@ -11,10 +10,10 @@ import { ConfigService } from './configuration.service';
 export class CustomizeThemeComponent {
   columns: Columns[] = [];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
     this.columns = columns;
   }
@@ -39,7 +38,7 @@ export class CustomizeThemeComponent {
     this.configuration = { ...this.configuration };
   }
 
-  setTheme(theme: string) {
+  setTheme(theme: string): void {
     this.configuration.tableLayout.theme = theme;
     this.configuration = { ...this.configuration };
   }

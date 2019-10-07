@@ -62,7 +62,7 @@
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
-    "no-empty": false,
+    "no-empty": true,
     "no-empty-interface": true,
     "no-eval": true,
     "no-inferrable-types": [
@@ -112,6 +112,7 @@
         "variable-declaration": "nospace"
       }
     ],
+    "typedef": [true, "parameter", "call-signature", "property-declaration"],
     "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
@@ -177,6 +178,7 @@
     "increment-decrement": true,
     "unnecessary-constructor": true,
     "no-alphabetical-sort": false,
-    "unnecessary-bind": true
+    "unnecessary-bind": true,
+    "max-union-size": false
   }
 }

@@ -1,19 +1,17 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { API, Columns, APIDefinition } from 'ngx-easy-table';
+import { API, Columns, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-api',
   templateUrl: './api.component.html',
   styleUrls: ['./api.component.css'],
-  providers: [ConfigService],
 })
 export class ApiComponent implements OnInit, AfterViewInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
   public total;
   public current;
   public itemsPerPage;
@@ -28,7 +26,8 @@ export class ApiComponent implements OnInit, AfterViewInit {
   };
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.searchEnabled = true;
     this.columns = [
       { key: 'phone', title: 'Phone', width: '15%' },
       { key: 'age', title: 'Age', width: '10%' },
@@ -50,7 +49,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     this.configuration = { ...this.configuration };
   }
 
-  resetSearchInput() {
+  resetSearchInput(): void {
     this.table.apiEvent({
       type: API.setInputValue,
       value: [
@@ -61,7 +60,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setPhone() {
+  setPhone(): void {
     this.table.apiEvent({
       type: API.setInputValue,
       value: [
@@ -71,7 +70,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   }
 
   // tslint:disable-next-line:no-identical-functions
-  setAge() {
+  setAge(): void {
     this.table.apiEvent({
       type: API.setInputValue,
       value: [
@@ -80,32 +79,32 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setPagination(page: number) {
+  setPagination(page: number): void {
     this.table.apiEvent({
       type: API.setPaginationCurrentPage,
       value: page,
     });
   }
 
-  getPaginationCurrent() {
+  getPaginationCurrent(): void {
     this.current = this.table.apiEvent({
       type: API.getPaginationCurrentPage,
     });
   }
 
-  getTotal() {
+  getTotal(): void {
     this.total = this.table.apiEvent({
       type: API.getPaginationTotalItems,
     });
   }
 
-  getLastPage() {
+  getLastPage(): void {
     this.last = this.table.apiEvent({
       type: API.getPaginationLastPage,
     });
   }
 
-  getNumberOfRowsPerPage() {
+  getNumberOfRowsPerPage(): void {
     this.itemsPerPage = this.table.apiEvent({
       type: API.getNumberOfRowsPerPage,
     });
@@ -189,7 +188,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setPaginationDisplayLimit(limit: number) {
+  setPaginationDisplayLimit(limit: number): void {
     this.table.apiEvent({
       type: API.setPaginationDisplayLimit,
       value: limit,

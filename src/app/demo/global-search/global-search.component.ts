@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns, API, APIDefinition } from 'ngx-easy-table';
+import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-global-search',
   templateUrl: './global-search.component.html',
-  providers: [ConfigService],
   styles: [],
 })
 export class GlobalSearchComponent implements OnInit {
@@ -19,10 +17,10 @@ export class GlobalSearchComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 

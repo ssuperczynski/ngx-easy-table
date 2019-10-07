@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { phone, random, company, name } from 'faker';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-pagination-range',
@@ -10,7 +9,7 @@ import { Columns } from 'ngx-easy-table';
 })
 export class PaginationRangeComponent {
 
-  configuration;
+  public configuration: Config;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -22,11 +21,18 @@ export class PaginationRangeComponent {
   data = [];
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.paginationMaxSize = 7;
     this.data = PaginationRangeComponent.generateData();
   }
 
-  private static generateData() {
+  private static generateData(): Array<{
+    phone: string,
+    age: string,
+    company: string,
+    name: string,
+    isActive: boolean,
+  }> {
     return Array(170).fill('').map(() => {
       return {
         phone: phone.phoneNumberFormat(),

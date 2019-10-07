@@ -1,6 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
-import { API, APIDefinition, Columns, DefaultConfig } from 'ngx-easy-table';
+import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 interface EventObject {
   event: string;
@@ -16,7 +18,7 @@ interface EventObject {
   styleUrls: ['./server-pagination.component.css'],
   providers: [CompanyService],
 })
-export class ServerPaginationComponent implements OnInit {
+export class ServerPaginationComponent implements OnInit, OnDestroy {
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
@@ -26,31 +28,36 @@ export class ServerPaginationComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
   public data;
-  public configuration;
+  public configuration: Config;
   public pagination = {
     limit: 10,
     offset: 0,
     count: -1,
   };
-
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   constructor(
     private readonly companyService: CompanyService,
     private readonly cdr: ChangeDetectorRef,
   ) {
   }
 
-  ngOnInit() {
-    this.configuration = DefaultConfig;
+  ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
     this.getData('');
   }
 
-  eventEmitted($event) {
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  eventEmitted($event: { event: string, value: any }): void {
     if ($event.event !== 'onClick') {
       this.parseEvent($event);
     }
   }
 
-  private parseEvent(obj: EventObject) {
+  private parseEvent(obj: EventObject): void {
     this.pagination.limit = obj.value.limit ? obj.value.limit : this.pagination.limit;
     this.pagination.offset = obj.value.page ? obj.value.page : this.pagination.offset;
     this.pagination = { ...this.pagination };
@@ -61,6 +68,7 @@ export class ServerPaginationComponent implements OnInit {
   private getData(params: string): void {
     this.configuration.isLoading = true;
     this.companyService.getCompanies(params)
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((response: Company[]) => {
           this.data = response;
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one

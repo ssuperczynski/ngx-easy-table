@@ -7,7 +7,7 @@ import { routing } from './routes';
 import { HighlightModule } from 'ngx-highlightjs';
 import typescript from 'highlight.js/lib/languages/typescript';
 
-export function hljsLanguages() {
+export function hljsLanguages(): Array<{name: string, func: any}> {
   return [
     { name: 'typescript', func: typescript },
   ];
@@ -28,7 +28,6 @@ import {
   CustomSortComponent,
   DynamicConfigurationComponent,
   DynamicRowComponent,
-  ExchangeTemplateComponent,
   ExportsComponent,
   FilterTemplateComponent,
   FixedWidthComponent,
@@ -71,9 +70,15 @@ import {
   MobileComponent,
   LoadingTemplateComponent,
   AdditionalActionsTemplateComponent,
+  NestedObjectComponent,
+  CustomPaginationComponent,
+  FilterHeaderTemplateComponent,
+  ReorderComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -85,6 +90,8 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     HighlightModule.forRoot({
       languages: hljsLanguages,
     }),
+    NoopAnimationsModule,
+    MatPaginatorModule,
   ],
   declarations: [
     // pipes
@@ -104,7 +111,6 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     SelectCellComponent,
     ModalComponent,
     LiveUpdateComponent,
-    ExchangeTemplateComponent,
     ServerPaginationComponent,
     RowTemplateComponent,
     ServerSortComponent,
@@ -149,6 +155,10 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
     MobileComponent,
     LoadingTemplateComponent,
     AdditionalActionsTemplateComponent,
+    NestedObjectComponent,
+    CustomPaginationComponent,
+    FilterHeaderTemplateComponent,
+    ReorderComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

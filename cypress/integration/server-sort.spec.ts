@@ -93,10 +93,10 @@ context('Server sort', () => {
     });
     it('gets correct company name', () => {
       cy
-        .get('#table > thead > tr.ngx-table__header > th:nth-child(3)').click()
+        .get('#table > thead > tr > th:nth-child(3) > div').click()
         .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (934) 551-2224')
         .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ZILLANET')
-        .get('#table > thead > tr.ngx-table__header > th:nth-child(3)').click()
+        .get('#table > thead > tr > th:nth-child(3) > div').click()
         .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (873) 421-3625')
         .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ARCHITAX')
       ;
