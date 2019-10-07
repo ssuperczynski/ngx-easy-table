@@ -15,11 +15,6 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   selector: '[table-thead]',
   templateUrl: './thead.component.html',
   styles: [`
-    .ngx-table__header-cell--draggable {
-      cursor: move;
-      background-color: white;
-    }
-
     .cdk-drag-preview {
       text-align: left;
       padding-top: 9px;
@@ -27,24 +22,12 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
       color: #50596c;
       border: 1px solid #e7e9ed;
     }
-
-    .cdk-drag-placeholder {
-      opacity: 0;
-    }
-
-    .cdk-drag-animating {
-      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
-    }
-
-    .ngx-table__header--draggable.cdk-drop-list-dragging .ngx-table__header-cell--draggable:not(.cdk-drag-placeholder) {
-      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
-    }
   `],
   providers: [StyleService],
 })
 export class TableTHeadComponent {
   public menuActive = false;
-  public openedHeaderActionTemplate = null;
+  public openedHeaderActionTemplate: string | null = null;
   public startOffset;
   public onSelectAllBinded = this.onSelectAll.bind(this);
 

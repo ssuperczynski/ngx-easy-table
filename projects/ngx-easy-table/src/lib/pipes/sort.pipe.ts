@@ -43,20 +43,20 @@ export class SortPipe implements PipeTransform {
       return this.defaultArray;
     }
     if (filter.order === 'asc') {
-      return this.sortAsc(config, array, filter);
+      return this.sortAsc(array, filter, config);
     } else {
-      return this.sortDesc(config, array, filter);
+      return this.sortDesc(array, filter, config);
     }
   }
 
-  private sortAsc(config: Config, array: any[], filter: { order: string, key: string }): any[] {
+  private sortAsc(array: any[], filter: { order: string, key: string }, config?: Config): any[] {
     if (config && config.groupRows) {
       return array.map((arr) => arr.sort((a, b) => SortPipe.compare(a, b, filter.key)));
     }
     return array.sort((a, b) => SortPipe.compare(a, b, filter.key));
   }
 
-  private sortDesc(config: Config, array: any[], filter: { order: string, key: string }): any[] {
+  private sortDesc(array: any[], filter: { order: string, key: string }, config?: Config): any[] {
     if (config && config.groupRows) {
       return array.map((arr) => arr.sort((a, b) => SortPipe.compare(b, a, filter.key)));
     }

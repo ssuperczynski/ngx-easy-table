@@ -5,5 +5,5 @@ export interface TableMouseEvent {
   row: object;
   key: ColumnKeyType;
   rowId: number | null;
-  colId: number;
+  colId: number | null;
 }

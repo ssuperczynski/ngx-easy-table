@@ -45,14 +45,14 @@ export class BaseComponent implements OnInit, OnChanges {
   public filterCount = -1;
   public filteredCountSubject = new Subject<number>();
   public subscription: Subscription;
-  public tableClass = null;
+  public tableClass: string | null = null;
   public globalSearchTerm: string;
   public grouped: any = [];
   public isSelected = false;
   public page = 1;
-  public count = null;
+  public count: null | number = null;
   public sortState = new Map();
-  public sortKey = null;
+  public sortKey: string | null = null;
   public rowContextMenuPosition: RowContextMenuPosition = {
     top: null,
     left: null,

@@ -5,7 +5,7 @@ import { flatMap, groupBy, reduce } from 'rxjs/operators';
 @Injectable()
 export class GroupRowsService {
   public static doGroupRows<T>(data: T[], groupRowsBy: string): any[] {
-    const grouped = [];
+    const grouped: any[] = [];
     from(data).pipe(
       groupBy((row) => row[groupRowsBy]),
       flatMap((group) => group.pipe(

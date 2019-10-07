@@ -34,16 +34,9 @@
   <div class="column col-12 my-1">
     <ngx-table [data]="data"
                #table
-               [additionalActionsTemplate]="additionalActionsTemplate"
                [configuration]="configuration"
                [columns]="columns">
     </ngx-table>
   </div>
 </div>
-<ng-template #additionalActionsTemplate>
-  <ul>
-    <li class="position">CSV export</li>
-    <li class="position">Enable search</li>
-    <li class="position">Toggle Phone</li>
-  </ul>
-</ng-template>
+

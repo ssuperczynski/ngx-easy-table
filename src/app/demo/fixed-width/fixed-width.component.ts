@@ -20,6 +20,7 @@ export class FixedWidthComponent {
   public configuration: Config;
   constructor() {
     this.configuration = { ...DefaultConfig };
+    this.configuration.fixedColumnWidth = true;
     this.data = data;
   }
 

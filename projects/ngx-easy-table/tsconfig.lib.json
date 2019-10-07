@@ -10,6 +10,7 @@
     "noUnusedParameters": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
+    "strictNullChecks": false,
     "sourceMap": true,
     "inlineSources": true,
     "emitDecoratorMetadata": true,

@@ -420,6 +420,10 @@ $primary-color: #50596c !default;
   table-layout: fixed
 }
 
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
 .cdk-drag-animating {
   transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
 }
@@ -428,8 +432,13 @@ $primary-color: #50596c !default;
   transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.cdk-drag-placeholder {
-  opacity: 0;
+.ngx-table__header-cell--draggable {
+  cursor: move;
+  background-color: white;
+}
+
+.ngx-table__header--draggable.cdk-drop-list-dragging .ngx-table__header-cell--draggable:not(.cdk-drag-placeholder) {
+  transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .ngx-pagination {

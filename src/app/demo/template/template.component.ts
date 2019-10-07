@@ -26,7 +26,7 @@ export class TemplateComponent {
   constructor() {
     this.configuration = { ...DefaultConfig };
     this.configuration.detailsTemplate = true;
-    this.configuration.showDetailsArrow = true;
+    this.configuration.showDetailsArrow = false;
     this.data = data;
   }
 
