@@ -4,6 +4,7 @@ export interface Config {
   orderEnabled: boolean;
   orderEventOnly?: boolean;
   paginationEnabled: boolean;
+  /* @deprecated */
   exportEnabled?: boolean;
   clickEvent: boolean;
   selectRow: boolean;
@@ -21,6 +22,7 @@ export interface Config {
   resizeColumn: boolean;
   fixedColumnWidth: boolean;
   horizontalScroll: boolean;
+  /* @deprecated Use 'rowReorder' instead */
   draggable: boolean;
   logger: boolean;
   showDetailsArrow?: boolean;

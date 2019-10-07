@@ -11,7 +11,7 @@ export class ToggleColumnComponent implements OnInit {
   columns: Columns[] = [];
   columnsCopy: Columns[] = [];
   data: Company[] = [];
-  checked = new Set(['phone', 'age', 'company', 'name', 'isActive', '']);
+  checked = new Set(['phone', 'age', 'company', 'name', 'isActive']);
   public configuration: Config;
 
   ngOnInit(): void {
@@ -23,7 +23,6 @@ export class ToggleColumnComponent implements OnInit {
       { key: 'company', title: 'Company' },
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'Active' },
-      { key: '', title: 'X' },
     ];
     this.columns = this.columnsCopy;
   }

@@ -24,7 +24,7 @@
       (event)="emitEvent($event.event, $event.value)"
     >
     </thead>
-    <tbody *ngIf="data && !isLoading && !config.draggable">
+    <tbody *ngIf="data && !isLoading && !config.rowReorder">
     <ng-container *ngIf="rowTemplate">
       <ul class="ngx-table__table-row-context-menu"
           [ngStyle]="{'position': 'absolute', 'top': rowContextMenuPosition.top, 'left': rowContextMenuPosition.left }"
@@ -179,7 +179,7 @@
       </ng-container>
     </ng-container>
     </tbody>
-    <tbody *ngIf="data && !config.isLoading && config.draggable"
+    <tbody *ngIf="data && !config.isLoading && config.rowReorder"
            class="ngx-draggable-row-area"
            cdkDropList
            (cdkDropListDropped)="onDrop($event)">

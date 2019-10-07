@@ -2,14 +2,3 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/tables";
-
-.position {
-  cursor: pointer;
-  font-weight: lighter;
-  padding: 8px 8px 0 8px;
-  width: 100%;
-  white-space: nowrap;
-}
-.position:hover {
-  background-color: #e6e6e6;
-}
