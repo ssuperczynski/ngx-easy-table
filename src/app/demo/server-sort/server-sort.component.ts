@@ -43,6 +43,7 @@ export class ServerSortComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.configuration = {...DefaultConfig};
     this.configuration.serverPagination = true;
+    this.configuration.threeWaySort = true;
     this.getData('');
   }
 
