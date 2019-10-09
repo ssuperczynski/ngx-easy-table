@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { cellClass, cellStyle, rowClass, rowStyle } from '..';
+import { CellClass, CellStyle, RowClass, RowStyle } from '..';
 
 /* tslint:disable:no-useless-cast */
 @Injectable()
 export class StyleService {
-  public setRowClass(val: rowClass): void {
+  public setRowClass(val: RowClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
     const row = document.querySelector(selector) as HTMLTableRowElement;
     if (row) {
@@ -12,7 +12,7 @@ export class StyleService {
     }
   }
 
-  public setCellClass(val: cellClass): void {
+  public setCellClass(val: CellClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
     const cell = document.querySelector(selector) as HTMLTableCellElement;
     if (cell) {
@@ -20,7 +20,7 @@ export class StyleService {
     }
   }
 
-  public setRowStyle(val: rowStyle): void {
+  public setRowStyle(val: RowStyle): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
     const row = document.querySelector(selector) as HTMLTableRowElement;
     if (row) {
@@ -29,7 +29,7 @@ export class StyleService {
     }
   }
 
-  public setCellStyle(val: cellStyle): void {
+  public setCellStyle(val: CellStyle): void {
     const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
     const cell = document.querySelector(selector) as HTMLTableCellElement;
     if (cell) {
