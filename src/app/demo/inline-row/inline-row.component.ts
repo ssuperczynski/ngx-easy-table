@@ -45,12 +45,11 @@ export class InlineRowComponent implements OnInit {
   update(): void {
     this.data = [...this.data.map((obj, index) => {
       if (index === this.editRow) {
-        return Object.assign({}, {
+        return {
           phone: this.phone.nativeElement.value,
           age: this.age.nativeElement.value,
           company: this.company.nativeElement.value,
-          name: this.name.nativeElement.value,
-        });
+          name: this.name.nativeElement.value};
       }
       return obj;
     })];

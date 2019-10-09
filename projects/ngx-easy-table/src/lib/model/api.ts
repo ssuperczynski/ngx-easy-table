@@ -21,10 +21,10 @@ export enum API {
   sortBy = 'sortBy',
 }
 
-export type rowClass = { row: number, className: string };
-export type cellClass = { row: number, cell: number | string, className: string };
-export type rowStyle = { row: number, attr: string, value: string };
-export type cellStyle = { row: number, cell: number, attr: string, value: string };
+export interface RowClass { row: number; className: string; }
+export interface CellClass { row: number; cell: number | string; className: string; }
+export interface RowStyle { row: number; attr: string; value: string; }
+export interface CellStyle { row: number; cell: number; attr: string; value: string; }
 
 export type ApiType =
   { type: API.rowContextMenuClicked; }
@@ -42,10 +42,10 @@ export type ApiType =
   | { type: API.setPaginationNextLabel; value: string; }
   | { type: API.setPaginationDisplayLimit; value: number; }
   | { type: API.setTableClass; value: string | null; }
-  | { type: API.setRowClass; value: rowClass | rowClass[] }
-  | { type: API.setCellClass; value: cellClass | cellClass[] }
-  | { type: API.setRowStyle; value: rowStyle | rowStyle[] }
-  | { type: API.setCellStyle; value: cellStyle | cellStyle[] }
+  | { type: API.setRowClass; value: RowClass | RowClass[] }
+  | { type: API.setCellClass; value: CellClass | CellClass[] }
+  | { type: API.setRowStyle; value: RowStyle | RowStyle[] }
+  | { type: API.setCellStyle; value: CellStyle | CellStyle[] }
   | { type: API.sortBy; value: { column: string, order: 'asc' | 'desc' } }
   ;
 
