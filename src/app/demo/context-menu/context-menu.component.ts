@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
-import { API, APIDefinition, Config, DefaultConfig, TableMouseEvent } from 'ngx-easy-table';
+import { API, APIDefinition, Config, DefaultConfig } from 'ngx-easy-table';
 import { Columns } from 'ngx-easy-table';
 
 @Component({
@@ -31,7 +31,7 @@ export class ContextMenuComponent implements OnInit {
     this.data = data;
   }
 
-  copyCell(object: TableMouseEvent): void {
+  copyCell(object: any): void {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
@@ -46,7 +46,7 @@ export class ContextMenuComponent implements OnInit {
     this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
-  editCell(object: TableMouseEvent): void {
+  editCell(object: any): void {
     this.edit = object.rowId;
     this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
