@@ -35,7 +35,7 @@
     "@angular/material": "^8.2.2",
     "export-to-csv": "^0.2.1",
     "highlight.js": "^9.15.8",
-    "ngx-easy-table": "^11.1.1",
+    "ngx-easy-table": "^11.1.2",
     "ngx-highlightjs": "^3.0.3",
     "spectre.css": "^0.5.8",
     "typeface-montserrat": "0.0.75",
