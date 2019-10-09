@@ -168,8 +168,9 @@ export class BaseComponent implements OnInit, OnChanges {
     }
     if (!this.config.serverPagination) {
       this.data = [...this.data];
+      this.sortBy = { ...this.sortBy };
     }
-    this.sortBy = { ...this.sortBy };
+
     const value = {
       key: this.sortKey,
       order: this.sortState.get(this.sortKey),

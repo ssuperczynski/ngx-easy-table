@@ -24,7 +24,6 @@
         <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
           <em class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></em>
           <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
-            <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
             <em *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
                class="ngx-icon ngx-icon-arrow-up">
             </em>
@@ -100,7 +99,6 @@
         <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
           <em class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></em>
           <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
-            <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
             <em *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
                 class="ngx-icon ngx-icon-arrow-up">
             </em>
