@@ -74,7 +74,7 @@ import {
   CustomPaginationComponent,
   FilterHeaderTemplateComponent,
   ReorderComponent,
-  InfiniteScrollComponent, InfiniteScrollServerComponent,
+  InfiniteScrollComponent, InfiniteScrollServerComponent, InfiniteScrollServerTemplateComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -162,6 +162,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ReorderComponent,
     InfiniteScrollComponent,
     InfiniteScrollServerComponent,
+    InfiniteScrollServerTemplateComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],
