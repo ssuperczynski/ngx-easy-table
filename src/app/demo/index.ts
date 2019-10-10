@@ -60,3 +60,4 @@ export * from './filter-header-template/filter-header-template.component';
 export * from './reorder/reorder.component';
 export * from './infinite-scroll/infinite-scroll.component';
 export * from './infinite-scroll-server/infinite-scroll-server.component';
+export * from './infinite-scroll-server-template/infinite-scroll-server-template.component';

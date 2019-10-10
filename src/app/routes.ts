@@ -61,7 +61,7 @@ import {
   NestedObjectComponent,
   CustomPaginationComponent,
   FilterHeaderTemplateComponent,
-  ReorderComponent, InfiniteScrollComponent, InfiniteScrollServerComponent,
+  ReorderComponent, InfiniteScrollComponent, InfiniteScrollServerComponent, InfiniteScrollServerTemplateComponent,
 } from './demo';
 import { ROUTE } from './route-names';
 
@@ -129,6 +129,7 @@ export const routes = [
   { path: ROUTE.REORDER, component: ReorderComponent },
   { path: ROUTE.INFINITE_SCROLL, component: InfiniteScrollComponent },
   { path: ROUTE.INFINITE_SCROLL_SERVER, component: InfiniteScrollServerComponent },
+  { path: ROUTE.INFINITE_SCROLL_SERVER_TEMPLATE, component: InfiniteScrollServerTemplateComponent },
   { path: '**', component: BasicComponent },
 ];
 
