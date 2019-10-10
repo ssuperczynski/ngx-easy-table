@@ -35,6 +35,8 @@ export class ServerSortComponent implements OnInit, OnDestroy {
     limit: 10,
     offset: 0,
     count: -1,
+    sort: null,
+    order: null,
   };
 
   constructor(private readonly companyService: CompanyService) {
@@ -61,12 +63,13 @@ export class ServerSortComponent implements OnInit, OnDestroy {
   private parseEvent(obj: EventObject): void {
     this.pagination.limit = obj.value.limit ? obj.value.limit : this.pagination.limit;
     this.pagination.offset = obj.value.page ? obj.value.page : this.pagination.offset;
+    this.pagination.sort = !!obj.value.key ? obj.value.key : this.pagination.sort;
+    this.pagination.order = !!obj.value.order ? obj.value.order : this.pagination.order;
     this.pagination = { ...this.pagination };
-    let params = `_limit=${this.pagination.limit}&_page=${this.pagination.offset}`; // see https://github.com/typicode/json-server
-    if (obj.event === 'onOrder') {
-      params += `&_sort=${obj.value.key}&_order=${obj.value.order}`;
-    }
-    this.getData(params);
+    // see https://github.com/typicode/json-server
+    const pagination = `_limit=${this.pagination.limit}&_page=${this.pagination.offset}`;
+    const sort = `&_sort=${this.pagination.sort}&_order=${this.pagination.order}`;
+    this.getData(pagination + sort);
   }
 
   private getData(params: string): void {

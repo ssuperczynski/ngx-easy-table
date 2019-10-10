@@ -121,16 +121,16 @@ $primary-color: #50596c !default;
     }
 
     &__column-resizer {
-      background-color: $grey-dark;
+      background-color: $grey;
       cursor: col-resize;
       display: block;
-      height: 100%;
-      margin: 0;
+      height: 20px;
+      margin-top: 10px;
       position: absolute;
       padding: 0;
       right: 0;
       top: 0;
-      width: 3px;
+      width: 2px;
     }
 
     &__table--borderless > {
