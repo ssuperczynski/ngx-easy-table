@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,9 +9,9 @@ export class CompanyService {
   constructor(private http: HttpClient) {
   }
 
-  getCompanies(params: string = ''): Observable<Company[]> {
+  getCompanies(params: string = ''): Observable<HttpResponse<Company[]>> {
     return this.http
-      .get<Company[]>(`${this.BACKEND_URL}${params}`);
+      .get<Company[]>(`${this.BACKEND_URL}${params}`, { observe: 'response' });
   }
 }
 

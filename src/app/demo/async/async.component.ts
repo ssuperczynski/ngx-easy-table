@@ -3,6 +3,7 @@ import { Company, CompanyService } from '../../services/company.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-async',
@@ -12,7 +13,7 @@ import { tap } from 'rxjs/operators';
 })
 export class AsyncComponent implements OnInit {
   public configuration: Config;
-  public data$: Observable<Company[]>;
+  public data$: Observable<HttpResponse<Company[]>>;
   public columns: Columns[];
 
   constructor(private companyService: CompanyService) {

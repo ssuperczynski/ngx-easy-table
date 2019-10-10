@@ -1,10 +1,8 @@
 /// <reference types="Cypress" />
 
-import { ROUTE } from '../../src/app/route-names';
-
 context('Nested object', () => {
   before(() => {
-      cy.visit(`http://127.0.0.1:4201/#/${ROUTE.NESTED_OBJECT}`);
+      cy.visit('http://127.0.0.1:4201/#/nested-object');
     },
   );
 

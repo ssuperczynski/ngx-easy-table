@@ -587,3 +587,17 @@ $primary-color: #50596c !default;
     display: none;
   }
 }
+
+.ngx-infinite-scroll-viewport {
+  display: block;
+  height: 250px;
+  overflow: auto;
+}
+
+.ngx-infinite-scroll-viewport tr,
+.ngx-infinite-scroll-viewport-thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+

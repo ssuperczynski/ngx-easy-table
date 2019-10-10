@@ -58,3 +58,5 @@ export * from './nested-object/nested-object.component';
 export * from './custom-pagination/custom-pagination.component';
 export * from './filter-header-template/filter-header-template.component';
 export * from './reorder/reorder.component';
+export * from './infinite-scroll/infinite-scroll.component';
+export * from './infinite-scroll-server/infinite-scroll-server.component';

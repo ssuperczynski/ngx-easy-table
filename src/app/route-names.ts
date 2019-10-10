@@ -57,6 +57,8 @@ export class ROUTE {
   public static readonly ADDITIONAL_ACTIONS_TEMPLATE = 'additional-actions-template';
   public static readonly NESTED_OBJECT = 'nested-object';
   public static readonly CUSTOM_PAGINATION = 'custom-pagination';
+  public static readonly INFINITE_SCROLL = 'infinite-scroll';
+  public static readonly INFINITE_SCROLL_SERVER = 'infinite-scroll-server';
   public static readonly REORDER = 'reorder';
   public static readonly PERSIST_STATE_ROUTER = (state: string) => `persist-state-router/${state}`;
 }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Company, CompanyService } from '../../services/company.service';
+import { CompanyService } from '../../services/company.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -75,10 +75,10 @@ export class ServerSortComponent implements OnInit, OnDestroy {
   private getData(params: string): void {
     this.companyService.getCompanies(params)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((response: Company[]) => {
-          this.data = response;
+      .subscribe((response) => {
+          this.data = response.body;
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
-          this.pagination.count = (this.pagination.count === -1) ? response.length : this.pagination.count;
+          this.pagination.count = (this.pagination.count === -1) ? response.body.length : this.pagination.count;
           this.pagination = { ...this.pagination };
         },
         (error) => {

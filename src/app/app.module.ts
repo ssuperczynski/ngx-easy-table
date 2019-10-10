@@ -7,7 +7,7 @@ import { routing } from './routes';
 import { HighlightModule } from 'ngx-highlightjs';
 import typescript from 'highlight.js/lib/languages/typescript';
 
-export function hljsLanguages(): Array<{name: string, func: any}> {
+export function hljsLanguages(): Array<{ name: string, func: any }> {
   return [
     { name: 'typescript', func: typescript },
   ];
@@ -74,6 +74,7 @@ import {
   CustomPaginationComponent,
   FilterHeaderTemplateComponent,
   ReorderComponent,
+  InfiniteScrollComponent, InfiniteScrollServerComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -159,6 +160,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CustomPaginationComponent,
     FilterHeaderTemplateComponent,
     ReorderComponent,
+    InfiniteScrollComponent,
+    InfiniteScrollServerComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],
