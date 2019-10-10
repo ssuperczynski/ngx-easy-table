@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Company, CompanyService } from '../../services/company.service';
+import { CompanyService } from '../../services/company.service';
 import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -69,10 +69,10 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
     this.configuration.isLoading = true;
     this.companyService.getCompanies(params)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((response: Company[]) => {
-          this.data = response;
+      .subscribe((response) => {
+          this.data = response.body;
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
-          this.pagination.count = (this.pagination.count === -1) ? response.length : this.pagination.count;
+          this.pagination.count = (this.pagination.count === -1) ? response.body.length : this.pagination.count;
           this.pagination = { ...this.pagination };
           this.configuration.isLoading = false;
           this.cdr.detectChanges();

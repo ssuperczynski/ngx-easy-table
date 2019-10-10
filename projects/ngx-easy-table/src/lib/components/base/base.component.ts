@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -7,7 +8,7 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit, Output, SimpleChange,
   SimpleChanges,
   TemplateRef,
@@ -20,6 +21,8 @@ import { PaginationComponent, PaginationRange } from '../pagination/pagination.c
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
 import { Subject, Subscription } from 'rxjs';
+import { CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { filter, takeUntil, throttleTime } from 'rxjs/operators';
 
 type ColumnKeyType = string | number | boolean;
 
@@ -39,8 +42,8 @@ interface RowContextMenuPosition {
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseComponent implements OnInit, OnChanges {
-
+export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  private unsubscribe = new Subject<void>();
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -89,6 +92,7 @@ export class BaseComponent implements OnInit, OnChanges {
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
   @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
   @ViewChild('contextMenu', { static: false }) contextMenu;
+  @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;
 
   @HostListener('document:click', ['$event.target'])
   public onContextMenuClick(targetElement: any): void {
@@ -103,12 +107,17 @@ export class BaseComponent implements OnInit, OnChanges {
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
+    private readonly scrollDispatcher: ScrollDispatcher,
     public readonly styleService: StyleService,
   ) {
-    this.subscription = this.filteredCountSubject.subscribe((count) => {
-      this.filterCount = count;
-      this.cdr.detectChanges();
-    });
+    this.subscription = this.filteredCountSubject
+      .pipe(
+        takeUntil(this.unsubscribe),
+      )
+      .subscribe((count) => {
+        this.filterCount = count;
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnInit(): void {
@@ -125,6 +134,28 @@ export class BaseComponent implements OnInit, OnChanges {
       this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
     }
     this.doDecodePersistedState();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+
+  ngAfterViewInit(): void {
+    const throttleValue = this.config.infiniteScrollThrottleTime ?
+      this.config.infiniteScrollThrottleTime :
+      200;
+    this.scrollDispatcher.scrolled()
+      .pipe(
+        takeUntil(this.unsubscribe),
+        throttleTime(throttleValue),
+        filter((event) => {
+          return !!event && this.viewPort.getRenderedRange().end === this.viewPort.getDataLength();
+        }),
+      )
+      .subscribe(() => {
+        this.emitEvent(Event.onInfiniteScrollEnd, null);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

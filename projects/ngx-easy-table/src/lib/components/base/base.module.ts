@@ -14,6 +14,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TableTHeadComponent } from '../thead/thead.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TableTHeadComponent } from '../thead/thead.component';
     CommonModule,
     NgxPaginationModule,
     DragDropModule,
+    ScrollingModule,
   ],
   exports: [BaseComponent],
 })

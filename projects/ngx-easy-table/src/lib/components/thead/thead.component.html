@@ -10,7 +10,7 @@
       <em class="ngx-form-icon" id="selectAllCheckbox"></em>
     </label>
   </th>
-  <ng-container *ngFor="let column of columns; let colIndex = index">
+  <ng-container *ngFor="let column of columns; let colIndex = index; let last = last">
     <th class="ngx-table__header-cell"
         [class.pinned-left]="column.pinned"
         [ngClass]="column.cssClass && column.cssClass.includeHeader ? column.cssClass.name : ''"
@@ -45,7 +45,7 @@
           </ng-container>
         </div>
       </div>
-      <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn"></div>
+      <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn && !last"></div>
     </th>
   </ng-container>
   <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows || config.groupRows"
@@ -83,7 +83,7 @@
       <em class="ngx-form-icon" id="selectAllCheckboxDrag"></em>
     </label>
   </th>
-  <ng-container *ngFor="let column of columns; let colIndex = index">
+  <ng-container *ngFor="let column of columns; let colIndex = index; let last = last">
     <th class="ngx-table__header-cell ngx-table__header-cell--draggable"
         cdkDragLockAxis="x"
         cdkDrag
@@ -95,7 +95,9 @@
         (mousedown)="onMouseDown($event, th)"
         (mouseup)="onMouseUp($event)"
         (mousemove)="onMouseMove($event)">
-      <div (click)="orderBy(column)" style="display: inline" [class.pointer]="isOrderEnabled(column)">
+      <div (click)="orderBy(column)" style="display: inline"
+           cdkDragHandle
+           [class.pointer]="isOrderEnabled(column)">
         <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
           <em class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></em>
           <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
@@ -120,7 +122,7 @@
           </ng-container>
         </div>
       </div>
-      <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn"></div>
+      <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn && !last"></div>
     </th>
   </ng-container>
   <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows || config.groupRows"

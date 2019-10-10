@@ -11,7 +11,6 @@ export class DynamicRowComponent implements OnInit {
   public data;
   public columns: Columns[];
   public configuration: Config;
-  public toggled = false;
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
@@ -33,7 +32,7 @@ export class DynamicRowComponent implements OnInit {
     ];
   }
 
-  randNumber(min: number, max: number): number {
+  private randNumber(min: number, max: number): number {
     return Math.floor((Math.random() * (max - min) + min));
   }
 
