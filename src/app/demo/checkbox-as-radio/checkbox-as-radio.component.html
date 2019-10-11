@@ -1,0 +1,15 @@
+<div class="columns">
+  <div class="column col-12">
+    <small class="mb-2">
+      This demo shows how to customize checkboxes to work as a radio
+    </small>
+  </div>
+</div>
+<ngx-table [configuration]="configuration"
+           #table
+           (event)="eventEmitted($event)"
+           [data]="data"
+           [selectAllTemplate]="selectAllTemplate"
+           [columns]="columns">
+</ngx-table>
+<ng-template #selectAllTemplate></ng-template>

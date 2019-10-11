@@ -121,7 +121,7 @@
               <label class="ngx-form-checkbox">
                 <input type="checkbox"
                        id="checkbox-{{rowIndex}}"
-                       [checked]="isSelected"
+                       [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
                        (change)="onCheckboxSelect($event, row, rowIndex)">
                 <em class="ngx-form-icon"></em>
               </label>
@@ -178,7 +178,7 @@
               <label class="ngx-form-checkbox">
                 <input type="checkbox"
                        id="checkbox-infinite-scroll-{{rowIndex}}"
-                       [checked]="isSelected"
+                       [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
                        (change)="onCheckboxSelect($event, row, rowIndex)">
                 <em class="ngx-form-icon"></em>
               </label>
@@ -277,7 +277,7 @@
             <label class="ngx-form-checkbox">
               <input type="checkbox"
                      id="checkbox-draggable-{{rowIndex}}"
-                     [checked]="isSelected"
+                     [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
                      (change)="onCheckboxSelect($event, row, rowIndex)">
               <em class="ngx-form-icon"></em>
             </label>

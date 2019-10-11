@@ -3,6 +3,7 @@ export enum API {
   setInputValue = 'setInputValue',
   toolPanelClicked = 'toolPanelClicked',
   toggleRowIndex = 'toggleRowIndex',
+  toggleCheckbox = 'toggleCheckbox',
   onGlobalSearch = 'onGlobalSearch',
   setPaginationCurrentPage = 'setPaginationCurrentPage',
   getPaginationCurrentPage = 'getPaginationCurrentPage',
@@ -31,6 +32,7 @@ export type ApiType =
   | { type: API.setInputValue; value: Array<{ key: string, value: string }>; }
   | { type: API.toolPanelClicked; }
   | { type: API.toggleRowIndex; value: number; }
+  | { type: API.toggleCheckbox; value: number }
   | { type: API.onGlobalSearch; value: string; }
   | { type: API.setPaginationCurrentPage; value: number; }
   | { type: API.getPaginationCurrentPage; }

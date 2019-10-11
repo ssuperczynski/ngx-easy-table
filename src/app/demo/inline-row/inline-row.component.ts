@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { data } from '../../../assets/data';
+import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
@@ -19,7 +19,7 @@ export class InlineRowComponent implements OnInit {
   @ViewChild('company', { static: false }) company: ElementRef<any>;
   @ViewChild('name', { static: false }) name: ElementRef<any>;
   public columns: Columns[];
-  data = [];
+  data: Company[] = [];
   public configuration: Config;
   editRow: number;
 
@@ -49,7 +49,9 @@ export class InlineRowComponent implements OnInit {
           phone: this.phone.nativeElement.value,
           age: this.age.nativeElement.value,
           company: this.company.nativeElement.value,
-          name: this.name.nativeElement.value};
+          name: this.name.nativeElement.value,
+          isActive: this.name.nativeElement.value,
+        };
       }
       return obj;
     })];

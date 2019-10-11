@@ -68,7 +68,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     key: '',
     order: 'asc',
   };
-  public selectedDetailsTemplateRowId = new Set();
+  public selectedDetailsTemplateRowId = new Set<number>();
+  public selectedCheckboxes = new Set<number>();
   public loadingHeight = '30px';
   public config: Config;
 
@@ -280,6 +281,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     this.emitEvent(Event.onPagination, pagination);
   }
 
+  toggleCheckbox(rowIndex: number): void {
+    this.selectedCheckboxes.has(rowIndex) ?
+      this.selectedCheckboxes.delete(rowIndex) :
+      this.selectedCheckboxes.add(rowIndex);
+  }
+
   collapseRow(rowIndex: number): void {
     if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
       this.selectedDetailsTemplateRowId.delete(rowIndex);
@@ -398,6 +405,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
         break;
       case API.toggleRowIndex:
         this.collapseRow(event.value);
+        break;
+      case API.toggleCheckbox:
+        this.toggleCheckbox(event.value);
         break;
       case API.setInputValue:
         if (this.config.searchEnabled) {

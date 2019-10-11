@@ -9,8 +9,8 @@ interface EventObject {
   value: {
     limit: number;
     page: number;
-    key: number;
-    order: number;
+    key: string;
+    order: string;
   };
 }
 
@@ -35,8 +35,8 @@ export class ServerSortComponent implements OnInit, OnDestroy {
     limit: 10,
     offset: 0,
     count: -1,
-    sort: null,
-    order: null,
+    sort: '',
+    order: '',
   };
 
   constructor(private readonly companyService: CompanyService) {
@@ -78,7 +78,7 @@ export class ServerSortComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
           this.data = response.body;
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
-          this.pagination.count = (this.pagination.count === -1) ? response.body.length : this.pagination.count;
+          this.pagination.count = (this.pagination.count === -1) ? (response.body ? response.body.length : 0) : this.pagination.count;
           this.pagination = { ...this.pagination };
         },
         (error) => {

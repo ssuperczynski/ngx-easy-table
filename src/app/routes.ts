@@ -61,7 +61,11 @@ import {
   NestedObjectComponent,
   CustomPaginationComponent,
   FilterHeaderTemplateComponent,
-  ReorderComponent, InfiniteScrollComponent, InfiniteScrollServerComponent, InfiniteScrollServerTemplateComponent,
+  ReorderComponent,
+  InfiniteScrollComponent,
+  InfiniteScrollServerComponent,
+  InfiniteScrollServerTemplateComponent,
+  CheckboxAsRadioComponent,
 } from './demo';
 import { ROUTE } from './route-names';
 
@@ -89,6 +93,7 @@ export const routes = [
   { path: ROUTE.COLLAPSED_ROWS, component: CollapsedRowsComponent },
   { path: ROUTE.CHECKBOXES, component: CheckboxesComponent },
   { path: ROUTE.CHECKBOX_DEFAULT, component: CheckboxDefaultComponent },
+  { path: ROUTE.CHECKBOX_AS_RADIO, component: CheckboxAsRadioComponent },
   { path: ROUTE.HORIZONTAL_SCROLL, component: HorizontalScrollComponent },
   { path: ROUTE.CUSTOM_FILTERS, component: CustomFiltersComponent },
   { path: ROUTE.TOGGLE_COLUMN, component: ToggleColumnComponent },

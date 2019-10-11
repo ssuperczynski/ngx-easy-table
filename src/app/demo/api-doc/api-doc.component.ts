@@ -38,6 +38,21 @@ import { API, APIDefinition } from 'ngx-easy-table';
   type: API.rowContextMenuClicked,
 });`;
 
+  public readonly toggleRowIndexCode = `this.table.apiEvent({
+  type: API.toggleRowIndex,
+  value: 1,
+});`;
+
+  public readonly setCheckboxCode = `this.table.apiEvent({
+  type: API.setCheckbox,
+  value: 1,
+});`;
+
+  public readonly onGlobalSearchCode = `this.table.apiEvent({
+  type: API.onGlobalSearch,
+  value: 'test',
+});`;
+
   public readonly setRowClassCode = `this.table.apiEvent({
   type: API.setRowClass,
   value: { row: 1, className: 'red' },

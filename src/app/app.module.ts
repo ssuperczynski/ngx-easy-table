@@ -74,7 +74,10 @@ import {
   CustomPaginationComponent,
   FilterHeaderTemplateComponent,
   ReorderComponent,
-  InfiniteScrollComponent, InfiniteScrollServerComponent, InfiniteScrollServerTemplateComponent,
+  InfiniteScrollComponent,
+  InfiniteScrollServerComponent,
+  InfiniteScrollServerTemplateComponent,
+  CheckboxAsRadioComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -163,6 +166,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     InfiniteScrollComponent,
     InfiniteScrollServerComponent,
     InfiniteScrollServerTemplateComponent,
+    CheckboxAsRadioComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

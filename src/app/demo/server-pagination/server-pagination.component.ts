@@ -35,6 +35,7 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
     count: -1,
   };
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+
   constructor(
     private readonly companyService: CompanyService,
     private readonly cdr: ChangeDetectorRef,
@@ -72,7 +73,7 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
           this.data = response.body;
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
-          this.pagination.count = (this.pagination.count === -1) ? response.body.length : this.pagination.count;
+          this.pagination.count = (this.pagination.count === -1) ? (response.body ? response.body.length : 0) : this.pagination.count;
           this.pagination = { ...this.pagination };
           this.configuration.isLoading = false;
           this.cdr.detectChanges();

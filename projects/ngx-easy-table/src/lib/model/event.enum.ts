@@ -6,6 +6,7 @@ export enum Event {
   onClick = 'onClick',
   onDoubleClick = 'onDoubleClick',
   onCheckboxSelect = 'onCheckboxSelect',
+  onCheckboxToggle = 'onCheckboxToggle',
   onSelectAll = 'onSelectAll',
   onInfiniteScrollEnd = 'onInfiniteScrollEnd',
   onColumnResizeMouseDown = 'onColumnResizeMouseDown',

@@ -13,7 +13,13 @@ export class GroupRowsComponent {
   amountSummary = 0;
   debitSummary = 0;
   public columns: Columns[] = [];
-  data = [];
+  data: Array<{
+    amount: number,
+    debit: number,
+    company: string,
+    name: string,
+    isActive: boolean,
+  }> = [];
   groupBy = 'isActive';
 
   constructor() {
@@ -28,8 +34,8 @@ export class GroupRowsComponent {
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'Active' },
     ];
-    this.amountSummary = this.data.map((_) => _.amount).reduce((acc, cur) => cur + acc, 0);
-    this.debitSummary = this.data.map((_) => _.debit).reduce((acc, cur) => cur + acc, 0);
+    this.amountSummary = this.data.map(({ amount }) => amount).reduce((acc, cur) => cur + acc, 0);
+    this.debitSummary = this.data.map(({ debit }) => debit).reduce((acc, cur) => cur + acc, 0);
   }
 
   private static generateData(): Array<{
