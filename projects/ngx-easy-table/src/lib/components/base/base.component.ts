@@ -55,7 +55,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   public grouped: any = [];
   public isSelected = false;
   public page = 1;
-  public count: null | number = null;
+  public count = 0;
   public sortState = new Map();
   public sortKey: string | null = null;
   public rowContextMenuPosition: RowContextMenuPosition = {
