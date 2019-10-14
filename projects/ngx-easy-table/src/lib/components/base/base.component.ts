@@ -296,12 +296,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       this.selectedCheckboxes.add(rowIndex);
   }
 
-  setCheckbox(rowIndex: number, isChecked: boolean): void {
-    isChecked ?
-      this.selectedCheckboxes.add(rowIndex) :
-      this.selectedCheckboxes.delete(rowIndex);
-  }
-
   collapseRow(rowIndex: number): void {
     if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
       this.selectedDetailsTemplateRowId.delete(rowIndex);
