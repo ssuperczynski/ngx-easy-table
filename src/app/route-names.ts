@@ -22,6 +22,7 @@ export class ROUTE {
   public static readonly CHECKBOXES = 'checkboxes';
   public static readonly CHECKBOX_DEFAULT = 'checkbox-default';
   public static readonly CHECKBOX_AS_RADIO = 'checkbox-as-radio';
+  public static readonly RADIO = 'radio';
   public static readonly HORIZONTAL_SCROLL = 'horizontal-scroll';
   public static readonly CUSTOM_FILTERS = 'custom-filters';
   public static readonly TOGGLE_COLUMN = 'toggle-column';

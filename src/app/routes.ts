@@ -65,7 +65,7 @@ import {
   InfiniteScrollComponent,
   InfiniteScrollServerComponent,
   InfiniteScrollServerTemplateComponent,
-  CheckboxAsRadioComponent,
+  CheckboxAsRadioComponent, RadioComponent,
 } from './demo';
 import { ROUTE } from './route-names';
 
@@ -94,6 +94,7 @@ export const routes = [
   { path: ROUTE.CHECKBOXES, component: CheckboxesComponent },
   { path: ROUTE.CHECKBOX_DEFAULT, component: CheckboxDefaultComponent },
   { path: ROUTE.CHECKBOX_AS_RADIO, component: CheckboxAsRadioComponent },
+  { path: ROUTE.RADIO, component: RadioComponent },
   { path: ROUTE.HORIZONTAL_SCROLL, component: HorizontalScrollComponent },
   { path: ROUTE.CUSTOM_FILTERS, component: CustomFiltersComponent },
   { path: ROUTE.TOGGLE_COLUMN, component: ToggleColumnComponent },

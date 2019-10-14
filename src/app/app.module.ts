@@ -77,7 +77,7 @@ import {
   InfiniteScrollComponent,
   InfiniteScrollServerComponent,
   InfiniteScrollServerTemplateComponent,
-  CheckboxAsRadioComponent,
+  CheckboxAsRadioComponent, RadioComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -167,6 +167,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     InfiniteScrollServerComponent,
     InfiniteScrollServerTemplateComponent,
     CheckboxAsRadioComponent,
+    RadioComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

@@ -151,7 +151,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
         takeUntil(this.unsubscribe),
         throttleTime(throttleValue),
         filter((event) => {
-          return !!event && this.viewPort.getRenderedRange().end === this.viewPort.getDataLength();
+          return !!event && this.viewPort && this.viewPort.getRenderedRange().end === this.viewPort.getDataLength();
         }),
       )
       .subscribe(() => {
@@ -254,6 +254,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       rowId: rowIndex,
     };
     this.emitEvent(Event.onCheckboxSelect, value);
+  }
+
+  onRadioSelect($event: object, row: object, rowIndex: number): void {
+    const value = {
+      event: $event,
+      row,
+      rowId: rowIndex,
+    };
+    this.emitEvent(Event.onRadioSelect, value);
   }
 
   onSelectAll(): void {

@@ -19,6 +19,7 @@ export interface Config {
   paginationRangeEnabled: boolean;
   collapseAllRows: boolean;
   checkboxes: boolean;
+  radio?: boolean;
   resizeColumn: boolean;
   fixedColumnWidth: boolean;
   horizontalScroll: boolean;

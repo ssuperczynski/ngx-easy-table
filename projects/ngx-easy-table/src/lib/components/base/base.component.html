@@ -126,60 +126,12 @@
                 <em class="ngx-form-icon"></em>
               </label>
             </td>
-            <ng-container *ngFor="let column of columns; let colIndex = index">
-              <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
-                  #contextMenu
-                  (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
-                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
-                  [class.pinned-left]="column.pinned"
-                  [ngClass]="column.cssClass ? column.cssClass.name : ''"
-                  [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
-                  [class.ngx-table__table-col--selected]="colIndex === selectedCol && !config.selectCell"
-                  [class.ngx-table__table-cell--selected]="colIndex === selectedCol && rowIndex === selectedRow && !config.selectCol && !config.selectRow"
-              >
-                <div *ngIf="!column.cellTemplate">{{ row | render:column.key }}</div>
-                <ng-container
-                  *ngIf="column.cellTemplate"
-                  [ngTemplateOutlet]="column.cellTemplate"
-                  [ngTemplateOutletContext]="{ $implicit: row, rowIndex: rowIndex }">
-                </ng-container>
-              </td>
-            </ng-container>
-            <td *ngIf="config.additionalActions || config.detailsTemplate">
-            <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
-                  (click)="collapseRow(rowIndex)">
-            </span>
-            </td>
-          </tr>
-          <tr
-            *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
-            <td *ngIf="config.checkboxes"></td>
-            <td [attr.colspan]="columns.length + 1">
-              <ng-container
-                [ngTemplateOutlet]="detailsTemplate"
-                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
-              </ng-container>
-            </td>
-          </tr>
-        </ng-container>
-      </ng-container>
-      <!-- infinite scroll -->
-      <cdk-virtual-scroll-viewport
-        itemSize="50"
-        *ngIf="config.infiniteScroll"
-        class="ngx-infinite-scroll-viewport">
-        <ng-container
-          *cdkVirtualFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject;
-                  let rowIndex = index">
-          <tr [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
-            <td *ngIf="config.checkboxes">
-              <label class="ngx-form-checkbox">
-                <input type="checkbox"
-                       id="checkbox-infinite-scroll-{{rowIndex}}"
-                       [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
-                       (change)="onCheckboxSelect($event, row, rowIndex)">
+            <td *ngIf="config.radio">
+              <label>
+                <input type="radio"
+                       id="radio-{{rowIndex}}"
+                       name="radio"
+                       (change)="onRadioSelect($event, row, rowIndex)">
                 <em class="ngx-form-icon"></em>
               </label>
             </td>
@@ -212,7 +164,73 @@
           </tr>
           <tr
             *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
-            <td *ngIf="config.checkboxes"></td>
+            <td *ngIf="config.checkboxes || config.radio"></td>
+            <td [attr.colspan]="columns.length + 1">
+              <ng-container
+                [ngTemplateOutlet]="detailsTemplate"
+                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      <!-- infinite scroll -->
+      <cdk-virtual-scroll-viewport
+        itemSize="50"
+        *ngIf="config.infiniteScroll"
+        class="ngx-infinite-scroll-viewport">
+        <ng-container
+          *cdkVirtualFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject;
+                  let rowIndex = index">
+          <tr [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
+            <td *ngIf="config.checkboxes">
+              <label class="ngx-form-checkbox">
+                <input type="checkbox"
+                       id="checkbox-infinite-scroll-{{rowIndex}}"
+                       [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
+                       (change)="onCheckboxSelect($event, row, rowIndex)">
+                <em class="ngx-form-icon"></em>
+              </label>
+            </td>
+            <td *ngIf="config.radio">
+              <label>
+                <input type="radio"
+                       id="radio-infinite-scroll-{{rowIndex}}"
+                       name="radio"
+                       (change)="onRadioSelect($event, row, rowIndex)">
+                <em class="ngx-form-icon"></em>
+              </label>
+            </td>
+            <ng-container *ngFor="let column of columns; let colIndex = index">
+              <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
+                  #contextMenu
+                  (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
+                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
+                  [class.pinned-left]="column.pinned"
+                  [ngClass]="column.cssClass ? column.cssClass.name : ''"
+                  [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
+                  [class.ngx-table__table-col--selected]="colIndex === selectedCol && !config.selectCell"
+                  [class.ngx-table__table-cell--selected]="colIndex === selectedCol && rowIndex === selectedRow && !config.selectCol && !config.selectRow"
+              >
+                <div *ngIf="!column.cellTemplate">{{ row | render:column.key }}</div>
+                <ng-container
+                  *ngIf="column.cellTemplate"
+                  [ngTemplateOutlet]="column.cellTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: row, rowIndex: rowIndex }">
+                </ng-container>
+              </td>
+            </ng-container>
+            <td *ngIf="config.additionalActions || config.detailsTemplate">
+            <span class="ngx-icon"
+                  *ngIf="arrowDefinition"
+                  [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
+                  (click)="collapseRow(rowIndex)">
+            </span>
+            </td>
+          </tr>
+          <tr
+            *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
+            <td *ngIf="config.checkboxes || config.radio"></td>
             <td [attr.colspan]="columns.length + 1">
               <ng-container
                 [ngTemplateOutlet]="detailsTemplate"
@@ -279,6 +297,15 @@
                      id="checkbox-draggable-{{rowIndex}}"
                      [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
                      (change)="onCheckboxSelect($event, row, rowIndex)">
+              <em class="ngx-form-icon"></em>
+            </label>
+          </td>
+          <td *ngIf="config.radio">
+            <label>
+              <input type="radio"
+                     id="radio-draggable-{{rowIndex}}"
+                     name="radio"
+                     (change)="onRadioSelect($event, row, rowIndex)">
               <em class="ngx-form-icon"></em>
             </label>
           </td>
