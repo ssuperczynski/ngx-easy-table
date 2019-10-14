@@ -1,11 +1,13 @@
 <tr class="ngx-table__header" *ngIf="config.headerEnabled && !config.columnReorder">
-  <th *ngIf="config.checkboxes" [style.width]="'3%'">
+  <th [style.width]="'3%'">
     <ng-container
-      *ngIf="selectAllTemplate"
+      *ngIf="selectAllTemplate && config.checkboxes"
       [ngTemplateOutlet]="selectAllTemplate"
       [ngTemplateOutletContext]="{ $implicit: onSelectAllBinded }">
     </ng-container>
-    <label class="ngx-form-checkbox" for="selectAllCheckboxes" *ngIf="!selectAllTemplate">
+    <label class="ngx-form-checkbox"
+           for="selectAllCheckboxes"
+           *ngIf="!selectAllTemplate && config.checkboxes">
       <input type="checkbox" id="selectAllCheckboxes" (change)="onSelectAll()">
       <em class="ngx-form-icon" id="selectAllCheckbox"></em>
     </label>
@@ -72,13 +74,15 @@
     cdkDropListOrientation="horizontal"
     (cdkDropListDropped)="columnDrop($event)"
 >
-  <th *ngIf="config.checkboxes" [style.width]="'3%'">
+  <th [style.width]="'3%'">
     <ng-container
-      *ngIf="selectAllTemplate"
+      *ngIf="selectAllTemplate && config.checkboxes"
       [ngTemplateOutlet]="selectAllTemplate"
       [ngTemplateOutletContext]="{ $implicit: onSelectAllBinded }">
     </ng-container>
-    <label class="ngx-form-checkbox" for="selectAllCheckboxes" *ngIf="!selectAllTemplate">
+    <label class="ngx-form-checkbox"
+           for="selectAllCheckboxes"
+           *ngIf="!selectAllTemplate && config.checkboxes">
       <input type="checkbox" id="selectAllCheckboxesDrag" (change)="onSelectAll()">
       <em class="ngx-form-icon" id="selectAllCheckboxDrag"></em>
     </label>
@@ -145,7 +149,7 @@
 </tr>
 <tr *ngIf="config.searchEnabled && !filtersTemplate"
     class="ngx-table__sort-header">
-  <th *ngIf="config.checkboxes"></th>
+  <th *ngIf="config.checkboxes || config.radio"></th>
   <ng-container *ngFor="let column of columns; let colIndex = index">
     <th
       [ngClass]="column.cssClass && column.cssClass.includeHeader ? column.cssClass.name : ''"

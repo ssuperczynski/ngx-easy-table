@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "11.2.4",
+  "version": "11.3.0",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",

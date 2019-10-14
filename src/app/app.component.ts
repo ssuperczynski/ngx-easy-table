@@ -64,6 +64,7 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.CHECKBOXES, name: 'Checkboxes' },
       { link: ROUTE.CHECKBOX_DEFAULT, name: 'Checkboxes template' },
       { link: ROUTE.CHECKBOX_AS_RADIO, name: 'Checkbox as radio' },
+      { link: ROUTE.RADIO, name: 'Radio' },
       { link: ROUTE.CUSTOMIZE_THEME, name: 'Customize theme' },
       { link: ROUTE.NESTED_TABLE, name: 'Nested table' },
       { link: ROUTE.INLINE_CELL, name: 'Edit cell' },
