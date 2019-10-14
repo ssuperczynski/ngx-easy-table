@@ -1,5 +1,5 @@
 <tr class="ngx-table__header" *ngIf="config.headerEnabled && !config.columnReorder">
-  <th [style.width]="'3%'">
+  <th *ngIf="config.checkboxes || config.radio" [style.width]="'3%'">
     <ng-container
       *ngIf="selectAllTemplate && config.checkboxes"
       [ngTemplateOutlet]="selectAllTemplate"
