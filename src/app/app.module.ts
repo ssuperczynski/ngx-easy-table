@@ -4,15 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { routing } from './routes';
-import { HighlightModule } from 'ngx-highlightjs';
-import typescript from 'highlight.js/lib/languages/typescript';
-
-export function hljsLanguages(): Array<{ name: string, func: any }> {
-  return [
-    { name: 'typescript', func: typescript },
-  ];
-}
-
 import {
   AsyncComponent,
   BasicComponent,
@@ -83,6 +74,13 @@ import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
+
+export function getHighlightLanguages(): any {
+  return {
+    typescript: () => import('highlight.js/lib/languages/typescript'),
+  };
+}
 
 @NgModule({
   imports: [
@@ -91,9 +89,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     TableModule,
     routing,
-    HighlightModule.forRoot({
-      languages: hljsLanguages,
-    }),
+    HighlightModule,
     NoopAnimationsModule,
     MatPaginatorModule,
   ],
@@ -170,7 +166,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RadioComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        languages: getHighlightLanguages(),
+      },
+    },
+  ],
 })
 export class AppModule {
 }
