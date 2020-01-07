@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -21,7 +20,6 @@ export class AsyncComponent implements OnInit {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    this.configuration.isLoading = true;
     this.columns = [
       { key: 'phone', title: 'Phone' },
       { key: 'age', title: 'Age' },
@@ -29,10 +27,6 @@ export class AsyncComponent implements OnInit {
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'STATUS' },
     ];
-    this.data$ = this.companyService.getCompanies().pipe(
-      tap(() => {
-        this.configuration.isLoading = false;
-      }),
-    );
+    this.data$ = this.companyService.getCompanies('', false);
   }
 }
