@@ -9,9 +9,9 @@ export class CompanyService {
   constructor(private http: HttpClient) {
   }
 
-  getCompanies(params: string = ''): Observable<HttpResponse<Company[]>> {
+  getCompanies(params: string = '', observe: boolean = true): Observable<HttpResponse<Company[]>> {
     return this.http
-      .get<Company[]>(`${this.BACKEND_URL}${params}`, { observe: 'response' });
+      .get<Company[]>(`${this.BACKEND_URL}${params}`, { observe: observe ? 'response' : null });
   }
 }
 
