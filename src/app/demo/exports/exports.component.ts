@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
-import * as XLSX from 'xlsx';
 import { ExportToCsv } from 'export-to-csv';
 
 @Component({
@@ -27,19 +26,20 @@ export class ExportsComponent {
   }
 
   exportToExcel(): void {
-    try {
-      /* generate worksheet */
-      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
-
-      /* generate workbook and add the worksheet */
-      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-      /* save to file */
-      XLSX.writeFile(wb, 'file.xlsx');
-    } catch (err) {
-      console.error('export error', err);
-    }
+    // Here is simple example how to export to excel by https://www.npmjs.com/package/xlsx
+    // try {
+    //   /* generate worksheet */
+    //   const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
+    //
+    //   /* generate workbook and add the worksheet */
+    //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    //
+    //   /* save to file */
+    //   XLSX.writeFile(wb, 'file.xlsx');
+    // } catch (err) {
+    //   console.error('export error', err);
+    // }
   }
 
   exportToCSV(): void {
