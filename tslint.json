@@ -173,6 +173,7 @@
       true,
       5
     ],
+    "array-type": false,
     "ban-ts-ignore": true,
     "function-constructor": true,
     "increment-decrement": true,
