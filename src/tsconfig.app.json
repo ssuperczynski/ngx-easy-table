@@ -6,11 +6,14 @@
       "node"
     ]
   },
-  "exclude": [],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictFunctionTypes": true,
     "skipLibCheck": true,
     "preserveWhiteSpace": false
-  }
+  },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ]
 }

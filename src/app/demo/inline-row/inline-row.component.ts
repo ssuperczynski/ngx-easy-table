@@ -14,10 +14,10 @@ export class InlineRowComponent implements OnInit {
   @ViewChild('nameTpl', { static: true }) nameTpl: TemplateRef<any>;
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
 
-  @ViewChild('phone', { static: false }) phone: ElementRef<any>;
-  @ViewChild('age', { static: false }) age: ElementRef<any>;
-  @ViewChild('company', { static: false }) company: ElementRef<any>;
-  @ViewChild('name', { static: false }) name: ElementRef<any>;
+  @ViewChild('phone') phone: ElementRef<any>;
+  @ViewChild('age') age: ElementRef<any>;
+  @ViewChild('company') company: ElementRef<any>;
+  @ViewChild('name') name: ElementRef<any>;
   public columns: Columns[];
   data: Company[] = [];
   public configuration: Config;
