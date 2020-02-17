@@ -1,0 +1,13 @@
+<small>
+  Scroll to the bottom to load more data.
+</small>
+<div class="columns mt-2">
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      (event)="onEvent()"
+      [data]="data"
+      [columns]="columns">
+    </ngx-table>
+  </div>
+</div>

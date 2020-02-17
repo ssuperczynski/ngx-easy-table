@@ -3,10 +3,12 @@ export enum API {
   setInputValue = 'setInputValue',
   toolPanelClicked = 'toolPanelClicked',
   toggleRowIndex = 'toggleRowIndex',
+  toggleCheckbox = 'toggleCheckbox',
   onGlobalSearch = 'onGlobalSearch',
   setPaginationCurrentPage = 'setPaginationCurrentPage',
   getPaginationCurrentPage = 'getPaginationCurrentPage',
   getPaginationTotalItems = 'getPaginationTotalItems',
+  getNumberOfRowsPerPage = 'getNumberOfRowsPerPage',
   getPaginationLastPage = 'getPaginationLastPage',
   setPaginationRange = 'setPaginationRange',
   setPaginationPreviousLabel = 'setPaginationPreviousLabel',
@@ -20,33 +22,43 @@ export enum API {
   sortBy = 'sortBy',
 }
 
-export type rowClass = { row: number, className: string };
-export type cellClass = { row: number, cell: number | string, className: string };
-export type rowStyle = { row: number, attr: string, value: string };
-export type cellStyle = { row: number, cell: number, attr: string, value: string };
+export interface RowClass { row: number; className: string; }
+export interface CellClass { row: number; cell: number | string; className: string; }
+export interface RowStyle { row: number; attr: string; value: string; }
+export interface CellStyle { row: number; cell: number; attr: string; value: string; }
 
 export type ApiType =
   { type: API.rowContextMenuClicked; }
   | { type: API.setInputValue; value: Array<{ key: string, value: string }>; }
   | { type: API.toolPanelClicked; }
   | { type: API.toggleRowIndex; value: number; }
+  | { type: API.toggleCheckbox; value: number }
   | { type: API.onGlobalSearch; value: string; }
   | { type: API.setPaginationCurrentPage; value: number; }
   | { type: API.getPaginationCurrentPage; }
   | { type: API.getPaginationTotalItems; }
   | { type: API.getPaginationLastPage; }
+  | { type: API.getNumberOfRowsPerPage; }
   | { type: API.setPaginationRange; value: number[]; }
   | { type: API.setPaginationPreviousLabel; value: string; }
   | { type: API.setPaginationNextLabel; value: string; }
   | { type: API.setPaginationDisplayLimit; value: number; }
   | { type: API.setTableClass; value: string | null; }
-  | { type: API.setRowClass; value: rowClass | rowClass[] }
-  | { type: API.setCellClass; value: cellClass | cellClass[] }
-  | { type: API.setRowStyle; value: rowStyle | rowStyle[] }
-  | { type: API.setCellStyle; value: cellStyle | cellStyle[] }
-  | { type: API.sortBy; value: { column: string, order: string } }
+  | { type: API.setRowClass; value: RowClass | RowClass[] }
+  | { type: API.setCellClass; value: CellClass | CellClass[] }
+  | { type: API.setRowStyle; value: RowStyle | RowStyle[] }
+  | { type: API.setCellStyle; value: CellStyle | CellStyle[] }
+  | { type: API.sortBy; value: { column: string, order: 'asc' | 'desc' } }
   ;
 
 export interface APIDefinition {
-  apiEvent(event: ApiType): void | number;
+  apiEvent<B extends ApiType>(event: B): IAPIDefinition<B>;
 }
+
+export type IAPIDefinition<B> = B extends
+  | { type: API.getPaginationCurrentPage; }
+  | { type: API.getPaginationTotalItems; }
+  | { type: API.getPaginationLastPage; }
+  | { type: API.getNumberOfRowsPerPage; }
+  ? number
+  : void;

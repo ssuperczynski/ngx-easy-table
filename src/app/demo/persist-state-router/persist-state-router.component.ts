@@ -23,13 +23,13 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
   public data: Company[] = [];
   public configuration: Config;
   public sortColumn: string;
-  public sortOrder: string;
+  public sortOrder: 'asc' | 'desc';
 
   constructor(private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
-    this.configuration = DefaultConfig;
+  ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
     this.data = data;
     this.route.params
       .pipe(takeUntil(this.unsubscribe))
@@ -42,7 +42,7 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }

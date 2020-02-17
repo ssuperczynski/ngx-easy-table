@@ -1,23 +1,21 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns, Event } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-inline',
   templateUrl: './inline.component.html',
   styleUrls: ['./inline.component.css'],
-  providers: [ConfigService],
 })
 export class InlineComponent implements OnInit {
   @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
   public columns: Columns[];
   data: Company[] = [];
-  configuration;
+  public configuration: Config;
   edit: number;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 
@@ -31,13 +29,13 @@ export class InlineComponent implements OnInit {
     ];
   }
 
-  eventEmitted($event) {
+  eventEmitted($event: { event: string, value: any }): void {
     if ($event.event === Event.onDoubleClick) {
       this.edit = $event.value.rowId;
     }
   }
 
-  update($event) {
+  update($event: any): void {
     this.data[this.edit].phone = $event.target.value;
     this.edit = -1;
   }

@@ -1,30 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from '../../services/company.service';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Company, CompanyService } from '../../services/company.service';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { Observable } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-async',
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [CompanyService],
 })
 export class AsyncComponent implements OnInit {
-  public configuration;
-  public data;
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-  ];
+  public configuration: Config;
+  public data$: Observable<HttpResponse<Company[]>>;
+  public columns: Columns[];
 
   constructor(private companyService: CompanyService) {
-    this.configuration = ConfigService.config;
   }
 
   ngOnInit(): void {
-    this.data = this.companyService.getCompanies('');
+    this.configuration = { ...DefaultConfig };
+    this.columns = [
+      { key: 'phone', title: 'Phone' },
+      { key: 'age', title: 'Age' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'isActive', title: 'STATUS' },
+    ];
+    this.data$ = this.companyService.getCompanies('', false);
   }
 }

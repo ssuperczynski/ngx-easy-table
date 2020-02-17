@@ -24,7 +24,7 @@ export interface PaginationRange {
 })
 export class PaginationComponent implements OnChanges {
   @ViewChild('paginationDirective', { static: true }) paginationDirective: PaginationControlsDirective;
-  @ViewChild('paginationRange', { static: false }) paginationRange;
+  @ViewChild('paginationRange') paginationRange;
   @Input() pagination;
   @Input() config: Config;
   @Input() id;
@@ -40,13 +40,13 @@ export class PaginationComponent implements OnChanges {
   public directionLinks = true;
 
   @HostListener('document:click', ['$event.target'])
-  public onClick(targetElement) {
+  public onClick(targetElement: any): void {
     if (this.paginationRange && !this.paginationRange.nativeElement.contains(targetElement)) {
       this.showRange = false;
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     const { config } = changes;
     if (config && config.currentValue) {
       this.selectedLimit = this.config.rows;

@@ -21,6 +21,7 @@ export const DefaultConfig: Config = {
   paginationRangeEnabled: true,
   collapseAllRows: false,
   checkboxes: false,
+  radio: false,
   resizeColumn: false,
   fixedColumnWidth: true,
   horizontalScroll: false,

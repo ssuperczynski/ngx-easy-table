@@ -1,25 +1,34 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
+  SimpleChange,
   SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
 
-import { API, ApiType, ColumnKeyType, Columns, Config, Event, Pagination, TableMouseEvent } from '../..';
+import { API, ApiType, Columns, Config, Event, Pagination } from '../../index';
 import { DefaultConfigService } from '../../services/config-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { filter, takeUntil, throttleTime } from 'rxjs/operators';
+import { CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
+
+type ColumnKeyType = string | number | boolean;
+type KeyValueType = { key: string; value: string };
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -29,28 +38,29 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [DefaultConfigService, GroupRowsService, StyleService],
+  providers: [
+    DefaultConfigService,
+    GroupRowsService,
+    StyleService,
+  ],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseComponent implements OnInit, OnChanges {
-  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
-  @ViewChild('th', { static: false }) private th;
+export  class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  private unsubscribe = new Subject<void>();
   public selectedRow: number;
   public selectedCol: number;
-  public term;
+  public term: any;
   public filterCount = -1;
   public filteredCountSubject = new Subject<number>();
-  public subscription: Subscription;
-  public tableClass = null;
+  public tableClass: string | null = null;
   public globalSearchTerm: string;
   public grouped: any = [];
-  public menuActive = false;
   public isSelected = false;
   public page = 1;
-  public count = null;
+  public count = 0;
   public sortState = new Map();
-  public sortKey = null;
+  public sortKey: string | null = null;
   public rowContextMenuPosition: RowContextMenuPosition = {
     top: null,
     left: null,
@@ -61,11 +71,10 @@ export class BaseComponent implements OnInit, OnChanges {
     key: '',
     order: 'asc',
   };
-  public selectedDetailsTemplateRowId = new Set();
-  public startOffset;
+  public selectedDetailsTemplateRowId = new Set<number>();
+  public selectedCheckboxes = new Set<number>();
   public loadingHeight = '30px';
   public config: Config;
-  onSelectAllBinded = this.onSelectAll.bind(this);
 
   @Input() configuration: Config;
   @Input() data: any[];
@@ -74,27 +83,50 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() id = 'table';
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
-  @Input() summaryTemplate: TemplateRef<any>;
+  @Input() summaryTemplate: TemplateRef<{ total: number; limit: number; page: number }>;
   @Input() groupRowsHeaderTemplate: TemplateRef<any>;
   @Input() filtersTemplate: TemplateRef<any>;
   @Input() selectAllTemplate: TemplateRef<any>;
-  @Input() noResultsTemplate: TemplateRef<any>;
+  @Input() noResultsTemplate: TemplateRef<void>;
+  @Input() loadingTemplate: TemplateRef<void>;
+  @Input() additionalActionsTemplate: TemplateRef<void>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
+  @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
+  @ViewChild('contextMenu') contextMenu;
+  @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
+
+  @HostListener('document:click', ['$event.target'])
+  public onContextMenuClick(targetElement: any): void {
+    if (this.contextMenu && !this.contextMenu.nativeElement.contains(targetElement)) {
+      this.rowContextMenuPosition = {
+        top: null,
+        left: null,
+        value: null,
+      };
+    }
+  }
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
+    private readonly scrollDispatcher: ScrollDispatcher,
     public readonly styleService: StyleService,
   ) {
-    this.subscription = this.filteredCountSubject.subscribe((count) => {
-      this.filterCount = count;
-      this.cdr.detectChanges();
-    });
+    this.filteredCountSubject
+      .pipe(
+        takeUntil(this.unsubscribe)
+      )
+      .subscribe((count) => {
+        setTimeout(() => {
+          this.filterCount = count;
+          this.cdr.detectChanges();
+        });
+      });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.columns) {
       console.error('[columns] property required!');
     }
@@ -110,7 +142,29 @@ export class BaseComponent implements OnInit, OnChanges {
     this.doDecodePersistedState();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+
+  ngAfterViewInit(): void {
+    const throttleValue = this.config.infiniteScrollThrottleTime ?
+      this.config.infiniteScrollThrottleTime :
+      200;
+    this.scrollDispatcher.scrolled()
+      .pipe(
+        takeUntil(this.unsubscribe),
+        throttleTime(throttleValue),
+        filter((event) => {
+          return !!event && this.viewPort && this.viewPort.getRenderedRange().end === this.viewPort.getDataLength();
+        }),
+      )
+      .subscribe(() => {
+        this.emitEvent(Event.onInfiniteScrollEnd, null);
+      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     const { configuration, data, pagination, groupRowsBy } = changes;
     this.toggleRowIndex = changes.toggleRowIndex;
     if (configuration && configuration.currentValue) {
@@ -120,7 +174,10 @@ export class BaseComponent implements OnInit, OnChanges {
       this.doApplyData(data);
     }
     if (pagination && pagination.currentValue) {
-      this.count = pagination.currentValue.count;
+      const { count, limit, offset } = pagination.currentValue as Pagination;
+      this.count = count;
+      this.limit = limit;
+      this.page = offset;
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
@@ -129,11 +186,6 @@ export class BaseComponent implements OnInit, OnChanges {
       const row = this.toggleRowIndex.currentValue;
       this.collapseRow(row.index);
     }
-  }
-
-  isOrderEnabled(column: Columns) {
-    const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
-    return this.config.orderEnabled && columnOrderEnabled;
   }
 
   orderBy(column: Columns): void {
@@ -155,8 +207,9 @@ export class BaseComponent implements OnInit, OnChanges {
     }
     if (!this.config.serverPagination) {
       this.data = [...this.data];
+      this.sortBy = { ...this.sortBy };
     }
-    this.sortBy = { ...this.sortBy };
+
     const value = {
       key: this.sortKey,
       order: this.sortState.get(this.sortKey),
@@ -164,7 +217,7 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
+  onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: any, rowIndex: number): void {
     if (this.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -175,8 +228,9 @@ export class BaseComponent implements OnInit, OnChanges {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
+
     if (this.config.clickEvent) {
-      const value: TableMouseEvent = {
+      const value = {
         event: $event,
         row,
         key,
@@ -187,8 +241,8 @@ export class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  onDoubleClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
-    const value: TableMouseEvent = {
+  onDoubleClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: any, rowIndex: number): void {
+    const value = {
       event: $event,
       row,
       key,
@@ -207,12 +261,21 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onCheckboxSelect, value);
   }
 
-  onSelectAll() {
+  onRadioSelect($event: object, row: object, rowIndex: number): void {
+    const value = {
+      event: $event,
+      row,
+      rowId: rowIndex,
+    };
+    this.emitEvent(Event.onRadioSelect, value);
+  }
+
+  onSelectAll(): void {
     this.isSelected = !this.isSelected;
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
-  onSearch($event: Array<{ key: string; value: string }>): void {
+  onSearch($event: KeyValueType[]): void {
     if (!this.config.serverPagination) {
       this.term = $event;
     }
@@ -232,15 +295,10 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onPagination, pagination);
   }
 
-  private emitEvent(event: string, value: any): void {
-    this.event.emit({ event, value });
-    if (this.config.persistState) {
-      localStorage.setItem(event, JSON.stringify(value));
-    }
-    if (this.config.logger) {
-      // tslint:disable-next-line:no-console
-      console.log({ event, value });
-    }
+  toggleCheckbox(rowIndex: number): void {
+    this.selectedCheckboxes.has(rowIndex) ?
+      this.selectedCheckboxes.delete(rowIndex) :
+      this.selectedCheckboxes.add(rowIndex);
   }
 
   collapseRow(rowIndex: number): void {
@@ -253,7 +311,7 @@ export class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  private doDecodePersistedState() {
+  private doDecodePersistedState(): void {
     if (!this.config.persistState) {
       return;
     }
@@ -285,35 +343,6 @@ export class BaseComponent implements OnInit, OnChanges {
     return this.selectedDetailsTemplateRowId.has(rowIndex);
   }
 
-  onMouseDown(event, th) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    this.th = th;
-    this.startOffset = th.offsetWidth - event.pageX;
-    this.emitEvent(Event.onColumnResizeMouseDown, event);
-  }
-
-  onMouseMove(event) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    if (this.th && this.th.style) {
-      this.th.style.width = this.startOffset + event.pageX + 'px';
-      this.th.style.cursor = 'col-resize';
-      this.th.style['user-select'] = 'none';
-    }
-  }
-
-  onMouseUp(event) {
-    if (!this.config.resizeColumn) {
-      return;
-    }
-    this.emitEvent(Event.onColumnResizeMouseUp, event);
-    this.th.style.cursor = 'default';
-    this.th = undefined;
-  }
-
   get isLoading(): boolean {
     const table = document.getElementById(this.id) as HTMLTableElement;
     if (table && table.rows && table.rows.length > 3) {
@@ -330,27 +359,16 @@ export class BaseComponent implements OnInit, OnChanges {
     this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
   }
 
-  getColumnWidth(column: any): string | null {
-    if (column.width) {
-      return column.width;
-    }
-    return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
-  }
-
-  getColumnDefinition(column: Columns): boolean {
-    return column.searchEnabled || typeof column.searchEnabled === 'undefined';
-  }
-
   get arrowDefinition(): boolean {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onRowContextMenu($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
+  onRowContextMenu($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: any, rowIndex: number): void {
     if (!this.config.showContextMenu) {
       return;
     }
     $event.preventDefault();
-    const value: TableMouseEvent = {
+    const value = {
       event: $event,
       row,
       key,
@@ -366,13 +384,7 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onRowContextMenu, value);
   }
 
-  pinnedWidth(pinned: boolean, column: number): string {
-    if (pinned) {
-      return 150 * column + 'px'; //
-    }
-  }
-
-  private doApplyData(data) {
+  private doApplyData(data: SimpleChange): void {
     const order = this.columns.find((c) => !!c.orderBy);
     if (order) {
       this.sortState.set(this.sortKey, (order.orderBy === 'asc') ? 'desc' : 'asc');
@@ -382,7 +394,7 @@ export class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  onDrop(event: CdkDragDrop<string[]>) {
+  onDrop(event: CdkDragDrop<string[]>): void {
     this.emitEvent(Event.onRowDrop, event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
@@ -407,6 +419,9 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       case API.toggleRowIndex:
         this.collapseRow(event.value);
+        break;
+      case API.toggleCheckbox:
+        this.toggleCheckbox(event.value);
         break;
       case API.setInputValue:
         if (this.config.searchEnabled) {
@@ -465,6 +480,10 @@ export class BaseComponent implements OnInit, OnChanges {
         return this.paginationComponent.paginationDirective.getCurrent();
       case API.getPaginationLastPage:
         return this.paginationComponent.paginationDirective.getLastPage();
+      case API.getNumberOfRowsPerPage:
+        return this.paginationComponent.paginationDirective.isLastPage() ?
+          (this.paginationComponent.paginationDirective.getTotalItems() % this.limit) :
+          this.limit;
       case API.setPaginationCurrentPage:
         this.paginationComponent.paginationDirective.setCurrent(event.value);
         break;
@@ -509,6 +528,17 @@ export class BaseComponent implements OnInit, OnChanges {
       const temp = this.sortState.get(key);
       this.sortState.clear();
       this.sortState.set(key, temp);
+    }
+  }
+
+  public emitEvent(event: string, value: any): void {
+    this.event.emit({ event, value });
+    if (this.config.persistState) {
+      localStorage.setItem(event, JSON.stringify(value));
+    }
+    if (this.config.logger) {
+      // tslint:disable-next-line:no-console
+      console.log({ event, value });
     }
   }
 }

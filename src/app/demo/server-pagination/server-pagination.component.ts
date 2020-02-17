@@ -1,15 +1,24 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { Company, CompanyService } from '../../services/company.service';
-import { ConfigService } from './configuration.service';
-import { API, APIDefinition, Columns } from 'ngx-easy-table';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { CompanyService } from '../../services/company.service';
+import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+interface EventObject {
+  event: string;
+  value: {
+    limit: number;
+    page: number;
+  };
+}
 
 @Component({
   selector: 'app-server-pagination',
   templateUrl: './server-pagination.component.html',
   styleUrls: ['./server-pagination.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [CompanyService],
 })
-export class ServerPaginationComponent implements OnInit {
+export class ServerPaginationComponent implements OnInit, OnDestroy {
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
@@ -18,29 +27,38 @@ export class ServerPaginationComponent implements OnInit {
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
   ];
-  data;
-  configuration;
-  pagination = {
+  public data;
+  public configuration: Config;
+  public pagination = {
     limit: 10,
     offset: 0,
     count: -1,
   };
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
-    private companyService: CompanyService,
+    private readonly companyService: CompanyService,
     private readonly cdr: ChangeDetectorRef,
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
     this.getData('');
   }
 
-  eventEmitted($event) {
-    this.parseEvent($event);
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
-  private parseEvent(obj: EventObject) {
+  eventEmitted($event: { event: string, value: any }): void {
+    if ($event.event !== 'onClick') {
+      this.parseEvent($event);
+    }
+  }
+
+  private parseEvent(obj: EventObject): void {
     this.pagination.limit = obj.value.limit ? obj.value.limit : this.pagination.limit;
     this.pagination.offset = obj.value.page ? obj.value.page : this.pagination.offset;
     this.pagination = { ...this.pagination };
@@ -49,13 +67,13 @@ export class ServerPaginationComponent implements OnInit {
   }
 
   private getData(params: string): void {
-    this.configuration = ConfigService.config;
     this.configuration.isLoading = true;
     this.companyService.getCompanies(params)
-      .subscribe((response: Company[]) => {
-          this.data = response;
-          // ensure this.pagination.count is set only once and contains count of whole array not just paginated one
-          this.pagination.count = (this.pagination.count === -1) ? response.length : this.pagination.count;
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((response) => {
+          this.data = response.body;
+          // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
+          this.pagination.count = (this.pagination.count === -1) ? (response.body ? response.body.length : 0) : this.pagination.count;
           this.pagination = { ...this.pagination };
           this.configuration.isLoading = false;
           this.cdr.detectChanges();
@@ -73,9 +91,4 @@ export class ServerPaginationComponent implements OnInit {
     });
   }
 
-}
-
-interface EventObject {
-  event: string;
-  value: any;
 }

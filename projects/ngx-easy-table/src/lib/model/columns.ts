@@ -12,4 +12,5 @@ export interface Columns {
   orderBy?: string;
   cssClass?: { name: string, includeHeader: boolean };
   pinned?: boolean;
+  headerActionTemplate?: TemplateRef<any>;
 }

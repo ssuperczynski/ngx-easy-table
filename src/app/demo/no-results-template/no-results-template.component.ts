@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../../../assets/data';
-import { Columns, DefaultConfig } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-no-results-template',
@@ -17,10 +17,10 @@ export class NoResultsTemplateComponent implements OnInit {
     { key: 'address.street', title: 'Street' },
   ];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = DefaultConfig;
+    this.configuration = {...DefaultConfig};
     this.configuration.horizontalScroll = false;
   }
 }

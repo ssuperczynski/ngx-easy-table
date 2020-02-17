@@ -1,0 +1,15 @@
+<div class="columns">
+  <div class="column col-12 my-1">
+    <ngx-table [data]="data"
+               #table
+               [configuration]="configuration"
+               [pagination]="pagination"
+               [columns]="columns">
+    </ngx-table>
+  </div>
+</div>
+<mat-paginator [length]="paginationTotalItems"
+               [pageSize]="10"
+               (page)="paginationEvent($event)"
+               [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

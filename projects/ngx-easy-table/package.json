@@ -1,19 +1,19 @@
 {
   "name": "ngx-easy-table",
-  "version": "10.1.2",
+  "version": "12.0.0",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": ">=7.1.0",
-    "@angular/common": ">=6.0.0",
-    "@angular/compiler": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
-    "ngx-pagination": "^3.2.1"
+	"@angular/cdk": ">=9.0.0",
+	"@angular/common": ">=9.0.0",
+	"@angular/compiler": ">=9.0.0",
+	"@angular/core": ">=9.0.0",
+	"ngx-pagination": "^3.2.1"
   },
   "dependencies": {
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "3.2.1"
   },
   "engines": {
     "node": ">=11.0.0",
@@ -31,6 +31,7 @@
     "angular6",
     "angular7",
     "angular8",
+    "angular9",
     "table",
     "angular table",
     "angular2 table",

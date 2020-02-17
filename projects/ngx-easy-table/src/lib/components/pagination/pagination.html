@@ -1,4 +1,5 @@
 <div class="ngx-pagination-wrapper"
+     [style.display]="config.paginationEnabled ? '' : 'none'"
      [class.ngx-table__table--dark-pagination-wrapper]="config.tableLayout.theme === 'dark'">
   <div class="ngx-pagination-steps">
     <pagination-template

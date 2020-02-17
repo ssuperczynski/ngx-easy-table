@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-custom-filters',
@@ -19,23 +18,23 @@ export class CustomFiltersComponent {
   ];
   data: Company[] = [];
   rows: Company[] = [];
-  configuration;
+  public configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
     this.rows = data;
   }
 
-  onCompanySearch(value): void {
+  onCompanySearch(value: string): void {
     this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
   }
 
-  onAgeSearch(value): void {
+  onAgeSearch(value: number): void {
     this.rows = this.data.filter((_) => _.age > value);
   }
 
-  onStatusChange(value): void {
+  onStatusChange(value: string): void {
     this.rows = this.data.filter((_) => _.isActive === (value === 'true'));
   }
 

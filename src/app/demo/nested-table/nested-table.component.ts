@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, DefaultConfig } from 'ngx-easy-table';
-import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { API, APIDefinition } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-nested-table',
@@ -10,7 +10,7 @@ import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib'
 })
 export class NestedTableComponent {
   @ViewChild('table', { static: true }) table: APIDefinition;
-
+  public toggledRows = new Set<number>();
   public columns: Columns[] = [
     { key: 'name', title: 'Name', width: '15%' },
     { key: 'age', title: 'Age', width: '15%' },
@@ -21,7 +21,7 @@ export class NestedTableComponent {
     { key: '', title: 'Action', width: '5%' },
   ];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
 
   public nestedData: Company[] = [];
   public nestedConfiguration;
@@ -35,21 +35,27 @@ export class NestedTableComponent {
   ];
 
   constructor() {
-    this.configuration = DefaultConfig;
+    this.configuration = { ...DefaultConfig };
     this.configuration.detailsTemplate = true;
-    this.configuration.tableLayout.hover = false;
+    this.configuration.tableLayout.hover = true;
     this.data = data;
 
-    this.nestedConfiguration = DefaultConfig;
+    this.nestedConfiguration = { ...DefaultConfig };
     this.nestedConfiguration.detailsTemplate = true;
+    this.nestedConfiguration.rows = 5;
     this.nestedData = data;
   }
 
-  onRowClickEvent($event, index: number): void {
+  onRowClickEvent($event: MouseEvent, index: number): void {
     $event.preventDefault();
     this.table.apiEvent({
       type: API.toggleRowIndex,
       value: index,
     });
+    if (this.toggledRows.has(index)) {
+      this.toggledRows.delete(index);
+    } else {
+      this.toggledRows.add(index);
+    }
   }
 }

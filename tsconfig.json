@@ -11,6 +11,8 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "baseUrl": "./",
@@ -28,16 +30,13 @@
       ],
       "ngx-easy-table/*": [
         "dist/ngx-easy-table/*"
-      ],
-      "core-js/es7/reflect": ["node_modules/core-js/proposals/reflect-metadata"],
-      "core-js/es6/reflect": ["node_modules/core-js/es/reflect"]
+      ]
     }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictFunctionTypes": true,
-    "skipLibCheck": true,
     "preserveWhiteSpace": false,
-    "enableIvy": false
+    "enableIvy": true
   }
 }

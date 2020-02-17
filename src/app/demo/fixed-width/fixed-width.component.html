@@ -1,12 +1,14 @@
 <div class="form-group">
   <label class="form-switch">
-    <input type="checkbox" (change)="onChange()">
-    <i class="form-icon"></i> Fixed width
+    <input type="checkbox"
+           [checked]="true"
+           (change)="onChange()">
+    <em class="form-icon"></em> Fixed width
   </label>
 </div>
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+    </ngx-table>
+  </div>
 </div>

@@ -4,6 +4,7 @@ export interface Config {
   orderEnabled: boolean;
   orderEventOnly?: boolean;
   paginationEnabled: boolean;
+  /* @deprecated */
   exportEnabled?: boolean;
   clickEvent: boolean;
   selectRow: boolean;
@@ -18,9 +19,11 @@ export interface Config {
   paginationRangeEnabled: boolean;
   collapseAllRows: boolean;
   checkboxes: boolean;
+  radio?: boolean;
   resizeColumn: boolean;
   fixedColumnWidth: boolean;
   horizontalScroll: boolean;
+  /* @deprecated Use 'rowReorder' instead */
   draggable: boolean;
   logger: boolean;
   showDetailsArrow?: boolean;
@@ -28,6 +31,10 @@ export interface Config {
   persistState?: boolean;
   paginationMaxSize?: number;
   threeWaySort?: boolean;
+  columnReorder?: boolean;
+  rowReorder?: boolean;
+  infiniteScroll?: boolean;
+  infiniteScrollThrottleTime?: number;
   tableLayout: {
     style: STYLE | string | null,
     theme: THEME | string | null,

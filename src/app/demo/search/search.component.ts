@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [ConfigService],
 })
 export class SearchComponent {
   public columns: Columns[] = [
@@ -19,10 +17,11 @@ export class SearchComponent {
     { key: 'address.street', title: 'Street' },
   ];
   data: Company[] = [];
-  configuration;
+  configuration: Config;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.searchEnabled = true;
     this.data = data;
   }
 }

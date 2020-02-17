@@ -1,13 +1,11 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Company, data } from '../../../assets/data';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-inline-row',
   templateUrl: './inline-row.component.html',
   styleUrls: ['./inline-row.component.css'],
-  providers: [ConfigService],
 })
 export class InlineRowComponent implements OnInit {
   @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
@@ -16,17 +14,17 @@ export class InlineRowComponent implements OnInit {
   @ViewChild('nameTpl', { static: true }) nameTpl: TemplateRef<any>;
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
 
-  @ViewChild('phone', { static: false }) phone: ElementRef<any>;
-  @ViewChild('age', { static: false }) age: ElementRef<any>;
-  @ViewChild('company', { static: false }) company: ElementRef<any>;
-  @ViewChild('name', { static: false }) name: ElementRef<any>;
+  @ViewChild('phone') phone: ElementRef<any>;
+  @ViewChild('age') age: ElementRef<any>;
+  @ViewChild('company') company: ElementRef<any>;
+  @ViewChild('name') name: ElementRef<any>;
   public columns: Columns[];
-  data = [];
-  configuration;
+  data: Company[] = [];
+  public configuration: Config;
   editRow: number;
 
   constructor() {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 
@@ -40,19 +38,20 @@ export class InlineRowComponent implements OnInit {
     ];
   }
 
-  edit(rowIndex: number) {
+  edit(rowIndex: number): void {
     this.editRow = rowIndex;
   }
 
-  update() {
+  update(): void {
     this.data = [...this.data.map((obj, index) => {
       if (index === this.editRow) {
-        return Object.assign({}, {
+        return {
           phone: this.phone.nativeElement.value,
           age: this.age.nativeElement.value,
           company: this.company.nativeElement.value,
           name: this.name.nativeElement.value,
-        });
+          isActive: this.name.nativeElement.value,
+        };
       }
       return obj;
     })];

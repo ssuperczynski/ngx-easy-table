@@ -1,32 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-checkboxes',
   templateUrl: './checkboxes.component.html',
   styleUrls: ['./checkboxes.component.css'],
 })
-export class CheckboxesComponent {
-  configuration;
-  public columns: Columns[] = [
-    { key: '', title: '', searchEnabled: false },
-    { key: 'name', title: 'Name' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Supervisor' },
-    { key: 'phone', title: 'Phone' },
-  ];
+export class CheckboxesComponent implements OnInit {
+  public configuration: Config;
+  public columns: Columns[];
+  public data: Company[] = [];
+  public selected = new Set();
 
-  data: Company[] = [];
-  selected = new Set();
-
-  constructor() {
-    this.configuration = ConfigService.config;
+  ngOnInit(): void {
+    this.columns = [
+      { key: '', title: '', searchEnabled: false },
+      { key: 'name', title: 'Name' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Supervisor' },
+      { key: 'phone', title: 'Phone' },
+    ];
+    this.configuration = { ...DefaultConfig };
     this.data = data;
   }
 
-  onChange(row) {
+  onChange(row: any): void {
     const index = this.data.indexOf(row);
     this.selected.add(index);
   }

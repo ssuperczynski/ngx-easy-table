@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { NavigationEnd, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ROUTE } from './route-names';
 
-interface Link {
+export interface Link {
   link: string;
   name: string;
   experimental?: boolean;
@@ -13,93 +16,113 @@ interface Link {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   constructor(private router: Router) {
-
   }
 
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   public readonly version = environment.VERSION;
-  public showMenu = false;
+  public showMenu = true;
   public selected: Link;
+  public searchTerm = '';
   public readonly menu = {
     basic: [
-      { link: 'basic', name: 'Basic' },
-      { link: 'async', name: 'Async resource' },
-      { link: 'pagination', name: 'Pagination' },
-      { link: 'server-pagination', name: 'Server pagination' },
-      { link: 'server-sort', name: 'Server sort' },
-      { link: 'click-event', name: 'Click event' },
-      { link: 'many-tables', name: 'Many tables' },
-      { link: 'dynamic-row', name: 'Dynamic row' },
-      { link: 'horizontal-scroll', name: 'Horizontal scroll' },
-      { link: 'dynamic-configuration', name: 'Dynamic configuration' },
-      { link: 'exports', name: 'Exports' },
-      { link: 'resizable', name: 'Column resizer' },
-      { link: 'column-width', name: 'Column width' },
-      { link: 'fixed-width', name: 'Fixed width' },
-      { link: 'persist-state', name: 'Persist state' },
-      { link: 'persist-state-router/column=phone&sort=desc', name: 'Persist state router' },
-      { link: 'context-menu', name: 'Context menu', experimental: true },
-      { link: 'pinned', name: 'Pinned column' },
-      { link: 'column-class', name: 'Column Class' },
+      { link: ROUTE.BASIC, name: 'Basic' },
+      { link: ROUTE.ASYNC, name: 'Async resource' },
+      { link: ROUTE.PAGINATION, name: 'Pagination' },
+      { link: ROUTE.SERVER_PAGINATION, name: 'Server pagination' },
+      { link: ROUTE.SERVER_SORT, name: 'Server sort' },
+      { link: ROUTE.CLICK_EVENT, name: 'Click event' },
+      { link: ROUTE.MANY_TABLES, name: 'Many tables' },
+      { link: ROUTE.DYNAMIC_ROW, name: 'Dynamic row' },
+      { link: ROUTE.HORIZONTAL_SCROLL, name: 'Horizontal scroll' },
+      { link: ROUTE.DYNAMIC_CONFIGURATION, name: 'Dynamic configuration' },
+      { link: ROUTE.EXPORTS, name: 'Exports' },
+      { link: ROUTE.RESIZABLE, name: 'Column resizer' },
+      { link: ROUTE.COLUMN_WIDTH, name: 'Column width' },
+      { link: ROUTE.FIXED_WIDTH, name: 'Fixed width' },
+      { link: ROUTE.PERSIST_STATE, name: 'Persist state' },
+      { link: ROUTE.PERSIST_STATE_ROUTER('column=phone&sort=desc'), name: 'Persist state router' },
+      { link: ROUTE.CONTEXT_MENU, name: 'Context menu' },
+      { link: ROUTE.PINNED, name: 'Pinned column' },
+      { link: ROUTE.COLUMN_CLASS, name: 'Column Class' },
+      { link: ROUTE.MOBILE, name: 'Mobile view' },
+      { link: ROUTE.NESTED_OBJECT, name: 'Nested object' },
+      { link: ROUTE.REORDER, name: 'Reorder' },
+      // { link: ROUTE.INFINITE_SCROLL, name: 'Infinite scroll', experimental: true },
+      { link: ROUTE.INFINITE_SCROLL_SERVER, name: 'Infinite scroll server', experimental: true },
+      { link: ROUTE.INFINITE_SCROLL_SERVER_TEMPLATE, name: 'Infinite scroll server template', experimental: true },
     ],
     templates: [
-      { link: 'template', name: 'Basic template' },
-      { link: 'modal', name: 'Modal' },
-      { link: 'live-update', name: 'Live update' },
-      { link: 'row-template', name: 'Row details' },
-      { link: 'col-template', name: 'Col template' },
-      { link: 'group-rows', name: 'Group rows', experimental: true },
-      { link: 'collapsed-rows', name: 'Collapsed rows' },
-      { link: 'checkboxes', name: 'Checkboxes' },
-      { link: 'checkbox-default', name: 'Checkboxes template' },
-      { link: 'customize-theme', name: 'Customize theme' },
-      { link: 'nested-table', name: 'Nested table' },
-      { link: 'inline-cell', name: 'Inline cell' },
-      { link: 'inline-row', name: 'Inline row' },
-      { link: 'styles', name: 'Styles' },
-      { link: 'summary-footer', name: 'Summary footer' },
-      { link: 'filter-template', name: 'Filter template' },
-      { link: 'pagination-range', name: 'Pagination range' },
-      { link: 'select-all-template', name: 'Select All template' },
-      { link: 'no-results-template', name: 'No Results template' },
+      { link: ROUTE.TEMPLATE, name: 'Basic template' },
+      { link: ROUTE.MODAL, name: 'Modal' },
+      { link: ROUTE.LIVE_UPDATE, name: 'Live update' },
+      { link: ROUTE.ROW_TEMPLATE, name: 'Row details' },
+      { link: ROUTE.COL_TEMPLATE, name: 'Col template' },
+      { link: ROUTE.GROUP_ROWS, name: 'Group rows', experimental: true },
+      { link: ROUTE.COLLAPSED_ROWS, name: 'Collapsed rows' },
+      { link: ROUTE.CHECKBOXES, name: 'Checkboxes' },
+      { link: ROUTE.CHECKBOX_DEFAULT, name: 'Checkboxes template' },
+      { link: ROUTE.CHECKBOX_AS_RADIO, name: 'Checkbox as radio' },
+      { link: ROUTE.RADIO, name: 'Radio' },
+      { link: ROUTE.CUSTOMIZE_THEME, name: 'Customize theme' },
+      { link: ROUTE.NESTED_TABLE, name: 'Nested table' },
+      { link: ROUTE.INLINE_CELL, name: 'Edit cell' },
+      { link: ROUTE.INLINE_ROW, name: 'Edit row' },
+      { link: ROUTE.STYLES, name: 'Styles' },
+      { link: ROUTE.SUMMARY_FOOTER, name: 'Summary footer' },
+      { link: ROUTE.FILTER_TEMPLATE, name: 'Filter template' },
+      { link: ROUTE.FILTER_HEADER_TEMPLATE, name: 'Filter header template' },
+      { link: ROUTE.PAGINATION_RANGE, name: 'Pagination range' },
+      { link: ROUTE.SELECT_ALL_TEMPLATE, name: 'Select All template' },
+      { link: ROUTE.NO_RESULTS_TEMPLATE, name: 'No Results template' },
+      { link: ROUTE.LOADING_TEMPLATE, name: 'Loading template' },
+      { link: ROUTE.ADDITIONAL_ACTIONS_TEMPLATE, name: 'Additional actions' },
+      { link: ROUTE.CUSTOM_PAGINATION, name: 'Custom pagination' },
     ],
     select: [
-      { link: 'select-row', name: 'Select row' },
-      { link: 'select-col', name: 'Select col' },
-      { link: 'select-cell', name: 'Select cell' },
+      { link: ROUTE.SELECT_ROW, name: 'Select row' },
+      { link: ROUTE.SELECT_COL, name: 'Select col' },
+      { link: ROUTE.SELECT_CELL, name: 'Select cell' },
     ],
     filters: [
-      { link: 'search', name: 'Search' },
-      { link: 'global-search', name: 'Global search' },
-      { link: 'custom-filters', name: 'Custom filters' },
-      { link: 'toggle-column', name: 'Toggle column' },
+      { link: ROUTE.SEARCH, name: 'Search' },
+      { link: ROUTE.GLOBAL_SEARCH, name: 'Global search' },
+      { link: ROUTE.CUSTOM_FILTERS, name: 'Custom filters' },
+      { link: ROUTE.TOGGLE_COLUMN, name: 'Toggle column' },
     ],
     sort: [
-      { link: 'sort', name: 'Sort' },
-      { link: 'custom-sort', name: 'Custom sort' },
-      { link: 'custom-intable-sort', name: 'Custom in-table sort' },
+      { link: ROUTE.SORT, name: 'Sort' },
+      { link: ROUTE.CUSTOM_SORT, name: 'Custom sort' },
+      { link: ROUTE.CUSTOM_INTABLE_SORT, name: 'Custom in-table sort' },
     ],
-    tableApi: [
-      { link: 'api', name: 'API', experimental: true },
-      { link: 'bootstrap', name: 'Bootstrap', experimental: true },
+    api: [
+      { link: ROUTE.API, name: 'API', experimental: true },
+      { link: ROUTE.BOOTSTRAP, name: 'Bootstrap', experimental: true },
     ],
   };
 
   ngOnInit(): void {
-    this.router.events.subscribe((route) => {
-      if (route instanceof NavigationEnd) {
-        const url = route.url.replace('/', '');
-        Object.values(this.menu).forEach((value) => value.forEach((entry) => {
-          if (entry.link === url) {
-            this.select({
-              link: url,
-              name: entry.name,
-            });
-          }
-        }));
-      }
-    });
+    this.router.events
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((route) => {
+        if (route instanceof NavigationEnd) {
+          const url = route.url.replace('/', '');
+          Object.values(this.menu).forEach((value) => value.forEach((entry) => {
+            if (entry.link === url) {
+              this.select({
+                link: url,
+                name: entry.name,
+              });
+            }
+          }));
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   select(selected: Link): void {
@@ -107,7 +130,11 @@ export class AppComponent implements OnInit {
     this.showMenu = !this.showMenu;
   }
 
-  get excludedLinks() {
-    return ['basic', 'api-doc', 'doc', 'installation'].indexOf(this.selected.link) !== -1;
+  get excludedLinks(): boolean {
+    return [ROUTE.BASIC, ROUTE.API_DOC, ROUTE.DOC, ROUTE.INSTALLATION].includes(this.selected.link);
+  }
+
+  onMenuSearch(value: string): void {
+    this.searchTerm = value;
   }
 }

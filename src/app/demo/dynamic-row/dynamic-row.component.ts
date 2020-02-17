@@ -1,21 +1,19 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-dynamic-row',
   templateUrl: './dynamic-row.component.html',
   styleUrls: ['./dynamic-row.component.css'],
-  providers: [ConfigService],
 })
 export class DynamicRowComponent implements OnInit {
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
   public data;
   public columns: Columns[];
-  public configuration;
+  public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
     this.columns = [
       { key: 'status', title: 'Status' },
       { key: 'amount', title: 'Amount' },
@@ -34,12 +32,13 @@ export class DynamicRowComponent implements OnInit {
     ];
   }
 
-  randNumber(min, max) {
-    return ~~(Math.random() * (max - min) + min);
+  private randNumber(min: number, max: number): number {
+    return Math.floor((Math.random() * (max - min) + min));
   }
 
-  addRow() {
-    this.data.push(
+  addRow(): void {
+    this.data = [
+      ...this.data,
       {
         status: 'ACTIVE',
         amount: this.randNumber(1, 5),
@@ -47,12 +46,10 @@ export class DynamicRowComponent implements OnInit {
         limit: this.randNumber(800, 1200),
         balance: this.randNumber(800, 3000),
       },
-    );
-    this.data = [...this.data];
+    ];
   }
 
   remove(rowIndex: number): void {
-    this.data.splice(rowIndex, 1);
-    this.data = [...this.data];
+    this.data = [...this.data.filter((_v, k) => k !== rowIndex)];
   }
 }

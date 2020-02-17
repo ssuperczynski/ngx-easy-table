@@ -1,39 +1,46 @@
 import { Injectable } from '@angular/core';
-import { cellClass, cellStyle, rowClass, rowStyle } from '..';
+import { CellClass, CellStyle, RowClass, RowStyle } from '..';
 
+/* tslint:disable:no-useless-cast */
 @Injectable()
 export class StyleService {
-  setRowClass(val: rowClass): void {
+  public setRowClass(val: RowClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
-    const row: HTMLTableRowElement = document.querySelector(selector);
+    const row = document.querySelector(selector) as HTMLTableRowElement;
     if (row) {
-      row.className = val.className;
+      row.classList.add(val.className);
     }
   }
 
-  setCellClass(val: cellClass): void {
+  public setCellClass(val: CellClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
-    const cell: HTMLTableCellElement = document.querySelector(selector);
+    const cell = document.querySelector(selector) as HTMLTableCellElement;
     if (cell) {
-      cell.className = val.className;
+      cell.classList.add(val.className);
     }
   }
 
-  setRowStyle(val: rowStyle): void {
+  public setRowStyle(val: RowStyle): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
-    const row: HTMLTableRowElement = document.querySelector(selector);
+    const row = document.querySelector(selector) as HTMLTableRowElement;
     if (row) {
       // tslint:disable-next-line:no-string-literal
       row.style[val.attr] = val.value;
     }
   }
 
-  setCellStyle(val: cellStyle): void {
+  public setCellStyle(val: CellStyle): void {
     const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
-    const cell: HTMLTableCellElement = document.querySelector(selector);
+    const cell = document.querySelector(selector) as HTMLTableCellElement;
     if (cell) {
       // tslint:disable-next-line:no-string-literal
       cell.style[val.attr] = val.value;
+    }
+  }
+
+  public pinnedWidth(pinned: boolean, column: number): string | undefined {
+    if (pinned) {
+      return 150 * column + 'px';
     }
   }
 }

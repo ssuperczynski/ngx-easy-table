@@ -1,26 +1,26 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
-import { ConfigService } from './configuration.service';
-import { API, APIDefinition, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition, Config, DefaultConfig } from 'ngx-easy-table';
 import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-context-menu',
   templateUrl: './context-menu.component.html',
   styleUrls: ['./context-menu.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [CompanyService],
 })
 export class ContextMenuComponent implements OnInit {
   @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
-  public configuration;
+  public configuration: Config;
   public edit: number;
 
   ngOnInit(): void {
-    this.configuration = ConfigService.config;
+    this.configuration = { ...DefaultConfig };
+    this.configuration.showContextMenu = true;
     this.columns = [
       { key: 'phone', title: 'Phone', width: '15%', cellTemplate: this.phoneTpl },
       { key: 'age', title: 'Age', width: '10%' },
@@ -31,7 +31,7 @@ export class ContextMenuComponent implements OnInit {
     this.data = data;
   }
 
-  copyCell(object: TableMouseEvent) {
+  copyCell(object: any): void {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
@@ -46,12 +46,12 @@ export class ContextMenuComponent implements OnInit {
     this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
-  editCell(object: TableMouseEvent) {
+  editCell(object: any): void {
     this.edit = object.rowId;
     this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
-  update($event) {
+  update($event: any): void {
     this.data[this.edit].phone = $event.target.value;
     this.edit = -1;
   }

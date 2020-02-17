@@ -197,7 +197,10 @@
       <tbody>
       <tr>
         <td>key</td>
-        <td>Object key. <br> You can enter here nested object key separated by dot.</td>
+        <td>
+          <span class="mb-2">Object key. </span>
+          <span>You can enter here nested object key separated by dot.</span>
+        </td>
         <td>
           <pre><code [highlight]="columnDefinitionCode"></code></pre>
           <pre><code [highlight]="columnDefinitionCode2"></code></pre>
@@ -255,11 +258,31 @@
       <tr>
         <td>orderEventOnly <small>(optional)</small></td>
         <td>
-          By enabling orderEventOnly option table emits order event but doesn't sort by this column. It is useful when you would like to do custom sort. <br>
+          <span class="mb-2">By enabling orderEventOnly option table emits order event but doesn't sort by this column. It is useful when you would like to do custom sort. </span>
           See <a href="#" [routerLink]="['/custom-intable-sort']">https://ngx-easy-table.eu/#/custom-intable-sort</a> for more details.
         </td>
         <td>
           <pre><code [highlight]="columnOrderEventCode"></code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>pinned <small>(optional)</small></td>
+        <td>
+          <span  class="mb-2">Pin column to to right (right now max 2 columns).</span>
+          See <a href="#" [routerLink]="['/pinned']">https://ngx-easy-table.eu/#/pinned</a> for more details.
+        </td>
+        <td>
+          <pre><code [highlight]="pinnedCode"></code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>cssClass <small>(optional)</small></td>
+        <td>
+          <span  class="mb-2">Set column class. You can set if class is applied to the header or not. </span>
+          See <a href="#" [routerLink]="['/column-class']">https://ngx-easy-table.eu/#/column-class</a> for more details.
+        </td>
+        <td>
+          <pre><code [highlight]="cssClassCode"></code></pre>
         </td>
       </tr>
       </tbody>
@@ -270,7 +293,7 @@
       <button class="btn btn-primary btn-sm" [routerLink]="['/styles']">Styles</button>
     </p>
     <p>
-      Table from version 9.1 has Montserrat as a default font (previously it was Lato). <br>
+      <span  class="mb-2">Table from version 9.1 has Montserrat as a default font (previously it was Lato). </span>
       If you would like to change table font, add the new one to the package.json, include it in angular.json and
       define in your style.scss:
     </p>

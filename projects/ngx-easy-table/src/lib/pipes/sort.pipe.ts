@@ -8,7 +8,7 @@ import { Config } from '..';
 export class SortPipe implements PipeTransform {
   private defaultArray: any[] = [];
 
-  private static isNaN(aV, bV) {
+  private static isNaN(aV: any, bV: any): boolean {
     return (isNaN(parseFloat(aV)) || !isFinite(aV)) || (isNaN(parseFloat(bV)) || !isFinite(bV));
   }
 
@@ -43,20 +43,20 @@ export class SortPipe implements PipeTransform {
       return this.defaultArray;
     }
     if (filter.order === 'asc') {
-      return this.sortAsc(config, array, filter);
+      return this.sortAsc(array, filter, config);
     } else {
-      return this.sortDesc(config, array, filter);
+      return this.sortDesc(array, filter, config);
     }
   }
 
-  private sortAsc(config, array, filter) {
+  private sortAsc(array: any[], filter: { order: string, key: string }, config?: Config): any[] {
     if (config && config.groupRows) {
       return array.map((arr) => arr.sort((a, b) => SortPipe.compare(a, b, filter.key)));
     }
     return array.sort((a, b) => SortPipe.compare(a, b, filter.key));
   }
 
-  private sortDesc(config, array, filter) {
+  private sortDesc(array: any[], filter: { order: string, key: string }, config?: Config): any[] {
     if (config && config.groupRows) {
       return array.map((arr) => arr.sort((a, b) => SortPipe.compare(b, a, filter.key)));
     }

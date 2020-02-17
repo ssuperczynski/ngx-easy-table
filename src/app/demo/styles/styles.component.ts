@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-styles',
@@ -9,24 +8,20 @@ import { Columns } from 'ngx-easy-table';
   styleUrls: ['./styles.component.css'],
 })
 export class StylesComponent implements OnInit {
+  public configuration: Config;
+  public columns: Columns[];
+  public data: Company[] = [];
 
-  configuration;
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-  ];
-
-  data: Company[] = [];
-
-  constructor() {
-    this.configuration = ConfigService.config;
+  ngOnInit(): void {
+    this.columns = [
+      { key: 'phone', title: 'Phone' },
+      { key: 'age', title: 'Age' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'isActive', title: 'STATUS' },
+    ];
+    this.configuration = { ...DefaultConfig };
     this.data = data;
-  }
-
-  ngOnInit() {
   }
 
 }

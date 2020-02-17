@@ -9,8 +9,6 @@ $primary-color: #50596c !default;
   &-container {
     margin-left: auto;
     margin-right: auto;
-    padding-left: .4rem;
-    padding-right: .4rem;
     width: 100%;
   }
 
@@ -20,6 +18,7 @@ $primary-color: #50596c !default;
     border-spacing: 0;
     display: table;
     font-family: Montserrat, Verdana, serif;
+    font-size: 14px;
     text-align: left;
     width: 100%;
 
@@ -122,16 +121,16 @@ $primary-color: #50596c !default;
     }
 
     &__column-resizer {
-      background-color: $grey-dark;
+      background-color: $grey;
       cursor: col-resize;
       display: block;
-      height: 100%;
-      margin: 0;
+      height: 20px;
+      margin-top: 10px;
       position: absolute;
       padding: 0;
       right: 0;
       top: 0;
-      width: 3px;
+      width: 2px;
     }
 
     &__table--borderless > {
@@ -244,10 +243,6 @@ $primary-color: #50596c !default;
     z-index: 100;
   }
 
-  &-menu-item {
-    cursor: pointer;
-  }
-
   &-form-icon {
     border-radius: .1rem;
     background: #fff;
@@ -305,7 +300,7 @@ $primary-color: #50596c !default;
           position: absolute;
           top: 50%;
           transform: rotate(45deg);
-          width: 4px;
+          width: 6px;
         }
       }
     }
@@ -324,6 +319,7 @@ $primary-color: #50596c !default;
     width: 1em;
 
     &::before, &::after {
+      content: "";
       display: block;
       left: 50%;
       position: absolute;
@@ -336,9 +332,8 @@ $primary-color: #50596c !default;
     border: .1rem solid $dark;
     border-bottom: 0;
     border-right: 0;
-    content: "";
-    height: .45em;
-    width: .45em;
+    height: .65em;
+    width: .65em
   }
 
   &-icon-arrow-down::before {
@@ -368,15 +363,28 @@ $primary-color: #50596c !default;
     height: 11px;
   }
 
+  &-icon-more::before {
+    background: $dark;
+    border-radius: 50%;
+    box-shadow: 0 -.4em, 0 .4em;
+    height: 3px;
+    width: 3px
+  }
+
   &-dropdown {
-    display: inline-block;
+    display: inline;
     position: relative;
+    float: right;
 
     .ngx-menu {
       position: absolute;
       top: 100%;
       right: 0;
       left: auto;
+    }
+
+    a {
+      color: $primary-color;
     }
   }
 
@@ -401,14 +409,36 @@ $primary-color: #50596c !default;
 
 .cdk-drag-preview {
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 1px;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
   0 8px 10px 1px rgba(0, 0, 0, 0.14),
   0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  background-color: white;
+  padding-top: 9px;
+  padding-left: 4px;
+  display: table;
+  table-layout: fixed
 }
 
 .cdk-drag-placeholder {
   opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.ngx-draggable-row-area.cdk-drop-list-dragging .ngx-draggable-row:not(.cdk-drag-placeholder) {
+  transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.ngx-table__header-cell--draggable {
+  cursor: move;
+  background-color: white;
+}
+
+.ngx-table__header--draggable.cdk-drop-list-dragging .ngx-table__header-cell--draggable:not(.cdk-drag-placeholder) {
+  transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .ngx-pagination {
@@ -557,3 +587,17 @@ $primary-color: #50596c !default;
     display: none;
   }
 }
+
+.ngx-infinite-scroll-viewport {
+  display: block;
+  height: 250px;
+  overflow: auto;
+}
+
+.ngx-infinite-scroll-viewport tr,
+.ngx-infinite-scroll-viewport-thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
