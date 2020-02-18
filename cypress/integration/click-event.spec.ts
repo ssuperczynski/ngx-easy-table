@@ -8,43 +8,35 @@ context('Click event', () => {
 
   it('shows click event when row clicked', () => {
     cy
-      .tableRow(1, 1).click()
+      .tableRow(1, 1)
+      .click()
       .get('#eventArea')
-      .contains('{\n' +
-      '  "event": "onClick",\n' +
-      '  "value": {\n' +
-      '    "event": {\n' +
-      '      "isTrusted": false\n' +
-      '    },\n' +
-      '    "row": {\n' +
-      '      "imgUrl": "https://i.imgur.com/GLqxxnn.png",\n' +
-      '      "phone": "+1 (949) 527-2108",\n' +
-      '      "age": 36,\n' +
-      '      "address": {\n' +
-      '        "street": "Some street",\n' +
-      '        "number": 12\n' +
-      '      },\n' +
-      '      "company": "KONGENE",\n' +
-      '      "name": "Deanne Contreras",\n' +
-      '      "isActive": true,\n' +
-      '      "level": "Low"\n' +
-      '    },\n' +
-      '    "key": "phone",\n' +
-      '    "rowId": 0,\n' +
-      '    "colId": 0\n' +
-      '  }\n' +
-      '}');
+      .contains('"event": "onClick"')
+      .contains('"value":')
+      .contains('{ "event":')
+      .contains('"row":')
+      .contains('"imgUrl": "https://i.imgur.com/GLqxxnn.png",')
+      .contains('"phone": "+1 (949) 527-2108",')
+      .contains('"age": 36,')
+      .contains('"address": {')
+      .contains('"street": "Some street",')
+      .contains('"number": 12')
+      .contains('"company": "KONGENE",')
+      .contains('"name": "Deanne Contreras",')
+      .contains('"isActive": true,')
+      .contains('"level": "Low"')
+      .contains('"key": "phone",')
+      .contains('"rowId": 0')
+      .contains('"colId": 0');
   });
+
   it('shows click event when pagination clicked', () => {
     cy.get('#pagination-controls > ul > li:nth-child(4) > a')
       .click()
       .get('#eventArea')
-      .contains('{\n' +
-        '  "event": "onPagination",\n' +
-        '  "value": {\n' +
-        '    "page": 2,\n' +
-        '    "limit": 10\n' +
-        '  }\n' +
-        '}');
+      .contains('"event": "onPagination"')
+      .contains('"value": {')
+      .contains('"page": 2,')
+      .contains('"limit": 10');
   });
 });

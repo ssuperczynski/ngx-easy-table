@@ -60,6 +60,10 @@
                   "type": "initial",
                   "maximumWarning": "3mb",
                   "maximumError": "4mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -107,7 +111,12 @@
             "tsConfig": "projects/ngx-easy-table/tsconfig.lib.json",
             "project": "projects/ngx-easy-table/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-easy-table/tsconfig.lib.prod.json"
+            }
+          }
+},
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

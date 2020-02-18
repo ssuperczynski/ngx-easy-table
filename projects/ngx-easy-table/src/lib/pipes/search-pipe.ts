@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { FiltersService } from '../services/filters.service';
-import { Config } from '..';
+import { Config } from '../index';
 import { Subject } from 'rxjs';
 
 @Pipe({
@@ -10,7 +10,8 @@ import { Subject } from 'rxjs';
 export class SearchPipe implements PipeTransform {
   private filters: { [key: string]: string } = {};
 
-  transform(array: any[], filter: Array<{ value: string, key: string }>, filteredCountSubject: Subject<number>, config?: Config): any {
+  transform(array: any[], filter: Array<{ value: string, key: string }>,
+            filteredCountSubject: Subject<number>, config?: Config): any {
     filteredCountSubject.next(0);
     if (typeof array === 'undefined') {
       return;

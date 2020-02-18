@@ -8,23 +8,27 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  OnChanges, OnDestroy,
-  OnInit, Output, SimpleChange,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChange,
   SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
 
-import { API, ApiType, Columns, Config, Event, Pagination } from '../..';
+import { API, ApiType, Columns, Config, Event, Pagination } from '../../index';
 import { DefaultConfigService } from '../../services/config-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
-import { Subject, Subscription } from 'rxjs';
-import { CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { Subject } from 'rxjs';
 import { filter, takeUntil, throttleTime } from 'rxjs/operators';
+import { CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
 
 type ColumnKeyType = string | number | boolean;
+type KeyValueType = { key: string; value: string };
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -42,14 +46,13 @@ interface RowContextMenuPosition {
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export  class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   private unsubscribe = new Subject<void>();
   public selectedRow: number;
   public selectedCol: number;
-  public term;
+  public term: any;
   public filterCount = -1;
   public filteredCountSubject = new Subject<number>();
-  public subscription: Subscription;
   public tableClass: string | null = null;
   public globalSearchTerm: string;
   public grouped: any = [];
@@ -91,9 +94,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
-  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
-  @ViewChild('contextMenu', { static: false }) contextMenu;
-  @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;
+  @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
+  @ViewChild('contextMenu') contextMenu;
+  @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
 
   @HostListener('document:click', ['$event.target'])
   public onContextMenuClick(targetElement: any): void {
@@ -111,13 +114,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     private readonly scrollDispatcher: ScrollDispatcher,
     public readonly styleService: StyleService,
   ) {
-    this.subscription = this.filteredCountSubject
+    this.filteredCountSubject
       .pipe(
-        takeUntil(this.unsubscribe),
+        takeUntil(this.unsubscribe)
       )
       .subscribe((count) => {
-        this.filterCount = count;
-        this.cdr.detectChanges();
+        setTimeout(() => {
+          this.filterCount = count;
+          this.cdr.detectChanges();
+        });
       });
   }
 
@@ -270,7 +275,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
-  onSearch($event: Array<{ key: string; value: string }>): void {
+  onSearch($event: KeyValueType[]): void {
     if (!this.config.serverPagination) {
       this.term = $event;
     }
