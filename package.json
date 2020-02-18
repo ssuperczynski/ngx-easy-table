@@ -30,7 +30,7 @@
     }
   },
   "dependencies": {
- 	"@angular/animations": "^9.0.0",
+    "@angular/animations": "^9.0.0",
     "@angular/forms": "^9.0.0",
     "@angular/material": "^9.0.0",
     "export-to-csv": "^0.2.1",
