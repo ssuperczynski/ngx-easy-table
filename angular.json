@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -60,6 +60,10 @@
                   "type": "initial",
                   "maximumWarning": "3mb",
                   "maximumError": "4mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -106,6 +110,11 @@
           "options": {
             "tsConfig": "projects/ngx-easy-table/tsconfig.lib.json",
             "project": "projects/ngx-easy-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-easy-table/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {

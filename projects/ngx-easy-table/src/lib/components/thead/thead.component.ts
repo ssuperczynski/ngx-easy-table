@@ -42,8 +42,8 @@ export class TableTHeadComponent {
   @Output() readonly order = new EventEmitter<Columns>();
   @Output() readonly selectAll = new EventEmitter<void>();
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
-  @ViewChild('th', { static: false }) private th;
-  @ViewChild('additionalActionMenu', { static: false }) additionalActionMenu;
+  @ViewChild('th') private th;
+  @ViewChild('additionalActionMenu') additionalActionMenu;
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement: any): void {
     if (this.additionalActionMenu && !this.additionalActionMenu.nativeElement.contains(targetElement)) {

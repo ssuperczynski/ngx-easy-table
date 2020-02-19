@@ -20,7 +20,7 @@ import { DefaultConfigService } from '../../services/config-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { filter, takeUntil, throttleTime } from 'rxjs/operators';
 
@@ -46,10 +46,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   private unsubscribe = new Subject<void>();
   public selectedRow: number;
   public selectedCol: number;
-  public term;
+  public term: any;
   public filterCount = -1;
   public filteredCountSubject = new Subject<number>();
-  public subscription: Subscription;
   public tableClass: string | null = null;
   public globalSearchTerm: string;
   public grouped: any = [];
@@ -91,9 +90,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
-  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
-  @ViewChild('contextMenu', { static: false }) contextMenu;
-  @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;
+  @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
+  @ViewChild('contextMenu') contextMenu;
+  @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
 
   @HostListener('document:click', ['$event.target'])
   public onContextMenuClick(targetElement: any): void {
@@ -111,13 +110,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     private readonly scrollDispatcher: ScrollDispatcher,
     public readonly styleService: StyleService,
   ) {
-    this.subscription = this.filteredCountSubject
+    this.filteredCountSubject
       .pipe(
         takeUntil(this.unsubscribe),
       )
       .subscribe((count) => {
-        this.filterCount = count;
-        this.cdr.detectChanges();
+        setTimeout(() => {
+          this.filterCount = count;
+          this.cdr.detectChanges();
+        });
       });
   }
 

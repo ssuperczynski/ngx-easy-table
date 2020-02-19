@@ -169,6 +169,7 @@
     "no-collapsible-if": true,
     "no-empty-nested-blocks": true,
     "no-return-type-any": true,
+    "array-type": false,
     "parameters-max-number": [
       true,
       5

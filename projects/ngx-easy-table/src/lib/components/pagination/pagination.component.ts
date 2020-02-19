@@ -24,7 +24,7 @@ export interface PaginationRange {
 })
 export class PaginationComponent implements OnChanges {
   @ViewChild('paginationDirective', { static: true }) paginationDirective: PaginationControlsDirective;
-  @ViewChild('paginationRange', { static: false }) paginationRange;
+  @ViewChild('paginationRange') paginationRange;
   @Input() pagination;
   @Input() config: Config;
   @Input() id;
