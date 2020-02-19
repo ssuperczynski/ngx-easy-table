@@ -7,16 +7,16 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/cdk": ">=7.1.0",
-    "@angular/common": ">=6.0.0",
-    "@angular/compiler": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
-    "ngx-pagination": "^3.2.1"
+    "@angular/common": ">=7.0.0",
+    "@angular/compiler": ">=7.0.0",
+    "@angular/core": ">=7.0.0",
+    "ngx-pagination": "^5.0.0"
   },
   "dependencies": {
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^5.0.0"
   },
   "engines": {
-    "node": ">=11.0.0",
+    "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
   "engineStrict": true,
@@ -28,9 +28,10 @@
   "keywords": [
     "angular",
     "angular2",
-    "angular6",
     "angular7",
     "angular8",
+    "angular9",
+    "angular ivy",
     "table",
     "angular table",
     "angular2 table",

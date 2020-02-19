@@ -37,6 +37,6 @@
     "fullTemplateTypeCheck": true,
     "strictFunctionTypes": true,
     "preserveWhiteSpace": false,
-    "enableIvy": false
+    "enableIvy": true
   }
 }
