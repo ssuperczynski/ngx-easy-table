@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { Event } from '../../../../projects/ngx-easy-table/src/lib';
@@ -7,6 +7,7 @@ import { Event } from '../../../../projects/ngx-easy-table/src/lib';
   selector: 'app-infinite-scroll',
   templateUrl: './infinite-scroll.component.html',
   styleUrls: ['./infinite-scroll.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfiniteScrollComponent implements OnInit {
   public configuration: Config;

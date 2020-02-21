@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-persist-state-router',
   templateUrl: './persist-state-router.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [],
 })
 export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterViewInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-click-event',
   templateUrl: './click-event.component.html',
   styleUrls: ['./click-event.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClickEventComponent implements OnInit {
   public columns: Columns[];

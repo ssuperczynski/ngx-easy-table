@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,6 +8,7 @@ import { ExportToCsv } from 'export-to-csv';
   selector: 'app-exports',
   templateUrl: './exports.component.html',
   styleUrls: ['./exports.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExportsComponent {
   public columns: Columns[] = [

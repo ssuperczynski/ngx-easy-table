@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   HostListener,
@@ -23,6 +24,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
       border: 1px solid #e7e9ed;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [StyleService],
 })
 export class TableTHeadComponent {

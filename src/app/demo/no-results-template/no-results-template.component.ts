@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-no-results-template',
   templateUrl: './no-results-template.component.html',
   styleUrls: ['./no-results-template.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoResultsTemplateComponent implements OnInit {
 

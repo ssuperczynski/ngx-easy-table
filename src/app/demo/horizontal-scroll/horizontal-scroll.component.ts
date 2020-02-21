@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core';
 import { phone, company, random, name } from 'faker';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-horizontal-scroll',
   templateUrl: './horizontal-scroll.component.html',
   styleUrls: ['./horizontal-scroll.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HorizontalScrollComponent implements OnInit {
   data;

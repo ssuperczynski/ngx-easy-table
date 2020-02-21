@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
   selector: 'app-custom-intable-sort',
   templateUrl: './custom-intable-sort.component.html',
   styleUrls: ['./custom-intable-sort.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomIntableSortComponent implements OnInit {
   public columns: Columns[];

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-select-all-template',
   templateUrl: './select-all-template.component.html',
   styleUrls: ['./select-all-template.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectAllTemplateComponent {
 
