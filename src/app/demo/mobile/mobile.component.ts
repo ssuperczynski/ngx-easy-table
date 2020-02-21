@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { API, APIDefinition } from 'ngx-easy-table';
@@ -7,6 +7,7 @@ import { API, APIDefinition } from 'ngx-easy-table';
   selector: 'app-mobile',
   templateUrl: './mobile.component.html',
   styleUrls: ['./mobile.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileComponent implements OnInit {
   public configuration: Config;

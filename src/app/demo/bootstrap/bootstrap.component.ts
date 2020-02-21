@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
@@ -8,6 +8,7 @@ import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-tab
   styleUrls: ['./bootstrap.component.scss'],
   // tslint:disable-next-line:use-view-encapsulation
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BootstrapComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;

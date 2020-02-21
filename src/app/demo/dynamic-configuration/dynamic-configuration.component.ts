@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { columns, Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-dynamic-configuration',
   templateUrl: './dynamic-configuration.component.html',
   styleUrls: ['./dynamic-configuration.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DynamicConfigurationComponent {
   columns: Columns[] = [];

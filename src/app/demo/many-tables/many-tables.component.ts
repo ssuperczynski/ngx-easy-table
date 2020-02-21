@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-many-tables',
   templateUrl: './many-tables.component.html',
   styleUrls: ['./many-tables.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManyTablesComponent implements OnInit {
   public configurationBasic: Config;

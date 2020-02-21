@@ -69,7 +69,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   };
   public selectedDetailsTemplateRowId = new Set<number>();
   public selectedCheckboxes = new Set<number>();
-  public loadingHeight = '30px';
   public config: Config;
 
   @Input() configuration: Config;
@@ -339,20 +338,17 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     return this.selectedDetailsTemplateRowId.has(rowIndex);
   }
 
-  get isLoading(): boolean {
+  get loadingHeight(): number {
     const table = document.getElementById(this.id) as HTMLTableElement;
     if (table && table.rows && table.rows.length > 3) {
-      this.getLoadingHeight(table.rows);
+      const searchEnabled = this.config.searchEnabled ? 1 : 0;
+      const headerEnabled = this.config.headerEnabled ? 1 : 0;
+      const borderTrHeight = 1;
+      const borderDivHeight = 2;
+      return (table.rows.length - searchEnabled - headerEnabled) * (table.rows[3].offsetHeight - borderTrHeight) - borderDivHeight;
     }
-    return this.config.isLoading;
-  }
 
-  getLoadingHeight(rows: any): void {
-    const searchEnabled = this.config.searchEnabled ? 1 : 0;
-    const headerEnabled = this.config.headerEnabled ? 1 : 0;
-    const borderTrHeight = 1;
-    const borderDivHeight = 2;
-    this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
+    return 30;
   }
 
   get arrowDefinition(): boolean {

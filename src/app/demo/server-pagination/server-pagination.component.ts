@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
@@ -17,6 +17,7 @@ interface EventObject {
   templateUrl: './server-pagination.component.html',
   styleUrls: ['./server-pagination.component.css'],
   providers: [CompanyService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServerPaginationComponent implements OnInit, OnDestroy {
   @ViewChild('table', { static: true }) table: APIDefinition;

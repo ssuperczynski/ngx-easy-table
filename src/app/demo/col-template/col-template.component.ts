@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-col-template',
   templateUrl: './col-template.component.html',
   styleUrls: ['./col-template.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColTemplateComponent implements OnInit {
   @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;

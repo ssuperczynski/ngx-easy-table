@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { API, APIDefinition, Config, DefaultConfig } from 'ngx-easy-table';
@@ -8,6 +8,7 @@ import { Columns } from 'ngx-easy-table';
   selector: 'app-context-menu',
   templateUrl: './context-menu.component.html',
   styleUrls: ['./context-menu.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CompanyService],
 })
 export class ContextMenuComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { API, APIDefinition } from 'ngx-easy-table';
@@ -7,6 +7,7 @@ import { API, APIDefinition } from 'ngx-easy-table';
   selector: 'app-nested-table',
   templateUrl: './nested-table.component.html',
   styleUrls: ['./nested-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NestedTableComponent {
   @ViewChild('table', { static: true }) table: APIDefinition;

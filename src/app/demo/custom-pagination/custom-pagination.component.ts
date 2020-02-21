@@ -1,4 +1,12 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, API, DefaultConfig, Config, APIDefinition } from 'ngx-easy-table';
 import { PageEvent } from '@angular/material/paginator';
@@ -10,6 +18,7 @@ import { Pagination } from '../../../../projects/ngx-easy-table/src/lib';
   styleUrls: ['./custom-pagination.component.scss'],
   // tslint:disable-next-line:use-view-encapsulation
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomPaginationComponent implements OnInit, AfterViewInit {
   @ViewChild('table', { static: true }) public table: APIDefinition;

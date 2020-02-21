@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
@@ -15,6 +15,7 @@ interface Data {
   selector: 'app-live-update',
   templateUrl: './live-update.component.html',
   styleUrls: ['./live-update.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LiveUpdateComponent implements OnInit {
   data: Data[] = [
