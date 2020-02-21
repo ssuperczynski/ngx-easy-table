@@ -16,7 +16,7 @@
     "cy:local": "ng serve --port=4201",
     "cy:test": "cypress open",
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --headless --browser chrome",
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
     "watch:table": "ng build ngx-easy-table --watch",
     "publish:lib": "cd dist/ngx-easy-table && npm publish",
