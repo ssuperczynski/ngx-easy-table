@@ -8,7 +8,7 @@
          [class.ngx-table__table--dark]="config.tableLayout.theme === 'dark'"
          [class.ngx-table__table--hoverable]="config.tableLayout.hover"
          [class.ngx-table__table--striped]="config.tableLayout.striped"
-         [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !isLoading">
+         [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !config.isLoading">
     <thead
       [class.ngx-infinite-scroll-viewport-thead]="config.infiniteScroll"
       table-thead
@@ -25,7 +25,7 @@
       (event)="emitEvent($event.event, $event.value)"
     >
     </thead>
-    <tbody *ngIf="data && !isLoading && !config.rowReorder">
+    <tbody *ngIf="data && !config.isLoading && !config.rowReorder">
     <ng-container *ngIf="rowTemplate">
       <ul class="ngx-table__table-row-context-menu"
           [ngStyle]="{'position': 'absolute', 'top': rowContextMenuPosition.top, 'left': rowContextMenuPosition.left }"
@@ -332,14 +332,14 @@
       </td>
     </tr>
     </tbody>
-    <tbody *ngIf="isLoading">
+    <tbody *ngIf="config.isLoading">
     <tr class="ngx-table__body-loading">
       <ng-container
         *ngIf="loadingTemplate"
         [ngTemplateOutlet]="loadingTemplate">
       </ng-container>
       <td [attr.colspan]="columns && columns.length + 1" *ngIf="!loadingTemplate">
-        <div [style.height]="loadingHeight"
+        <div [style.height.px]="loadingHeight"
              class="ngx-table__table-loader-wrapper">
           <div class="ngx-table__table-loader"></div>
         </div>

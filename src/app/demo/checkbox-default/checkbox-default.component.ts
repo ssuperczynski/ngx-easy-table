@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-checkbox-default',
   templateUrl: './checkbox-default.component.html',
   styleUrls: ['./checkbox-default.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxDefaultComponent implements OnInit {
   public configuration: Config;

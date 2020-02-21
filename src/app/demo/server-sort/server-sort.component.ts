@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { Subject } from 'rxjs';
@@ -19,6 +19,7 @@ interface EventObject {
   templateUrl: './server-sort.component.html',
   styleUrls: ['./server-sort.component.css'],
   providers: [CompanyService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServerSortComponent implements OnInit, OnDestroy {
   public columns: Columns[] = [

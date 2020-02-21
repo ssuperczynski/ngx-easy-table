@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-persist-state',
   templateUrl: './persist-state.component.html',
   styleUrls: ['./persist-state.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersistStateComponent {
   public configuration: Config;

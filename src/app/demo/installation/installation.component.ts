@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-installation',
   templateUrl: './installation.component.html',
   styleUrls: ['./installation.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InstallationComponent {
   public readonly npmInstallCode = `

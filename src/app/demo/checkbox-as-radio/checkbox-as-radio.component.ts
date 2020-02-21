@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-tab
   selector: 'app-checkbox-as-radio',
   templateUrl: './checkbox-as-radio.component.html',
   styleUrls: ['./checkbox-as-radio.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxAsRadioComponent implements OnInit {
   public configuration: Config;

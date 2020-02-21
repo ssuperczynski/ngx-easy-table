@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { API, Columns, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { API, Columns, APIDefinition, DefaultConfig, Config } from 'ngx-easy-tab
   selector: 'app-api',
   templateUrl: './api.component.html',
   styleUrls: ['./api.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApiComponent implements OnInit, AfterViewInit {
   @ViewChild('table', { static: true }) table: APIDefinition;

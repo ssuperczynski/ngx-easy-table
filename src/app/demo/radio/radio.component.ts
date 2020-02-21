@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-radio',
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioComponent implements OnInit {
   public configuration;

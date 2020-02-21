@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, DefaultConfig } from '../../../../projects/ngx-easy-table/src/lib';
 import { APIDefinition, Config } from 'ngx-easy-table';
@@ -7,6 +7,7 @@ import { APIDefinition, Config } from 'ngx-easy-table';
   selector: 'app-filter-template',
   templateUrl: './filter-header-template.component.html',
   styleUrls: ['./filter-header-template.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterHeaderTemplateComponent implements OnInit {
 

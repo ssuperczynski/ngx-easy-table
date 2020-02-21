@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
 import { Company, CompanyService } from '../../services/company.service';
@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
   templateUrl: './infinite-scroll-server.component.html',
   styleUrls: ['./infinite-scroll-server.component.css'],
   providers: [CompanyService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfiniteScrollServerComponent implements OnInit, OnDestroy {
   public configuration: Config;

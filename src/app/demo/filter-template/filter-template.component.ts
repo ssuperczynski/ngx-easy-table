@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-filter-template',
   templateUrl: './filter-template.component.html',
   styleUrls: ['./filter-template.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterTemplateComponent {
 

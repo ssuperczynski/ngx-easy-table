@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { ExportToCsv } from 'export-to-csv';
@@ -7,6 +7,7 @@ import { ExportToCsv } from 'export-to-csv';
   selector: 'app-additional-actions-template',
   templateUrl: './additional-actions-template.component.html',
   styleUrls: ['./additional-actions-template.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdditionalActionsTemplateComponent implements OnInit {
   private csvOptions = {

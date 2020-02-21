@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-select-row',
   templateUrl: './select-row.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [],
 })
 export class SelectRowComponent implements OnInit {

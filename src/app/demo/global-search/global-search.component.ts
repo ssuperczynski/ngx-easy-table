@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-global-search',
   templateUrl: './global-search.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [],
 })
 export class GlobalSearchComponent implements OnInit {

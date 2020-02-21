@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, DefaultConfig } from 'ngx-easy-table';
 import { Config } from '../../../../projects/ngx-easy-table/src/lib';
@@ -7,6 +7,7 @@ import { Config } from '../../../../projects/ngx-easy-table/src/lib';
   selector: 'app-reorder',
   templateUrl: './reorder.component.html',
   styleUrls: ['./reorder.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReorderComponent implements OnInit {
   public configuration: Config;

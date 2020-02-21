@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { phone, random, company, name } from 'faker';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-pagination-range',
   templateUrl: './pagination-range.component.html',
   styleUrls: ['./pagination-range.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationRangeComponent {
 

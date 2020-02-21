@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { random, company, name } from 'faker';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-group-rows',
   templateUrl: './group-rows.component.html',
   styleUrls: ['./group-rows.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupRowsComponent {
   public configuration: Config;

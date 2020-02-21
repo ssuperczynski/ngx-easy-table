@@ -1,10 +1,11 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-dynamic-row',
   templateUrl: './dynamic-row.component.html',
   styleUrls: ['./dynamic-row.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DynamicRowComponent implements OnInit {
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;

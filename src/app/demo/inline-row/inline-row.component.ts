@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -6,6 +6,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   selector: 'app-inline-row',
   templateUrl: './inline-row.component.html',
   styleUrls: ['./inline-row.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InlineRowComponent implements OnInit {
   @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
