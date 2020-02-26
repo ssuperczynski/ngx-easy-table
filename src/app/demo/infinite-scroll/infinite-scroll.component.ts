@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
-import { Event } from '../../../../projects/ngx-easy-table/src/lib';
+import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-infinite-scroll',
@@ -14,8 +13,7 @@ export class InfiniteScrollComponent implements OnInit {
   public columns: Columns[];
   public data: Company[] = [];
 
-  constructor(private cdr: ChangeDetectorRef) {
-  }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.columns = [
@@ -29,21 +27,15 @@ export class InfiniteScrollComponent implements OnInit {
     this.configuration = { ...DefaultConfig };
     this.configuration.infiniteScroll = true;
     this.configuration.paginationEnabled = false;
+    // infiniteScrollThrottleTime means how often check if scroll reached end on the collection
+    // to load the new items. By default set to 200ms.
+    this.configuration.infiniteScrollThrottleTime = 10;
     this.configuration.rows = 10;
   }
 
-  onEvent($event: { event: Event, value: any }): void {
+  onEvent($event: { event: Event; value: any }): void {
     if ($event.event === Event.onInfiniteScrollEnd) {
-      this.data = [
-        ...this.data,
-        {
-          phone: '+1 (949) 527-2108',
-          age: Math.random() * 100,
-          company: 'KONGENE',
-          name: 'Deanne Contreras',
-          isActive: true,
-        },
-      ];
+      this.data = [...this.data, ...this.data];
       this.cdr.detectChanges();
     }
   }

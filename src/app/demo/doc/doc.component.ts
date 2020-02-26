@@ -39,6 +39,7 @@ public columns: Columns[] = [
 import { Columns } from 'ngx-easy-table';
 
 @ViewChild('actionTpl') actionTpl: TemplateRef<any>;
+
 public columns: Columns[] = [
     { key: 'phone', title: 'Phone', cellTemplate: this.actionTpl },
 ];

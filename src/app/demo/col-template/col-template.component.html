@@ -3,9 +3,11 @@
     <ngx-table [configuration]="configuration" [data]="data" [columns]="columns"> </ngx-table>
   </div>
 </div>
-<ng-template #phoneTpl let-row>
+<ng-template #phoneTpl let-row let-rowIndex="rowIndex" let-column="column">
   <div class="phone">Phone: {{ row.phone }}</div>
+  <div>rowIndex: {{ rowIndex }}</div>
+  <div>column: {{ column.title }}</div>
   <div>
-    <img [src]="row.imgUrl" loading="lazy" alt="" />
+    <img [src]="row.imgUrl" loading="lazy" alt="image" />
   </div>
 </ng-template>

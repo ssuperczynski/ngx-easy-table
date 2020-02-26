@@ -20,12 +20,6 @@ export class PaginationRangeComponent implements OnInit {
 
   data = [];
 
-  ngOnInit(): void {
-    this.configuration = { ...DefaultConfig };
-    this.configuration.paginationMaxSize = 7;
-    this.data = PaginationRangeComponent.generateData();
-  }
-
   private static generateData(): Array<{
     phone: string;
     age: string;
@@ -44,5 +38,11 @@ export class PaginationRangeComponent implements OnInit {
           isActive: random.boolean(),
         };
       });
+  }
+
+  ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
+    this.configuration.paginationMaxSize = 7;
+    this.data = PaginationRangeComponent.generateData();
   }
 }

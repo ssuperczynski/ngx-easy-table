@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, DefaultConfig } from '../../../../projects/ngx-easy-table/src/lib';
-import { APIDefinition, Config } from 'ngx-easy-table';
+import { APIDefinition, Config, Columns, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-filter-template',
@@ -10,9 +9,11 @@ import { APIDefinition, Config } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterHeaderTemplateComponent implements OnInit {
-
-  @ViewChild('levelHeaderActionTemplate', { static: true }) levelHeaderActionTemplate: TemplateRef<any>;
-  @ViewChild('companyHeaderActionTemplate', { static: true }) companyHeaderActionTemplate: TemplateRef<any>;
+  @ViewChild('levelHeaderActionTemplate', { static: true }) levelHeaderActionTemplate: TemplateRef<
+    any
+  >;
+  @ViewChild('companyHeaderActionTemplate', { static: true })
+  companyHeaderActionTemplate: TemplateRef<any>;
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   data: Company[] = [];
@@ -39,14 +40,18 @@ export class FilterHeaderTemplateComponent implements OnInit {
 
   filter(field: string, value: string): void {
     if (field === 'level') {
-      this.selectedLevels.has(value) ? this.selectedLevels.delete(value) : this.selectedLevels.add(value);
+      this.selectedLevels.has(value)
+        ? this.selectedLevels.delete(value)
+        : this.selectedLevels.add(value);
     }
     if (field === 'company') {
       this.selectedCompany = value;
     }
     this.data = [...this.dataCopy].filter(({ level, company }) => {
-      return this.selectedLevels.has(level) &&
-        company.toLocaleLowerCase().includes(this.selectedCompany.toLocaleLowerCase());
+      return (
+        this.selectedLevels.has(level) &&
+        company.toLocaleLowerCase().includes(this.selectedCompany.toLocaleLowerCase())
+      );
     });
   }
 }
