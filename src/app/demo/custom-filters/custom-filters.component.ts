@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,8 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./custom-filters.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomFiltersComponent {
-
+export class CustomFiltersComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -21,26 +20,25 @@ export class CustomFiltersComponent {
   rows: Company[] = [];
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
     this.rows = data;
   }
 
   onCompanySearch(value: string): void {
-    this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
+    this.rows = this.data.filter(_ => _.company.toLowerCase().indexOf(value) > -1);
   }
 
   onAgeSearch(value: number): void {
-    this.rows = this.data.filter((_) => _.age > value);
+    this.rows = this.data.filter(_ => _.age > value);
   }
 
   onStatusChange(value: string): void {
-    this.rows = this.data.filter((_) => _.isActive === (value === 'true'));
+    this.rows = this.data.filter(_ => _.isActive === (value === 'true'));
   }
 
   reset(): void {
     this.rows = this.data;
   }
-
 }

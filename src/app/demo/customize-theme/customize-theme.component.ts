@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { columns, Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,12 +8,12 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./customize-theme.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomizeThemeComponent {
+export class CustomizeThemeComponent implements OnInit {
   columns: Columns[] = [];
   data: Company[] = [];
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
     this.columns = columns;

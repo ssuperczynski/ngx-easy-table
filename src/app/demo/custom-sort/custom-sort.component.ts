@@ -9,7 +9,6 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomSortComponent implements OnInit {
-
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -20,44 +19,46 @@ export class CustomSortComponent implements OnInit {
   data: Company[] = [];
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
-  }
-
-  ngOnInit(): void {
     this.sortByAge();
   }
 
   sortByNameAsc(): void {
-    this.data = [...this.data.sort((a, b) => {
-      const nameA = a.name.toLowerCase();
-      const nameB = b.name.toLowerCase();
-      return nameA.localeCompare(nameB);
-    })];
+    this.data = [
+      ...this.data.sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        return nameA.localeCompare(nameB);
+      }),
+    ];
   }
 
   sortByNameDesc(): void {
-    this.data = [...this.data.sort((a, b) => {
-      const nameA = a.name.toLowerCase();
-      const nameB = b.name.toLowerCase();
-      return nameB.localeCompare(nameA);
-    })];
+    this.data = [
+      ...this.data.sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        return nameB.localeCompare(nameA);
+      }),
+    ];
   }
 
   sortByAge(): void {
     /* tslint:disable-next-line */
-    this.data = [...this.data.sort((a, b) => {
-      const ageA = a.age;
-      const ageB = b.age;
-      if (ageB < ageA) {
-        return -1;
-      }
-      if (ageB > ageA) {
-        return 1;
-      }
-      return 0;
-    })];
+    this.data = [
+      ...this.data.sort((a, b) => {
+        const ageA = a.age;
+        const ageB = b.age;
+        if (ageB < ageA) {
+          return -1;
+        }
+        if (ageB > ageA) {
+          return 1;
+        }
+        return 0;
+      }),
+    ];
   }
-
 }

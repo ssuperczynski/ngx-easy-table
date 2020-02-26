@@ -1,15 +1,11 @@
 <div class="columns">
   <div class="column col-12">
-    <ngx-table
-      [configuration]="configuration"
-      [data]="data"
-      [columns]="columns">
-    </ngx-table>
+    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns"> </ngx-table>
   </div>
 </div>
 <ng-template #phoneTpl let-row>
-  <div class="phone">Phone: {{row.phone}}</div>
+  <div class="phone">Phone: {{ row.phone }}</div>
   <div>
-    <img [src]="row.imgUrl" alt="">
+    <img [src]="row.imgUrl" loading="lazy" alt="" />
   </div>
 </ng-template>

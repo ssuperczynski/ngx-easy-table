@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -10,7 +10,7 @@ import { ExportToCsv } from 'export-to-csv';
   styleUrls: ['./exports.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExportsComponent {
+export class ExportsComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -21,7 +21,7 @@ export class ExportsComponent {
   data: Company[] = [];
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
   }

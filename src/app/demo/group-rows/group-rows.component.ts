@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { random, company, name } from 'faker';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,22 +8,40 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./group-rows.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GroupRowsComponent {
+export class GroupRowsComponent implements OnInit {
   public configuration: Config;
   toggleRowIndex;
   amountSummary = 0;
   debitSummary = 0;
   public columns: Columns[] = [];
   data: Array<{
-    amount: number,
-    debit: number,
-    company: string,
-    name: string,
-    isActive: boolean,
+    amount: number;
+    debit: number;
+    company: string;
+    name: string;
+    isActive: boolean;
   }> = [];
   groupBy = 'isActive';
 
-  constructor() {
+  private static generateData(): Array<{
+    amount: number;
+    debit: number;
+    company: string;
+    name: string;
+    isActive: boolean;
+  }> {
+    return Array(31)
+      .fill('')
+      .map((_, key) => ({
+        amount: random.number(300),
+        debit: 300,
+        company: company.companyName(),
+        name: `${name.firstName()} ${name.lastName()}`,
+        isActive: key % 2 === 1,
+      }));
+  }
+
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.groupRows = true;
     this.configuration.searchEnabled = true;
@@ -39,28 +57,12 @@ export class GroupRowsComponent {
     this.debitSummary = this.data.map(({ debit }) => debit).reduce((acc, cur) => cur + acc, 0);
   }
 
-  private static generateData(): Array<{
-    amount: number,
-    debit: number,
-    company: string,
-    name: string,
-    isActive: boolean,
-  }> {
-    return Array(31).fill('').map((_, key) => ({
-      amount: random.number(300),
-      debit: 300,
-      company: company.companyName(),
-      name: `${name.firstName()} ${name.lastName()}`,
-      isActive: key % 2 === 1,
-    }));
-  }
-
   onChange(groupBy: string): void {
     this.groupBy = groupBy;
   }
 
   showCount(group: any[], key: string): any[] {
-    return group.map((row) => row[key]).reduce((acc, cur) => cur + acc, 0);
+    return group.map(row => row[key]).reduce((acc, cur) => cur + acc, 0);
   }
 
   onRowClickEvent($event: MouseEvent, index: number): void {

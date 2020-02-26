@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,7 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./persist-state.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PersistStateComponent {
+export class PersistStateComponent implements OnInit {
   public configuration: Config;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
@@ -20,7 +20,7 @@ export class PersistStateComponent {
 
   data: Company[] = [];
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.persistState = true;
     this.data = data;

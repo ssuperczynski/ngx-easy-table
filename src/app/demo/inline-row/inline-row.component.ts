@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -24,12 +31,9 @@ export class InlineRowComponent implements OnInit {
   public configuration: Config;
   editRow: number;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
-  }
-
-  ngOnInit(): void {
     this.columns = [
       { key: 'phone', title: 'Phone', cellTemplate: this.phoneTpl },
       { key: 'age', title: 'Age', cellTemplate: this.ageTpl },
@@ -44,18 +48,20 @@ export class InlineRowComponent implements OnInit {
   }
 
   update(): void {
-    this.data = [...this.data.map((obj, index) => {
-      if (index === this.editRow) {
-        return {
-          phone: this.phone.nativeElement.value,
-          age: this.age.nativeElement.value,
-          company: this.company.nativeElement.value,
-          name: this.name.nativeElement.value,
-          isActive: this.name.nativeElement.value,
-        };
-      }
-      return obj;
-    })];
+    this.data = [
+      ...this.data.map((obj, index) => {
+        if (index === this.editRow) {
+          return {
+            phone: this.phone.nativeElement.value,
+            age: this.age.nativeElement.value,
+            company: this.company.nativeElement.value,
+            name: this.name.nativeElement.value,
+            isActive: this.name.nativeElement.value,
+          };
+        }
+        return obj;
+      }),
+    ];
     this.editRow = -1;
   }
 }

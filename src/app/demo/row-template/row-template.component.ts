@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,7 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./row-template.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RowTemplateComponent {
+export class RowTemplateComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -19,11 +19,10 @@ export class RowTemplateComponent {
   public data: Company[] = [];
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.showDetailsArrow = true;
     this.configuration.detailsTemplate = true;
     this.data = data;
   }
-
 }
