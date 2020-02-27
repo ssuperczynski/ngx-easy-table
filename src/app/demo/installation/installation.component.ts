@@ -69,7 +69,7 @@ export class AppComponent  {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    this.configuration.orderEnabled = false;
+    this.configuration.searchEnabled = true;
     // ... etc.
     this.columns = [
       { key: 'phone', title: 'Phone' },
