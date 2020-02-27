@@ -1,184 +1,198 @@
 <div class="columns">
   <div class="column col-12">
     <h2>Documentation</h2>
-    <p>For the API doc navigate to
+    <p>
+      For the API doc navigate to
       <button class="btn btn-primary btn-sm" [routerLink]="['/api-doc']">API doc</button>
     </p>
     <h2>Table options:</h2>
     <table class="table">
       <thead>
-      <tr>
-        <th width="10%">Name</th>
-        <th width="20%">Description</th>
-        <th width="20%">Type</th>
-      </tr>
+        <tr>
+          <th width="10%">Name</th>
+          <th width="20%">Description</th>
+          <th width="20%">Type</th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>searchEnabled</td>
-        <td>Enable search for each column</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>headerEnabled</td>
-        <td>Enable header visibility for each column</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>orderEnabled</td>
-        <td>Enable order option for each column</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>orderEventOnly <small>(optional)</small></td>
-        <td>You can define your own sort action, for example by Lastname if you display First and Last name. Click <a href="#" [routerLink]="['/custom-intable-sort']">here</a> for the details.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>paginationEnabled</td>
-        <td>Enable pagination visibility</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>clickEvent</td>
-        <td>Enable logger. Each action is traced in the console.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>selectRow</td>
-        <td>You can highlight row by clicking</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>selectCol</td>
-        <td>You can highlight column by clicking</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>selectCell</td>
-        <td>You can highlight cell by clicking</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>rows</td>
-        <td>Set how many table rows is visible when table is rendered</td>
-        <td>number</td>
-      </tr>
-      <tr>
-        <td>additionalActions <small>(experimental)</small></td>
-        <td>For now it is just placeholder, that add additional column on the right side of the table. Additional features there will be added in  the next releases (started from 10.0)</td>
-        <td>bool</td>
-      </tr>
-      <tr>
-        <td>serverPagination</td>
-        <td>By enabling this option normal pagination is turned off.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>isLoading</td>
-        <td>Set table in loading state.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>detailsTemplate</td>
-        <td>By clicking arrow on the right side of the table additional tow with details appears.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>groupRows</td>
-        <td>Enable row grouping. See <a href="#" [routerLink]="['/group-rows']">https://ngx-easy-table.eu/#/group-rows</a> for more details.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>paginationRangeEnabled</td>
-        <td>Show/ hide pagination range</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>collapseAllRows</td>
-        <td>Display all rows details at once.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>checkboxes</td>
-        <td>Show additional column with checkboxes</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>resizeColumn</td>
-        <td>Column resizer appears on the right side of each column.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>fixedColumnWidth</td>
-        <td>By setting to tru table calculates best (fixed) width for each column.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>horizontalScroll</td>
-        <td>Enable horizontal scroll. For example, when you have many columns.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>draggable</td>
-        <td>Option to drag/drop rows. (only rows now supported)</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>logger</td>
-        <td>Enable logger. Each action is traced in the console.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>showDetailsArrow <small>(optional)</small></td>
-        <td>Hide details arrow</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>showContextMenu <small>(optional)(experimental)</small></td>
-        <td>Show context menu instead browser one.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>persistState <small>(optional)(experimental)</small></td>
-        <td>Save the current state once you leave tab with tables.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>threeWaySort <small>(optional)</small></td>
-        <td>By enabling you can sort by 3 states: asc, desc or default order</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>paginationMaxSize <small>(optional)</small></td>
-        <td>Maximal amount of the items in the pagination.</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>tableLayout.style</td>
-        <td>Table row theme.</td>
-        <td>STYLE | string | null ('tiny', 'big', 'normal')</td>
-      </tr>
-      <tr>
-        <td>tableLayout.theme</td>
-        <td>Table mode.</td>
-        <td>STYLE | string | null ('light', 'dark')</td>
-      </tr>
-      <tr>
-        <td>tableLayout.borderless</td>
-        <td>Table with borders or without.</td>
-        <td>boolean | null</td>
-      </tr>
-      <tr>
-        <td>tableLayout.hover</td>
-        <td>Hover over table row.</td>
-        <td>boolean | null</td>
-      </tr>
-      <tr>
-        <td>tableLayout.striped</td>
-        <td>Every nth row has slightly darker background</td>
-        <td>boolean | null</td>
-      </tr>
+        <tr>
+          <td>searchEnabled</td>
+          <td>Enable search for each column</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>headerEnabled</td>
+          <td>Enable header visibility for each column</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>orderEnabled</td>
+          <td>Enable order option for each column</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>orderEventOnly <small>(optional)</small></td>
+          <td>
+            You can define your own sort action, for example by Lastname if you display First and
+            Last name. Click <a href="#" [routerLink]="['/custom-intable-sort']">here</a> for the
+            details.
+          </td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>paginationEnabled</td>
+          <td>Enable pagination visibility</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>clickEvent</td>
+          <td>Enable logger. Each action is traced in the console.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>selectRow</td>
+          <td>You can highlight row by clicking</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>selectCol</td>
+          <td>You can highlight column by clicking</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>selectCell</td>
+          <td>You can highlight cell by clicking</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>rows</td>
+          <td>Set how many table rows is visible when table is rendered</td>
+          <td>number</td>
+        </tr>
+        <tr>
+          <td>additionalActions <small>(experimental)</small></td>
+          <td>
+            For now it is just placeholder, that add additional column on the right side of the
+            table. Additional features there will be added in the next releases (started from 10.0)
+          </td>
+          <td>bool</td>
+        </tr>
+        <tr>
+          <td>serverPagination</td>
+          <td>By enabling this option normal pagination is turned off.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>isLoading</td>
+          <td>Set table in loading state.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>detailsTemplate</td>
+          <td>
+            By clicking arrow on the right side of the table additional tow with details appears.
+          </td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>groupRows</td>
+          <td>
+            Enable row grouping. See
+            <a href="#" [routerLink]="['/group-rows']">https://ngx-easy-table.eu/#/group-rows</a>
+            for more details.
+          </td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>paginationRangeEnabled</td>
+          <td>Show/ hide pagination range</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>collapseAllRows</td>
+          <td>Display all rows details at once.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>checkboxes</td>
+          <td>Show additional column with checkboxes</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>resizeColumn</td>
+          <td>Column resizer appears on the right side of each column.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>fixedColumnWidth</td>
+          <td>By setting to tru table calculates best (fixed) width for each column.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>horizontalScroll</td>
+          <td>Enable horizontal scroll. For example, when you have many columns.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>draggable</td>
+          <td>Option to drag/drop rows. (only rows now supported)</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>logger</td>
+          <td>Enable logger. Each action is traced in the console.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>showDetailsArrow <small>(optional)</small></td>
+          <td>Hide details arrow</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>showContextMenu <small>(optional)(experimental)</small></td>
+          <td>Show context menu instead browser one.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>persistState <small>(optional)(experimental)</small></td>
+          <td>Save the current state once you leave tab with tables.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>threeWaySort <small>(optional)</small></td>
+          <td>By enabling you can sort by 3 states: asc, desc or default order</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>paginationMaxSize <small>(optional)</small></td>
+          <td>Maximal amount of the items in the pagination.</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>tableLayout.style</td>
+          <td>Table row theme.</td>
+          <td>STYLE | string | null ('tiny', 'big', 'normal')</td>
+        </tr>
+        <tr>
+          <td>tableLayout.theme</td>
+          <td>Table mode.</td>
+          <td>STYLE | string | null ('light', 'dark')</td>
+        </tr>
+        <tr>
+          <td>tableLayout.borderless</td>
+          <td>Table with borders or without.</td>
+          <td>boolean | null</td>
+        </tr>
+        <tr>
+          <td>tableLayout.hover</td>
+          <td>Hover over table row.</td>
+          <td>boolean | null</td>
+        </tr>
+        <tr>
+          <td>tableLayout.striped</td>
+          <td>Every nth row has slightly darker background</td>
+          <td>boolean | null</td>
+        </tr>
       </tbody>
     </table>
 
@@ -188,114 +202,128 @@
     </div>
     <table class="table">
       <thead>
-      <tr>
-        <th width="10%">Name</th>
-        <th width="20%">Description</th>
-        <th width="20%">Example</th>
-      </tr>
+        <tr>
+          <th width="10%">Name</th>
+          <th width="20%">Description</th>
+          <th width="20%">Example</th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>key</td>
-        <td>
-          <span class="mb-2">Object key. </span>
-          <span>You can enter here nested object key separated by dot.</span>
-        </td>
-        <td>
-          <pre><code [highlight]="columnDefinitionCode"></code></pre>
-          <pre><code [highlight]="columnDefinitionCode2"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>title</td>
-        <td>Column title displayed in the table.</td>
-        <td>
-          <pre><code [highlight]="columnDefinitionCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>placeholder</td>
-        <td>Search placeholder name.</td>
-        <td>
-          <pre><code [highlight]="columnPlaceholderCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>width <small>(optional)</small></td>
-        <td>Column width in %. When not set table calculate best width.</td>
-        <td>
-          <pre><code [highlight]="columnWidthCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>cellTemplate <small>(optional)</small></td>
-        <td>You can define your own column template</td>
-        <td>
-          <pre><code [highlight]="columnCellTemplateCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>orderEnabled <small>(optional)</small></td>
-        <td>You can define if column order is enabled.</td>
-        <td>
-          <pre><code [highlight]="columnOrderCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>searchEnabled <small>(optional)</small></td>
-        <td>You can define if column search input is enabled.</td>
-        <td>
-          <pre><code [highlight]="columnSearchCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>orderBy <small>(optional)</small></td>
-        <td>By enabling orderBy option table set default order by this column.</td>
-        <td>
-          <pre><code [highlight]="columnOrderByCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>orderEventOnly <small>(optional)</small></td>
-        <td>
-          <span class="mb-2">By enabling orderEventOnly option table emits order event but doesn't sort by this column. It is useful when you would like to do custom sort. </span>
-          See <a href="#" [routerLink]="['/custom-intable-sort']">https://ngx-easy-table.eu/#/custom-intable-sort</a> for more details.
-        </td>
-        <td>
-          <pre><code [highlight]="columnOrderEventCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>pinned <small>(optional)</small></td>
-        <td>
-          <span  class="mb-2">Pin column to to right (right now max 2 columns).</span>
-          See <a href="#" [routerLink]="['/pinned']">https://ngx-easy-table.eu/#/pinned</a> for more details.
-        </td>
-        <td>
-          <pre><code [highlight]="pinnedCode"></code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>cssClass <small>(optional)</small></td>
-        <td>
-          <span  class="mb-2">Set column class. You can set if class is applied to the header or not. </span>
-          See <a href="#" [routerLink]="['/column-class']">https://ngx-easy-table.eu/#/column-class</a> for more details.
-        </td>
-        <td>
-          <pre><code [highlight]="cssClassCode"></code></pre>
-        </td>
-      </tr>
+        <tr>
+          <td>key</td>
+          <td>
+            <span class="mb-2">Object key. </span>
+            <span>You can enter here nested object key separated by dot.</span>
+          </td>
+          <td>
+            <pre><code [highlight]="columnDefinitionCode"></code></pre>
+            <pre><code [highlight]="columnDefinitionCode2"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>title</td>
+          <td>Column title displayed in the table.</td>
+          <td>
+            <pre><code [highlight]="columnDefinitionCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>placeholder</td>
+          <td>Search placeholder name.</td>
+          <td>
+            <pre><code [highlight]="columnPlaceholderCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>width <small>(optional)</small></td>
+          <td>Column width in %. When not set table calculate best width.</td>
+          <td>
+            <pre><code [highlight]="columnWidthCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>cellTemplate <small>(optional)</small></td>
+          <td>You can define your own column template</td>
+          <td>
+            <pre><code [highlight]="columnCellTemplateCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>orderEnabled <small>(optional)</small></td>
+          <td>You can define if column order is enabled.</td>
+          <td>
+            <pre><code [highlight]="columnOrderCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>searchEnabled <small>(optional)</small></td>
+          <td>You can define if column search input is enabled.</td>
+          <td>
+            <pre><code [highlight]="columnSearchCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>orderBy <small>(optional)</small></td>
+          <td>By enabling orderBy option table set default order by this column.</td>
+          <td>
+            <pre><code [highlight]="columnOrderByCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>orderEventOnly <small>(optional)</small></td>
+          <td>
+            <span class="mb-2"
+              >By enabling orderEventOnly option table emits order event but doesn't sort by this
+              column. It is useful when you would like to do custom sort.
+            </span>
+            See
+            <a href="#" [routerLink]="['/custom-intable-sort']"
+              >https://ngx-easy-table.eu/#/custom-intable-sort</a
+            >
+            for more details.
+          </td>
+          <td>
+            <pre><code [highlight]="columnOrderEventCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>pinned <small>(optional)</small></td>
+          <td>
+            <span class="mb-2">Pin column to to right (right now max 2 columns).</span>
+            See <a href="#" [routerLink]="['/pinned']">https://ngx-easy-table.eu/#/pinned</a> for
+            more details.
+          </td>
+          <td>
+            <pre><code [highlight]="pinnedCode"></code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>cssClass <small>(optional)</small></td>
+          <td>
+            <span class="mb-2"
+              >Set column class. You can set if class is applied to the header or not.
+            </span>
+            See
+            <a href="#" [routerLink]="['/column-class']"
+              >https://ngx-easy-table.eu/#/column-class</a
+            >
+            for more details.
+          </td>
+          <td>
+            <pre><code [highlight]="cssClassCode"></code></pre>
+          </td>
+        </tr>
       </tbody>
     </table>
 
     <h2 class="heading">Styles:</h2>
-    <p>For the examples how to define table styles please navigate to
+    <p>
+      For the examples how to define table styles please navigate to
       <button class="btn btn-primary btn-sm" [routerLink]="['/styles']">Styles</button>
     </p>
     <p>
-      <span  class="mb-2">Table from version 9.1 has Montserrat as a default font (previously it was Lato). </span>
-      If you would like to change table font, add the new one to the package.json, include it in angular.json and
-      define in your style.scss:
+      If you would like to change table font, add the new one to the package.json, include it in
+      angular.json and define in your style.scss:
     </p>
     <pre><code [highlight]="tableFontCode"></code></pre>
   </div>

@@ -13,12 +13,6 @@ export class ColTemplateComponent implements OnInit {
   public columns: Columns[];
   data: Company[] = [];
   public configuration: Config;
-
-  constructor() {
-    this.configuration = {...DefaultConfig};
-    this.data = data;
-  }
-
   ngOnInit(): void {
     this.columns = [
       { key: 'phone', title: 'Phone', cellTemplate: this.phoneTpl },
@@ -27,5 +21,7 @@ export class ColTemplateComponent implements OnInit {
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'STATUS' },
     ];
+    this.configuration = { ...DefaultConfig };
+    this.data = data;
   }
 }

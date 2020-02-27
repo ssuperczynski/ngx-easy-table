@@ -3,7 +3,6 @@ env:
 dist: xenial
 language: node_js
 node_js:
-  - "10"
   - "12"
 script:
   - npm run lint

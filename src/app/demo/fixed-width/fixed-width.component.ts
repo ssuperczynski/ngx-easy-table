@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,8 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./fixed-width.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FixedWidthComponent {
-
+export class FixedWidthComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -19,7 +18,7 @@ export class FixedWidthComponent {
   ];
   data: Company[] = [];
   public configuration: Config;
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.fixedColumnWidth = true;
     this.data = data;

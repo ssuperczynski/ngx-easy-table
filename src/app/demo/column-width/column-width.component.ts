@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,7 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./column-width.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ColumnWidthComponent {
+export class ColumnWidthComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone', placeholder: 'Search', width: '15%' },
     { key: 'age', title: 'Age', placeholder: 'Søg', width: '5%' },
@@ -19,7 +19,7 @@ export class ColumnWidthComponent {
   data: Company[] = [];
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
   }

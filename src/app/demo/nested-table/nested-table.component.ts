@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { API, APIDefinition } from 'ngx-easy-table';
@@ -9,7 +9,7 @@ import { API, APIDefinition } from 'ngx-easy-table';
   styleUrls: ['./nested-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NestedTableComponent {
+export class NestedTableComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
   public toggledRows = new Set<number>();
   public columns: Columns[] = [
@@ -35,7 +35,7 @@ export class NestedTableComponent {
     { key: 'address.street', title: 'Address', width: '15%' },
   ];
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.detailsTemplate = true;
     this.configuration.tableLayout.hover = true;

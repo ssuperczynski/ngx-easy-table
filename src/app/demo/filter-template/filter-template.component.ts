@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,8 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./filter-template.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterTemplateComponent {
-
+export class FilterTemplateComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'name', title: 'Name' },
     { key: 'age', title: 'Age' },
@@ -22,15 +21,17 @@ export class FilterTemplateComponent {
   ages: number[] = [];
   public configuration: Config;
 
-  constructor() {
-    this.configuration = {...DefaultConfig};
+  ngOnInit(): void {
+    this.configuration = { ...DefaultConfig };
     this.data = data;
     this.rows = data;
-    data.map((row) => row.age).forEach((age) => {
-      if (this.ages.indexOf(age) === -1) {
-        this.ages.push(age);
-      }
-    });
+    data
+      .map(row => row.age)
+      .forEach(age => {
+        if (this.ages.indexOf(age) === -1) {
+          this.ages.push(age);
+        }
+      });
     this.ages.sort();
   }
 
@@ -38,12 +39,11 @@ export class FilterTemplateComponent {
     if (value === '') {
       this.rows = this.data;
     } else {
-      this.rows = this.data.filter(({age}) => age.toString() === value);
+      this.rows = this.data.filter(({ age }) => age.toString() === value);
     }
   }
 
   onCompanySearch(value: string): void {
-    this.rows = this.data.filter(({company}) => company.toLowerCase().indexOf(value) > -1);
+    this.rows = this.data.filter(({ company }) => company.toLowerCase().indexOf(value) > -1);
   }
-
 }

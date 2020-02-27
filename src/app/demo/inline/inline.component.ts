@@ -15,12 +15,9 @@ export class InlineComponent implements OnInit {
   public configuration: Config;
   edit: number;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
-  }
-
-  ngOnInit(): void {
     this.columns = [
       { key: 'phone', title: 'Phone', cellTemplate: this.phoneTpl },
       { key: 'age', title: 'Age' },
@@ -30,7 +27,7 @@ export class InlineComponent implements OnInit {
     ];
   }
 
-  eventEmitted($event: { event: string, value: any }): void {
+  eventEmitted($event: { event: string; value: any }): void {
     if ($event.event === Event.onDoubleClick) {
       this.edit = $event.value.rowId;
     }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { API, APIDefinition } from 'ngx-easy-table';
@@ -9,7 +9,7 @@ import { API, APIDefinition } from 'ngx-easy-table';
   styleUrls: ['./template.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TemplateComponent {
+export class TemplateComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[] = [
     { key: 'name', title: 'Name', width: '15%', orderEnabled: true, searchEnabled: true },
@@ -24,7 +24,7 @@ export class TemplateComponent {
   public configuration: Config;
   public toggledRows = new Set<number>();
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.detailsTemplate = true;
     this.configuration.showDetailsArrow = false;

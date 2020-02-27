@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,7 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SortComponent {
+export class SortComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age', orderBy: 'desc' },
@@ -19,7 +19,7 @@ export class SortComponent {
   data: Company[] = [];
   configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.orderEnabled = true;
     this.configuration.threeWaySort = true;

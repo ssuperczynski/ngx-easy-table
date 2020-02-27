@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
@@ -8,8 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   styleUrls: ['./select-all-template.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectAllTemplateComponent {
-
+export class SelectAllTemplateComponent implements OnInit {
   public columns: Columns[] = [
     { key: 'name', title: 'Name' },
     { key: 'age', title: 'Age' },
@@ -21,20 +20,19 @@ export class SelectAllTemplateComponent {
   allSelected = false;
   public configuration: Config;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.checkboxes = true;
     this.data = data.splice(1, 5);
   }
 
-  tableEventEmitted(event: { event: string, value: any }): void {
+  tableEventEmitted(event: { event: string; value: any }): void {
     if (event.event === 'onSelectAll') {
-      this.data.forEach((row: any) => row.selected = event.value);
+      this.data.forEach((row: any) => (row.selected = event.value));
     }
   }
 
   rowSelected(): void {
-    this.allSelected = this.data.every((row) => !!row.selected);
+    this.allSelected = this.data.every(row => !!row.selected);
   }
-
 }

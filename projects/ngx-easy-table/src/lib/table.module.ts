@@ -5,13 +5,8 @@ import { BaseComponent } from './components/base/base.component';
 import { BaseModule } from './components/base/base.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BaseModule,
-  ],
-  bootstrap: [BaseComponent],
+  imports: [CommonModule, BaseModule],
   exports: [BaseComponent],
   providers: [],
 })
-export class TableModule {
-}
+export class TableModule {}
