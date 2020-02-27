@@ -8,18 +8,16 @@ import { ROUTE } from './route-names';
 export interface Link {
   link: string;
   name: string;
-  experimental?: boolean;
 }
 
 @Component({
   selector: 'app-table',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public readonly version = environment.VERSION;
@@ -50,9 +48,12 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.MOBILE, name: 'Mobile view' },
       { link: ROUTE.NESTED_OBJECT, name: 'Nested object' },
       { link: ROUTE.REORDER, name: 'Reorder' },
-      // { link: ROUTE.INFINITE_SCROLL, name: 'Infinite scroll', experimental: true },
-      { link: ROUTE.INFINITE_SCROLL_SERVER, name: 'Infinite scroll server', experimental: true },
-      { link: ROUTE.INFINITE_SCROLL_SERVER_TEMPLATE, name: 'Infinite scroll server template', experimental: true },
+      { link: ROUTE.INFINITE_SCROLL, name: 'Infinite scroll (experimental)' },
+      { link: ROUTE.INFINITE_SCROLL_SERVER, name: 'Infinite scroll server (experimental)' },
+      {
+        link: ROUTE.INFINITE_SCROLL_SERVER_TEMPLATE,
+        name: 'Infinite scroll server template (experimental)',
+      },
     ],
     templates: [
       { link: ROUTE.TEMPLATE, name: 'Basic template' },
@@ -60,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.LIVE_UPDATE, name: 'Live update' },
       { link: ROUTE.ROW_TEMPLATE, name: 'Row details' },
       { link: ROUTE.COL_TEMPLATE, name: 'Col template' },
-      { link: ROUTE.GROUP_ROWS, name: 'Group rows', experimental: true },
+      { link: ROUTE.GROUP_ROWS, name: 'Group rows (experimental)' },
       { link: ROUTE.COLLAPSED_ROWS, name: 'Collapsed rows' },
       { link: ROUTE.CHECKBOXES, name: 'Checkboxes' },
       { link: ROUTE.CHECKBOX_DEFAULT, name: 'Checkboxes template' },
@@ -98,27 +99,27 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.CUSTOM_INTABLE_SORT, name: 'Custom in-table sort' },
     ],
     api: [
-      { link: ROUTE.API, name: 'API', experimental: true },
-      { link: ROUTE.BOOTSTRAP, name: 'Bootstrap', experimental: true },
+      { link: ROUTE.API, name: 'API' },
+      { link: ROUTE.BOOTSTRAP, name: 'Bootstrap (experimental)' },
     ],
   };
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((route) => {
-        if (route instanceof NavigationEnd) {
-          const url = route.url.replace('/', '');
-          Object.values(this.menu).forEach((value) => value.forEach((entry) => {
+    this.router.events.pipe(takeUntil(this.ngUnsubscribe)).subscribe(route => {
+      if (route instanceof NavigationEnd) {
+        const url = route.url.replace('/', '');
+        Object.values(this.menu).forEach(value =>
+          value.forEach(entry => {
             if (entry.link === url) {
               this.select({
                 link: url,
                 name: entry.name,
               });
             }
-          }));
-        }
-      });
+          })
+        );
+      }
+    });
   }
 
   ngOnDestroy(): void {

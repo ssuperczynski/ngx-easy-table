@@ -1,14 +1,16 @@
 <div class="ngx-container">
-  <table [id]="id"
-         [ngClass]="(tableClass === null || tableClass === '') ? 'ngx-table' : tableClass"
-         [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
-         [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
-         [class.ngx-table__table--big]="config.tableLayout.style === 'big'"
-         [class.ngx-table__table--borderless]="config.tableLayout.borderless"
-         [class.ngx-table__table--dark]="config.tableLayout.theme === 'dark'"
-         [class.ngx-table__table--hoverable]="config.tableLayout.hover"
-         [class.ngx-table__table--striped]="config.tableLayout.striped"
-         [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !config.isLoading">
+  <table
+    [id]="id"
+    [ngClass]="tableClass === null || tableClass === '' ? 'ngx-table' : tableClass"
+    [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
+    [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
+    [class.ngx-table__table--big]="config.tableLayout.style === 'big'"
+    [class.ngx-table__table--borderless]="config.tableLayout.borderless"
+    [class.ngx-table__table--dark]="config.tableLayout.theme === 'dark'"
+    [class.ngx-table__table--hoverable]="config.tableLayout.hover"
+    [class.ngx-table__table--striped]="config.tableLayout.striped"
+    [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !config.isLoading"
+  >
     <thead
       [class.ngx-infinite-scroll-viewport-thead]="config.infiniteScroll"
       table-thead
@@ -23,336 +25,493 @@
       (filter)="onSearch($event)"
       (order)="orderBy($event)"
       (event)="emitEvent($event.event, $event.value)"
-    >
-    </thead>
+    ></thead>
     <tbody *ngIf="data && !config.isLoading && !config.rowReorder">
-    <ng-container *ngIf="rowTemplate">
-      <ul class="ngx-table__table-row-context-menu"
-          [ngStyle]="{'position': 'absolute', 'top': rowContextMenuPosition.top, 'left': rowContextMenuPosition.left }"
-          *ngIf="rowContextMenuPosition.top">
-        <ng-container
-          [ngTemplateOutlet]="rowContextMenu"
-          [ngTemplateOutletContext]="{ $implicit: rowContextMenuPosition.value}">
-        </ng-container>
-      </ul>
-      <ng-container *ngIf="!config.infiniteScroll">
-        <ng-container *ngFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-              let rowIndex = index">
-          <tr
-            (click)="onClick($event, row, '', null, rowIndex)"
-            #contextMenu
-            (contextmenu)="onRowContextMenu($event, row, '', null, rowIndex)"
-            (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
-            [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
-            <ng-container
-              [ngTemplateOutlet]="rowTemplate"
-              [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
-            </ng-container>
-            <td *ngIf="config.detailsTemplate">
-            <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
-                  (click)="collapseRow(rowIndex)">
-            </span>
-            </td>
-          </tr>
-          <tr
-            *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
-            <td [attr.colspan]="columns.length + 1">
-              <ng-container
-                [ngTemplateOutlet]="detailsTemplate"
-                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex  }">
-              </ng-container>
-            </td>
-          </tr>
-        </ng-container>
-      </ng-container>
-      <cdk-virtual-scroll-viewport
-        itemSize="50"
-        *ngIf="config.infiniteScroll"
-        class="ngx-infinite-scroll-viewport">
-        <ng-container *cdkVirtualFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject;
-              let rowIndex = index">
-          <tr
-            (click)="onClick($event, row, '', null, rowIndex)"
-            #contextMenu
-            (contextmenu)="onRowContextMenu($event, row, '', null, rowIndex)"
-            (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
-            [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
-            <ng-container
-              [ngTemplateOutlet]="rowTemplate"
-              [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
-            </ng-container>
-            <td *ngIf="config.detailsTemplate">
-            <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
-                  (click)="collapseRow(rowIndex)">
-            </span>
-            </td>
-          </tr>
-          <tr
-            *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
-            <td [attr.colspan]="columns.length + 1">
-              <ng-container
-                [ngTemplateOutlet]="detailsTemplate"
-                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex  }">
-              </ng-container>
-            </td>
-          </tr>
-        </ng-container>
-      </cdk-virtual-scroll-viewport>
-    </ng-container>
-    <ng-container *ngIf="!rowTemplate && !config.groupRows">
-      <ul class="ngx-table__table-row-context-menu"
-          [ngStyle]="{'position': 'absolute', 'top': rowContextMenuPosition.top, 'left': rowContextMenuPosition.left }"
-          *ngIf="rowContextMenuPosition.top">
-        <ng-container
-          [ngTemplateOutlet]="rowContextMenu"
-          [ngTemplateOutletContext]="{ $implicit: rowContextMenuPosition.value}">
-        </ng-container>
-      </ul>
-      <ng-container *ngIf="!config.infiniteScroll">
-        <ng-container
-          *ngFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-                  let rowIndex = index">
-          <tr [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
-            <td *ngIf="config.checkboxes">
-              <label class="ngx-form-checkbox">
-                <input type="checkbox"
-                       id="checkbox-{{rowIndex}}"
-                       [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
-                       (change)="onCheckboxSelect($event, row, rowIndex)">
-                <em class="ngx-form-icon"></em>
-              </label>
-            </td>
-            <td *ngIf="config.radio">
-              <label>
-                <input type="radio"
-                       id="radio-{{rowIndex}}"
-                       name="radio"
-                       (change)="onRadioSelect($event, row, rowIndex)">
-              </label>
-            </td>
-            <ng-container *ngFor="let column of columns; let colIndex = index">
-              <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
-                  #contextMenu
-                  (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
-                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
-                  [class.pinned-left]="column.pinned"
-                  [ngClass]="column.cssClass ? column.cssClass.name : ''"
-                  [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
-                  [class.ngx-table__table-col--selected]="colIndex === selectedCol && !config.selectCell"
-                  [class.ngx-table__table-cell--selected]="colIndex === selectedCol && rowIndex === selectedRow && !config.selectCol && !config.selectRow"
-              >
-                <div *ngIf="!column.cellTemplate">{{ row | render:column.key }}</div>
-                <ng-container
-                  *ngIf="column.cellTemplate"
-                  [ngTemplateOutlet]="column.cellTemplate"
-                  [ngTemplateOutletContext]="{ $implicit: row, rowIndex: rowIndex }">
-                </ng-container>
-              </td>
-            </ng-container>
-            <td *ngIf="config.additionalActions || config.detailsTemplate">
-            <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
-                  (click)="collapseRow(rowIndex)">
-            </span>
-            </td>
-          </tr>
-          <tr
-            *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
-            <td *ngIf="config.checkboxes || config.radio"></td>
-            <td [attr.colspan]="columns.length + 1">
-              <ng-container
-                [ngTemplateOutlet]="detailsTemplate"
-                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
-              </ng-container>
-            </td>
-          </tr>
-        </ng-container>
-      </ng-container>
-      <!-- infinite scroll -->
-      <cdk-virtual-scroll-viewport
-        itemSize="50"
-        *ngIf="config.infiniteScroll"
-        class="ngx-infinite-scroll-viewport">
-        <ng-container
-          *cdkVirtualFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject;
-                  let rowIndex = index">
-          <tr [class.ngx-table__table-row--selected]="rowIndex === selectedRow && !config.selectCell">
-            <td *ngIf="config.checkboxes">
-              <label class="ngx-form-checkbox">
-                <input type="checkbox"
-                       id="checkbox-infinite-scroll-{{rowIndex}}"
-                       [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
-                       (change)="onCheckboxSelect($event, row, rowIndex)">
-                <em class="ngx-form-icon"></em>
-              </label>
-            </td>
-            <td *ngIf="config.radio">
-              <label>
-                <input type="radio"
-                       id="radio-infinite-scroll-{{rowIndex}}"
-                       name="radio"
-                       (change)="onRadioSelect($event, row, rowIndex)">
-              </label>
-            </td>
-            <ng-container *ngFor="let column of columns; let colIndex = index">
-              <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
-                  #contextMenu
-                  (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
-                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
-                  [class.pinned-left]="column.pinned"
-                  [ngClass]="column.cssClass ? column.cssClass.name : ''"
-                  [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
-                  [class.ngx-table__table-col--selected]="colIndex === selectedCol && !config.selectCell"
-                  [class.ngx-table__table-cell--selected]="colIndex === selectedCol && rowIndex === selectedRow && !config.selectCol && !config.selectRow"
-              >
-                <div *ngIf="!column.cellTemplate">{{ row | render:column.key }}</div>
-                <ng-container
-                  *ngIf="column.cellTemplate"
-                  [ngTemplateOutlet]="column.cellTemplate"
-                  [ngTemplateOutletContext]="{ $implicit: row, rowIndex: rowIndex }">
-                </ng-container>
-              </td>
-            </ng-container>
-            <td *ngIf="config.additionalActions || config.detailsTemplate">
-            <span class="ngx-icon"
-                  *ngIf="arrowDefinition"
-                  [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
-                  (click)="collapseRow(rowIndex)">
-            </span>
-            </td>
-          </tr>
-          <tr
-            *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
-            <td *ngIf="config.checkboxes || config.radio"></td>
-            <td [attr.colspan]="columns.length + 1">
-              <ng-container
-                [ngTemplateOutlet]="detailsTemplate"
-                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
-              </ng-container>
-            </td>
-          </tr>
-        </ng-container>
-      </cdk-virtual-scroll-viewport>
-    </ng-container>
-    <ng-container *ngIf="!rowTemplate && config.groupRows">
-      <ng-container
-        *ngFor="let group of grouped | sort:sortBy:config | search:term:filteredCountSubject:config | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-        let rowIndex = index">
-        <tr>
-          <ng-container *ngIf="!groupRowsHeaderTemplate">
-            <td [attr.colspan]="columns.length">
-              <div>{{group[0][groupRowsBy]}} ({{group.length}})</div>
-            </td>
-          </ng-container>
+      <ng-container *ngIf="rowTemplate">
+        <ul
+          class="ngx-table__table-row-context-menu"
+          [ngStyle]="{
+            position: 'absolute',
+            top: rowContextMenuPosition.top,
+            left: rowContextMenuPosition.left
+          }"
+          *ngIf="rowContextMenuPosition.top"
+        >
           <ng-container
-            *ngIf="groupRowsHeaderTemplate"
-            [ngTemplateOutlet]="groupRowsHeaderTemplate"
-            [ngTemplateOutletContext]="{
-              total: group.length,
-              key: groupRowsBy,
-              value: group[0] ? group[0][groupRowsBy] : '',
-              group: group,
-              index: rowIndex
-            }">
+            [ngTemplateOutlet]="rowContextMenu"
+            [ngTemplateOutletContext]="{ $implicit: rowContextMenuPosition.value }"
+          >
           </ng-container>
-          <td>
-            <span class="ngx-icon"
+        </ul>
+        <ng-container *ngIf="!config.infiniteScroll">
+          <ng-container
+            *ngFor="
+              let row of data
+                | sort: sortBy
+                | search: term:filteredCountSubject
+                | global: globalSearchTerm:filteredCountSubject
+                | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+              let rowIndex = index
+            "
+          >
+            <tr
+              (click)="onClick($event, row, '', null, rowIndex)"
+              #contextMenu
+              (contextmenu)="onRowContextMenu($event, row, '', null, rowIndex)"
+              (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
+              [class.ngx-table__table-row--selected]="
+                rowIndex === selectedRow && !config.selectCell
+              "
+            >
+              <ng-container
+                [ngTemplateOutlet]="rowTemplate"
+                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+              >
+              </ng-container>
+              <td *ngIf="config.detailsTemplate">
+                <span
+                  class="ngx-icon"
                   *ngIf="arrowDefinition"
-                  [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
-                  (click)="collapseRow(rowIndex)">
-            </span>
-          </td>
-        </tr>
-        <ng-container *ngIf="selectedDetailsTemplateRowId.has(rowIndex)">
-          <tr *ngFor="let row of group">
-            <td *ngFor="let column of columns">
-              {{ row | render:column.key }}
-              <!-- TODO allow users to add groupRowsTemplateRef -->
+                  [ngClass]="
+                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
+                  "
+                  (click)="collapseRow(rowIndex)"
+                >
+                </span>
+              </td>
+            </tr>
+            <tr
+              *ngIf="
+                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
+                config.collapseAllRows
+              "
+            >
+              <td [attr.colspan]="columns.length + 1">
+                <ng-container
+                  [ngTemplateOutlet]="detailsTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+                >
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <cdk-virtual-scroll-viewport
+          itemSize="50"
+          *ngIf="config.infiniteScroll"
+          class="ngx-infinite-scroll-viewport"
+        >
+          <ng-container
+            *cdkVirtualFor="
+              let row of data
+                | sort: sortBy
+                | search: term:filteredCountSubject
+                | global: globalSearchTerm:filteredCountSubject;
+              let rowIndex = index
+            "
+          >
+            <tr
+              (click)="onClick($event, row, '', null, rowIndex)"
+              #contextMenu
+              (contextmenu)="onRowContextMenu($event, row, '', null, rowIndex)"
+              (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
+              [class.ngx-table__table-row--selected]="
+                rowIndex === selectedRow && !config.selectCell
+              "
+            >
+              <ng-container
+                [ngTemplateOutlet]="rowTemplate"
+                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+              >
+              </ng-container>
+              <td *ngIf="config.detailsTemplate">
+                <span
+                  class="ngx-icon"
+                  *ngIf="arrowDefinition"
+                  [ngClass]="
+                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
+                  "
+                  (click)="collapseRow(rowIndex)"
+                >
+                </span>
+              </td>
+            </tr>
+            <tr
+              *ngIf="
+                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
+                config.collapseAllRows
+              "
+            >
+              <td [attr.colspan]="columns.length + 1">
+                <ng-container
+                  [ngTemplateOutlet]="detailsTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+                >
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </cdk-virtual-scroll-viewport>
+      </ng-container>
+      <ng-container *ngIf="!rowTemplate && !config.groupRows">
+        <ul
+          class="ngx-table__table-row-context-menu"
+          [ngStyle]="{
+            position: 'absolute',
+            top: rowContextMenuPosition.top,
+            left: rowContextMenuPosition.left
+          }"
+          *ngIf="rowContextMenuPosition.top"
+        >
+          <ng-container
+            [ngTemplateOutlet]="rowContextMenu"
+            [ngTemplateOutletContext]="{ $implicit: rowContextMenuPosition.value }"
+          >
+          </ng-container>
+        </ul>
+        <ng-container *ngIf="!config.infiniteScroll">
+          <ng-container
+            *ngFor="
+              let row of data
+                | sort: sortBy
+                | search: term:filteredCountSubject
+                | global: globalSearchTerm:filteredCountSubject
+                | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+              let rowIndex = index
+            "
+          >
+            <tr
+              [class.ngx-table__table-row--selected]="
+                rowIndex === selectedRow && !config.selectCell
+              "
+            >
+              <td *ngIf="config.checkboxes">
+                <label class="ngx-form-checkbox">
+                  <input
+                    type="checkbox"
+                    id="checkbox-{{ rowIndex }}"
+                    [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
+                    (change)="onCheckboxSelect($event, row, rowIndex)"
+                  />
+                  <em class="ngx-form-icon"></em>
+                </label>
+              </td>
+              <td *ngIf="config.radio">
+                <label>
+                  <input
+                    type="radio"
+                    id="radio-{{ rowIndex }}"
+                    name="radio"
+                    (change)="onRadioSelect($event, row, rowIndex)"
+                  />
+                </label>
+              </td>
+              <ng-container *ngFor="let column of columns; let colIndex = index">
+                <td
+                  (click)="onClick($event, row, column.key, colIndex, rowIndex)"
+                  #contextMenu
+                  (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
+                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
+                  [class.pinned-left]="column.pinned"
+                  [ngClass]="column.cssClass ? column.cssClass.name : ''"
+                  [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
+                  [class.ngx-table__table-col--selected]="
+                    colIndex === selectedCol && !config.selectCell
+                  "
+                  [class.ngx-table__table-cell--selected]="
+                    colIndex === selectedCol &&
+                    rowIndex === selectedRow &&
+                    !config.selectCol &&
+                    !config.selectRow
+                  "
+                >
+                  <div *ngIf="!column.cellTemplate">{{ row | render: column.key }}</div>
+                  <ng-container
+                    *ngIf="column.cellTemplate"
+                    [ngTemplateOutlet]="column.cellTemplate"
+                    [ngTemplateOutletContext]="{
+                      $implicit: row,
+                      rowIndex: rowIndex,
+                      column: column
+                    }"
+                  >
+                  </ng-container>
+                </td>
+              </ng-container>
+              <td *ngIf="config.additionalActions || config.detailsTemplate">
+                <span
+                  class="ngx-icon"
+                  *ngIf="arrowDefinition"
+                  [ngClass]="
+                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
+                  "
+                  (click)="collapseRow(rowIndex)"
+                >
+                </span>
+              </td>
+            </tr>
+            <tr
+              *ngIf="
+                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
+                config.collapseAllRows
+              "
+            >
+              <td *ngIf="config.checkboxes || config.radio"></td>
+              <td [attr.colspan]="columns.length + 1">
+                <ng-container
+                  [ngTemplateOutlet]="detailsTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+                >
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <!-- infinite scroll -->
+        <cdk-virtual-scroll-viewport
+          itemSize="50"
+          *ngIf="config.infiniteScroll"
+          class="ngx-infinite-scroll-viewport"
+        >
+          <ng-container
+            *cdkVirtualFor="
+              let row of data
+                | sort: sortBy
+                | search: term:filteredCountSubject
+                | global: globalSearchTerm:filteredCountSubject;
+              let rowIndex = index
+            "
+          >
+            <tr
+              [class.ngx-table__table-row--selected]="
+                rowIndex === selectedRow && !config.selectCell
+              "
+            >
+              <td *ngIf="config.checkboxes">
+                <label class="ngx-form-checkbox">
+                  <input
+                    type="checkbox"
+                    id="checkbox-infinite-scroll-{{ rowIndex }}"
+                    [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
+                    (change)="onCheckboxSelect($event, row, rowIndex)"
+                  />
+                  <em class="ngx-form-icon"></em>
+                </label>
+              </td>
+              <td *ngIf="config.radio">
+                <label>
+                  <input
+                    type="radio"
+                    id="radio-infinite-scroll-{{ rowIndex }}"
+                    name="radio"
+                    (change)="onRadioSelect($event, row, rowIndex)"
+                  />
+                </label>
+              </td>
+              <ng-container *ngFor="let column of columns; let colIndex = index">
+                <td
+                  (click)="onClick($event, row, column.key, colIndex, rowIndex)"
+                  #contextMenu
+                  (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
+                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
+                  [class.pinned-left]="column.pinned"
+                  [ngClass]="column.cssClass ? column.cssClass.name : ''"
+                  [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
+                  [class.ngx-table__table-col--selected]="
+                    colIndex === selectedCol && !config.selectCell
+                  "
+                  [class.ngx-table__table-cell--selected]="
+                    colIndex === selectedCol &&
+                    rowIndex === selectedRow &&
+                    !config.selectCol &&
+                    !config.selectRow
+                  "
+                >
+                  <div *ngIf="!column.cellTemplate">{{ row | render: column.key }}</div>
+                  <ng-container
+                    *ngIf="column.cellTemplate"
+                    [ngTemplateOutlet]="column.cellTemplate"
+                    [ngTemplateOutletContext]="{
+                      $implicit: row,
+                      rowIndex: rowIndex,
+                      column: column
+                    }"
+                  >
+                  </ng-container>
+                </td>
+              </ng-container>
+              <td *ngIf="config.additionalActions || config.detailsTemplate">
+                <span
+                  class="ngx-icon"
+                  *ngIf="arrowDefinition"
+                  [ngClass]="
+                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
+                  "
+                  (click)="collapseRow(rowIndex)"
+                >
+                </span>
+              </td>
+            </tr>
+            <tr
+              *ngIf="
+                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
+                config.collapseAllRows
+              "
+            >
+              <td *ngIf="config.checkboxes || config.radio"></td>
+              <td [attr.colspan]="columns.length + 1">
+                <ng-container
+                  [ngTemplateOutlet]="detailsTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+                >
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </cdk-virtual-scroll-viewport>
+      </ng-container>
+      <ng-container *ngIf="!rowTemplate && config.groupRows">
+        <ng-container
+          *ngFor="
+            let group of grouped
+              | sort: sortBy:config
+              | search: term:filteredCountSubject:config
+              | global: globalSearchTerm:filteredCountSubject
+              | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+            let rowIndex = index
+          "
+        >
+          <tr>
+            <ng-container *ngIf="!groupRowsHeaderTemplate">
+              <td [attr.colspan]="columns.length">
+                <div>{{ group[0][groupRowsBy] }} ({{ group.length }})</div>
+              </td>
+            </ng-container>
+            <ng-container
+              *ngIf="groupRowsHeaderTemplate"
+              [ngTemplateOutlet]="groupRowsHeaderTemplate"
+              [ngTemplateOutletContext]="{
+                total: group.length,
+                key: groupRowsBy,
+                value: group[0] ? group[0][groupRowsBy] : '',
+                group: group,
+                index: rowIndex
+              }"
+            >
+            </ng-container>
+            <td>
+              <span
+                class="ngx-icon"
+                *ngIf="arrowDefinition"
+                [ngClass]="
+                  isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
+                "
+                (click)="collapseRow(rowIndex)"
+              >
+              </span>
             </td>
-            <td></td>
+          </tr>
+          <ng-container *ngIf="selectedDetailsTemplateRowId.has(rowIndex)">
+            <tr *ngFor="let row of group">
+              <td *ngFor="let column of columns">
+                {{ row | render: column.key }}
+                <!-- TODO allow users to add groupRowsTemplateRef -->
+              </td>
+              <td></td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </tbody>
+    <tbody
+      *ngIf="data && !config.isLoading && config.rowReorder"
+      class="ngx-draggable-row-area"
+      cdkDropList
+      (cdkDropListDropped)="onDrop($event)"
+    >
+      <ng-container *ngIf="!rowTemplate && !config.groupRows">
+        <ng-container
+          *ngFor="
+            let row of data
+              | sort: sortBy
+              | search: term:filteredCountSubject
+              | global: globalSearchTerm:filteredCountSubject
+              | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+            let rowIndex = index
+          "
+        >
+          <tr class="ngx-draggable-row" cdkDrag cdkDragLockAxis="y">
+            <td *ngIf="config.checkboxes">
+              <label class="ngx-form-checkbox">
+                <input
+                  type="checkbox"
+                  id="checkbox-draggable-{{ rowIndex }}"
+                  [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
+                  (change)="onCheckboxSelect($event, row, rowIndex)"
+                />
+                <em class="ngx-form-icon"></em>
+              </label>
+            </td>
+            <td *ngIf="config.radio">
+              <label>
+                <input
+                  type="radio"
+                  id="radio-draggable-{{ rowIndex }}"
+                  name="radio"
+                  (change)="onRadioSelect($event, row, rowIndex)"
+                />
+              </label>
+            </td>
+            <ng-container *ngFor="let column of columns; let colIndex = index">
+              <td
+                (click)="onClick($event, row, column.key, colIndex, rowIndex)"
+                (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
+                [class.ngx-table__table-col--selected]="
+                  colIndex === selectedCol && !config.selectCell
+                "
+                [class.ngx-table__table-cell--selected]="
+                  colIndex === selectedCol &&
+                  rowIndex === selectedRow &&
+                  !config.selectCol &&
+                  !config.selectRow
+                "
+              >
+                <div>{{ row | render: column.key }}</div>
+              </td>
+            </ng-container>
           </tr>
         </ng-container>
       </ng-container>
-    </ng-container>
-    </tbody>
-    <tbody *ngIf="data && !config.isLoading && config.rowReorder"
-           class="ngx-draggable-row-area"
-           cdkDropList
-           (cdkDropListDropped)="onDrop($event)">
-    <ng-container *ngIf="!rowTemplate && !config.groupRows">
-      <ng-container
-        *ngFor="let row of data | sort:sortBy | search:term:filteredCountSubject | global:globalSearchTerm:filteredCountSubject | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-                  let rowIndex = index">
-        <tr class="ngx-draggable-row" cdkDrag cdkDragLockAxis="y">
-          <td *ngIf="config.checkboxes">
-            <label class="ngx-form-checkbox">
-              <input type="checkbox"
-                     id="checkbox-draggable-{{rowIndex}}"
-                     [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
-                     (change)="onCheckboxSelect($event, row, rowIndex)">
-              <em class="ngx-form-icon"></em>
-            </label>
-          </td>
-          <td *ngIf="config.radio">
-            <label>
-              <input type="radio"
-                     id="radio-draggable-{{rowIndex}}"
-                     name="radio"
-                     (change)="onRadioSelect($event, row, rowIndex)">
-            </label>
-          </td>
-          <ng-container *ngFor="let column of columns; let colIndex = index">
-            <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
-                (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
-                [class.ngx-table__table-col--selected]="colIndex === selectedCol && !config.selectCell"
-                [class.ngx-table__table-cell--selected]="colIndex === selectedCol && rowIndex === selectedRow && !config.selectCol && !config.selectRow"
-            >
-              <div>{{ row | render:column.key }}</div>
-            </td>
-          </ng-container>
-        </tr>
-      </ng-container>
-    </ng-container>
     </tbody>
     <tbody *ngIf="filterCount === 0">
-    <tr class="ngx-table__body-empty">
-      <ng-container
-        *ngIf="noResultsTemplate"
-        [ngTemplateOutlet]="noResultsTemplate">
-      </ng-container>
-      <td [attr.colspan]="columns && columns.length + 1" *ngIf="!noResultsTemplate">
-        <div class="ngx-table__table-no-results">
-          No results
-        </div>
-      </td>
-    </tr>
+      <tr class="ngx-table__body-empty">
+        <ng-container *ngIf="noResultsTemplate" [ngTemplateOutlet]="noResultsTemplate">
+        </ng-container>
+        <td [attr.colspan]="columns && columns.length + 1" *ngIf="!noResultsTemplate">
+          <div class="ngx-table__table-no-results">
+            No results
+          </div>
+        </td>
+      </tr>
     </tbody>
     <tbody *ngIf="config.isLoading">
-    <tr class="ngx-table__body-loading">
-      <ng-container
-        *ngIf="loadingTemplate"
-        [ngTemplateOutlet]="loadingTemplate">
-      </ng-container>
-      <td [attr.colspan]="columns && columns.length + 1" *ngIf="!loadingTemplate">
-        <div [style.height.px]="loadingHeight"
-             class="ngx-table__table-loader-wrapper">
-          <div class="ngx-table__table-loader"></div>
-        </div>
-      </td>
-    </tr>
+      <tr class="ngx-table__body-loading">
+        <ng-container *ngIf="loadingTemplate" [ngTemplateOutlet]="loadingTemplate"> </ng-container>
+        <td [attr.colspan]="columns && columns.length + 1" *ngIf="!loadingTemplate">
+          <div [style.height.px]="loadingHeight" class="ngx-table__table-loader-wrapper">
+            <div class="ngx-table__table-loader"></div>
+          </div>
+        </td>
+      </tr>
     </tbody>
     <tfoot *ngIf="summaryTemplate">
-    <tr>
-      <ng-container
-        [ngTemplateOutlet]="summaryTemplate"
-        [ngTemplateOutletContext]="{ total: data.length, limit: limit, page: page  }">
-      </ng-container>
-    </tr>
+      <tr>
+        <ng-container
+          [ngTemplateOutlet]="summaryTemplate"
+          [ngTemplateOutletContext]="{ total: data.length, limit: limit, page: page }"
+        >
+        </ng-container>
+      </tr>
     </tfoot>
   </table>
   <pagination
@@ -361,6 +520,7 @@
     #paginationComponent
     [config]="config"
     [pagination]="pagination"
-    (updateRange)="onPagination($event)">
+    (updateRange)="onPagination($event)"
+  >
   </pagination>
 </div>

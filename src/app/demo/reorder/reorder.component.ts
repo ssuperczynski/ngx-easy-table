@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, DefaultConfig } from 'ngx-easy-table';
-import { Config } from '../../../../projects/ngx-easy-table/src/lib';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-reorder',
