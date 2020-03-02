@@ -3,12 +3,12 @@ env:
 dist: xenial
 language: node_js
 node_js:
-  - "12"
+  - 12
 script:
   - npm run lint
   - npm run build:lib
   - npm run build
-  - npm run cy:ci
+  - npm run cy:run
 install:
   - npm ci
 notifications:
