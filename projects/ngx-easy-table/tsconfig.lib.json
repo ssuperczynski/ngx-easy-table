@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/ngx-easy-table",
-    "target": "es2015",
+    "target": "es2018",
     "module": "es2015",
     "moduleResolution": "node",
     "declaration": true,
