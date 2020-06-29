@@ -22,7 +22,7 @@
     "publish:lib": "cd dist/ngx-easy-table && npm publish",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "publish:lib:next": "cd dist/ngx-easy-table && npm publish --tag next",
-    "build:lib": "ng build ngx-easy-table && node-sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss"
+    "build:lib": "ng build ngx-easy-table && sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss"
   },
   "license": "MIT",
   "dependencies": {
@@ -59,9 +59,9 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "ng-packagr": "^10.0.0",
-    "node-sass": "^4.13.1",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.5",
     "rxjs": "^6.5.5",
+    "sass": "^1.26.9",
     "start-server-and-test": "^1.11.0",
     "ts-node": "^8.10.2",
     "tslib": "^2.0.0",

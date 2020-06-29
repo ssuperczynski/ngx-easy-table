@@ -26,8 +26,8 @@ export class ClickEventComponent implements OnInit {
     this.data = data;
   }
 
-  eventEmitted($event: { event: string, value: any }): void {
-    this.clicked = JSON.stringify($event, null, 2);
+  eventEmitted($event: { event: string; value: any }): void {
+    this.clicked = JSON.stringify($event);
     // tslint:disable-next-line:no-console
     console.log('$event', $event);
   }
