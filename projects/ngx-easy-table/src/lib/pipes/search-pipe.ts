@@ -6,11 +6,15 @@ import { Subject } from 'rxjs';
 @Pipe({
   name: 'search',
 })
-
 export class SearchPipe implements PipeTransform {
   private filters: { [key: string]: string } = {};
 
-  transform(array: any[], filter: Array<{ value: string, key: string }>, filteredCountSubject: Subject<number>, config?: Config): any {
+  transform(
+    array: any[],
+    filter: Array<{ value: string; key: string }>,
+    filteredCountSubject: Subject<number>,
+    config?: Config
+  ): any {
     filteredCountSubject.next(0);
     if (typeof array === 'undefined') {
       return;
@@ -36,7 +40,8 @@ export class SearchPipe implements PipeTransform {
       return Object.keys(this.filters).every((c) => {
         const split = c.split('.');
         const val = FiltersService.getPath(split, obj);
-        const element = (typeof val === 'object') ? JSON.stringify(val) : val.toString().toLocaleLowerCase();
+        const element =
+          typeof val === 'object' ? JSON.stringify(val) : val.toString().toLocaleLowerCase();
         const strings = this.filters[c].split(',');
         return strings.some((string) => element.indexOf(string.trim()) > -1);
       });

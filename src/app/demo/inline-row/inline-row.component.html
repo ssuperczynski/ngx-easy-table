@@ -1,38 +1,26 @@
 <div class="columns">
   <div class="column col-12">
-    <ngx-table
-      [configuration]="configuration"
-      [data]="data"
-      [columns]="columns">
-    </ngx-table>
+    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns"> </ngx-table>
   </div>
 </div>
 <ng-template #phoneTpl let-row let-rowIndex="rowIndex">
-  <div class="phone" *ngIf="editRow !== rowIndex">{{row.phone}}</div>
+  <div class="phone" *ngIf="editRow !== rowIndex">{{ row.phone }}</div>
   <div *ngIf="editRow === rowIndex">
-    <input type="text"
-           #phone
-           placeholder="Phone"
-           class="form-label"
-           [value]="row.phone">
+    <input type="text" #phone placeholder="Phone" class="form-label" [value]="row.phone" />
   </div>
 </ng-template>
 <ng-template #ageTpl let-row let-rowIndex="rowIndex">
-  <div *ngIf="editRow !== rowIndex">{{row.age}}</div>
+  <div *ngIf="editRow !== rowIndex">{{ row.age }}</div>
   <div *ngIf="editRow === rowIndex">
-    <input type="number"
-           #age
-           placeholder="Age"
-           class="form-label"
-           [value]="row.age">
+    <input type="number" #age placeholder="Age" class="form-label" [value]="row.age" />
   </div>
 </ng-template>
 <ng-template #companyTpl let-row let-rowIndex="rowIndex">
-  <div *ngIf="editRow !== rowIndex">{{row.company}}</div>
+  <div *ngIf="editRow !== rowIndex">{{ row.company }}</div>
   <div *ngIf="editRow === rowIndex">
     <div class="form-group">
       <select class="form-select" #company>
-        <option>{{row.company}}</option>
+        <option>{{ row.company }}</option>
         <option>Google</option>
         <option>Oracle</option>
         <option>Twitter</option>
@@ -41,13 +29,9 @@
   </div>
 </ng-template>
 <ng-template #nameTpl let-row let-rowIndex="rowIndex">
-  <div *ngIf="editRow !== rowIndex">{{row.name}}</div>
+  <div *ngIf="editRow !== rowIndex">{{ row.name }}</div>
   <div *ngIf="editRow === rowIndex">
-    <input type="text"
-           #name
-           placeholder="Name"
-           class="form-label"
-           [value]="row.name">
+    <input type="text" #name placeholder="Name" class="form-label" [value]="row.name" />
   </div>
 </ng-template>
 <ng-template #actionTpl let-row let-rowIndex="rowIndex">

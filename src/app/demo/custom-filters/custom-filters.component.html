@@ -1,44 +1,60 @@
-<small class="mb-2">For maximum flexibility tables doesn't have any built-in custom filters.
-Because of that, you can add anything you want to the table, see <b>custom-filters.component.ts</b> or <b>custom-sort.component.ts</b> for more details.
+<small class="mb-2"
+  >For maximum flexibility tables doesn't have any built-in custom filters. Because of that, you can
+  add anything you want to the table, see <b>custom-filters.component.ts</b> or
+  <b>custom-sort.component.ts</b> for more details.
 </small>
 <p>
   <small>
-    See <a href="#" [routerLink]="['/api']">API</a> section as well, where you can achieve same effect by using Table API.
+    See <a href="#" [routerLink]="['/api']">API</a> section as well, where you can achieve same
+    effect by using Table API.
   </small>
 </p>
 <div class="columns">
-	<div class="column col-6">
-		<div class="form-group">
-			<label class="form-label" for="filter-company">Filter by company only</label>
-			<input class="form-input" (input)="onCompanySearch($event.target.value)" type="text" id="filter-company" placeholder="Company">
-		</div>
-	</div>
-	<div class="column col-6">
-		<div class="form-group">
-			<label class="form-label" for="filter-age">Age bigger than</label>
-			<input class="form-input" (input)="onAgeSearch($event.target.value)" min="1" max="80" type="number" id="filter-age" placeholder="Age">
-		</div>
-	</div>
+  <div class="column col-6">
+    <div class="form-group">
+      <label class="form-label" for="filter-company">Filter by company only</label>
+      <input
+        class="form-input"
+        (input)="onCompanySearch($event.target.value)"
+        type="text"
+        id="filter-company"
+        placeholder="Company"
+      />
+    </div>
+  </div>
+  <div class="column col-6">
+    <div class="form-group">
+      <label class="form-label" for="filter-age">Age bigger than</label>
+      <input
+        class="form-input"
+        (input)="onAgeSearch($event.target.value)"
+        min="1"
+        max="80"
+        type="number"
+        id="filter-age"
+        placeholder="Age"
+      />
+    </div>
+  </div>
 </div>
 <div class="columns mt-2">
-	<div class="column col-6">
-		<div class="form-group">
-			<select class="form-select" (change)="onStatusChange($event.target.value)">
+  <div class="column col-6">
+    <div class="form-group">
+      <select class="form-select" (change)="onStatusChange($event.target.value)">
         <option>Choose an option</option>
         <option>true</option>
         <option>false</option>
       </select>
-		</div>
-	</div>
+    </div>
+  </div>
   <div class="column col-6">
-		<div class="form-group">
-			<button class="btn float-right" (click)="reset()"> Reset search</button>
-		</div>
-	</div>
+    <div class="form-group">
+      <button class="btn float-right" (click)="reset()">Reset search</button>
+    </div>
+  </div>
 </div>
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration" [data]="rows" [columns]="columns">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table [configuration]="configuration" [data]="rows" [columns]="columns"> </ngx-table>
+  </div>
 </div>

@@ -27,7 +27,7 @@ export class CheckboxAsRadioComponent implements OnInit {
     this.data = data;
   }
 
-  eventEmitted($event: { event: string, value: { rowId: number } }): void {
+  eventEmitted($event: { event: string; value: { rowId: number } }): void {
     switch ($event.event) {
       case 'onCheckboxSelect':
         this.table.apiEvent({

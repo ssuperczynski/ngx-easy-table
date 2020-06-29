@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
@@ -39,9 +46,8 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly companyService: CompanyService,
-    private readonly cdr: ChangeDetectorRef,
-  ) {
-  }
+    private readonly cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
@@ -53,7 +59,7 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.complete();
   }
 
-  eventEmitted($event: { event: string, value: any }): void {
+  eventEmitted($event: { event: string; value: any }): void {
     if ($event.event !== 'onClick') {
       this.parseEvent($event);
     }
@@ -69,12 +75,19 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
 
   private getData(params: string): void {
     this.configuration.isLoading = true;
-    this.companyService.getCompanies(params)
+    this.companyService
+      .getCompanies(params)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((response) => {
+      .subscribe(
+        (response) => {
           this.data = response.body;
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
-          this.pagination.count = (this.pagination.count === -1) ? (response.body ? response.body.length : 0) : this.pagination.count;
+          this.pagination.count =
+            this.pagination.count === -1
+              ? response.body
+                ? response.body.length
+                : 0
+              : this.pagination.count;
           this.pagination = { ...this.pagination };
           this.configuration.isLoading = false;
           this.cdr.detectChanges();
@@ -82,7 +95,8 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
         },
         (error) => {
           console.error('ERROR: ', error.message);
-        });
+        }
+      );
   }
 
   private setRowStyle(): void {
@@ -91,5 +105,4 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
       value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
     });
   }
-
 }

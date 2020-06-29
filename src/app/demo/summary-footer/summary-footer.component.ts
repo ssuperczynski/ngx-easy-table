@@ -26,5 +26,4 @@ export class SummaryFooterComponent implements OnInit {
     this.data = data;
     this.ageSummary = this.data.map((_) => _.age).reduce((acc, cur) => cur + acc, 0);
   }
-
 }

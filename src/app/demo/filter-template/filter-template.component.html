@@ -1,29 +1,35 @@
-<ngx-table [configuration]="configuration"
-           [data]="rows"
-           [columns]="columns"
-           [filtersTemplate]="filtersTemplate">
+<ngx-table
+  [configuration]="configuration"
+  [data]="rows"
+  [columns]="columns"
+  [filtersTemplate]="filtersTemplate"
+>
   <ng-template let-row>
     <td>
-      <h5 class="color-green font-light">{{row.name}}</h5>
+      <h5 class="color-green font-light">{{ row.name }}</h5>
     </td>
     <td>
-      <span class="font-small">Days left: {{row.age}}</span>
+      <span class="font-small">Days left: {{ row.age }}</span>
       <div class="bar bar-sm">
-        <div class="bar-item" role="progressbar" [style.width]="row.age + '%'" aria-valuenow="row.age" aria-valuemin="0"
-             aria-valuemax="70"></div>
+        <div
+          class="bar-item"
+          role="progressbar"
+          [style.width]="row.age + '%'"
+          aria-valuenow="row.age"
+          aria-valuemin="0"
+          aria-valuemax="70"
+        ></div>
       </div>
     </td>
     <td>
-      <div class="font-small">
-        Company: {{row.company}}
-      </div>
+      <div class="font-small">Company: {{ row.company }}</div>
     </td>
     <td>
       <span class="font-small display-block">Phone:</span>
-      <span class="font-small">{{row.phone}}</span>
+      <span class="font-small">{{ row.phone }}</span>
     </td>
     <td>
-      <div>{{row.address.street}}</div>
+      <div>{{ row.address.street }}</div>
     </td>
   </ng-template>
 </ngx-table>
@@ -44,11 +50,13 @@
   </th>
   <th>
     <label for="filter-company">
-      <input class="form-input"
-             (input)="onCompanySearch($event.target.value)"
-             type="text"
-             id="filter-company"
-             placeholder="Company">
+      <input
+        class="form-input"
+        (input)="onCompanySearch($event.target.value)"
+        type="text"
+        id="filter-company"
+        placeholder="Company"
+      />
     </label>
   </th>
   <th></th>

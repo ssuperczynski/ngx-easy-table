@@ -9,7 +9,6 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoResultsTemplateComponent implements OnInit {
-
   public columns: Columns[] = [
     { key: 'name', title: 'Name' },
     { key: 'age', title: 'Age' },
@@ -21,7 +20,7 @@ export class NoResultsTemplateComponent implements OnInit {
   public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = {...DefaultConfig};
+    this.configuration = { ...DefaultConfig };
     this.configuration.horizontalScroll = false;
   }
 }

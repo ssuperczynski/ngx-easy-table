@@ -86,7 +86,7 @@ export class ServerSortComponent implements OnInit, OnDestroy {
       .getCompanies(params)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(
-        response => {
+        (response) => {
           this.data = response.body;
           this.cdr.markForCheck();
           // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
@@ -98,7 +98,7 @@ export class ServerSortComponent implements OnInit, OnDestroy {
               : this.pagination.count;
           this.pagination = { ...this.pagination };
         },
-        error => {
+        (error) => {
           console.error('ERROR: ', error.message);
         }
       );

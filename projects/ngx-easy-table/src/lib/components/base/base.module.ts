@@ -29,13 +29,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     GlobalSearchPipe,
     SortPipe,
   ],
-  imports: [
-    CommonModule,
-    NgxPaginationModule,
-    DragDropModule,
-    ScrollingModule,
-  ],
+  imports: [CommonModule, NgxPaginationModule, DragDropModule, ScrollingModule],
   exports: [BaseComponent],
 })
-export class BaseModule {
-}
+export class BaseModule {}

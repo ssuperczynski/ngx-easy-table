@@ -1,4 +1,10 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { API, Columns, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
@@ -64,9 +70,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   setPhone(): void {
     this.table.apiEvent({
       type: API.setInputValue,
-      value: [
-        { key: 'phone', value: '527' },
-      ],
+      value: [{ key: 'phone', value: '527' }],
     });
   }
 
@@ -74,9 +78,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   setAge(): void {
     this.table.apiEvent({
       type: API.setInputValue,
-      value: [
-        { key: 'age', value: '32' },
-      ],
+      value: [{ key: 'age', value: '32' }],
     });
   }
 

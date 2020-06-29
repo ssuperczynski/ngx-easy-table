@@ -5,20 +5,20 @@
 
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, .5);
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .off-canvas .off-canvas-sidebar {
-  width: 12rem
+  width: 12rem;
 }
 
 .off-canvas .off-canvas-content {
-  padding: 0
+  padding: 0;
 }
 
 .docs-container {
-  min-height: 100vh
+  min-height: 100vh;
 }
 
 .docs-navbar {
@@ -26,9 +26,8 @@
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 100
+  z-index: 100;
 }
-
 
 .docs-sidebar .docs-nav {
   bottom: 1.5rem;
@@ -36,49 +35,49 @@
   overflow-y: auto;
   position: fixed;
   top: 2.5rem;
-  width: 12rem
+  width: 12rem;
 }
 
 .docs-sidebar .accordion input ~ .accordion-header {
   color: #455060;
-  font-size: .65rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
 .docs-sidebar .accordion input:checked ~ .accordion-header {
-  color: #505c6e
+  color: #505c6e;
 }
 
 .docs-sidebar .accordion .menu .menu-item {
-  font-size: .7rem;
-  padding-left: 1rem
+  font-size: 0.7rem;
+  padding-left: 1rem;
 }
 
 .docs-sidebar .accordion .menu .menu-item > a {
   background: 0 0;
   color: #66758c;
-  display: inline-block
+  display: inline-block;
 }
 
 .docs-content {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 0 4rem;
-  width: calc(100vw - 12rem)
+  width: calc(100vw - 12rem);
 }
 
 .docs-content > .container {
   margin-left: 0;
-  padding-bottom: 1.5rem
+  padding-bottom: 1.5rem;
 }
 
 .docs-content .column {
-  padding: .4rem
+  padding: 0.4rem;
 }
 
 .docs-content .off-canvas {
-  position: relative
+  position: relative;
 }
 
 .off-canvas-display {
@@ -95,27 +94,27 @@
     display: block;
   }
   .off-canvas .off-canvas-content {
-    width: 100%
+    width: 100%;
   }
   .docs-sidebar .docs-nav {
     margin-top: 1rem;
-    position: static
+    position: static;
   }
   .docs-sidebar .menu .menu-item > a {
-    padding: .3rem .4rem
+    padding: 0.3rem 0.4rem;
   }
   .docs-content {
     min-width: auto;
     padding: 0 1.5rem;
-    width: 100%
+    width: 100%;
   }
 }
 
 @media (max-width: 600px) {
   .docs-sidebar .docs-nav {
-    padding: .5rem 1rem
+    padding: 0.5rem 1rem;
   }
   .docs-content {
-    padding: 0 .5rem
+    padding: 0 0.5rem;
   }
 }

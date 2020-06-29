@@ -1,41 +1,49 @@
-<ngx-table [configuration]="configuration" [data]="data" [columns]="columns" (event)="onEvent($event)">
-	<ng-template let-row>
-		<td>
-			<div class="font-small">
-				Company: {{row.company}}
-			</div>
-		</td>
-		<td>
-			<div class="circle" [style.color]="row.isActive? 'red' : 'green'"></div>
-		</td>
-		<td>
-			<span class="font-small">{{row.age}}</span>
-		</td>
-		<td>
-			<span class="font-small">{{row.name}}</span>
-		</td>
-		<td>
-			<button class="btn btn-primary btn-sm" (click)="showModal()">
+<ngx-table
+  [configuration]="configuration"
+  [data]="data"
+  [columns]="columns"
+  (event)="onEvent($event)"
+>
+  <ng-template let-row>
+    <td>
+      <div class="font-small">Company: {{ row.company }}</div>
+    </td>
+    <td>
+      <div class="circle" [style.color]="row.isActive ? 'red' : 'green'"></div>
+    </td>
+    <td>
+      <span class="font-small">{{ row.age }}</span>
+    </td>
+    <td>
+      <span class="font-small">{{ row.name }}</span>
+    </td>
+    <td>
+      <button class="btn btn-primary btn-sm" (click)="showModal()">
         Edit
       </button>
-		</td>
-	</ng-template>
+    </td>
+  </ng-template>
 </ngx-table>
 
 <div *ngIf="modal" class="modal active">
-	<div class="modal-overlay"></div>
-	<div class="modal-container" role="document">
-		<div class="modal-header">
-			<button href="#modals-sizes" class="btn btn-clear float-right" (click)="hideModal()" aria-label="Close"></button>
-			<div class="modal-title h5">Modal title</div>
-		</div>
-		<div class="modal-body">
-			<div class="content">
-				<pre>{{selected}}</pre>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-primary btn-sm" (click)="hideModal()">Close</button>
-		</div>
-	</div>
+  <div class="modal-overlay"></div>
+  <div class="modal-container" role="document">
+    <div class="modal-header">
+      <button
+        href="#modals-sizes"
+        class="btn btn-clear float-right"
+        (click)="hideModal()"
+        aria-label="Close"
+      ></button>
+      <div class="modal-title h5">Modal title</div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+        <pre>{{ selected }}</pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary btn-sm" (click)="hideModal()">Close</button>
+    </div>
+  </div>
 </div>

@@ -3,14 +3,16 @@
 </small>
 <ng-template #selectAllTemplate let-changeEvent>
   <label class="ngx-form-checkbox">
-    <input type="checkbox" (input)="changeEvent()">
+    <input type="checkbox" (input)="changeEvent()" />
     <i class="ngx-form-icon custom-checkbox-color" id="selectAllCheckbox"></i>
   </label>
 </ng-template>
-<ngx-table [configuration]="configuration"
-           [data]="data"
-           [columns]="columns"
-           [selectAllTemplate]="selectAllTemplate">
+<ngx-table
+  [configuration]="configuration"
+  [data]="data"
+  [columns]="columns"
+  [selectAllTemplate]="selectAllTemplate"
+>
 </ngx-table>
 
 <h5 class="sub-header">
@@ -21,42 +23,49 @@
 </small>
 <ng-template #selectAllTemplate2 let-changeEvent>
   <label class="ngx-form-checkbox">
-    <input type="checkbox" [(ngModel)]="allSelected" (ngModelChange)="changeEvent()">
+    <input type="checkbox" [(ngModel)]="allSelected" (ngModelChange)="changeEvent()" />
     <i class="ngx-form-icon custom-checkbox-color" id="selectAllCheckbox2"></i>
   </label>
 </ng-template>
-<ngx-table [configuration]="configuration"
-           [data]="data"
-           [columns]="columns"
-           [selectAllTemplate]="selectAllTemplate2"
-           (event)="tableEventEmitted($event)">
+<ngx-table
+  [configuration]="configuration"
+  [data]="data"
+  [columns]="columns"
+  [selectAllTemplate]="selectAllTemplate2"
+  (event)="tableEventEmitted($event)"
+>
   <ng-template let-row>
     <td>
       <label class="ngx-form-checkbox">
-        <input type="checkbox" [(ngModel)]="row.selected" (ngModelChange)="rowSelected()">
+        <input type="checkbox" [(ngModel)]="row.selected" (ngModelChange)="rowSelected()" />
         <i class="ngx-form-icon custom-checkbox-color"></i>
       </label>
     </td>
     <td>
-      <h5 class="color-green font-light">{{row.name}}</h5>
+      <h5 class="color-green font-light">{{ row.name }}</h5>
     </td>
     <td>
-      <span class="font-small">Days left: {{row.age}}</span>
+      <span class="font-small">Days left: {{ row.age }}</span>
       <div class="bar bar-sm">
-        <div class="bar-item" role="progressbar" [style.width]="row.age + '%'" aria-valuenow="row.age" aria-valuemin="0" aria-valuemax="70"></div>
+        <div
+          class="bar-item"
+          role="progressbar"
+          [style.width]="row.age + '%'"
+          aria-valuenow="row.age"
+          aria-valuemin="0"
+          aria-valuemax="70"
+        ></div>
       </div>
     </td>
     <td>
-      <div class="font-small">
-        Company: {{row.company}}
-      </div>
+      <div class="font-small">Company: {{ row.company }}</div>
     </td>
     <td>
       <span class="font-small display-block">Phone:</span>
-      <span class="font-small">{{row.phone}}</span>
+      <span class="font-small">{{ row.phone }}</span>
     </td>
     <td>
-      <div>{{row.address.street}}</div>
+      <div>{{ row.address.street }}</div>
     </td>
   </ng-template>
 </ngx-table>

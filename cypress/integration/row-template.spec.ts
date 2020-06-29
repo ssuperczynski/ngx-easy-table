@@ -2,9 +2,8 @@
 
 context('Row details template', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4201/#/row-template');
-    },
-  );
+    cy.visit('http://127.0.0.1:4201/#/row-template');
+  });
 
   it('gets first row details', () => {
     cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(6) > span')

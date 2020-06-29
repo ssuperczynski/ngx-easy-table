@@ -1,20 +1,22 @@
-<small class="mb-2">For maximum flexibility tables doesn't have any built-in custom filters or sort.
-Because of that, you can add anything you want to the table, see <b>custom-filters.component.ts</b> or <b>custom-sort.component.ts</b> for more details.
+<small class="mb-2"
+  >For maximum flexibility tables doesn't have any built-in custom filters or sort. Because of that,
+  you can add anything you want to the table, see <b>custom-filters.component.ts</b> or
+  <b>custom-sort.component.ts</b> for more details.
 </small>
 <p>
   <small>
-    See <a href="#" [routerLink]="['/api']">API</a> section as well, where you can achieve same effect by using Table API.
+    See <a href="#" [routerLink]="['/api']">API</a> section as well, where you can achieve same
+    effect by using Table API.
   </small>
 </p>
 <div class="columns">
-	<div class="column col-12">
-		<button class="btn btn-primary" (click)="sortByNameAsc()">Sort by name asc</button>
-		<button class="btn" (click)="sortByNameDesc()">Sort by name desc</button>
-	</div>
+  <div class="column col-12">
+    <button class="btn btn-primary" (click)="sortByNameAsc()">Sort by name asc</button>
+    <button class="btn" (click)="sortByNameDesc()">Sort by name desc</button>
+  </div>
 </div>
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns"> </ngx-table>
+  </div>
 </div>

@@ -25,5 +25,4 @@ export class SelectCellComponent implements OnInit {
     this.configuration.selectCell = true;
     this.data = data;
   }
-
 }

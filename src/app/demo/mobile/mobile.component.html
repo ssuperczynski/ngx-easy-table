@@ -8,27 +8,30 @@
       [data]="data"
       #table
       [detailsTemplate]="detailsTemplate"
-      [columns]="columns">
+      [columns]="columns"
+    >
       <ng-template let-row let-index="index">
         <td *ngIf="!isMobile">
-          {{row.phone}}
+          {{ row.phone }}
         </td>
         <td *ngIf="!isMobile">
-          {{row.age}}
+          {{ row.age }}
         </td>
         <td>
-          {{row.company}}
+          {{ row.company }}
         </td>
         <td *ngIf="!isMobile">
-          {{row.name}}
+          {{ row.name }}
         </td>
         <td *ngIf="!isMobile">
-          {{row.isActive}}
+          {{ row.isActive }}
         </td>
         <td *ngIf="isMobile">
-          <button class="btn btn-primary"
-                  id="expandButton-{{index}}"
-                  (click)="onRowClickEvent($event, index)">
+          <button
+            class="btn btn-primary"
+            id="expandButton-{{ index }}"
+            (click)="onRowClickEvent($event, index)"
+          >
             <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
             <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
             Details
@@ -38,8 +41,8 @@
     </ngx-table>
     <ng-template #detailsTemplate let-row>
       <div>
-        <h2>{{row.phone }}</h2>
-        {{row.name }} - {{row.age}}
+        <h2>{{ row.phone }}</h2>
+        {{ row.name }} - {{ row.age }}
       </div>
     </ng-template>
   </div>

@@ -2,13 +2,13 @@
 
 context('Pagination', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4201/#/pagination');
-    },
-  );
+    cy.visit('http://127.0.0.1:4201/#/pagination');
+  });
 
   it('gets correct phone when no pagination clicked', () => {
-    cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-      .contains('+1 (949) 527-2108');
+    cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains(
+      '+1 (949) 527-2108'
+    );
   });
   it('gets correct phone when 2 pagination clicked', () => {
     cy.get('#pagination-controls > ul > li:nth-child(4) > a')

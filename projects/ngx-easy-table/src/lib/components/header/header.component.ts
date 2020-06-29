@@ -6,7 +6,6 @@ import { Columns } from '../..';
   templateUrl: './header.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class HeaderComponent {
   @Input() column: Columns;
   @Output() readonly update = new EventEmitter<Array<{ key: string; value: string }>>();
@@ -16,8 +15,6 @@ export class HeaderComponent {
   }
 
   onSearch(input: HTMLInputElement): void {
-    this.update.emit([
-      { value: input.value, key: this.column.key },
-    ]);
+    this.update.emit([{ value: input.value, key: this.column.key }]);
   }
 }

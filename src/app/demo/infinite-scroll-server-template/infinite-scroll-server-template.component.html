@@ -7,35 +7,37 @@
       [configuration]="configuration"
       (event)="onEvent()"
       [data]="data"
-      [columns]="columns">
+      [columns]="columns"
+    >
       <ng-template let-row let-index="index">
         <td [attr.width]="'3%'">
           <label>
-            <input type="checkbox"
-                   [checked]="selected === index"
-                   (change)="onChange(index)">
+            <input type="checkbox" [checked]="selected === index" (change)="onChange(index)" />
             <em class="form-icon"></em>
           </label>
         </td>
         <td>
-          <h5>{{row.phone}}</h5>
+          <h5>{{ row.phone }}</h5>
         </td>
         <td>
-          <span>Age: {{row.age}}</span>
+          <span>Age: {{ row.age }}</span>
           <div class="bar bar-sm">
-            <div class="bar-item" role="progressbar" [style.width]="row.age + '%'" aria-valuenow="row.age"
-                 aria-valuemin="0"
-                 aria-valuemax="70"></div>
+            <div
+              class="bar-item"
+              role="progressbar"
+              [style.width]="row.age + '%'"
+              aria-valuenow="row.age"
+              aria-valuemin="0"
+              aria-valuemax="70"
+            ></div>
           </div>
         </td>
         <td>
-          <div>
-            Company: {{row.company}}
-          </div>
+          <div>Company: {{ row.company }}</div>
         </td>
         <td>
           <span class="mb-2">Supervisor: </span>
-          <strong>{{row.name}}</strong>
+          <strong>{{ row.name }}</strong>
         </td>
       </ng-template>
     </ngx-table>

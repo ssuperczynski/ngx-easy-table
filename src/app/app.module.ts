@@ -68,7 +68,8 @@ import {
   InfiniteScrollComponent,
   InfiniteScrollServerComponent,
   InfiniteScrollServerTemplateComponent,
-  CheckboxAsRadioComponent, RadioComponent,
+  CheckboxAsRadioComponent,
+  RadioComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -175,5 +176,4 @@ export function getHighlightLanguages(): any {
     },
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

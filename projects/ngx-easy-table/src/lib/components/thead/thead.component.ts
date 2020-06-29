@@ -15,15 +15,17 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: '[table-thead]',
   templateUrl: './thead.component.html',
-  styles: [`
-    .cdk-drag-preview {
-      text-align: left;
-      padding-top: 9px;
-      padding-left: 4px;
-      color: #50596c;
-      border: 1px solid #e7e9ed;
-    }
-  `],
+  styles: [
+    `
+      .cdk-drag-preview {
+        text-align: left;
+        padding-top: 9px;
+        padding-left: 4px;
+        color: #50596c;
+        border: 1px solid #e7e9ed;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [StyleService],
 })
@@ -43,21 +45,20 @@ export class TableTHeadComponent {
   @Output() readonly filter = new EventEmitter<Array<{ key: string; value: string }>>();
   @Output() readonly order = new EventEmitter<Columns>();
   @Output() readonly selectAll = new EventEmitter<void>();
-  @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
+  @Output() readonly event = new EventEmitter<{ event: string; value: any }>();
   @ViewChild('th') private th;
   @ViewChild('additionalActionMenu') additionalActionMenu;
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement: any): void {
-    if (this.additionalActionMenu && !this.additionalActionMenu.nativeElement.contains(targetElement)) {
+    if (
+      this.additionalActionMenu &&
+      !this.additionalActionMenu.nativeElement.contains(targetElement)
+    ) {
       this.menuActive = false;
     }
   }
 
-  constructor(
-    public readonly styleService: StyleService,
-  ) {
-
-  }
+  constructor(public readonly styleService: StyleService) {}
 
   getColumnDefinition(column: Columns): boolean {
     return column.searchEnabled || typeof column.searchEnabled === 'undefined';

@@ -1,30 +1,49 @@
 <div class="columns">
   <div class="column col-12 my-1">
-    <button class="btn"
-            [routerLink]="['/api-doc']">See API doc</button>
+    <button class="btn" [routerLink]="['/api-doc']">See API doc</button>
   </div>
 </div>
 <div class="columns">
   <div class="column col-12">
     <div class="form-group">
       <label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('paginationEnabled', $event.target.checked)">
+        <input
+          type="checkbox"
+          [checked]="true"
+          (change)="toggle('paginationEnabled', $event.target.checked)"
+        />
         <i class="form-icon"></i> Pagination
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('headerEnabled', $event.target.checked)">
+        <input
+          type="checkbox"
+          [checked]="true"
+          (change)="toggle('headerEnabled', $event.target.checked)"
+        />
         <i class="form-icon"></i> Column names
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('searchEnabled', $event.target.checked)">
+        <input
+          type="checkbox"
+          [checked]="true"
+          (change)="toggle('searchEnabled', $event.target.checked)"
+        />
         <i class="form-icon"></i> Search
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-is-loading" (change)="toggle('isLoading', $event.target.checked)">
+        <input
+          type="checkbox"
+          id="checkbox-is-loading"
+          (change)="toggle('isLoading', $event.target.checked)"
+        />
         <i class="form-icon"></i> Is loading
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-checkboxes" (change)="toggle('checkboxes', $event.target.checked)">
+        <input
+          type="checkbox"
+          id="checkbox-checkboxes"
+          (change)="toggle('checkboxes', $event.target.checked)"
+        />
         <i class="form-icon"></i> Checkboxes
       </label>
     </div>
@@ -33,141 +52,124 @@
 <div class="columns">
   <div class="column col-12">
     <div class="accordion" id="accordionHeaderPagination">
-      <input id="accordion-1"
-             type="radio"
-             name="accordion-radio"
-             hidden="">
-      <label class="accordion-header c-hand"
-             for="accordion-1"><i class="icon icon-arrow-right mr-1"></i>Pagination
+      <input id="accordion-1" type="radio" name="accordion-radio" hidden="" />
+      <label class="accordion-header c-hand" for="accordion-1"
+        ><i class="icon icon-arrow-right mr-1"></i>Pagination
       </label>
       <div class="accordion-body">
-        <button class="btn btn-primary mx-1"
-                id="buttonSetPagination2"
-                (click)="setPagination(2)">Set pagination on 2</button>
-        <button class="btn btn-primary mx-1"
-                id="buttonSetPagination3"
-                (click)="setPagination(3)">Set pagination on 3</button>
-        <button class="btn btn-primary mx-1"
-                (click)="setPagination(4)">Set pagination on 4</button>
-        <button class="btn btn-primary mx-1"
-                (click)="getPaginationCurrent()">Get pagination current</button>
-        <button class="btn btn-danger mx-1"
-                id="buttonSetPaginationDisplayLimit10"
-                (click)="setPaginationDisplayLimit(10)">Rows 10
+        <button class="btn btn-primary mx-1" id="buttonSetPagination2" (click)="setPagination(2)">
+          Set pagination on 2
         </button>
-        <button class="btn btn-danger mx-1"
-                id="buttonSetPaginationDisplayLimit3"
-                (click)="setPaginationDisplayLimit(3)">Rows 3
+        <button class="btn btn-primary mx-1" id="buttonSetPagination3" (click)="setPagination(3)">
+          Set pagination on 3
         </button>
-        <button class="btn btn-primary mx-1"
-                (click)="getTotal()">Get total
+        <button class="btn btn-primary mx-1" (click)="setPagination(4)">Set pagination on 4</button>
+        <button class="btn btn-primary mx-1" (click)="getPaginationCurrent()">
+          Get pagination current
         </button>
-        <button class="btn btn-primary mx-1"
-                (click)="getLastPage()">Get last
+        <button
+          class="btn btn-danger mx-1"
+          id="buttonSetPaginationDisplayLimit10"
+          (click)="setPaginationDisplayLimit(10)"
+        >
+          Rows 10
         </button>
-        <button class="btn btn-primary mx-1"
-                id="buttonGetNumberOfRowsPerPage"
-                (click)="getNumberOfRowsPerPage()">Get number of rows per page
+        <button
+          class="btn btn-danger mx-1"
+          id="buttonSetPaginationDisplayLimit3"
+          (click)="setPaginationDisplayLimit(3)"
+        >
+          Rows 3
         </button>
-        <div class="d-inline" id="totalItems" *ngIf="total">Total: {{total}}</div>
-        <div class="d-inline" id="currentPaginationPage" *ngIf="current">Current pagination page: {{current}}</div>
-        <div class="d-inline" id="lastItem" *ngIf="last">Last: {{last}}</div>
-        <div class="d-inline" id="itemsPerPage" *ngIf="itemsPerPage">Items per page: {{itemsPerPage}}</div>
+        <button class="btn btn-primary mx-1" (click)="getTotal()">Get total</button>
+        <button class="btn btn-primary mx-1" (click)="getLastPage()">Get last</button>
+        <button
+          class="btn btn-primary mx-1"
+          id="buttonGetNumberOfRowsPerPage"
+          (click)="getNumberOfRowsPerPage()"
+        >
+          Get number of rows per page
+        </button>
+        <div class="d-inline" id="totalItems" *ngIf="total">Total: {{ total }}</div>
+        <div class="d-inline" id="currentPaginationPage" *ngIf="current">
+          Current pagination page: {{ current }}
+        </div>
+        <div class="d-inline" id="lastItem" *ngIf="last">Last: {{ last }}</div>
+        <div class="d-inline" id="itemsPerPage" *ngIf="itemsPerPage">
+          Items per page: {{ itemsPerPage }}
+        </div>
       </div>
     </div>
     <div class="accordion" id="accordionHeaderRow">
-      <input id="accordion-2"
-             type="radio"
-             name="accordion-radio"
-             hidden="">
-      <label class="accordion-header c-hand"
-             for="accordion-2"><i class="icon icon-arrow-right mr-1"></i>Row
+      <input id="accordion-2" type="radio" name="accordion-radio" hidden="" />
+      <label class="accordion-header c-hand" for="accordion-2"
+        ><i class="icon icon-arrow-right mr-1"></i>Row
       </label>
       <div class="accordion-body">
-        <button class="btn mx-1"
-                id="buttonPinkRow"
-                (click)="setRowClass(1, 'pink')">Row pink</button>
-        <button class="btn mx-1"
-                id="buttonBlueRow"
-                (click)="setRowClass(2, 'blue')">Row blue</button>
-        <button class="btn mx-1"
-                (click)="setRowClass(3, 'green')">Row green</button>
-        <button class="btn mx-1"
-                (click)="setRowClasses()">Many rows</button>
-        <button class="btn mx-1"
-                (click)="setRowStyle()">Set row style</button>
+        <button class="btn mx-1" id="buttonPinkRow" (click)="setRowClass(1, 'pink')">
+          Row pink
+        </button>
+        <button class="btn mx-1" id="buttonBlueRow" (click)="setRowClass(2, 'blue')">
+          Row blue
+        </button>
+        <button class="btn mx-1" (click)="setRowClass(3, 'green')">Row green</button>
+        <button class="btn mx-1" (click)="setRowClasses()">Many rows</button>
+        <button class="btn mx-1" (click)="setRowStyle()">Set row style</button>
       </div>
     </div>
     <div class="accordion" id="accordionHeaderCell">
-        <input id="accordion-cell"
-               type="radio"
-               name="accordion-radio"
-               hidden="">
-        <label class="accordion-header c-hand"
-               for="accordion-cell"><i class="icon icon-arrow-right mr-1"></i>Cell
-        </label>
-        <div class="accordion-body">
-          <button class="btn mx-1"
-                  (click)="setCellClass(1, 3, 'pink')">Cell pink</button>
-          <button class="btn mx-1"
-                  (click)="setCellClass(2, 5, 'blue')">Cell blue</button>
-          <button class="btn mx-1"
-                  (click)="setCellClass(3, 2, 'green')">Cell green</button>
-          <button class="btn mx-1"
-                  (click)="setCellClasses()">Many cells</button>
-          <button class="btn mx-1"
-                  (click)="setCellStyle()">Set cell style</button>
-        </div>
-      </div>
-    <div class="accordion" id="accordionHeaderInputs">
-      <input id="accordion-3"
-             type="radio"
-             name="accordion-radio"
-             hidden="">
-      <label class="accordion-header c-hand"
-             for="accordion-3"><i class="icon icon-arrow-right mr-1"></i>Inputs
+      <input id="accordion-cell" type="radio" name="accordion-radio" hidden="" />
+      <label class="accordion-header c-hand" for="accordion-cell"
+        ><i class="icon icon-arrow-right mr-1"></i>Cell
       </label>
       <div class="accordion-body">
-        <button class="btn btn-primary"
-                id="buttonSetPhone"
-                (click)="setPhone()">Set phone input</button>
-        <button class="btn btn-primary mx-1"
-                id="buttonSetAge"
-                (click)="setAge()">Set age input</button>
-        <button class="btn btn-primary mx-1"
-                id="buttonClearAllInputs"
-                (click)="resetSearchInput()">Reset inputs</button>
+        <button class="btn mx-1" (click)="setCellClass(1, 3, 'pink')">Cell pink</button>
+        <button class="btn mx-1" (click)="setCellClass(2, 5, 'blue')">Cell blue</button>
+        <button class="btn mx-1" (click)="setCellClass(3, 2, 'green')">Cell green</button>
+        <button class="btn mx-1" (click)="setCellClasses()">Many cells</button>
+        <button class="btn mx-1" (click)="setCellStyle()">Set cell style</button>
+      </div>
+    </div>
+    <div class="accordion" id="accordionHeaderInputs">
+      <input id="accordion-3" type="radio" name="accordion-radio" hidden="" />
+      <label class="accordion-header c-hand" for="accordion-3"
+        ><i class="icon icon-arrow-right mr-1"></i>Inputs
+      </label>
+      <div class="accordion-body">
+        <button class="btn btn-primary" id="buttonSetPhone" (click)="setPhone()">
+          Set phone input
+        </button>
+        <button class="btn btn-primary mx-1" id="buttonSetAge" (click)="setAge()">
+          Set age input
+        </button>
+        <button class="btn btn-primary mx-1" id="buttonClearAllInputs" (click)="resetSearchInput()">
+          Reset inputs
+        </button>
       </div>
     </div>
     <div class="accordion" id="accordionHeaderSort">
-      <input id="accordion-5"
-             type="radio"
-             name="accordion-radio"
-             hidden="">
-      <label class="accordion-header c-hand"
-             for="accordion-5"><i class="icon icon-arrow-right mr-1"></i>Sort
+      <input id="accordion-5" type="radio" name="accordion-radio" hidden="" />
+      <label class="accordion-header c-hand" for="accordion-5"
+        ><i class="icon icon-arrow-right mr-1"></i>Sort
       </label>
       <div class="accordion-body">
-        <button class="btn btn-primary mx-1"
-                (click)="sortBy('name', 'asc')">Sort by name asc
+        <button class="btn btn-primary mx-1" (click)="sortBy('name', 'asc')">
+          Sort by name asc
         </button>
-        <button class="btn btn-primary mx-1"
-                (click)="sortBy('name', 'desc')">Sort by name desc
+        <button class="btn btn-primary mx-1" (click)="sortBy('name', 'desc')">
+          Sort by name desc
         </button>
-        <button class="btn btn-primary mx-1"
-                (click)="sortBy('phone', 'asc')">Sort by phone asc
+        <button class="btn btn-primary mx-1" (click)="sortBy('phone', 'asc')">
+          Sort by phone asc
         </button>
-        <button class="btn btn-primary mx-1"
-                (click)="sortBy('phone', 'desc')">Sort by phone desc
+        <button class="btn btn-primary mx-1" (click)="sortBy('phone', 'desc')">
+          Sort by phone desc
         </button>
       </div>
     </div>
   </div>
   <div class="column col-12 my-1">
-    <ngx-table [data]="data"
-               #table
-               [configuration]="configuration"
-               [columns]="columns">
+    <ngx-table [data]="data" #table [configuration]="configuration" [columns]="columns">
     </ngx-table>
   </div>
 </div>

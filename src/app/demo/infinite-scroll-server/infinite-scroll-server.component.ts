@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
 import { Company, CompanyService } from '../../services/company.service';
@@ -19,11 +25,7 @@ export class InfiniteScrollServerComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   private offset = 1;
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private readonly companyService: CompanyService,
-  ) {
-  }
+  constructor(private cdr: ChangeDetectorRef, private readonly companyService: CompanyService) {}
 
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();
@@ -55,14 +57,12 @@ export class InfiniteScrollServerComponent implements OnInit, OnDestroy {
 
   private getData(params: string): any {
     this.offset = this.offset + 1;
-    this.companyService.getCompanies(params)
+    this.companyService
+      .getCompanies(params)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((response) => {
         this.totalLength = parseInt(response.headers.get('x-total-count'), 10);
-        this.data = [
-          ...this.data,
-          ...response.body,
-        ];
+        this.data = [...this.data, ...response.body];
 
         this.cdr.detectChanges();
       });

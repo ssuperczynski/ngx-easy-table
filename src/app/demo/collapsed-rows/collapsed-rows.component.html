@@ -1,20 +1,23 @@
 <div class="form-group">
-	<label class="form-switch">
-    <input type="checkbox"
-    [checked]="toggled"
-    (click)="toggleRows()">
+  <label class="form-switch">
+    <input type="checkbox" [checked]="toggled" (click)="toggleRows()" />
     <i class="form-icon"></i> Show details
   </label>
 </div>
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns" [detailsTemplate]="detailsTemplate">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      [detailsTemplate]="detailsTemplate"
+    >
+    </ngx-table>
+  </div>
 </div>
 <ng-template #detailsTemplate let-row>
-	<div>
-		<h2 class="color-green">{{row.phone }}</h2>
-		{{row.name }} - {{row.age}}
-	</div>
+  <div>
+    <h2 class="color-green">{{ row.phone }}</h2>
+    {{ row.name }} - {{ row.age }}
+  </div>
 </ng-template>

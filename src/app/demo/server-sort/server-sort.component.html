@@ -1,6 +1,12 @@
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns" [pagination]="pagination" (event)="eventEmitted($event)">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      [pagination]="pagination"
+      (event)="eventEmitted($event)"
+    >
+    </ngx-table>
+  </div>
 </div>

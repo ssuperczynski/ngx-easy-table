@@ -16,8 +16,7 @@ export class AsyncComponent implements OnInit {
   public data$: Observable<HttpResponse<Company[]>>;
   public columns: Columns[];
 
-  constructor(private companyService: CompanyService) {
-  }
+  constructor(private companyService: CompanyService) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };

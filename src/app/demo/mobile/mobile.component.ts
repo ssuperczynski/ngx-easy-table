@@ -25,7 +25,7 @@ export class MobileComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = data;
-    this.configuration = {...DefaultConfig};
+    this.configuration = { ...DefaultConfig };
     this.configuration.detailsTemplate = true;
     this.configuration.paginationRangeEnabled = false;
     this.checkView();

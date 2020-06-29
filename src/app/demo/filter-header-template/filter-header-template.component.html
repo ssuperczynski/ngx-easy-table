@@ -1,9 +1,6 @@
 <div class="columns">
   <div class="column col-12">
-    <ngx-table [configuration]="configuration"
-               [data]="data"
-               #table
-               [columns]="columns">
+    <ngx-table [configuration]="configuration" [data]="data" #table [columns]="columns">
     </ngx-table>
   </div>
 </div>
@@ -11,21 +8,27 @@
 <ng-template #levelHeaderActionTemplate>
   <div class="level-template">
     <label class="form-checkbox position">
-      <input type="checkbox"
-             [checked]="selectedLevels.has('High')"
-             (change)="filter('level', 'High')">
+      <input
+        type="checkbox"
+        [checked]="selectedLevels.has('High')"
+        (change)="filter('level', 'High')"
+      />
       <em class="form-icon"></em> High
     </label>
     <label class="form-checkbox position">
-      <input type="checkbox"
-             [checked]="selectedLevels.has('Medium')"
-             (change)="filter('level', 'Medium')">
+      <input
+        type="checkbox"
+        [checked]="selectedLevels.has('Medium')"
+        (change)="filter('level', 'Medium')"
+      />
       <em class="form-icon"></em> Medium
     </label>
     <label class="form-checkbox position">
-      <input type="checkbox"
-             [checked]="selectedLevels.has('Low')"
-             (change)="filter('level', 'Low')">
+      <input
+        type="checkbox"
+        [checked]="selectedLevels.has('Low')"
+        (change)="filter('level', 'Low')"
+      />
       <em class="form-icon"></em> Low
     </label>
   </div>
@@ -35,9 +38,13 @@
     <label for="filterHeaderSearch">
       Search
     </label>
-    <input class="form-input" id="filterHeaderSearch"
-           [value]="selectedCompany"
-           (input)="filter('company', $event.target.value)"
-           type="search" placeholder="Search">
+    <input
+      class="form-input"
+      id="filterHeaderSearch"
+      [value]="selectedCompany"
+      (input)="filter('company', $event.target.value)"
+      type="search"
+      placeholder="Search"
+    />
   </div>
 </ng-template>

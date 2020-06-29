@@ -3,17 +3,8 @@
     "strict": true,
     "baseUrl": "../node_modules",
     "target": "es5",
-    "lib": [
-      "es5",
-      "dom"
-    ],
-    "types": [
-      "cypress"
-    ]
+    "lib": ["es5", "dom"],
+    "types": ["cypress"]
   },
-  "include": [
-    "../node_modules/cypress/types",
-    "integration/*.ts",
-    "support/*.ts"
-  ]
+  "include": ["../node_modules/cypress/types", "integration/*.ts", "support/*.ts"]
 }
