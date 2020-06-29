@@ -65,7 +65,8 @@ import {
   InfiniteScrollComponent,
   InfiniteScrollServerComponent,
   InfiniteScrollServerTemplateComponent,
-  CheckboxAsRadioComponent, RadioComponent,
+  CheckboxAsRadioComponent,
+  RadioComponent,
 } from './demo';
 import { ROUTE } from './route-names';
 
@@ -139,4 +140,4 @@ export const routes = [
   { path: '**', component: BasicComponent },
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
+export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes, { useHash: true });
