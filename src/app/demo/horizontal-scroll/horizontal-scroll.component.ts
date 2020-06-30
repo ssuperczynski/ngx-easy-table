@@ -35,25 +35,27 @@ export class HorizontalScrollComponent implements OnInit {
   }
 
   private static generateData(): any[] {
-    return Array(20).fill('').map(() => {
-      return {
-        phone: phone.phoneNumberFormat(),
-        age: random.number({ min: 15, max: 70 }).toString(),
-        company: company.companyName(),
-        name: `${name.firstName()} ${name.lastName()}`,
-        isActive: random.boolean(),
-        company2: company.companyName(),
-        company3: company.companyName(),
-        company4: company.companyName(),
-        company5: company.companyName(),
-        company6: company.companyName(),
-        company7: company.companyName(),
-        company8: company.companyName(),
-        company9: company.companyName(),
-        company10: company.companyName(),
-        company11: company.companyName(),
-      };
-    });
+    return Array(20)
+      .fill('')
+      .map(() => {
+        return {
+          phone: phone.phoneNumberFormat(),
+          age: random.number({ min: 15, max: 70 }).toString(),
+          company: company.companyName(),
+          name: `${name.firstName()} ${name.lastName()}`,
+          isActive: random.boolean(),
+          company2: company.companyName(),
+          company3: company.companyName(),
+          company4: company.companyName(),
+          company5: company.companyName(),
+          company6: company.companyName(),
+          company7: company.companyName(),
+          company8: company.companyName(),
+          company9: company.companyName(),
+          company10: company.companyName(),
+          company11: company.companyName(),
+        };
+      });
   }
 
   ngOnInit(): void {

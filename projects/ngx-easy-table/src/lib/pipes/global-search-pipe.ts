@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 @Pipe({
   name: 'global',
 })
-
 export class GlobalSearchPipe implements PipeTransform {
   transform(array: any[], filter: string, filteredCountSubject: Subject<number>): any {
     filteredCountSubject.next(0);
@@ -18,7 +17,9 @@ export class GlobalSearchPipe implements PipeTransform {
     const arr = array.filter((row) => {
       const element = JSON.stringify(Object.values(row));
       const strings = filter.split(',');
-      return strings.some((string) => element.toLocaleLowerCase().indexOf(string.trim().toLocaleLowerCase()) > -1);
+      return strings.some(
+        (string) => element.toLocaleLowerCase().indexOf(string.trim().toLocaleLowerCase()) > -1
+      );
     });
     filteredCountSubject.next(arr.length);
 

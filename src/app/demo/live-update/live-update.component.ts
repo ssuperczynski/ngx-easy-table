@@ -38,7 +38,7 @@ export class LiveUpdateComponent implements OnInit {
   public configuration: Config;
 
   static random(min: number, max: number): number {
-    return Math.floor(min + (Math.random() * (max - min + 1)));
+    return Math.floor(min + Math.random() * (max - min + 1));
   }
 
   ngOnInit(): void {
@@ -47,9 +47,15 @@ export class LiveUpdateComponent implements OnInit {
       .pipe(
         map(() => {
           this.data[LiveUpdateComponent.random(0, 7)].limit = LiveUpdateComponent.random(500, 3000);
-          this.data[LiveUpdateComponent.random(0, 7)].balance = LiveUpdateComponent.random(900, 1100);
-          this.data[LiveUpdateComponent.random(0, 7)].amount = LiveUpdateComponent.random(100, 7100);
-        }),
+          this.data[LiveUpdateComponent.random(0, 7)].balance = LiveUpdateComponent.random(
+            900,
+            1100
+          );
+          this.data[LiveUpdateComponent.random(0, 7)].amount = LiveUpdateComponent.random(
+            100,
+            7100
+          );
+        })
       )
       .subscribe();
   }

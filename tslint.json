@@ -1,74 +1,42 @@
 {
-  "rulesDirectory": [
-    "node_modules/codelyzer"
-  ],
-  "extends": [
-    "tslint:recommended",
-    "tslint-sonarts"
-  ],
+  "rulesDirectory": ["node_modules/codelyzer"],
+  "extends": ["tslint:recommended", "tslint-sonarts"],
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
+    "comment-format": [true, "check-space"],
     "curly": true,
+    "deprecation": {
+      "severity": "warning"
+    },
     "eofline": true,
     "forin": true,
-    "import-blacklist": [
-      true
-    ],
+    "import-blacklist": [true],
     "import-spacing": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
-    "interface-name": [
-      true,
-      "never-prefix"
-    ],
+    "indent": [true, "spaces"],
+    "interface-name": [true, "never-prefix"],
     "interface-over-type-literal": false,
     "label-position": true,
-    "max-line-length": [
-      true,
-      140
-    ],
+    "max-line-length": [true, 140],
     "member-access": false,
     "member-ordering": [
       true,
       {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
+        "order": ["static-field", "instance-field", "static-method", "instance-method"]
       }
     ],
     "no-arg": true,
     "no-bitwise": false,
     "no-commented-code": true,
-    "no-console": [
-      true,
-      "log",
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": [true, "log", "debug", "info", "time", "timeEnd", "trace"],
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
     "no-empty": true,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": [true, "ignore-params"],
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-self-assignment": false,
@@ -81,27 +49,12 @@
     "no-unused-expression": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else",
-      "check-whitespace"
-    ],
+    "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-whitespace"],
     "prefer-const": true,
-    "quotemark": [
-      true,
-      "single"
-    ],
+    "quotemark": [true, "single"],
     "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
+    "semicolon": [true, "always"],
+    "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [
       true,
       {
@@ -123,57 +76,32 @@
       "check-separator",
       "check-type"
     ],
-    "directive-selector": [
-      false,
-      "attribute",
-      "app",
-      "camelCase"
-    ],
-    "component-selector": [
-      false,
-      "element",
-      "app",
-      "kebab-case"
-    ],
+    "directive-selector": [false, "attribute", "app", "camelCase"],
+    "component-selector": [false, "element", "app", "kebab-case"],
     "no-input-rename": true,
     "no-output-rename": true,
     "no-misleading-array-reverse": false,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "cognitive-complexity": [
-      true,
-      10
-    ],
+    "cognitive-complexity": [true, 10],
     "no-useless-cast": true,
     "no-variable-usage-before-declaration": true,
-    "no-big-function": [
-      true,
-      35
-    ],
+    "no-big-function": [true, 35],
     "no-same-line-conditional": true,
     "prefer-inline-decorator": false,
     "no-forward-ref": true,
-    "template-conditional-complexity": [
-      true,
-      8
-    ],
+    "template-conditional-complexity": [true, 8],
     "no-duplicate-string": false,
     "ordered-imports": false,
     "prefer-output-readonly": true,
-    "template-cyclomatic-complexity": [
-      true,
-      60
-    ],
+    "template-cyclomatic-complexity": [true, 60],
     "no-array-delete": true,
     "no-collapsible-if": true,
     "no-empty-nested-blocks": true,
     "no-return-type-any": true,
     "array-type": false,
-    "parameters-max-number": [
-      true,
-      5
-    ],
+    "parameters-max-number": [true, 5],
     "ban-ts-ignore": true,
     "function-constructor": true,
     "increment-decrement": true,

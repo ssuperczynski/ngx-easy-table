@@ -2,6 +2,7 @@ Project is written in https://github.com/angular/angular-cli
 Library created using https://github.com/angular/angular-cli/wiki/stories-create-library
 
 Project has two package.json:
+
 - first to serve demo with examples
 - second (located in project/ngx-easy-table), contains items only for table component.
 

@@ -1,4 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { ActivatedRoute } from '@angular/router';
@@ -26,21 +33,18 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
   public sortColumn: string;
   public sortOrder: 'asc' | 'desc';
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.data = data;
-    this.route.params
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe((params) => {
-        if ('state' in params) {
-          const [column, order] = params.state.split('&');
-          this.sortColumn = column.split('=')[1];
-          this.sortOrder = order.split('=')[1];
-        }
-      });
+    this.route.params.pipe(takeUntil(this.unsubscribe)).subscribe((params) => {
+      if ('state' in params) {
+        const [column, order] = params.state.split('&');
+        this.sortColumn = column.split('=')[1];
+        this.sortOrder = order.split('=')[1];
+      }
+    });
   }
 
   ngOnDestroy(): void {

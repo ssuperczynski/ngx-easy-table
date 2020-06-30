@@ -33,6 +33,6 @@ export class SelectAllTemplateComponent implements OnInit {
   }
 
   rowSelected(): void {
-    this.allSelected = this.data.every(row => !!row.selected);
+    this.allSelected = this.data.every((row) => !!row.selected);
   }
 }

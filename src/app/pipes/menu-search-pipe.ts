@@ -4,9 +4,7 @@ import { Link } from '../app.component';
 @Pipe({
   name: 'menuSearch',
 })
-
 export class MenuSearchPipe implements PipeTransform {
-
   transform(array: Link[], key: string): Link[] {
     if (!key || key === '') {
       return array;

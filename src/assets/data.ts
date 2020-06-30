@@ -3,7 +3,7 @@ import { Columns } from 'ngx-easy-table';
 export interface Company {
   phone: string;
   age: number;
-  address?: { street: string, number?: number };
+  address?: { street: string; number?: number };
   company: string;
   name: string;
   isActive: boolean;
@@ -30,7 +30,8 @@ export const data = [
     name: 'Deanne Contreras',
     isActive: true,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (878) 515-3653',
     age: 32,
@@ -39,7 +40,8 @@ export const data = [
     name: 'Peggy Burke',
     isActive: false,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (844) 593-2360',
     age: 21,
@@ -48,7 +50,8 @@ export const data = [
     name: 'Josephine Reilly',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (800) 413-3813',
     age: 24,
@@ -57,7 +60,8 @@ export const data = [
     name: 'Phillips Fry',
     isActive: false,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (934) 551-2224',
     age: 20,
@@ -66,7 +70,8 @@ export const data = [
     name: 'Valentine Webb',
     isActive: false,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (948) 460-3627',
     age: 31,
@@ -75,7 +80,8 @@ export const data = [
     name: 'Heidi Duncan',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (841) 479-3920',
     age: 30,
@@ -84,7 +90,8 @@ export const data = [
     name: 'Poole Dodson',
     isActive: false,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (998) 546-2953',
     age: 37,
@@ -93,7 +100,8 @@ export const data = [
     name: 'Marie Molina',
     isActive: false,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (811) 511-2927',
     age: 31,
@@ -102,7 +110,8 @@ export const data = [
     name: 'Monica Frazier',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (967) 504-3593',
     age: 35,
@@ -111,7 +120,8 @@ export const data = [
     name: 'Kinney Logan',
     isActive: true,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (902) 500-3665',
     age: 28,
@@ -120,7 +130,8 @@ export const data = [
     name: 'Wilson Hatfield',
     isActive: true,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (933) 565-2698',
     age: 29,
@@ -129,7 +140,8 @@ export const data = [
     name: 'Trevino Casey',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (939) 530-3189',
     age: 34,
@@ -138,7 +150,8 @@ export const data = [
     name: 'Scott Barker',
     isActive: true,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (949) 600-2827',
     age: 29,
@@ -147,7 +160,8 @@ export const data = [
     name: 'Sheree James',
     isActive: true,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (833) 559-2128',
     age: 35,
@@ -156,7 +170,8 @@ export const data = [
     name: 'Kristen Whitehead',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (923) 480-2195',
     age: 20,
@@ -165,7 +180,8 @@ export const data = [
     name: 'Norma Rush',
     isActive: false,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (967) 573-3873',
     age: 35,
@@ -174,7 +190,8 @@ export const data = [
     name: 'Merrill Allen',
     isActive: true,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (985) 404-2360',
     age: 30,
@@ -183,7 +200,8 @@ export const data = [
     name: 'Claudia Sawyer',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (907) 406-2333',
     age: 27,
@@ -192,7 +210,8 @@ export const data = [
     name: 'Craig Herrera',
     isActive: false,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (954) 412-3881',
     age: 37,
@@ -201,7 +220,8 @@ export const data = [
     name: 'Peterson Johns',
     isActive: false,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (882) 527-2652',
     age: 25,
@@ -210,7 +230,8 @@ export const data = [
     name: 'Gordon Rutledge',
     isActive: false,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (884) 587-2850',
     age: 20,
@@ -219,7 +240,8 @@ export const data = [
     name: 'Patton Mcbride',
     isActive: false,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (802) 562-2467',
     age: 35,
@@ -228,7 +250,8 @@ export const data = [
     name: 'Trudy Camacho',
     isActive: false,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (873) 421-3625',
     age: 38,
@@ -237,7 +260,8 @@ export const data = [
     name: 'Myles Blair',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (901) 502-3536',
     age: 36,
@@ -246,7 +270,8 @@ export const data = [
     name: 'Josefa Foley',
     isActive: true,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (985) 524-3581',
     age: 36,
@@ -255,7 +280,8 @@ export const data = [
     name: 'Kathy Barr',
     isActive: false,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (948) 492-2881',
     age: 40,
@@ -264,7 +290,8 @@ export const data = [
     name: 'Sybil Sears',
     isActive: false,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (815) 412-3123',
     age: 36,
@@ -273,7 +300,8 @@ export const data = [
     name: 'Moody Blevins',
     isActive: true,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (924) 594-3384',
     age: 31,
@@ -282,7 +310,8 @@ export const data = [
     name: 'Kristine Ratliff',
     isActive: true,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (938) 550-3997',
     age: 30,
@@ -291,7 +320,8 @@ export const data = [
     name: 'Cooley Pitts',
     isActive: false,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (930) 593-3548',
     age: 30,
@@ -300,7 +330,8 @@ export const data = [
     name: 'Haley Noble',
     isActive: false,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (995) 479-2495',
     age: 26,
@@ -309,7 +340,8 @@ export const data = [
     name: 'Garner Owens',
     isActive: true,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (958) 410-2373',
     age: 24,
@@ -318,7 +350,8 @@ export const data = [
     name: 'Jody Reyes',
     isActive: true,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (835) 551-3617',
     age: 39,
@@ -327,7 +360,8 @@ export const data = [
     name: 'Patterson Chavez',
     isActive: true,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (872) 561-3479',
     age: 20,
@@ -336,7 +370,8 @@ export const data = [
     name: 'Ellen Nielsen',
     isActive: true,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (935) 535-2958',
     age: 26,
@@ -345,7 +380,8 @@ export const data = [
     name: 'Serena Graves',
     isActive: false,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (921) 426-2277',
     age: 24,
@@ -354,7 +390,8 @@ export const data = [
     name: 'Emily Bruce',
     isActive: false,
     level: 'Low',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (875) 474-3800',
     age: 29,
@@ -363,7 +400,8 @@ export const data = [
     name: 'Fanny Swanson',
     isActive: true,
     level: 'Medium',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (893) 536-2201',
     age: 31,
@@ -372,7 +410,8 @@ export const data = [
     name: 'Sellers Velez',
     isActive: false,
     level: 'High',
-  }, {
+  },
+  {
     imgUrl: 'https://i.imgur.com/GLqxxnn.png',
     phone: '+1 (927) 460-3553',
     age: 23,

@@ -2,9 +2,8 @@
 
 context('Checkboxes', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4201/#/checkbox-default');
-    },
-  );
+    cy.visit('http://127.0.0.1:4201/#/checkbox-default');
+  });
 
   it('selects 3 checkboxes', () => {
     cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > label > em')
@@ -27,9 +26,6 @@ context('Checkboxes', () => {
       .contains('Selected: 0');
   });
   it('select all button selects 10 checkboxes', () => {
-    cy.get('#selectAllCheckbox')
-      .click()
-      .get('#selected')
-      .contains('Selected: 41');
+    cy.get('#selectAllCheckbox').click().get('#selected').contains('Selected: 41');
   });
 });

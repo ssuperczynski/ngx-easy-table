@@ -1,21 +1,22 @@
 <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
-	<ng-template let-row>
-		<td class="row__email">
-			<h5 class="color-green font-light">{{row.status}}</h5>
-		</td>
-		<td class="row__progressbar">
-			{{row.amount}}
-		</td>
-		<td>
-			<div class="font-small">
-				{{row.company}}
-			</div>
-		</td>
-		<td>
-			<div class="d-inline circle" [style.color]="row.balance < 2000 ? 'red': 'green'"></div> {{row.balance}}
-		</td>
-		<td [style.backgroundColor]="row.limit <= 2000 ? '#FFB6C1': '' ">
-			<span class="font-small">{{row.limit}}</span>
-		</td>
-	</ng-template>
+  <ng-template let-row>
+    <td class="row__email">
+      <h5 class="color-green font-light">{{ row.status }}</h5>
+    </td>
+    <td class="row__progressbar">
+      {{ row.amount }}
+    </td>
+    <td>
+      <div class="font-small">
+        {{ row.company }}
+      </div>
+    </td>
+    <td>
+      <div class="d-inline circle" [style.color]="row.balance < 2000 ? 'red' : 'green'"></div>
+      {{ row.balance }}
+    </td>
+    <td [style.backgroundColor]="row.limit <= 2000 ? '#FFB6C1' : ''">
+      <span class="font-small">{{ row.limit }}</span>
+    </td>
+  </ng-template>
 </ngx-table>

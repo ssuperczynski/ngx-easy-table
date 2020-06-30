@@ -32,7 +32,9 @@ $primary-color: #50596c !default;
       border-bottom: 2px solid $grey;
     }
 
-    &__table-row--selected, &__table-col--selected, &__table-cell--selected {
+    &__table-row--selected,
+    &__table-col--selected,
+    &__table-cell--selected {
       background: $grey !important;
     }
 
@@ -51,7 +53,7 @@ $primary-color: #50596c !default;
     }
 
     &__table-loader {
-      animation: spin .6s linear infinite;
+      animation: spin 0.6s linear infinite;
       border: 1px solid $grey;
       border-radius: 50%;
       border-top-color: $primary-color;
@@ -82,16 +84,16 @@ $primary-color: #50596c !default;
       -webkit-appearance: none;
       -moz-appearance: none;
       background: #fff none;
-      border: .05rem solid $grey;
-      border-radius: .1rem;
+      border: 0.05rem solid $grey;
+      border-radius: 0.1rem;
       color: $primary-color;
       display: block;
-      font-size: .8rem;
+      font-size: 0.8rem;
       height: 1.47rem;
       line-height: 1rem;
       max-width: 100%;
       outline: 0;
-      padding: .15rem .3rem;
+      padding: 0.15rem 0.3rem;
       position: relative;
       width: 97%;
     }
@@ -134,7 +136,8 @@ $primary-color: #50596c !default;
     }
 
     &__table--borderless > {
-      tbody > tr > td, thead > tr > th {
+      tbody > tr > td,
+      thead > tr > th {
         border-bottom: 0 !important;
       }
     }
@@ -148,21 +151,24 @@ $primary-color: #50596c !default;
     }
 
     &__table--tiny > {
-      tbody > tr > td, thead > tr > th {
+      tbody > tr > td,
+      thead > tr > th {
         border-bottom: 1px solid $grey;
         padding: 4px 7px;
       }
     }
 
     &__table--normal > {
-      tbody > tr > td, thead > tr > th {
+      tbody > tr > td,
+      thead > tr > th {
         border-bottom: 1px solid $grey;
         padding: 10px 6px;
       }
     }
 
     &__table--big > {
-      tbody > tr > td, thead > tr > th {
+      tbody > tr > td,
+      thead > tr > th {
         border-bottom: 1px solid $grey;
         padding: 12px 8px;
       }
@@ -244,14 +250,14 @@ $primary-color: #50596c !default;
   }
 
   &-form-icon {
-    border-radius: .1rem;
+    border-radius: 0.1rem;
     background: #fff;
-    height: .9rem;
+    height: 0.9rem;
     left: 0;
-    top: .2rem;
-    width: .9rem;
-    transition: all .2s ease;
-    border: .05rem solid $grey;
+    top: 0.2rem;
+    width: 0.9rem;
+    transition: all 0.2s ease;
+    border: 0.05rem solid $grey;
     cursor: pointer;
     display: inline-block;
     position: absolute;
@@ -261,7 +267,7 @@ $primary-color: #50596c !default;
     line-height: 1rem;
     margin: 0.2rem 0;
     min-height: 1.2rem;
-    padding: 0.2rem .4rem 0.4rem 1.6rem;
+    padding: 0.2rem 0.4rem 0.4rem 1.6rem;
     position: relative;
 
     input {
@@ -273,7 +279,7 @@ $primary-color: #50596c !default;
       width: 1px;
 
       &:focus + .ngx-form-icon {
-        box-shadow: 0 0 0 .1rem rgba($blue, .2);
+        box-shadow: 0 0 0 0.1rem rgba($blue, 0.2);
         border-color: $blue;
       }
 
@@ -289,10 +295,10 @@ $primary-color: #50596c !default;
       &:checked + .ngx-form-icon {
         &::before {
           background-clip: padding-box;
-          border: .1rem solid #fff;
+          border: 0.1rem solid #fff;
           border-left-width: 0;
           border-top-width: 0;
-          content: "";
+          content: '';
           height: 12px;
           left: 50%;
           margin-left: -3px;
@@ -318,8 +324,9 @@ $primary-color: #50596c !default;
     vertical-align: middle;
     width: 1em;
 
-    &::before, &::after {
-      content: "";
+    &::before,
+    &::after {
+      content: '';
       display: block;
       left: 50%;
       position: absolute;
@@ -328,12 +335,14 @@ $primary-color: #50596c !default;
     }
   }
 
-  &-icon-arrow-down::before, &-icon-arrow-right::before, &-icon-arrow-up::before {
-    border: .1rem solid $dark;
+  &-icon-arrow-down::before,
+  &-icon-arrow-right::before,
+  &-icon-arrow-up::before {
+    border: 0.1rem solid $dark;
     border-bottom: 0;
     border-right: 0;
-    height: .65em;
-    width: .65em
+    height: 0.65em;
+    width: 0.65em;
   }
 
   &-icon-arrow-down::before {
@@ -350,9 +359,9 @@ $primary-color: #50596c !default;
 
   &-icon-menu::before {
     background: $dark;
-    box-shadow: 0 -.35em, 0 .35em;
-    content: "";
-    height: .1rem;
+    box-shadow: 0 -0.35em, 0 0.35em;
+    content: '';
+    height: 0.1rem;
     width: 100%;
   }
 
@@ -366,9 +375,9 @@ $primary-color: #50596c !default;
   &-icon-more::before {
     background: $dark;
     border-radius: 50%;
-    box-shadow: 0 -.4em, 0 .4em;
+    box-shadow: 0 -0.4em, 0 0.4em;
     height: 3px;
-    width: 3px
+    width: 3px;
   }
 
   &-dropdown {
@@ -410,14 +419,13 @@ $primary-color: #50596c !default;
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 1px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-  0 8px 10px 1px rgba(0, 0, 0, 0.14),
-  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
   background-color: white;
   padding-top: 9px;
   padding-left: 4px;
   display: table;
-  table-layout: fixed
+  table-layout: fixed;
 }
 
 .cdk-drag-placeholder {
@@ -437,7 +445,8 @@ $primary-color: #50596c !default;
   background-color: white;
 }
 
-.ngx-table__header--draggable.cdk-drop-list-dragging .ngx-table__header-cell--draggable:not(.cdk-drag-placeholder) {
+.ngx-table__header--draggable.cdk-drop-list-dragging
+  .ngx-table__header-cell--draggable:not(.cdk-drag-placeholder) {
   transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -450,7 +459,8 @@ $primary-color: #50596c !default;
   -webkit-margin-before: 0;
 }
 
-.ngx-pagination::before, .ngx-pagination::after {
+.ngx-pagination::before,
+.ngx-pagination::after {
   content: ' ';
   display: table;
 }
@@ -506,7 +516,8 @@ $primary-color: #50596c !default;
   background: transparent;
 }
 
-.ngx-pagination a, .ngx-pagination button {
+.ngx-pagination a,
+.ngx-pagination button {
   cursor: pointer;
 }
 
@@ -574,7 +585,7 @@ $primary-color: #50596c !default;
   position: sticky;
   z-index: 1;
   background-color: white;
-  box-shadow: 2px 0 0 rgba(gray, .175);
+  box-shadow: 2px 0 0 rgba(gray, 0.175);
 }
 
 @media screen and (max-width: 601px) {
@@ -600,4 +611,3 @@ $primary-color: #50596c !default;
   width: 100%;
   table-layout: fixed;
 }
-

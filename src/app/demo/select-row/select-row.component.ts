@@ -25,5 +25,4 @@ export class SelectRowComponent implements OnInit {
     this.configuration.selectRow = true;
     this.data = data;
   }
-
 }

@@ -1,8 +1,10 @@
-<ngx-table [configuration]="configuration"
-           [id]="'table1'"
-           [summaryTemplate]="summaryTemplateRef"
-           [data]="data"
-           [columns]="columns">
+<ngx-table
+  [configuration]="configuration"
+  [id]="'table1'"
+  [summaryTemplate]="summaryTemplateRef"
+  [data]="data"
+  [columns]="columns"
+>
 </ngx-table>
 <ng-template #summaryTemplateRef let-total="total" let-limit="limit" let-page="page">
   <th colspan="5">
@@ -11,24 +13,19 @@
     <span class="mb-2">page: {{ page }} </span>
   </th>
 </ng-template>
-<hr>
-<ngx-table [configuration]="configuration"
-           [id]="'table2'"
-           [summaryTemplate]="summaryTemplateRef2"
-           [data]="data"
-           [columns]="columns">
+<hr />
+<ngx-table
+  [configuration]="configuration"
+  [id]="'table2'"
+  [summaryTemplate]="summaryTemplateRef2"
+  [data]="data"
+  [columns]="columns"
+>
 </ngx-table>
 <ng-template #summaryTemplateRef2 let-total="total" let-limit="limit" let-page="page">
-  <th>
-    Total items: {{ total }}
-  </th>
-  <th>
-    Summary: {{ ageSummary }}
-  </th>
-  <th>
-    page: {{ page }}
-  </th>
-  <th>
-  </th>
+  <th>Total items: {{ total }}</th>
+  <th>Summary: {{ ageSummary }}</th>
+  <th>page: {{ page }}</th>
+  <th></th>
   <th></th>
 </ng-template>

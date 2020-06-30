@@ -2,38 +2,38 @@
   <div class="column col-12">
     <div class="form-group">
       <label class="form-checkbox form-inline">
-        <input type="checkbox" (change)="borderless()">
+        <input type="checkbox" (change)="borderless()" />
         <i class="form-icon"></i> Borderless
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="hoverable()">
+        <input type="checkbox" [checked]="true" (change)="hoverable()" />
         <i class="form-icon"></i> Hover
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" (change)="striped()">
+        <input type="checkbox" (change)="striped()" />
         <i class="form-icon"></i> Striped
       </label>
       <div class="form-group">
         <label class="form-radio form-inline">
-          <input type="radio" name="style" (change)="setHeight('tiny')">
+          <input type="radio" name="style" (change)="setHeight('tiny')" />
           <i class="form-icon"></i> Style tiny
         </label>
         <label class="form-radio form-inline">
-          <input type="radio" name="style" checked (change)="setHeight('normal')">
+          <input type="radio" name="style" checked (change)="setHeight('normal')" />
           <i class="form-icon"></i> Style normal
         </label>
         <label class="form-radio form-inline">
-          <input type="radio" name="style" (change)="setHeight('big')">
+          <input type="radio" name="style" (change)="setHeight('big')" />
           <i class="form-icon"></i> Style big
         </label>
       </div>
       <div class="form-group">
         <label class="form-radio form-inline">
-          <input type="radio" name="theme" checked (change)="setTheme('light')">
+          <input type="radio" name="theme" checked (change)="setTheme('light')" />
           <i class="form-icon"></i> Light
         </label>
         <label class="form-radio form-inline">
-          <input type="radio" name="theme" (change)="setTheme('dark')">
+          <input type="radio" name="theme" (change)="setTheme('dark')" />
           <i class="form-icon"></i> Dark
         </label>
       </div>
@@ -42,7 +42,6 @@
 </div>
 <div class="columns">
   <div class="column col-12">
-    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
-    </ngx-table>
+    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns"> </ngx-table>
   </div>
 </div>

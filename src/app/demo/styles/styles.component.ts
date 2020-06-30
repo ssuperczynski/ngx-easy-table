@@ -24,5 +24,4 @@ export class StylesComponent implements OnInit {
     this.configuration = { ...DefaultConfig };
     this.data = data;
   }
-
 }

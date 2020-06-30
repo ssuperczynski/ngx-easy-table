@@ -5,6 +5,7 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Code Examples
+
 <a href="https://github.com/ssuperczynski/ngx-easy-table/tree/master/src/app/demo" target="_blank">
 https://github.com/ssuperczynski/ngx-easy-table/tree/master/src/app/demo
 </a>
@@ -26,3 +27,9 @@ Library requires `@angular/cdk`, please install it as well.
 ## Available config settings:
 
 See https://ngx-easy-table.eu/#/doc
+
+## Misc
+
+I'm working currently to add Ngrx and Nx to this project.
+I see all the bugs you posting, but my time is very limited these days and I can't spend on this project as much time as before. I'm really sorry.
+Author of this library (me ;)) is looking some cool job in Germany or France.

@@ -27,7 +27,8 @@ export class GlobalSearchComponent implements OnInit {
 
   onChange(name: string): void {
     this.table.apiEvent({
-      type: API.onGlobalSearch, value: name,
+      type: API.onGlobalSearch,
+      value: name,
     });
   }
 }

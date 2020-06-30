@@ -5,11 +5,13 @@
     </small>
   </div>
 </div>
-<ngx-table [configuration]="configuration"
-           #table
-           (event)="eventEmitted($event)"
-           [data]="data"
-           [selectAllTemplate]="selectAllTemplate"
-           [columns]="columns">
+<ngx-table
+  [configuration]="configuration"
+  #table
+  (event)="eventEmitted($event)"
+  [data]="data"
+  [selectAllTemplate]="selectAllTemplate"
+  [columns]="columns"
+>
 </ngx-table>
 <ng-template #selectAllTemplate></ng-template>

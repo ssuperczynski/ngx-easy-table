@@ -1,18 +1,22 @@
 <small class="mb-2">
-  Use table events to attach custom sort to the headers click event.
-  In this example:
+  Use table events to attach custom sort to the headers click event. In this example:
   <ul>
-    <li>The "Level" column is custom sorted by the level (low, medium, high) - and not alphabetically (high, low, medium)</li>
+    <li>
+      The "Level" column is custom sorted by the level (low, medium, high) - and not alphabetically
+      (high, low, medium)
+    </li>
     <li>The "Name" column is custom sorted by the last name portion</li>
     <li>The rest of the columns use the default sort</li>
   </ul>
 </small>
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration"
-               [data]="data"
-               [columns]="columns"
-               (event)="eventEmitted($event)">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      (event)="eventEmitted($event)"
+    >
+    </ngx-table>
+  </div>
 </div>

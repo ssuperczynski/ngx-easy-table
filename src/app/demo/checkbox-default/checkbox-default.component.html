@@ -1,8 +1,10 @@
 <div class="mb-2">
-  <h2 id="selected">Selected: {{selected.size}} </h2>
+  <h2 id="selected">Selected: {{ selected.size }}</h2>
 </div>
-<ngx-table [configuration]="configuration"
-           (event)="eventEmitted($event)"
-           [data]="data"
-           [columns]="columns">
+<ngx-table
+  [configuration]="configuration"
+  (event)="eventEmitted($event)"
+  [data]="data"
+  [columns]="columns"
+>
 </ngx-table>

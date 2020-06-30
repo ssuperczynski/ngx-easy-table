@@ -1,10 +1,12 @@
 <div class="columns">
   <div class="column col-12">
-    <ngx-table [data]="data"
-               #table
-               [configuration]="configuration"
-               [rowContextMenu]="rowContextMenu"
-               [columns]="columns">
+    <ngx-table
+      [data]="data"
+      #table
+      [configuration]="configuration"
+      [rowContextMenu]="rowContextMenu"
+      [columns]="columns"
+    >
     </ngx-table>
   </div>
 </div>
@@ -19,12 +21,14 @@
   </ul>
 </ng-template>
 <ng-template #phoneTpl let-row let-rowIndex="rowIndex">
-  <div class="phone" *ngIf="edit !== rowIndex">Phone: {{row.phone}}</div>
+  <div class="phone" *ngIf="edit !== rowIndex">Phone: {{ row.phone }}</div>
   <div *ngIf="edit === rowIndex">
-    <input type="text"
-           placeholder="Phone"
-           (blur)="update($event)"
-           class="form-label"
-           [value]="row.phone">
+    <input
+      type="text"
+      placeholder="Phone"
+      (blur)="update($event)"
+      class="form-label"
+      [value]="row.phone"
+    />
   </div>
 </ng-template>

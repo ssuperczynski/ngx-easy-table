@@ -105,11 +105,11 @@ export class AppComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit(): void {
-    this.router.events.pipe(takeUntil(this.ngUnsubscribe)).subscribe(route => {
+    this.router.events.pipe(takeUntil(this.ngUnsubscribe)).subscribe((route) => {
       if (route instanceof NavigationEnd) {
         const url = route.url.replace('/', '');
-        Object.values(this.menu).forEach(value =>
-          value.forEach(entry => {
+        Object.values(this.menu).forEach((value) =>
+          value.forEach((entry) => {
             if (entry.link === url) {
               this.select({
                 link: url,

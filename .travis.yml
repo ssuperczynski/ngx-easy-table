@@ -3,7 +3,7 @@ env:
 dist: xenial
 language: node_js
 node_js:
-  - "12"
+  - '12'
 script:
   - npm run lint
   - npm run build:lib
@@ -13,7 +13,7 @@ install:
   - npm ci
 notifications:
   webhooks:
-  - https://www.travisbuddy.com/
+    - https://www.travisbuddy.com/
   email: false
 sudo: required
 services:

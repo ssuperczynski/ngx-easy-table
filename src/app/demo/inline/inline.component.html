@@ -9,17 +9,20 @@
       [configuration]="configuration"
       [data]="data"
       (event)="eventEmitted($event)"
-      [columns]="columns">
+      [columns]="columns"
+    >
     </ngx-table>
   </div>
 </div>
 <ng-template #phoneTpl let-row let-rowIndex="rowIndex">
-  <div class="phone" *ngIf="edit !== rowIndex">Phone: {{row.phone}}</div>
+  <div class="phone" *ngIf="edit !== rowIndex">Phone: {{ row.phone }}</div>
   <div *ngIf="edit === rowIndex">
-    <input type="text"
-           placeholder="Phone"
-           (blur)="update($event)"
-           class="form-label"
-           [value]="row.phone">
+    <input
+      type="text"
+      placeholder="Phone"
+      (blur)="update($event)"
+      class="form-label"
+      [value]="row.phone"
+    />
   </div>
 </ng-template>

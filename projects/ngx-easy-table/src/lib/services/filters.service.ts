@@ -5,7 +5,7 @@ export class FiltersService {
   static getPath(p: string[], o: any): any {
     // https://github.com/dherges/ng-packagr/issues/696
     /* tslint:disable-next-line */
-    const result = p.reduce((xs, x) => (xs && typeof xs[x] !== 'undefined') ? xs[x] : null, o);
+    const result = p.reduce((xs, x) => (xs && typeof xs[x] !== 'undefined' ? xs[x] : null), o);
     return result;
   }
 }

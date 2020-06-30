@@ -26,8 +26,8 @@ export class FilterTemplateComponent implements OnInit {
     this.data = data;
     this.rows = data;
     data
-      .map(row => row.age)
-      .forEach(age => {
+      .map((row) => row.age)
+      .forEach((age) => {
         if (this.ages.indexOf(age) === -1) {
           this.ages.push(age);
         }

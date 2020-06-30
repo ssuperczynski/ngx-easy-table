@@ -1,35 +1,32 @@
 <div class="mb-2">
-  <h2 id="selected">Selected: {{selected.size}} </h2>
+  <h2 id="selected">Selected: {{ selected.size }}</h2>
 </div>
 <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
-	<ng-template let-row let-index="index">
-		<td>
-			<div class="form-group">
-				<label class="form-checkbox">
-          <input type="checkbox" (change)="onChange(row)">
+  <ng-template let-row let-index="index">
+    <td>
+      <div class="form-group">
+        <label class="form-checkbox">
+          <input type="checkbox" (change)="onChange(row)" />
           <i class="form-icon"></i>
         </label>
-			</div>
-		</td>
-		<td>
-			<h5 class="color-green font-light">id: {{index}} - {{row.name}}</h5>
-		</td>
-		<td>
-			<div class="font-small">
-				Company: {{row.company}}
-			</div>
-		</td>
-		<td>
-			<span class="font-small display-block m-2">Supervisor: </span>
-			<strong>{{row.name}}</strong>
-		</td>
-		<td>
-			<span class="font-small display-block">Phone:</span>
-			<span class="font-small">{{row.phone}}</span>
-		</td>
-		<td>
-			<div class="circle"></div>
-		</td>
-	</ng-template>
-
+      </div>
+    </td>
+    <td>
+      <h5 class="color-green font-light">id: {{ index }} - {{ row.name }}</h5>
+    </td>
+    <td>
+      <div class="font-small">Company: {{ row.company }}</div>
+    </td>
+    <td>
+      <span class="font-small display-block m-2">Supervisor: </span>
+      <strong>{{ row.name }}</strong>
+    </td>
+    <td>
+      <span class="font-small display-block">Phone:</span>
+      <span class="font-small">{{ row.phone }}</span>
+    </td>
+    <td>
+      <div class="circle"></div>
+    </td>
+  </ng-template>
 </ngx-table>

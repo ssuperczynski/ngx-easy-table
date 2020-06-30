@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
 
@@ -17,7 +23,7 @@ export class BootstrapComponent implements OnInit {
   public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = {...DefaultConfig};
+    this.configuration = { ...DefaultConfig };
     this.configuration.checkboxes = true;
     this.configuration.additionalActions = true;
     this.configuration.fixedColumnWidth = true;

@@ -4,8 +4,5 @@
   "lib": {
     "entryFile": "src/public_api.ts"
   },
-  "whitelistedNonPeerDependencies": [
-    "ngx-pagination",
-    "@angular/cdk"
-  ]
+  "whitelistedNonPeerDependencies": ["ngx-pagination", "@angular/cdk"]
 }

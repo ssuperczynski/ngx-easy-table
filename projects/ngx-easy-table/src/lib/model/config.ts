@@ -36,11 +36,11 @@ export interface Config {
   infiniteScroll?: boolean;
   infiniteScrollThrottleTime?: number;
   tableLayout: {
-    style: STYLE | string | null,
-    theme: THEME | string | null,
-    borderless: boolean | null,
-    hover: boolean | null,
-    striped: boolean | null,
+    style: STYLE | string | null;
+    theme: THEME | string | null;
+    borderless: boolean | null;
+    hover: boolean | null;
+    striped: boolean | null;
   };
 }
 

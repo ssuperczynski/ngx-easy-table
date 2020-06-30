@@ -23,7 +23,8 @@ export interface PaginationRange {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent implements OnChanges {
-  @ViewChild('paginationDirective', { static: true }) paginationDirective: PaginationControlsDirective;
+  @ViewChild('paginationDirective', { static: true })
+  paginationDirective: PaginationControlsDirective;
   @ViewChild('paginationRange') paginationRange;
   @Input() pagination;
   @Input() config: Config;

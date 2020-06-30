@@ -62,7 +62,7 @@ export class GroupRowsComponent implements OnInit {
   }
 
   showCount(group: any[], key: string): any[] {
-    return group.map(row => row[key]).reduce((acc, cur) => cur + acc, 0);
+    return group.map((row) => row[key]).reduce((acc, cur) => cur + acc, 0);
   }
 
   onRowClickEvent($event: MouseEvent, index: number): void {

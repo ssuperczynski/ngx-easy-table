@@ -4,43 +4,46 @@
   [id]="'parent-table'"
   #table
   [detailsTemplate]="detailsTemplate"
-  [columns]="columns">
+  [columns]="columns"
+>
   <ng-template let-row let-index="index">
     <td>
-      {{row.name}}
+      {{ row.name }}
     </td>
     <td>
-      {{row.age}}
+      {{ row.age }}
     </td>
     <td>
-      {{row.company}}
+      {{ row.company }}
     </td>
     <td>
-      {{row.name}}
+      {{ row.name }}
     </td>
     <td>
-      {{row.phone}}
+      {{ row.phone }}
     </td>
     <td>
-      <div>{{row.address.street}}</div>
+      <div>{{ row.address.street }}</div>
     </td>
     <td>
-      <button class="btn btn-primary"
-              id="expandButton-{{index}}"
-              (click)="onRowClickEvent($event, index)">
+      <button
+        class="btn btn-primary"
+        id="expandButton-{{ index }}"
+        (click)="onRowClickEvent($event, index)"
+      >
         <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
         <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
         Show nested table
       </button>
     </td>
   </ng-template>
-
 </ngx-table>
 <ng-template #detailsTemplate let-row>
   <ngx-table
     [id]="'nested-table'"
     [configuration]="nestedConfiguration"
     [data]="nestedData"
-    [columns]="nestedColumns">
+    [columns]="nestedColumns"
+  >
   </ngx-table>
 </ng-template>

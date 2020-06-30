@@ -1,54 +1,91 @@
 <div class="columns">
-	<div class="column col-12">
-		<div class="form-group">
-			<label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('paginationEnabled', $event.target.checked)">
+  <div class="column col-12">
+    <div class="form-group">
+      <label class="form-checkbox form-inline">
+        <input
+          type="checkbox"
+          [checked]="true"
+          (change)="toggle('paginationEnabled', $event.target.checked)"
+        />
         <i class="form-icon"></i> Pagination
       </label>
-			<label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('headerEnabled', $event.target.checked)">
+      <label class="form-checkbox form-inline">
+        <input
+          type="checkbox"
+          [checked]="true"
+          (change)="toggle('headerEnabled', $event.target.checked)"
+        />
         <i class="form-icon"></i> Column names
       </label>
-			<label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('searchEnabled', $event.target.checked)">
+      <label class="form-checkbox form-inline">
+        <input
+          type="checkbox"
+          [checked]="true"
+          (change)="toggle('searchEnabled', $event.target.checked)"
+        />
         <i class="form-icon"></i> Search
       </label>
-			<label class="form-checkbox form-inline">
-        <input type="checkbox" (change)="toggle('collapseAllRows', $event.target.checked)">
+      <label class="form-checkbox form-inline">
+        <input type="checkbox" (change)="toggle('collapseAllRows', $event.target.checked)" />
         <i class="form-icon"></i> Collapse rows
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-is-loading" (change)="toggle('isLoading', $event.target.checked)">
+        <input
+          type="checkbox"
+          id="checkbox-is-loading"
+          (change)="toggle('isLoading', $event.target.checked)"
+        />
         <i class="form-icon"></i> Is loading
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-checkboxes" (change)="toggle('checkboxes', $event.target.checked)">
+        <input
+          type="checkbox"
+          id="checkbox-checkboxes"
+          (change)="toggle('checkboxes', $event.target.checked)"
+        />
         <i class="form-icon"></i> Checkboxes
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-draggable" (change)="toggle('draggable', $event.target.checked)">
+        <input
+          type="checkbox"
+          id="checkbox-draggable"
+          (change)="toggle('draggable', $event.target.checked)"
+        />
         <i class="form-icon"></i> Draggable
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-fixedColumnWidth" (change)="toggle('fixedColumnWidth', $event.target.checked)">
+        <input
+          type="checkbox"
+          id="checkbox-fixedColumnWidth"
+          (change)="toggle('fixedColumnWidth', $event.target.checked)"
+        />
         <i class="form-icon"></i> Fixed column
       </label>
       <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-logger" (change)="toggle('logger', $event.target.checked)">
+        <input
+          type="checkbox"
+          id="checkbox-logger"
+          (change)="toggle('logger', $event.target.checked)"
+        />
         <i class="form-icon"></i> Logger
       </label>
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 <div class="columns">
-	<div class="column col-12">
-		<ngx-table [configuration]="configuration" [detailsTemplate]="detailsTemplate" [data]="data" [columns]="columns">
-		</ngx-table>
-	</div>
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [detailsTemplate]="detailsTemplate"
+      [data]="data"
+      [columns]="columns"
+    >
+    </ngx-table>
+  </div>
 </div>
 <ng-template #detailsTemplate let-row>
-	<div>
-		<h2>{{row.phone }}</h2>
-		<h5>{{row.name }} - {{row.age}}</h5>
-	</div>
+  <div>
+    <h2>{{ row.phone }}</h2>
+    <h5>{{ row.name }} - {{ row.age }}</h5>
+  </div>
 </ng-template>

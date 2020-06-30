@@ -31,5 +31,4 @@ export class CollapsedRowsComponent implements OnInit {
     this.configuration.collapseAllRows = this.toggled;
     this.configuration = { ...this.configuration };
   }
-
 }

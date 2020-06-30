@@ -25,5 +25,4 @@ export class SelectColComponent implements OnInit {
     this.configuration.selectCol = true;
     this.data = data;
   }
-
 }

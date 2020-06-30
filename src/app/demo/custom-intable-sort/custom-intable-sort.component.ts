@@ -14,9 +14,9 @@ export class CustomIntableSortComponent implements OnInit {
   public configuration: Config;
   levels = {
     '': 0,
-    'Low': 1,
-    'Medium': 2,
-    'High': 3,
+    Low: 1,
+    Medium: 2,
+    High: 3,
   };
 
   ngOnInit(): void {
@@ -36,31 +36,35 @@ export class CustomIntableSortComponent implements OnInit {
   }
 
   sortByLastName(asc: boolean): void {
-    this.data = [...this.data.sort((a, b) => {
-      const nameA = a.name.toLowerCase().split(' ')[1];
-      const nameB = b.name.toLowerCase().split(' ')[1];
-      if (asc) {
-        return nameA.localeCompare(nameB);
-      }
-      return nameB.localeCompare(nameA);
-    })];
+    this.data = [
+      ...this.data.sort((a, b) => {
+        const nameA = a.name.toLowerCase().split(' ')[1];
+        const nameB = b.name.toLowerCase().split(' ')[1];
+        if (asc) {
+          return nameA.localeCompare(nameB);
+        }
+        return nameB.localeCompare(nameA);
+      }),
+    ];
   }
 
   sortByLevel(asc: boolean): void {
-    this.data = [...this.data.sort((a, b) => {
-      const levelA = this.levels[a.level];
-      const levelB = this.levels[b.level];
-      if (levelA < levelB) {
-        return asc ? -1 : 1;
-      }
-      if (levelA > levelB) {
-        return asc ? 1 : -1;
-      }
-      return 0;
-    })];
+    this.data = [
+      ...this.data.sort((a, b) => {
+        const levelA = this.levels[a.level];
+        const levelB = this.levels[b.level];
+        if (levelA < levelB) {
+          return asc ? -1 : 1;
+        }
+        if (levelA > levelB) {
+          return asc ? 1 : -1;
+        }
+        return 0;
+      }),
+    ];
   }
 
-  eventEmitted($event: { event: string, value: any }): void {
+  eventEmitted($event: { event: string; value: any }): void {
     if ($event.event === Event.onOrder) {
       if ($event.value.key === 'level') {
         this.sortByLevel($event.value.order === 'asc');

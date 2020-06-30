@@ -8,8 +8,11 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  OnChanges, OnDestroy,
-  OnInit, Output, SimpleChange,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChange,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -34,11 +37,7 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [
-    DefaultConfigService,
-    GroupRowsService,
-    StyleService,
-  ],
+  providers: [DefaultConfigService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -87,7 +86,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   @Input() additionalActionsTemplate: TemplateRef<void>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
-  @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
+  @Output() readonly event = new EventEmitter<{ event: string; value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
   @ViewChild('contextMenu') contextMenu;
@@ -107,18 +106,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   constructor(
     private readonly cdr: ChangeDetectorRef,
     private readonly scrollDispatcher: ScrollDispatcher,
-    public readonly styleService: StyleService,
+    public readonly styleService: StyleService
   ) {
-    this.filteredCountSubject
-      .pipe(
-        takeUntil(this.unsubscribe),
-      )
-      .subscribe((count) => {
-        setTimeout(() => {
-          this.filterCount = count;
-          this.cdr.detectChanges();
-        });
+    this.filteredCountSubject.pipe(takeUntil(this.unsubscribe)).subscribe((count) => {
+      setTimeout(() => {
+        this.filterCount = count;
+        this.cdr.detectChanges();
       });
+    });
   }
 
   ngOnInit(): void {
@@ -143,16 +138,21 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   }
 
   ngAfterViewInit(): void {
-    const throttleValue = this.config.infiniteScrollThrottleTime ?
-      this.config.infiniteScrollThrottleTime :
-      200;
-    this.scrollDispatcher.scrolled()
+    const throttleValue = this.config.infiniteScrollThrottleTime
+      ? this.config.infiniteScrollThrottleTime
+      : 200;
+    this.scrollDispatcher
+      .scrolled()
       .pipe(
         takeUntil(this.unsubscribe),
         throttleTime(throttleValue),
         filter((event) => {
-          return !!event && this.viewPort && this.viewPort.getRenderedRange().end === this.viewPort.getDataLength();
-        }),
+          return (
+            !!event &&
+            this.viewPort &&
+            this.viewPort.getRenderedRange().end === this.viewPort.getDataLength()
+          );
+        })
       )
       .subscribe(() => {
         this.emitEvent(Event.onInfiniteScrollEnd, null);
@@ -212,7 +212,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: any, rowIndex: number): void {
+  onClick(
+    $event: MouseEvent,
+    row: object,
+    key: ColumnKeyType,
+    colIndex: any,
+    rowIndex: number
+  ): void {
     if (this.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -236,7 +242,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     }
   }
 
-  onDoubleClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: any, rowIndex: number): void {
+  onDoubleClick(
+    $event: MouseEvent,
+    row: object,
+    key: ColumnKeyType,
+    colIndex: any,
+    rowIndex: number
+  ): void {
     const value = {
       event: $event,
       row,
@@ -291,9 +303,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   }
 
   toggleCheckbox(rowIndex: number): void {
-    this.selectedCheckboxes.has(rowIndex) ?
-      this.selectedCheckboxes.delete(rowIndex) :
-      this.selectedCheckboxes.add(rowIndex);
+    this.selectedCheckboxes.has(rowIndex)
+      ? this.selectedCheckboxes.delete(rowIndex)
+      : this.selectedCheckboxes.add(rowIndex);
   }
 
   collapseRow(rowIndex: number): void {
@@ -345,7 +357,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       const headerEnabled = this.config.headerEnabled ? 1 : 0;
       const borderTrHeight = 1;
       const borderDivHeight = 2;
-      return (table.rows.length - searchEnabled - headerEnabled) * (table.rows[3].offsetHeight - borderTrHeight) - borderDivHeight;
+      return (
+        (table.rows.length - searchEnabled - headerEnabled) *
+          (table.rows[3].offsetHeight - borderTrHeight) -
+        borderDivHeight
+      );
     }
 
     return 30;
@@ -355,7 +371,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onRowContextMenu($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: any, rowIndex: number): void {
+  onRowContextMenu(
+    $event: MouseEvent,
+    row: object,
+    key: ColumnKeyType,
+    colIndex: any,
+    rowIndex: number
+  ): void {
     if (!this.config.showContextMenu) {
       return;
     }
@@ -379,7 +401,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   private doApplyData(data: SimpleChange): void {
     const order = this.columns.find((c) => !!c.orderBy);
     if (order) {
-      this.sortState.set(this.sortKey, (order.orderBy === 'asc') ? 'desc' : 'asc');
+      this.sortState.set(this.sortKey, order.orderBy === 'asc' ? 'desc' : 'asc');
       this.orderBy(order);
     } else {
       this.data = [...data.currentValue];
@@ -418,9 +440,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       case API.setInputValue:
         if (this.config.searchEnabled) {
           event.value.forEach((input) => {
-            const element = (document.getElementById(`search_${input.key}`) as HTMLInputElement);
+            const element = document.getElementById(`search_${input.key}`) as HTMLInputElement;
             if (!element) {
-              console.error(`Column '${input.key}' not available in the DOM. Have you misspelled a name?`);
+              console.error(
+                `Column '${input.key}' not available in the DOM. Have you misspelled a name?`
+              );
             } else {
               element.value = input.value;
             }
@@ -473,9 +497,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       case API.getPaginationLastPage:
         return this.paginationComponent.paginationDirective.getLastPage();
       case API.getNumberOfRowsPerPage:
-        return this.paginationComponent.paginationDirective.isLastPage() ?
-          (this.paginationComponent.paginationDirective.getTotalItems() % this.limit) :
-          this.limit;
+        return this.paginationComponent.paginationDirective.isLastPage()
+          ? this.paginationComponent.paginationDirective.getTotalItems() % this.limit
+          : this.limit;
       case API.setPaginationCurrentPage:
         this.paginationComponent.paginationDirective.setCurrent(event.value);
         break;
@@ -508,9 +532,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
         this.sortState.set(key, 'desc');
         break;
       case 'asc':
-        this.config.threeWaySort ?
-          this.sortState.set(key, '') :
-          this.sortState.set(key, 'desc');
+        this.config.threeWaySort ? this.sortState.set(key, '') : this.sortState.set(key, 'desc');
         break;
       case 'desc':
         this.sortState.set(key, 'asc');

@@ -3,37 +3,44 @@
   [data]="data"
   #table
   [detailsTemplate]="detailsTemplate"
-  [columns]="columns">
+  [columns]="columns"
+>
   <ng-template let-row let-index="index">
     <td>
-      <h5>{{row.name}}</h5>
+      <h5>{{ row.name }}</h5>
     </td>
     <td>
-      <span>Age: {{row.age}}</span>
+      <span>Age: {{ row.age }}</span>
       <div class="bar bar-sm">
-        <div class="bar-item" role="progressbar" [style.width]="row.age + '%'" aria-valuenow="row.age" aria-valuemin="0"
-             aria-valuemax="70"></div>
+        <div
+          class="bar-item"
+          role="progressbar"
+          [style.width]="row.age + '%'"
+          aria-valuenow="row.age"
+          aria-valuemin="0"
+          aria-valuemax="70"
+        ></div>
       </div>
     </td>
     <td>
-      <div>
-        Company: {{row.company}}
-      </div>
+      <div>Company: {{ row.company }}</div>
     </td>
     <td>
       <span class="mb-2">Supervisor: </span>
-      <strong>{{row.name}}</strong>
+      <strong>{{ row.name }}</strong>
     </td>
     <td>
-      <span>Phone: {{row.phone}}</span>
+      <span>Phone: {{ row.phone }}</span>
     </td>
     <td>
-      <div>{{row.address.street}}</div>
+      <div>{{ row.address.street }}</div>
     </td>
     <td>
-      <button class="btn btn-primary"
-              id="expandButton-{{index}}"
-              (click)="onRowClickEvent($event, index)">
+      <button
+        class="btn btn-primary"
+        id="expandButton-{{ index }}"
+        (click)="onRowClickEvent($event, index)"
+      >
         <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
         <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
         Expand
@@ -42,7 +49,5 @@
   </ng-template>
 </ngx-table>
 <ng-template #detailsTemplate let-row>
-  <div>
-    {{row.name }} - {{row.age}}
-  </div>
+  <div>{{ row.name }} - {{ row.age }}</div>
 </ng-template>

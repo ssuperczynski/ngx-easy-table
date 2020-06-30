@@ -2,9 +2,8 @@
 
 context('Dynamic row', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4201/#/dynamic-row');
-    },
-  );
+    cy.visit('http://127.0.0.1:4201/#/dynamic-row');
+  });
 
   it('creates 6th and 7th row', () => {
     cy.get('#add-row-button')
