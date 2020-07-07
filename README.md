@@ -32,4 +32,5 @@ See https://ngx-easy-table.eu/#/doc
 
 I'm working currently to add Ngrx and Nx to this project.
 I see all the bugs you posting, but my time is very limited these days and I can't spend on this project as much time as before. I'm really sorry.
+
 Author of this library (me ;)) is looking some cool job in Germany or France.
