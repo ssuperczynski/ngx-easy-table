@@ -77,12 +77,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 
-export function getHighlightLanguages(): any {
-  return {
-    typescript: () => import('highlight.js/lib/languages/typescript'),
-  };
-}
-
 @NgModule({
   imports: [
     HttpClientModule,
@@ -171,7 +165,10 @@ export function getHighlightLanguages(): any {
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
-        languages: getHighlightLanguages(),
+        coreLibraryLoader: () => import('highlight.js/lib/highlight'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+        },
       },
     },
   ],
