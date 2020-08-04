@@ -16,6 +16,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "allowedCommonJsDependencies": ["highlight.js", "faker", "export-to-csv"],
           "options": {
             "outputPath": "dist/demo",
             "index": "src/index.html",
@@ -28,7 +29,7 @@
               "node_modules/spectre.css/dist/spectre-exp.css",
               "node_modules/spectre.css/dist/spectre-icons.css",
               "node_modules/typeface-montserrat/index.css",
-              "node_modules/highlight.js/styles/github.css",
+              "node_modules/highlight.js/styles/rainbow.css",
               "src/assets/main.scss",
               "src/assets/sample.scss",
               "projects/ngx-easy-table/assets/style.scss"
