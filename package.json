@@ -30,7 +30,7 @@
     "@angular/forms": "^10.0.7",
     "@angular/material": "^10.1.2",
     "export-to-csv": "^0.2.1",
-    "ngx-easy-table": "^13.0.0",
+    "ngx-easy-table": "^13.0.1",
     "ngx-highlightjs": "^4.1.1",
     "spectre.css": "^0.5.9",
     "typeface-montserrat": "0.0.75"
