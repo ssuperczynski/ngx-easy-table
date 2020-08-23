@@ -25,7 +25,6 @@ export class ReorderComponent implements OnInit {
     this.configuration = { ...DefaultConfig };
     this.configuration.rowReorder = true;
     this.configuration.columnReorder = true;
-    this.configuration.resizeColumn = true;
     this.configuration.fixedColumnWidth = false;
   }
 }

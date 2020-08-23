@@ -29,7 +29,7 @@
     >
       <div
         (click)="orderBy(column)"
-        style="display: inline;"
+        style="display: inline"
         [class.pointer]="isOrderEnabled(column)"
       >
         <div class="ngx-table__header-title">
@@ -93,7 +93,7 @@
   cdkDropListOrientation="horizontal"
   (cdkDropListDropped)="columnDrop($event)"
 >
-  <th [style.width]="'3%'">
+  <th *ngIf="config.checkboxes || config.radio" [style.width]="'3%'">
     <ng-container
       *ngIf="selectAllTemplate && config.checkboxes"
       [ngTemplateOutlet]="selectAllTemplate"
@@ -125,7 +125,7 @@
     >
       <div
         (click)="orderBy(column)"
-        style="display: inline;"
+        style="display: inline"
         cdkDragHandle
         [class.pointer]="isOrderEnabled(column)"
       >
