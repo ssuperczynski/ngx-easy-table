@@ -390,8 +390,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       colId: colIndex,
     };
     this.rowContextMenuPosition = {
-      top: `${$event.y - 10}px`,
-      left: `${$event.x - 10}px`,
+      top: `${$event.pageY - 10}px`,
+      left: `${$event.pageX - 10}px`,
       value,
     };
 

@@ -28,6 +28,13 @@ Library requires `@angular/cdk`, please install it as well.
 
 See https://ngx-easy-table.eu/#/doc
 
+## Development
+
+- `npm run watch:table`
+- `cd dist/ngx-easy-table && npm link`
+- go back to project root dir and `npm link ngx-easy-table`
+- `npm run start`
+
 ## Misc
 
 I'm working currently to add Ngrx and Nx to this project.
