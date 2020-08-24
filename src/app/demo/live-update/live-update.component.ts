@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { interval, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 interface Data {
@@ -17,7 +23,7 @@ interface Data {
   styleUrls: ['./live-update.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LiveUpdateComponent implements OnInit {
+export class LiveUpdateComponent implements OnInit, OnDestroy {
   data: Data[] = [
     { status: 'ACTIVE', amount: 1, company: 'Foo', limit: 1000, balance: 2000 },
     { status: 'INACTIVE', amount: 2, company: 'Bar', limit: 1000, balance: 900 },
@@ -36,14 +42,16 @@ export class LiveUpdateComponent implements OnInit {
     { key: 'balance', title: 'Balance' },
   ];
   public configuration: Config;
-
+  private ngUnsubscribe$ = new Subject<void>();
   static random(min: number, max: number): number {
     return Math.floor(min + Math.random() * (max - min + 1));
   }
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    interval(500)
+    interval(300)
       .pipe(
         map(() => {
           this.data[LiveUpdateComponent.random(0, 7)].limit = LiveUpdateComponent.random(500, 3000);
@@ -55,8 +63,15 @@ export class LiveUpdateComponent implements OnInit {
             100,
             7100
           );
-        })
+          this.cdr.markForCheck();
+        }),
+        takeUntil(this.ngUnsubscribe$)
       )
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe$.next();
+    this.ngUnsubscribe$.complete();
   }
 }
