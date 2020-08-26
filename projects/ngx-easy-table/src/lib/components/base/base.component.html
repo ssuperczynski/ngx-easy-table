@@ -1,4 +1,4 @@
-<div class="ngx-container">
+<div class="ngx-container" [class.ngx-container--dark]="config.tableLayout.theme === 'dark'">
   <table
     [id]="id"
     [ngClass]="tableClass === null || tableClass === '' ? 'ngx-table' : tableClass"
@@ -476,7 +476,17 @@
                   !config.selectRow
                 "
               >
-                <div>{{ row | render: column.key }}</div>
+                <div *ngIf="!column.cellTemplate">{{ row | render: column.key }}</div>
+                <ng-container
+                  *ngIf="column.cellTemplate"
+                  [ngTemplateOutlet]="column.cellTemplate"
+                  [ngTemplateOutletContext]="{
+                    $implicit: row,
+                    rowIndex: rowIndex,
+                    column: column
+                  }"
+                >
+                </ng-container>
               </td>
             </ng-container>
           </tr>
@@ -488,9 +498,7 @@
         <ng-container *ngIf="noResultsTemplate" [ngTemplateOutlet]="noResultsTemplate">
         </ng-container>
         <td [attr.colspan]="columns && columns.length + 1" *ngIf="!noResultsTemplate">
-          <div class="ngx-table__table-no-results">
-            No results
-          </div>
+          <div class="ngx-table__table-no-results">No results</div>
         </td>
       </tr>
     </tbody>

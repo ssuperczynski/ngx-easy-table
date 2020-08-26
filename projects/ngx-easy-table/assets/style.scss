@@ -12,6 +12,10 @@ $primary-color: #50596c !default;
     width: 100%;
   }
 
+  &-container--dark {
+    background-color: $dark;
+  }
+
   &-table {
     color: $primary-color;
     border-collapse: collapse;
@@ -183,8 +187,7 @@ $primary-color: #50596c !default;
       }
 
       &.ngx-table__table--striped > tbody tr:nth-of-type(odd) {
-        background: $grey-lighter;
-        color: $dark;
+        background: #5f697d;
       }
 
       &-pagination {
