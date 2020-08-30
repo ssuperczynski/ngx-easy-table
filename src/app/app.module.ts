@@ -76,6 +76,8 @@ import { MenuSearchPipe } from './pipes/menu-search-pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -87,6 +89,7 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
     HighlightModule,
     NoopAnimationsModule,
     MatPaginatorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [
     // pipes

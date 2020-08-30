@@ -23,7 +23,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/assets", "src/favicon.ico"],
+            "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"],
             "styles": [
               "node_modules/spectre.css/dist/spectre.css",
               "node_modules/spectre.css/dist/spectre-exp.css",
@@ -63,7 +63,9 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
