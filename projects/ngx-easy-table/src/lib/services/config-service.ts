@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Config, STYLE, THEME } from '../model/config';
 
+// tslint:disable-next-line:variable-name
 export const DefaultConfig: Config = {
   searchEnabled: false,
   headerEnabled: true,

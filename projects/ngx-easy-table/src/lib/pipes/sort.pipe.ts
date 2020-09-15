@@ -20,13 +20,12 @@ export class SortPipe implements PipeTransform {
     const bValue = (bPath + '').toLowerCase();
     if (SortPipe.isNaN(aPath, bPath)) {
       return aValue.localeCompare(bValue);
-    } else {
-      if (parseFloat(aPath) < parseFloat(bPath)) {
-        return -1;
-      }
-      if (parseFloat(aPath) > parseFloat(bPath)) {
-        return 1;
-      }
+    }
+    if (parseFloat(aPath) < parseFloat(bPath)) {
+      return -1;
+    }
+    if (parseFloat(aPath) > parseFloat(bPath)) {
+      return 1;
     }
 
     return 0;
@@ -44,9 +43,8 @@ export class SortPipe implements PipeTransform {
     }
     if (filter.order === 'asc') {
       return this.sortAsc(array, filter, config);
-    } else {
-      return this.sortDesc(array, filter, config);
     }
+    return this.sortDesc(array, filter, config);
   }
 
   private sortAsc(array: any[], filter: { order: string; key: string }, config?: Config): any[] {

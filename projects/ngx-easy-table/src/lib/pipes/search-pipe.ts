@@ -26,6 +26,7 @@ export class SearchPipe implements PipeTransform {
     filter.forEach((f) => {
       this.filters[f.key] = f.value.toString().toLocaleLowerCase();
       if (Object.keys(f).length === 0 || f.value === '') {
+        // tslint:disable-next-line:no-dynamic-delete
         delete this.filters[f.key];
       }
     });
