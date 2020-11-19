@@ -1,5 +1,6 @@
 import { Columns } from 'ngx-easy-table';
 
+// tslint:disable:max-file-line-count
 export interface Company {
   phone: string;
   age: number;

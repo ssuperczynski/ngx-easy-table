@@ -144,7 +144,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     this.scrollDispatcher
       .scrolled()
       .pipe(
-        takeUntil(this.unsubscribe),
         throttleTime(throttleValue),
         filter((event) => {
           return (
@@ -152,7 +151,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
             this.viewPort &&
             this.viewPort.getRenderedRange().end === this.viewPort.getDataLength()
           );
-        })
+        }),
+        takeUntil(this.unsubscribe)
       )
       .subscribe(() => {
         this.emitEvent(Event.onInfiniteScrollEnd, null);
@@ -418,7 +418,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     return this.bindApi(event);
   }
 
-  // tslint:disable:no-big-function cognitive-complexity
+  // tslint:disable:no-big-function cognitive-complexity mccabe-complexity
   private bindApi(event: ApiType): void | number {
     switch (event.type) {
       case API.rowContextMenuClicked:

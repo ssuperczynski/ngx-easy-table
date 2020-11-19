@@ -9,7 +9,7 @@ export class CompanyService {
 
   constructor(private http: HttpClient) {}
 
-  getCompanies(params: string = '', observe: boolean = true): Observable<HttpResponse<Company[]>> {
+  getCompanies(params = '', observe = true): Observable<HttpResponse<Company[]>> {
     return this.http.get<Company[]>(`${this.BACKEND_URL}${params}`, {
       observe: observe ? 'response' : null,
     });
