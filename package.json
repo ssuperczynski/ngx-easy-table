@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.2",
+    "@angular-devkit/core": "^11.0.2",
     "@angular/cdk": "^10.2.1",
     "@angular/cli": "^11.0.2",
     "@angular/common": "^11.0.2",
