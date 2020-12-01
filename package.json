@@ -19,9 +19,9 @@
     "cy:run": "cypress run --headless --browser chrome",
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
     "watch:table": "ng build ngx-easy-table --watch",
-    "publish:lib": "cd dist/ngx-easy-table && npm publish",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
-    "publish:lib:next": "cd dist/ngx-easy-table && npm publish --tag next",
+    "publish:lib": "npm run build:lib && cd dist/ngx-easy-table && npm publish",
+    "publish:lib:next": "npm run build:lib && cd dist/ngx-easy-table && npm publish --tag next",
     "build:lib": "ng build ngx-easy-table && sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss"
   },
   "license": "MIT",
@@ -30,7 +30,7 @@
     "@angular/forms": "^11.0.2",
     "@angular/material": "^11.0.1",
     "export-to-csv": "^0.2.1",
-    "ngx-easy-table": "^13.0.3",
+    "ngx-easy-table": "^14.0.0",
     "ngx-highlightjs": "^4.1.2",
     "spectre.css": "^0.5.9",
     "typeface-montserrat": "0.0.75"
