@@ -16,8 +16,8 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "allowedCommonJsDependencies": ["highlight.js", "faker", "export-to-csv"],
           "options": {
+            "allowedCommonJsDependencies": ["highlight.js", "faker", "export-to-csv"],
             "outputPath": "dist/demo",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -47,7 +47,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -100,7 +99,7 @@
       "prefix": "ngx-easy-table",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-easy-table/tsconfig.lib.json",
             "project": "projects/ngx-easy-table/ng-package.json"
