@@ -16,8 +16,8 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "allowedCommonJsDependencies": ["highlight.js", "faker", "export-to-csv"],
           "options": {
+            "allowedCommonJsDependencies": ["highlight.js", "faker", "export-to-csv"],
             "outputPath": "dist/demo",
             "index": "src/index.html",
             "main": "src/main.ts",
