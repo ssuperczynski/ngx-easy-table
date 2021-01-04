@@ -27,13 +27,16 @@ jobs:
       - name: npm install
         run: npm install
 
-      - name: build Angular lib
-        run: npm run build:lib
+#      - name: build Angular lib
+#        run: npm run build:lib
 
-      - name: build Angular
+      - name: build demo
         run: npm run build
 
-      - name: copy to server tar
+      - name: add sshpass library
+        run: apt-get install sshpass
+
+      - name: copy tar to server
         run: |
           tar -czvf dist.tar.gz dist
           sudo sshpass -p ${{ secrets.SSH_PASS }} scp -v -o StrictHostKeyChecking=no -r dist.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/ngx-easy-table.eu/html/ngx-easy-table
