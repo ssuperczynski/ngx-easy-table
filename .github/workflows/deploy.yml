@@ -6,14 +6,13 @@ on:
 
 jobs:
   build:
-    # using Ubuntu
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1 #this installs node and npm for us
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: '12.x'
 
@@ -31,10 +30,7 @@ jobs:
         run: npm run build
 
       - name: create tar
-        run: |
-          cd dist
-          mv demo dist
-          tar -czvf dist.tar.gz dist
+        run: tar -czvf dist.tar.gz dist
 
       - name: copy tar to server
         uses: appleboy/scp-action@master
@@ -42,7 +38,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
-          source: "dist/dist.tar.gz"
+          source: "dist.tar.gz"
           target: "/var/www/ngx-easy-table.eu/html/ngx-easy-table"
 
       - name: uncompress new files
