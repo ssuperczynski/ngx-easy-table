@@ -1,0 +1,42 @@
+name: "Deploy"
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    # using Ubuntu
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1 #this installs node and npm for us
+        with:
+          node-version: '12.x'
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: npm install
+        run: npm install
+
+      - name: build Angular lib
+        run: npm run build:lib
+
+      - name: build Angular
+        run: npm run build
+
+      - name: copy to server tar
+        run: |
+          tar -czvf dist.tar.gz dist
+          sudo sshpass -p ${{ secrets.SSH_PASS }} scp -v -o StrictHostKeyChecking=no -r dist.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/ngx-easy-table.eu/html/ngx-easy-table
+
+      - name: uncompress new Files
+        run: sudo sshpass -p ${{ secrets.SSH_PASS }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'rm -rf /var/www/ngx-easy-table.eu/html/ngx-easy-table/dist && cd /var/www/ngx-easy-table.eu/html/ngx-easy-table && tar -xzvf dist.tar.gz'
