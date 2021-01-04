@@ -27,17 +27,14 @@ jobs:
       - name: npm install
         run: npm install
 
-#      - name: build Angular lib
-#        run: npm run build:lib
-
       - name: build demo
         run: npm run build
 
-      - name: add sshpass library
-        run: apt-get install sshpass
-
       - name: create tar
-        run: tar -czvf dist.tar.gz dist
+        run: |
+          cd dist
+          mv demo dist
+          tar -czvf dist.tar.gz dist
 
       - name: copy tar to server
         uses: appleboy/scp-action@master
@@ -45,7 +42,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
-          source: "dist.tar.gz"
+          source: "dist/dist.tar.gz"
           target: "/var/www/ngx-easy-table.eu/html/ngx-easy-table"
 
       - name: uncompress new files
