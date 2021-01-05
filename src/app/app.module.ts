@@ -165,7 +165,7 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
-        coreLibraryLoader: () => import('highlight.js/lib/highlight'),
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
         languages: {
           typescript: () => import('highlight.js/lib/languages/typescript'),
         },
