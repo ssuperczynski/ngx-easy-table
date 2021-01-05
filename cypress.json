@@ -3,5 +3,6 @@
   "video": false,
   "viewportWidth": 1920,
   "viewportHeight": 1080,
-  "retries": 1
+  "retries": 1,
+  "chromeWebSecurity": false
 }

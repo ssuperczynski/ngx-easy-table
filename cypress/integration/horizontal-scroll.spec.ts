@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-context('Select cell', () => {
+context('Horizontal scroll', () => {
   before(() => {
     cy.visit('http://127.0.0.1:4201/#/horizontal-scroll');
   });

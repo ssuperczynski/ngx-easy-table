@@ -53,7 +53,7 @@
     "@types/node": "^12.19.8",
     "bootstrap": "^4.5.3",
     "codelyzer": "^6.0.0",
-    "cypress": "^6.0.1",
+    "cypress": "^6.2.1",
     "faker": "^4.1.0",
     "http-server": "^0.12.3",
     "husky": "^4.3.0",
