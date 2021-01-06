@@ -35,7 +35,7 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
       .contains('+1 (878) 515-3653')
       .get('#table > tbody > tr:nth-child(2)')
-      .should('not.be.visible')
+      .should('not.exist')
       .get('#buttonClearAllInputs')
       .click({ force: true })
       .get('#buttonSetPhone')
@@ -45,7 +45,7 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div')
       .contains('+1 (882) 527-2652')
       .get('#table > tbody > tr:nth-child(3)')
-      .should('not.be.visible')
+      .should('not.exist')
       .get('#buttonClearAllInputs')
       .click({ force: true });
   });
@@ -63,7 +63,7 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
       .contains('+1 (878) 515-3653')
       .get('#table > tbody > tr:nth-child(2)')
-      .should('not.be.visible')
+      .should('not.exist')
       .get('#buttonClearAllInputs')
       .click({ force: true })
       .get('#buttonSetPhone')
@@ -73,7 +73,7 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div')
       .contains('+1 (882) 527-2652')
       .get('#table > tbody > tr:nth-child(3)')
-      .should('not.be.visible')
+      .should('not.exist')
       .get('#buttonClearAllInputs')
       .click({ force: true });
   });
@@ -109,7 +109,7 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(1)')
       .contains('+1 (949) 527-2108')
       .get('#table > tbody > tr:nth-child(4)')
-      .should('not.be.visible')
+      .should('not.exist')
       .get('#buttonSetPaginationDisplayLimit10')
       .click()
       .get('#table > tbody > tr:nth-child(1)')
