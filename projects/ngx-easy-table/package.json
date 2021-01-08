@@ -27,17 +27,9 @@
   "main": "main.js",
   "keywords": [
     "angular",
-    "angular2",
-    "angular9",
-    "angular10",
-    "angular11",
-    "angular ivy",
     "table",
     "angular table",
-    "angular2 table",
-    "angular 2 table",
     "angular-table",
-    "angular2-table",
     "ngx-easy-table"
   ],
   "author": "Sebastian Superczynski <s.superczynski@gmail.com>"
