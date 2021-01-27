@@ -33,7 +33,7 @@ export class InfiniteScrollComponent implements OnInit {
     this.configuration.rows = 10;
   }
 
-  onEvent($event: { event: Event; value: any }): void {
+  onEvent($event: { event: Event | string; value: any }): void {
     if ($event.event === Event.onInfiniteScrollEnd) {
       this.data = [...this.data, ...this.data];
       this.cdr.detectChanges();
