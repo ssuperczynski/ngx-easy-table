@@ -31,7 +31,7 @@ export class DynamicConfigurationComponent implements OnInit {
   }
 
   toggle(key: string, event: Event): void {
-    const isChecked = (event.target as HTMLInputElement).value;
+    const isChecked = (event.currentTarget as HTMLInputElement).checked;
     this.checked[key] = isChecked;
     this.configuration[key] = isChecked;
     this.configuration = { ...this.configuration };
