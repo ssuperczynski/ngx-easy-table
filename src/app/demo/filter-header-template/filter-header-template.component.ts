@@ -9,9 +9,8 @@ import { APIDefinition, Config, Columns, DefaultConfig } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterHeaderTemplateComponent implements OnInit {
-  @ViewChild('levelHeaderActionTemplate', { static: true }) levelHeaderActionTemplate: TemplateRef<
-    any
-  >;
+  @ViewChild('levelHeaderActionTemplate', { static: true })
+  levelHeaderActionTemplate: TemplateRef<any>;
   @ViewChild('companyHeaderActionTemplate', { static: true })
   companyHeaderActionTemplate: TemplateRef<any>;
   @ViewChild('table', { static: true }) table: APIDefinition;
@@ -38,7 +37,8 @@ export class FilterHeaderTemplateComponent implements OnInit {
     this.dataCopy = data;
   }
 
-  filter(field: string, value: string): void {
+  filter(field: string, event: Event | string): void {
+    const value = typeof event === 'string' ? event : (event.target as HTMLInputElement).value;
     if (field === 'level') {
       this.selectedLevels.has(value)
         ? this.selectedLevels.delete(value)

@@ -38,10 +38,8 @@
   <th></th>
   <th>
     <label>
-      <select class="form-select" (change)="onAgeSearch($event.target.value)">
-        <option value="">
-          Select age
-        </option>
+      <select class="form-select" (change)="onAgeSearch($event)">
+        <option value="">Select age</option>
         <option *ngFor="let age of ages" [ngValue]="age">
           {{ age }}
         </option>
@@ -52,7 +50,7 @@
     <label for="filter-company">
       <input
         class="form-input"
-        (input)="onCompanySearch($event.target.value)"
+        (input)="onCompanySearch($event)"
         type="text"
         id="filter-company"
         placeholder="Company"

@@ -136,7 +136,7 @@ export class AppComponent implements OnInit, OnDestroy {
     return [ROUTE.BASIC, ROUTE.API_DOC, ROUTE.DOC, ROUTE.INSTALLATION].includes(this.selected.link);
   }
 
-  onMenuSearch(value: string): void {
-    this.searchTerm = value;
+  onMenuSearch(event: Event): void {
+    this.searchTerm = (event.target as HTMLInputElement).value;
   }
 }

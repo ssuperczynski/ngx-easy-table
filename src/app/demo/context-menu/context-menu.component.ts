@@ -52,8 +52,8 @@ export class ContextMenuComponent implements OnInit {
     this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
-  update($event: any): void {
-    this.data[this.edit].phone = $event.target.value;
+  update(event: Event): void {
+    this.data[this.edit].phone = (event.target as HTMLInputElement).value;
     this.edit = -1;
   }
 }

@@ -30,7 +30,8 @@ export class DynamicConfigurationComponent implements OnInit {
     this.columns = columns;
   }
 
-  toggle(key: string, isChecked: boolean): void {
+  toggle(key: string, event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).value;
     this.checked[key] = isChecked;
     this.configuration[key] = isChecked;
     this.configuration = { ...this.configuration };

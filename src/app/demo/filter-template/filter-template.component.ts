@@ -35,7 +35,8 @@ export class FilterTemplateComponent implements OnInit {
     this.ages.sort();
   }
 
-  onAgeSearch(value: string): void {
+  onAgeSearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
     if (value === '') {
       this.rows = this.data;
     } else {
@@ -43,7 +44,9 @@ export class FilterTemplateComponent implements OnInit {
     }
   }
 
-  onCompanySearch(value: string): void {
-    this.rows = this.data.filter(({ company }) => company.toLowerCase().indexOf(value) > -1);
+  onCompanySearch(event: Event): void {
+    this.rows = this.data.filter(
+      ({ company }) => company.toLowerCase().indexOf((event.target as HTMLInputElement).value) > -1
+    );
   }
 }

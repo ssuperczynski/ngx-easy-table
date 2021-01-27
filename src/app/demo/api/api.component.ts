@@ -50,7 +50,8 @@ export class ApiComponent implements OnInit, AfterViewInit {
     this.setRowStyle();
   }
 
-  toggle(key: string, isChecked: boolean): void {
+  toggle(key: string, event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).value;
     this.checked[key] = isChecked;
     this.configuration[key] = isChecked;
     this.configuration = { ...this.configuration };
