@@ -47,6 +47,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "subresourceIntegrity": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
