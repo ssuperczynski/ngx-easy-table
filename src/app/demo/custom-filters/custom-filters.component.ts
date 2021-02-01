@@ -26,15 +26,18 @@ export class CustomFiltersComponent implements OnInit {
     this.rows = data;
   }
 
-  onCompanySearch(value: string): void {
+  onCompanySearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
     this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
   }
 
-  onAgeSearch(value: number): void {
+  onAgeSearch(event: Event): void {
+    const value = ((event.target as HTMLInputElement).value as unknown) as number;
     this.rows = this.data.filter((_) => _.age > value);
   }
 
-  onStatusChange(value: string): void {
+  onStatusChange(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
     this.rows = this.data.filter((_) => _.isActive === (value === 'true'));
   }
 

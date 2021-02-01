@@ -7,43 +7,23 @@
   <div class="column col-12">
     <div class="form-group">
       <label class="form-checkbox form-inline">
-        <input
-          type="checkbox"
-          [checked]="true"
-          (change)="toggle('paginationEnabled', $event.target.checked)"
-        />
+        <input type="checkbox" [checked]="true" (change)="toggle('paginationEnabled', $event)" />
         <i class="form-icon"></i> Pagination
       </label>
       <label class="form-checkbox form-inline">
-        <input
-          type="checkbox"
-          [checked]="true"
-          (change)="toggle('headerEnabled', $event.target.checked)"
-        />
+        <input type="checkbox" [checked]="true" (change)="toggle('headerEnabled', $event)" />
         <i class="form-icon"></i> Column names
       </label>
       <label class="form-checkbox form-inline">
-        <input
-          type="checkbox"
-          [checked]="true"
-          (change)="toggle('searchEnabled', $event.target.checked)"
-        />
+        <input type="checkbox" [checked]="true" (change)="toggle('searchEnabled', $event)" />
         <i class="form-icon"></i> Search
       </label>
       <label class="form-checkbox form-inline">
-        <input
-          type="checkbox"
-          id="checkbox-is-loading"
-          (change)="toggle('isLoading', $event.target.checked)"
-        />
+        <input type="checkbox" id="checkbox-is-loading" (change)="toggle('isLoading', $event)" />
         <i class="form-icon"></i> Is loading
       </label>
       <label class="form-checkbox form-inline">
-        <input
-          type="checkbox"
-          id="checkbox-checkboxes"
-          (change)="toggle('checkboxes', $event.target.checked)"
-        />
+        <input type="checkbox" id="checkbox-checkboxes" (change)="toggle('checkboxes', $event)" />
         <i class="form-icon"></i> Checkboxes
       </label>
     </div>

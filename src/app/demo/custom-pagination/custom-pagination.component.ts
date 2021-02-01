@@ -24,7 +24,7 @@ export class CustomPaginationComponent implements OnInit, AfterViewInit {
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;
-  public paginationTotalItems: number | void;
+  public paginationTotalItems: number;
   pagination: Pagination;
   public total;
   constructor(private cdr: ChangeDetectorRef) {}

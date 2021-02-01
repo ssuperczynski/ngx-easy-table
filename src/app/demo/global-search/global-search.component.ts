@@ -25,10 +25,10 @@ export class GlobalSearchComponent implements OnInit {
     this.data = data;
   }
 
-  onChange(name: string): void {
+  onChange(event: Event): void {
     this.table.apiEvent({
       type: API.onGlobalSearch,
-      value: name,
+      value: (event.target as HTMLInputElement).value,
     });
   }
 }

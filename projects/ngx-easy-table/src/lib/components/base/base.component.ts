@@ -86,7 +86,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   @Input() additionalActionsTemplate: TemplateRef<void>;
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
-  @Output() readonly event = new EventEmitter<{ event: string; value: any }>();
+  @Output() readonly event = new EventEmitter<{ event: Event; value: any }>();
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
   @ViewChild('contextMenu') contextMenu;
@@ -545,7 +545,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     }
   }
 
-  public emitEvent(event: string, value: any): void {
+  public emitEvent(event: Event, value: any): void {
     this.event.emit({ event, value });
     if (this.config.persistState) {
       localStorage.setItem(event, JSON.stringify(value));

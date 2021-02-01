@@ -15,7 +15,7 @@
       <label class="form-label" for="filter-company">Filter by company only</label>
       <input
         class="form-input"
-        (input)="onCompanySearch($event.target.value)"
+        (input)="onCompanySearch($event)"
         type="text"
         id="filter-company"
         placeholder="Company"
@@ -27,7 +27,7 @@
       <label class="form-label" for="filter-age">Age bigger than</label>
       <input
         class="form-input"
-        (input)="onAgeSearch($event.target.value)"
+        (input)="onAgeSearch($event)"
         min="1"
         max="80"
         type="number"
@@ -40,7 +40,7 @@
 <div class="columns mt-2">
   <div class="column col-6">
     <div class="form-group">
-      <select class="form-select" (change)="onStatusChange($event.target.value)">
+      <select class="form-select" (change)="onStatusChange($event)">
         <option>Choose an option</option>
         <option>true</option>
         <option>false</option>

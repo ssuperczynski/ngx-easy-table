@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig, Event as ngxEvent } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-inline',
@@ -28,13 +28,13 @@ export class InlineComponent implements OnInit {
   }
 
   eventEmitted($event: { event: string; value: any }): void {
-    if ($event.event === Event.onDoubleClick) {
+    if ($event.event === ngxEvent.onDoubleClick) {
       this.edit = $event.value.rowId;
     }
   }
 
-  update($event: any): void {
-    this.data[this.edit].phone = $event.target.value;
+  update(event: Event): void {
+    this.data[this.edit].phone = (event.target as HTMLInputElement).value;
     this.edit = -1;
   }
 }

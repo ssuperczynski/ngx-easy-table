@@ -35,14 +35,12 @@
 </ng-template>
 <ng-template #companyHeaderActionTemplate>
   <div class="search-template">
-    <label for="filterHeaderSearch">
-      Search
-    </label>
+    <label for="filterHeaderSearch"> Search </label>
     <input
       class="form-input"
       id="filterHeaderSearch"
       [value]="selectedCompany"
-      (input)="filter('company', $event.target.value)"
+      (input)="filter('company', $event)"
       type="search"
       placeholder="Search"
     />

@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Company, CompanyService } from '../../services/company.service';
+import { CompanyService } from '../../services/company.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-async',
@@ -13,7 +12,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class AsyncComponent implements OnInit {
   public configuration: Config;
-  public data$: Observable<HttpResponse<Company[]>>;
+  public data$: Observable<any>;
   public columns: Columns[];
 
   constructor(private companyService: CompanyService) {}
