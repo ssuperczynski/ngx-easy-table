@@ -10,7 +10,7 @@
 }
 
 .off-canvas .off-canvas-sidebar {
-  width: 12rem;
+  width: 13rem;
 }
 
 .off-canvas .off-canvas-content {
@@ -27,6 +27,8 @@
   right: 0;
   top: 0;
   z-index: 100;
+  margin-top: 6px;
+  margin-right: 6px;
 }
 
 .docs-sidebar .docs-nav {
@@ -111,10 +113,11 @@
 }
 
 @media (max-width: 600px) {
-  .docs-sidebar .docs-nav {
-    padding: 0.5rem 1rem;
-  }
   .docs-content {
     padding: 0 0.5rem;
+  }
+  .docs-sidebar .accordion .menu .menu-item {
+    font-size: 1rem;
+    padding-left: 0;
   }
 }

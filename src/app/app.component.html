@@ -1,12 +1,12 @@
 <div class="docs-container off-canvas off-canvas-sidebar-show">
   <div class="docs-navbar">
-    <a
-      class="off-canvas-display btn btn-link btn-action"
+    <button
+      class="off-canvas-display btn btn-action s-circle"
       *ngIf="!showMenu"
       (click)="showMenu = !showMenu"
     >
       <i class="icon icon-menu"></i>
-    </a>
+    </button>
   </div>
 
   <div id="sidebar" class="docs-sidebar off-canvas-sidebar" [class.active]="showMenu">
@@ -89,7 +89,7 @@
             <ul class="menu menu-nav">
               <li class="divider" [attr.data-content]="position.key"></li>
               <li class="menu-item" *ngFor="let row of position.value | menuSearch: searchTerm">
-                <a href="#" [routerLink]="[row.link]" (click)="select(row)" id="{{ row.link }}">
+                <a href="#" [routerLink]="[row.link]" id="{{ row.link }}">
                   <i class="icon icon-link"></i> {{ row.name }}
                 </a>
               </li>

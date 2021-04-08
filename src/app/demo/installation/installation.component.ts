@@ -85,7 +85,8 @@ export class AppComponent  {
   public readonly angularJsonCode = `
 "styles": [
   "node_modules/ngx-easy-table/style.css",
-  "node_modules/typeface-montserrat/index.css",
+  "node_modules/fontsource-montserrat/400.css",
+  "node_modules/fontsource-montserrat/500.css",
 ],
 `;
   public readonly styleScssCode = `
