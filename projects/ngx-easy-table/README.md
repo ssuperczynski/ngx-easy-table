@@ -37,5 +37,5 @@ See https://ngx-easy-table.eu/#/doc
 
 ## Misc
 
-I'm working currently to add Ngrx and Nx to this project.
-I see all the bugs you posting, but my time is very limited these days and I can't spend on this project as much time as before. I'm really sorry.
+This project is feature complete, and I don't plan to add any new features.
+I update the library to provide support for the latest Angular releases.
