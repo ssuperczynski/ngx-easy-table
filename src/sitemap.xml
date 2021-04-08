@@ -1,0 +1,37 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://ngx-easy-table.eu/</loc>
+    <lastmod>2021-04-07T15:33:15+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ngx-easy-table.eu/#/installation</loc>
+    <lastmod>2021-04-07T15:33:15+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ngx-easy-table.eu/#/doc</loc>
+    <lastmod>2021-04-07T15:33:15+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ngx-easy-table.eu/#/pagination</loc>
+    <lastmod>2021-04-07T15:33:15+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ngx-easy-table.eu/#/template</loc>
+    <lastmod>2021-04-07T15:33:15+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ngx-easy-table.eu/#/row-template</loc>
+    <lastmod>2021-04-07T15:33:15+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ngx-easy-table.eu/#/col-template</loc>
+    <lastmod>2021-04-07T15:33:15+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+</urlset>
