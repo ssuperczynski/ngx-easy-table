@@ -4,7 +4,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ROUTE } from './route-names';
-import * as FullStory from '@fullstory/browser';
 
 export interface Link {
   link: string;
@@ -18,12 +17,7 @@ export interface Link {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {
-    FullStory.init({
-      orgId: '121NAC',
-      devMode: !environment.production,
-    });
-  }
+  constructor(private router: Router) {}
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public readonly version = environment.VERSION;
