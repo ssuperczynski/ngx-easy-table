@@ -29,12 +29,9 @@
     "@angular/animations": "^11.2.5",
     "@angular/forms": "^11.2.5",
     "@angular/material": "^11.2.4",
-    "@fullstory/browser": "^1.4.9",
     "export-to-csv": "^0.2.1",
     "ngx-easy-table": "^14.0.0",
-    "ngx-highlightjs": "^4.1.3",
-    "spectre.css": "^0.5.9",
-    "fontsource-montserrat": "^4.0.0"
+    "ngx-highlightjs": "^4.1.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.4",
