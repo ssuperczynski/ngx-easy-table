@@ -75,7 +75,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // tslint:disable-next-line:no-identical-functions
+  // eslint-disable-next-line
   setAge(): void {
     this.table.apiEvent({
       type: API.setInputValue,

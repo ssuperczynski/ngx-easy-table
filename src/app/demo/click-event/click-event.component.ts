@@ -28,7 +28,7 @@ export class ClickEventComponent implements OnInit {
 
   eventEmitted($event: { event: string; value: any }): void {
     this.clicked = JSON.stringify($event);
-    // tslint:disable-next-line:no-console
+    // eslint-disable-next-line no-console
     console.log('$event', $event);
   }
 }

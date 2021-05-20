@@ -40,6 +40,7 @@ export class FilterHeaderTemplateComponent implements OnInit {
   filter(field: string, event: Event | string): void {
     const value = typeof event === 'string' ? event : (event.target as HTMLInputElement).value;
     if (field === 'level') {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       this.selectedLevels.has(value)
         ? this.selectedLevels.delete(value)
         : this.selectedLevels.add(value);

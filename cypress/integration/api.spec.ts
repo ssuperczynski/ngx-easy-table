@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-// tslint:disable:no-big-function
 context('API', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:4201/#/api');

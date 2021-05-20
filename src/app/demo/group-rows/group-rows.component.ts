@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { random, company, name } from 'faker';
+import { datatype, company, name } from 'faker';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
@@ -33,7 +33,7 @@ export class GroupRowsComponent implements OnInit {
     return Array(31)
       .fill('')
       .map((_, key) => ({
-        amount: random.number(300),
+        amount: datatype.number(300),
         debit: 300,
         company: company.companyName(),
         name: `${name.firstName()} ${name.lastName()}`,

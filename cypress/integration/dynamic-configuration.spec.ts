@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-// tslint:disable-next-line:no-big-function
 context('Dynamic configuration', () => {
   before(() => {
     cy.visit('http://127.0.0.1:4201/#/dynamic-configuration');

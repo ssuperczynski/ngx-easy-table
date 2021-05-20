@@ -1,5 +1,4 @@
 /// <reference types="Cypress" />
-/* tslint:disable:no-big-function no-identical-functions */
 context('Server sort', () => {
   describe('nothing clicked', () => {
     beforeEach(() => {

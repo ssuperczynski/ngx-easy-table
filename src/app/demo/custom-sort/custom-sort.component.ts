@@ -46,7 +46,7 @@ export class CustomSortComponent implements OnInit {
   }
 
   sortByAge(): void {
-    /* tslint:disable-next-line */
+    /* eslint-disable-next-line */
     this.data = [
       ...this.data.sort((a, b) => {
         const ageA = a.age;

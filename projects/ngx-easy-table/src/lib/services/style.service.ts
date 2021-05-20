@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CellClass, CellStyle, RowClass, RowStyle } from '..';
 
-/* tslint:disable:no-useless-cast */
+/* eslint-disable */
 @Injectable()
 export class StyleService {
   public setRowClass(val: RowClass): void {
@@ -24,7 +24,7 @@ export class StyleService {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
     const row = document.querySelector(selector) as HTMLTableRowElement;
     if (row) {
-      // tslint:disable-next-line:no-string-literal
+      // eslint-disable-next-line @typescript-eslint/dot-notation
       row.style[val.attr] = val.value;
     }
   }
@@ -33,7 +33,7 @@ export class StyleService {
     const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
     const cell = document.querySelector(selector) as HTMLTableCellElement;
     if (cell) {
-      // tslint:disable-next-line:no-string-literal
+      // eslint-disable-next-line @typescript-eslint/dot-notation
       cell.style[val.attr] = val.value;
     }
   }

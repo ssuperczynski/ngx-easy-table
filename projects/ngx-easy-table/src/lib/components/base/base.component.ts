@@ -212,13 +212,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick(
-    $event: MouseEvent,
-    row: object,
-    key: ColumnKeyType,
-    colIndex: any,
-    rowIndex: number
-  ): void {
+  onClick($event: MouseEvent, row: any, key: ColumnKeyType, colIndex: any, rowIndex: number): void {
     if (this.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -244,7 +238,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
 
   onDoubleClick(
     $event: MouseEvent,
-    row: object,
+    row: any,
     key: ColumnKeyType,
     colIndex: any,
     rowIndex: number
@@ -259,7 +253,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     this.emitEvent(Event.onDoubleClick, value);
   }
 
-  onCheckboxSelect($event: object, row: object, rowIndex: number): void {
+  onCheckboxSelect($event: any, row: any, rowIndex: number): void {
     const value = {
       event: $event,
       row,
@@ -268,7 +262,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     this.emitEvent(Event.onCheckboxSelect, value);
   }
 
-  onRadioSelect($event: object, row: object, rowIndex: number): void {
+  onRadioSelect($event: any, row: any, rowIndex: number): void {
     const value = {
       event: $event,
       row,
@@ -303,6 +297,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   }
 
   toggleCheckbox(rowIndex: number): void {
+    /* eslint-disable @typescript-eslint/no-unused-expressions */
     this.selectedCheckboxes.has(rowIndex)
       ? this.selectedCheckboxes.delete(rowIndex)
       : this.selectedCheckboxes.add(rowIndex);
@@ -373,7 +368,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
 
   onRowContextMenu(
     $event: MouseEvent,
-    row: object,
+    row: any,
     key: ColumnKeyType,
     colIndex: any,
     rowIndex: number
@@ -418,7 +413,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     return this.bindApi(event);
   }
 
-  // tslint:disable:no-big-function cognitive-complexity mccabe-complexity
+  /* eslint-disable */
   private bindApi(event: ApiType): void | number {
     switch (event.type) {
       case API.rowContextMenuClicked:
@@ -551,7 +546,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       localStorage.setItem(event, JSON.stringify(value));
     }
     if (this.config.logger) {
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log({ event, value });
     }
   }

@@ -26,7 +26,7 @@ export class SearchPipe implements PipeTransform {
     filter.forEach((f) => {
       this.filters[f.key] = f.value.toString().toLocaleLowerCase();
       if (Object.keys(f).length === 0 || f.value === '') {
-        // tslint:disable-next-line:no-dynamic-delete
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete this.filters[f.key];
       }
     });
@@ -44,7 +44,7 @@ export class SearchPipe implements PipeTransform {
         const element =
           typeof val === 'object' ? JSON.stringify(val) : val.toString().toLocaleLowerCase();
         const strings = this.filters[c].split(',');
-        return strings.some((string) => element.indexOf(string.trim()) > -1);
+        return strings.some((s) => element.indexOf(s.trim()) > -1);
       });
     });
     filteredCountSubject.next(arr.length);

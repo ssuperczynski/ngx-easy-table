@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Config, STYLE, THEME } from '../model/config';
 
-// tslint:disable-next-line:variable-name
+// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
 export const DefaultConfig: Config = {
   searchEnabled: false,
   headerEnabled: true,
