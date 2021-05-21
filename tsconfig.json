@@ -13,7 +13,6 @@
     "noUnusedParameters": true,
     "strictNullChecks": false,
     "skipLibCheck": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "baseUrl": "./",
     "target": "es2018",

@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 
-/* tslint:disable:no-big-function */
 context('Infinite scroll server', () => {
   describe('on scroll', () => {
     it('loads next items', () => {

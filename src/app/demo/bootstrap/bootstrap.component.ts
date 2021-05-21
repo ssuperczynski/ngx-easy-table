@@ -12,7 +12,7 @@ import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-tab
   selector: 'app-bootstrap',
   templateUrl: './bootstrap.component.html',
   styleUrls: ['./bootstrap.component.scss'],
-  // tslint:disable-next-line:use-view-encapsulation
+  // eslint-disable-next-line
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

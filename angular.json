@@ -35,7 +35,14 @@
               "src/assets/sample.scss",
               "projects/ngx-easy-table/assets/style.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "aot": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -88,10 +95,9 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -115,10 +121,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/ngx-easy-table/tsconfig.lib.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/ngx-easy-table/**/*.ts",
+              "projects/ngx-easy-table/**/*.html"
+            ]
           }
         }
       }
@@ -126,6 +134,7 @@
   },
   "defaultProject": "demo",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }

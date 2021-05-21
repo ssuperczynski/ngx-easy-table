@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core';
-import { phone, company, random, name } from 'faker';
+import { phone, company, datatype, name } from 'faker';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
@@ -40,10 +40,10 @@ export class HorizontalScrollComponent implements OnInit {
       .map(() => {
         return {
           phone: phone.phoneNumberFormat(),
-          age: random.number({ min: 15, max: 70 }).toString(),
+          age: datatype.number({ min: 15, max: 70 }).toString(),
           company: company.companyName(),
           name: `${name.firstName()} ${name.lastName()}`,
-          isActive: random.boolean(),
+          isActive: datatype.boolean(),
           company2: company.companyName(),
           company3: company.companyName(),
           company4: company.companyName(),

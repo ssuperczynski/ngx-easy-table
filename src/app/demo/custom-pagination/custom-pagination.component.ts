@@ -15,7 +15,7 @@ import { PageEvent } from '@angular/material/paginator';
   selector: 'app-custom-pagination',
   templateUrl: './custom-pagination.component.html',
   styleUrls: ['./custom-pagination.component.scss'],
-  // tslint:disable-next-line:use-view-encapsulation
+  // eslint-disable-next-line
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

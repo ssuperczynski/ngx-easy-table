@@ -15,7 +15,6 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "inlineSources": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "types": [],

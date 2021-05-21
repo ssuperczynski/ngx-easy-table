@@ -29,6 +29,7 @@ export class ToggleColumnComponent implements OnInit {
   }
 
   toggle(name: string): void {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.checked.has(name) ? this.checked.delete(name) : this.checked.add(name);
     this.columns = this.columnsCopy.filter((column) => this.checked.has(column.key));
   }

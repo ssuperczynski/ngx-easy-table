@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 
-/* tslint:disable:no-big-function max-file-line-count */
 context('Server pagination', () => {
   xdescribe('test pagination flow', () => {
     it('gets correct phone', () => {
