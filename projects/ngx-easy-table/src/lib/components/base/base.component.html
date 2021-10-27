@@ -526,6 +526,7 @@
     [attr.id]="'pagination' + id"
     [id]="id"
     #paginationComponent
+    [rouwCount]="filterCount"
     [config]="config"
     [pagination]="pagination"
     (updateRange)="onPagination($event)"
