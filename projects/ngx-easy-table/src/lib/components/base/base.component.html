@@ -440,11 +440,13 @@
             let rowIndex = index
           "
         >
-          <tr class="ngx-draggable-row"
-              cdkDrag
-              (cdkDragStarted)="onDragStart($event)"
-              [cdkDragStartDelay]="config.reorderDelay || 0"
-              cdkDragLockAxis="y">
+          <tr
+            class="ngx-draggable-row"
+            cdkDrag
+            (cdkDragStarted)="onDragStart($event)"
+            [cdkDragStartDelay]="config.reorderDelay || 0"
+            cdkDragLockAxis="y"
+          >
             <td *ngIf="config.checkboxes">
               <label class="ngx-form-checkbox">
                 <input
@@ -530,6 +532,7 @@
     [attr.id]="'pagination' + id"
     [id]="id"
     #paginationComponent
+    [rowCount]="filterCount"
     [config]="config"
     [pagination]="pagination"
     (updateRange)="onPagination($event)"
