@@ -192,7 +192,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       return;
     }
 
-    this.setColumnOrder(this.sortKey);
+    this.setColumnOrder(column);
     if (!this.config.orderEventOnly && !column.orderEventOnly) {
       this.sortBy.key = this.sortKey;
       this.sortBy.order = this.sortState.get(this.sortKey);
@@ -520,11 +520,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     }
   }
 
-  private setColumnOrder(key: string): void {
+  private setColumnOrder(column: Columns): void {
+    const key: string = column.key;
+
     switch (this.sortState.get(key)) {
       case '':
       case undefined:
-        this.sortState.set(key, 'desc');
+        this.sortState.set(key, column.orderBy ||'desc');
         break;
       case 'asc':
         this.config.threeWaySort ? this.sortState.set(key, '') : this.sortState.set(key, 'desc');
