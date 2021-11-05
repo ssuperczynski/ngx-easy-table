@@ -66,26 +66,6 @@ context('Search', () => {
       .tableRow(2, 3)
       .contains('CALCULA');
   });
-  it('gets two rows when name "d" typed, and nested object "address.street" has letters "sou" from page 2', () => {
-    cy.visit('http://127.0.0.1:4201/#/search');
-    cy.get('#pagination-controls > ul > li.pagination-next > a').click();
-    cy.getInput('company')
-      .type('{selectall}{backspace}')
-      .getInput('age')
-      .type('{selectall}{backspace}')
-      .getInput('name')
-      .type('d')
-      .getInput('address_street')
-      .type('sou')
-      .tableRow(1, 1)
-      .contains('+1 (948) 460-3627')
-      .tableRow(1, 3)
-      .contains('KNOWLYSIS')
-      .tableRow(2, 1)
-      .contains('+1 (902) 500-3665')
-      .tableRow(2, 3)
-      .contains('CALCULA');
-  });
   it('gets two rows when applied string with comma separator', () => {
     cy.getInput('company')
       .type('{selectall}{backspace}')
