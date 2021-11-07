@@ -42,7 +42,7 @@ export class PaginationRangeComponent implements OnInit {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    this.configuration.paginationMaxSize = 7;
+    this.configuration.rows = 7;
     this.data = PaginationRangeComponent.generateData();
   }
 }
