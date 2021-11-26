@@ -38,7 +38,7 @@ export class StyleService {
     }
   }
 
-  public pinnedWidth(pinned: boolean, column: number): string | undefined {
+  public pinnedWidth(pinned: boolean | undefined, column: number): string | undefined {
     if (pinned) {
       return 150 * column + 'px';
     }

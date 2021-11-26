@@ -7,12 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InstallationComponent {
-  public readonly npmInstallCode = `
-npm install ngx-easy-table --save
+  public readonly npmInstallCode = `npm install ngx-easy-table --save
 npm install @angular/cdk --save
 `;
-  public readonly appModuleCode = `
-import { BrowserModule } from '@angular/platform-browser';
+  public readonly appModuleCode = `import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -32,14 +30,12 @@ import { TableModule } from 'ngx-easy-table';
 export class AppModule {
 }
 `;
-  public readonly appComponentHtmlCode = `
-<ngx-table [configuration]="configuration"
+  public readonly appComponentHtmlCode = `<ngx-table [configuration]="configuration"
            [data]="data"
            [columns]="columns">
 </ngx-table>
 `;
-  public readonly appComponentTsCode = `
-import { Component } from '@angular/core';
+  public readonly appComponentTsCode = `import { Component } from '@angular/core';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
@@ -82,13 +78,11 @@ export class AppComponent  {
 }
 `;
 
-  public readonly angularJsonCode = `
-"styles": [
+  public readonly angularJsonCode = `"styles": [
   "node_modules/ngx-easy-table/style.css"
 ],
 `;
-  public readonly styleScssCode = `
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+  public readonly styleScssCode = `@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 @import "~ngx-easy-table/style.scss";
 `;
   public readonly tableFontCode = `:host ::ng-deep #table {
