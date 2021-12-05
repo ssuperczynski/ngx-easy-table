@@ -25,6 +25,7 @@
 !.vscode/extensions.json
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -48,3 +49,4 @@ dist.tgz
 cypress/videos
 /cypress/screenshots/
 projects/ngx-easy-table/node_modules
+.cache

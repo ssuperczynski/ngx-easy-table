@@ -1,14 +1,14 @@
 {
   "name": "ngx-easy-table",
-  "version": "15.0.0",
+  "version": "15.1.0",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": ">=10.0.0",
-    "@angular/common": ">=10.0.0",
-    "@angular/core": ">=10.0.0",
+    "@angular/cdk": ">=11.0.0",
+    "@angular/common": ">=11.0.0",
+    "@angular/core": ">=11.0.0",
     "ngx-pagination": "^5.0.0"
   },
   "dependencies": {
