@@ -2,7 +2,7 @@
 
 context('Click event', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/click-event');
+    cy.visit('http://127.0.0.1:4202/#/click-event');
   });
 
   it('shows click event when pagination clicked', () => {

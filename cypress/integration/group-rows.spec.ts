@@ -2,7 +2,7 @@
 
 context('Group rows', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/group-rows');
+    cy.visit('http://127.0.0.1:4202/#/group-rows');
   });
 
   it('group rows by "Active" status', () => {
@@ -33,7 +33,7 @@ context('Group rows', () => {
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(3)')
       .contains('Debit summary: 0');
   });
-  it('group rows by "Active" status and go to pagination 2 step', () => {
+  it('group rows by "Amount" status and go to pagination 2 step', () => {
     cy.get('#selectors > label:nth-child(1)')
       .click()
       .get('#pagination-controls > ul > li:nth-child(4) > a')

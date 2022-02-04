@@ -2,7 +2,7 @@
 
 context('Pagination', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/pagination');
+    cy.visit('http://127.0.0.1:4202/#/pagination');
   });
 
   it('gets correct phone when no pagination clicked', () => {

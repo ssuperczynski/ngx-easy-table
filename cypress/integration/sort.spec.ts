@@ -2,7 +2,7 @@
 
 context('Sort', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/sort');
+    cy.visit('http://127.0.0.1:4202/#/sort');
   });
 
   it('gets correct default order by "Age" descending when nothing clicked', () => {

@@ -2,7 +2,7 @@
 
 context('Checkboxes', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/checkbox-default');
+    cy.visit('http://127.0.0.1:4202/#/checkbox-default');
   });
 
   it('selects 3 checkboxes', () => {

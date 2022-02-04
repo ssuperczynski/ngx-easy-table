@@ -2,7 +2,7 @@
 
 context('Custom intable sort', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/custom-intable-sort');
+    cy.visit('http://127.0.0.1:4202/#/custom-intable-sort');
   });
 
   it('gets sorted results by surname', () => {

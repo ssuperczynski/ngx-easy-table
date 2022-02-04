@@ -2,7 +2,7 @@
 
 context('Column template', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/col-template');
+    cy.visit('http://127.0.0.1:4202/#/col-template');
   });
 
   it('renders custom template for Phone column', () => {

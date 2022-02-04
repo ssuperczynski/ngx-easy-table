@@ -2,7 +2,7 @@
 
 context('Pinned column', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:4201/#/pinned');
+    cy.visit('http://127.0.0.1:4202/#/pinned');
   });
   it('by default first column is pinned', () => {
     cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1)').should(

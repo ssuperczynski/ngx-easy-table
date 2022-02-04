@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 context('Search', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/search');
+    cy.visit('http://127.0.0.1:4202/#/search');
   });
   it('gets correct company name when "COLAIRE" typed', () => {
     cy.getInput('company')

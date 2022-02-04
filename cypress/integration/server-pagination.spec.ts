@@ -726,7 +726,7 @@ context('Server pagination', () => {
           ],
         }
       ).as('firstPage');
-      cy.visit('http://127.0.0.1:4201/#/server-pagination');
+      cy.visit('http://127.0.0.1:4202/#/server-pagination');
       const phoneCell = '#table > tbody > tr:nth-child(1) > td:nth-child(1) > div';
       cy.wait('@fullList')
         // 2nd page

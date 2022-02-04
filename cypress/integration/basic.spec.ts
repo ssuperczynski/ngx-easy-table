@@ -2,7 +2,7 @@
 
 context('Basic config', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/basic');
+    cy.visit('http://127.0.0.1:4202/#/basic');
   });
 
   it('gets correct row data when no config', () => {

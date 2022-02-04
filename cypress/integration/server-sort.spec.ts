@@ -77,7 +77,7 @@ context('Server sort', () => {
           ],
         }
       ).as('sortAsc');
-      cy.visit('http://127.0.0.1:4201/#/server-sort');
+      cy.visit('http://127.0.0.1:4202/#/server-sort');
     });
     it('gets correct default order', () => {
       cy.wait('@fullList')

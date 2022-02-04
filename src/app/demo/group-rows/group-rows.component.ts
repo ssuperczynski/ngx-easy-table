@@ -32,7 +32,7 @@ export class GroupRowsComponent implements OnInit {
     return Array(31)
       .fill('')
       .map((_, key) => ({
-        amount: 200,
+        amount: this.randomInteger(100, 800),
         debit: 300,
         company: 'Some company',
         name: `John Doe`,
@@ -67,5 +67,9 @@ export class GroupRowsComponent implements OnInit {
   onRowClickEvent($event: MouseEvent, index: number): void {
     $event.preventDefault();
     this.toggleRowIndex = { index };
+  }
+
+  private static randomInteger(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }

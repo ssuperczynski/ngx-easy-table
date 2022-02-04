@@ -2,7 +2,7 @@
 
 context('Column template', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:4201/#/filter-header-template');
+    cy.visit('http://127.0.0.1:4202/#/filter-header-template');
   });
 
   it('shows "Level" menu, and filter list using checkboxes', () => {

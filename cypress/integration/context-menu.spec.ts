@@ -2,7 +2,7 @@
 
 context('Context menu', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:4201/#/context-menu');
+    cy.visit('http://127.0.0.1:4202/#/context-menu');
   });
 
   it('checks if custom context menu works', () => {
