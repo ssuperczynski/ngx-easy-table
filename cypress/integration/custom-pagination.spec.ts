@@ -2,7 +2,7 @@
 
 context('Custom pagination', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:4201/#/custom-pagination');
+    cy.visit('http://127.0.0.1:4202/#/custom-pagination');
   });
 
   it('goes to the second page', () => {

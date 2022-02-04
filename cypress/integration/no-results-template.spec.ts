@@ -2,7 +2,7 @@
 
 context('No results template', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/no-results-template');
+    cy.visit('http://127.0.0.1:4202/#/no-results-template');
   });
 
   it('show custom "no-results-template"', () => {

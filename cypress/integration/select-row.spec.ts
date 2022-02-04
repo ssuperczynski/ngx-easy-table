@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 context('Select row', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/select-row');
+    cy.visit('http://127.0.0.1:4202/#/select-row');
   });
   it('checks row selection on click', () => {
     const secondColFirstRow = '#table > tbody > tr:nth-child(1) > td:nth-child(2)';

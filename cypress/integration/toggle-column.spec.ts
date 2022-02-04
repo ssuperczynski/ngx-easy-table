@@ -2,7 +2,7 @@
 
 context('Toggle column config', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/toggle-column');
+    cy.visit('http://127.0.0.1:4202/#/toggle-column');
   });
 
   it('hides "Age column"', () => {

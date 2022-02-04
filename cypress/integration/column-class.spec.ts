@@ -2,7 +2,7 @@
 
 context('Column class', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/column-class');
+    cy.visit('http://127.0.0.1:4202/#/column-class');
   });
   it('by default "Company" column has class "blue"', () => {
     cy.get('#table > thead > tr:nth-child(1) > th:nth-child(3)')

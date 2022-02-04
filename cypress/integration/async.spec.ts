@@ -2,7 +2,7 @@
 
 context('Async', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/async');
+    cy.visit('http://127.0.0.1:4202/#/async');
   });
 
   it('gets correct row data when async call', () => {

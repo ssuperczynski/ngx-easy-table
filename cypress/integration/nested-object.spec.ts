@@ -2,7 +2,7 @@
 
 context('Nested object', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/nested-object');
+    cy.visit('http://127.0.0.1:4202/#/nested-object');
   });
 
   it('renders correctly nested object property', () => {

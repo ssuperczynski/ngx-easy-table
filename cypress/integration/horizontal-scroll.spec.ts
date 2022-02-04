@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 context('Horizontal scroll', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/horizontal-scroll');
+    cy.visit('http://127.0.0.1:4202/#/horizontal-scroll');
   });
   it('checks if horizontal scroll works', () => {
     cy.get('#table')

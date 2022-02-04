@@ -2,7 +2,7 @@
 
 context('Summary footer', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/summary-footer');
+    cy.visit('http://127.0.0.1:4202/#/summary-footer');
   });
 
   it('has 40 items in the first th', () => {

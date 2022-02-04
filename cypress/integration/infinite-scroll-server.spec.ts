@@ -142,7 +142,7 @@ context('Infinite scroll server', () => {
           ],
         }
       ).as('firstCall');
-      cy.visit('http://127.0.0.1:4201/#/infinite-scroll-server');
+      cy.visit('http://127.0.0.1:4202/#/infinite-scroll-server');
       const tenthItem =
         '#table > tbody > cdk-virtual-scroll-viewport > div.cdk-virtual-scroll-content-wrapper > tr:nth-child(10) > td:nth-child(3) > div';
       cy.wait('@firstCall')

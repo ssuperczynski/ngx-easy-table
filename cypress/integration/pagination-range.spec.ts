@@ -2,7 +2,7 @@
 
 context('Pagination range', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/pagination-range');
+    cy.visit('http://127.0.0.1:4202/#/pagination-range');
   });
 
   it('gets correct pagination numbers when paginationMaxSize is set to 7', () => {

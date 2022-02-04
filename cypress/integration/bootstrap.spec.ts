@@ -2,7 +2,7 @@
 
 context('Bootstrap', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/bootstrap');
+    cy.visit('http://127.0.0.1:4202/#/bootstrap');
   });
   it('sets table styles to Bootstrap', () => {
     cy.get('#buttonSetBootstrap')

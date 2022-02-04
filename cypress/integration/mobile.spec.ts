@@ -2,7 +2,7 @@
 
 context('Mobile resolution', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/mobile');
+    cy.visit('http://127.0.0.1:4202/#/mobile');
     cy.viewport('iphone-6');
   });
 

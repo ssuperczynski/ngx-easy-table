@@ -2,7 +2,7 @@
 
 context('Nested table', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/nested-table');
+    cy.visit('http://127.0.0.1:4202/#/nested-table');
   });
 
   it('shows row template', () => {

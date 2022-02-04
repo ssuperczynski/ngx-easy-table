@@ -2,7 +2,7 @@
 
 context('API', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:4201/#/api');
+    cy.visit('http://127.0.0.1:4202/#/api');
   });
   it('clears all the inputs', () => {
     cy.get('#accordionHeaderInputs')

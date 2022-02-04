@@ -2,7 +2,7 @@
 
 context('Many tables', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:4201/#/many-tables');
+    cy.visit('http://127.0.0.1:4202/#/many-tables');
   });
 
   describe('configurationBasic', () => {
