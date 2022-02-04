@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { phone, datatype, company, name } from 'faker';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
@@ -31,11 +30,11 @@ export class PaginationRangeComponent implements OnInit {
       .fill('')
       .map(() => {
         return {
-          phone: phone.phoneNumberFormat(),
-          age: datatype.number({ min: 15, max: 70 }).toString(),
-          company: company.companyName(),
-          name: `${name.firstName()} ${name.lastName()}`,
-          isActive: datatype.boolean(),
+          phone: '555-567-5918',
+          age: '34',
+          company: 'Some company',
+          name: `John Doe`,
+          isActive: true,
         };
       });
   }

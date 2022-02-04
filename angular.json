@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["highlight.js", "faker", "export-to-csv"],
+            "allowedCommonJsDependencies": ["highlight.js", "export-to-csv"],
             "outputPath": "dist/demo",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,7 +27,22 @@
               "src/assets",
               "src/favicon.ico",
               "src/sitemap.xml",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "spectre.min.css",
+                "input": "./node_modules/spectre.css/dist",
+                "output": "./assets/"
+              },
+              {
+                "glob": "spectre-exp.min.css",
+                "input": "./node_modules/spectre.css/dist",
+                "output": "./assets/"
+              },
+              {
+                "glob": "spectre-icons.min.css",
+                "input": "./node_modules/spectre.css/dist",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "node_modules/highlight.js/styles/rainbow.css",
@@ -52,14 +67,21 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": true
+              },
               "outputHashing": "all",
               "sourceMap": false,
               "subresourceIntegrity": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
+              "vendorChunk": true,
               "buildOptimizer": true,
               "budgets": [
                 {
@@ -72,8 +94,7 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "serviceWorker": false,
-              "ngswConfigPath": "ngsw-config.json"
+              "serviceWorker": false
             }
           }
         },
