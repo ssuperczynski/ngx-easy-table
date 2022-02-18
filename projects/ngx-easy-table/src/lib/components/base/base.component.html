@@ -440,7 +440,10 @@
             let rowIndex = index
           "
         >
-          <tr class="ngx-draggable-row" cdkDrag cdkDragLockAxis="y">
+          <tr class="ngx-draggable-row"
+              cdkDrag
+              [cdkDragStartDelay]="config.reorderDelay || 0"
+              cdkDragLockAxis="y">
             <td *ngIf="config.checkboxes">
               <label class="ngx-form-checkbox">
                 <input

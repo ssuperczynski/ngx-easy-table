@@ -33,6 +33,7 @@ export interface Config {
   threeWaySort?: boolean;
   columnReorder?: boolean;
   rowReorder?: boolean;
+  reorderDelay?: number;
   infiniteScroll?: boolean;
   infiniteScrollThrottleTime?: number;
   tableLayout: {
