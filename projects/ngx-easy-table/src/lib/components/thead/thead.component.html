@@ -114,6 +114,7 @@
       class="ngx-table__header-cell ngx-table__header-cell--draggable"
       cdkDragLockAxis="x"
       cdkDrag
+      [cdkDragStartDelay]="config.reorderDelay || 0"
       [class.pinned-left]="column.pinned"
       [ngClass]="column.cssClass && column.cssClass.includeHeader ? column.cssClass.name : ''"
       [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
