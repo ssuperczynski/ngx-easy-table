@@ -7,6 +7,7 @@ import {
   Output,
   TemplateRef,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { Columns, Config, Event } from '../..';
 import { StyleService } from '../../services/style.service';
@@ -47,6 +48,7 @@ export class TableTHeadComponent {
   @Output() readonly selectAll = new EventEmitter<void>();
   @Output() readonly event = new EventEmitter<{ event: string; value: any }>();
   @ViewChild('th') private th;
+  @ViewChildren('headerDropdown') headerDropdown;
   @ViewChild('additionalActionMenu') additionalActionMenu;
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement: any): void {
@@ -55,6 +57,15 @@ export class TableTHeadComponent {
       !this.additionalActionMenu.nativeElement.contains(targetElement)
     ) {
       this.menuActive = false;
+    }
+
+    // if click outside the header then close opened Header Action Template
+    if (
+      this.openedHeaderActionTemplate &&
+      // if no header have the clicked point
+      !this.headerDropdown.toArray().some((ref) => ref.nativeElement.contains(targetElement))
+    ) {
+      this.openedHeaderActionTemplate = null;
     }
   }
 
