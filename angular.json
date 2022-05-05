@@ -80,6 +80,7 @@
               "subresourceIntegrity": false,
               "namedChunks": false,
               "aot": true,
+              "crossOrigin": "anonymous",
               "extractLicenses": true,
               "vendorChunk": true,
               "buildOptimizer": true,
