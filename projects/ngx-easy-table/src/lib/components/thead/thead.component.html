@@ -49,7 +49,7 @@
           </div>
         </div>
       </div>
-      <div class="ngx-dropdown" *ngIf="!!column.headerActionTemplate">
+      <div class="ngx-dropdown" *ngIf="!!column.headerActionTemplate" #headerDropdown>
         <a class="ngx-btn ngx-btn-link" (click)="showHeaderActionTemplateMenu(column)">
           <span class="ngx-icon ngx-icon-more"></span>
         </a>
@@ -147,7 +147,7 @@
           </div>
         </div>
       </div>
-      <div class="ngx-dropdown" *ngIf="!!column.headerActionTemplate">
+      <div class="ngx-dropdown" *ngIf="!!column.headerActionTemplate" #headerDropdown>
         <a class="ngx-btn ngx-btn-link" (click)="showHeaderActionTemplateMenu(column)">
           <span class="ngx-icon ngx-icon-more"></span>
         </a>
