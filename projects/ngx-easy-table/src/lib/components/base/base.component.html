@@ -442,6 +442,7 @@
         >
           <tr class="ngx-draggable-row"
               cdkDrag
+              (cdkDragStarted)="onDragStart($event)"
               [cdkDragStartDelay]="config.reorderDelay || 0"
               cdkDragLockAxis="y">
             <td *ngIf="config.checkboxes">
