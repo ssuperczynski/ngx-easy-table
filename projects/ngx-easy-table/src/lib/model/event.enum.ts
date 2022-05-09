@@ -13,6 +13,7 @@ export enum Event {
   onColumnResizeMouseDown = 'onColumnResizeMouseDown',
   onColumnResizeMouseUp = 'onColumnResizeMouseUp',
   onRowDrop = 'onRowDrop',
+  onReorderStart = 'onReorderStart',
   onRowCollapsedShow = 'onRowCollapsedShow',
   onRowCollapsedHide = 'onRowCollapsedHide',
   onRowContextMenu = 'onRowContextMenu',

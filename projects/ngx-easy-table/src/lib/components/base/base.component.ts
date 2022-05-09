@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragStart, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -401,6 +401,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     } else {
       this.data = [...data.currentValue];
     }
+  }
+
+  onDragStart(event: CdkDragStart): void {
+    this.emitEvent(Event.onReorderStart, event);
   }
 
   onDrop(event: CdkDragDrop<string[]>): void {
