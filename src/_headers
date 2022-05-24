@@ -1,0 +1,10 @@
+https://ngx-easy-table.pages.dev/*
+  X-Robots-Tag: index
+
+/
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin
+  Permissions-Policy: document-domain=()
+  Strict-Transport-Security: max-age=63072000; includeSubdomains;
+  X-XSS-Protection: 1; mode=block;
