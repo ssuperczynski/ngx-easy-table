@@ -27,6 +27,7 @@
               "src/assets",
               "src/favicon.ico",
               "src/sitemap.xml",
+              "src/_headers",
               "src/manifest.webmanifest",
               {
                 "glob": "spectre.min.css",
