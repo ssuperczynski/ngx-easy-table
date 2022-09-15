@@ -1,0 +1,87 @@
+<div [class.ngx-table__table--dark-pagination-wrapper]="config.tableLayout.theme === 'dark'"
+     [style.display]="config.paginationEnabled ? '' : 'none'"
+     class="ngx-pagination-wrapper">
+  <div class="ngx-pagination-steps">
+    <pagination-template #paginationDirective="paginationApi"
+                         (pageChange)="onPageChange($event)"
+                         [class.ngx-table__table--dark-pagination]="config.tableLayout.theme === 'dark'"
+                         [id]="id"
+                         [maxSize]="config.paginationMaxSize || 5"
+                         id="pagination-controls">
+      <ul [attr.aria-label]="screenReaderPaginationLabel"
+          [class.responsive]="true"
+          class="ngx-pagination"
+          role="navigation">
+        <li *ngIf="directionLinks"
+            [class.disabled]="paginationDirective.isFirstPage()"
+            class="pagination-previous">
+          <a (click)="paginationDirective.previous()"
+             (keyup.enter)="paginationDirective.previous()"
+             *ngIf="1 < paginationDirective.getCurrent()"
+             [attr.aria-label]="previousLabel + ' ' + screenReaderPageLabel"
+             tabindex="0">
+            {{ previousLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+          </a>
+          <span *ngIf="paginationDirective.isFirstPage()">
+            {{ previousLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+          </span>
+        </li>
+        <li class="small-screen">
+          {{ paginationDirective.getCurrent() }} / {{ paginationDirective.getLastPage() }}
+        </li>
+        <li *ngFor="let page of paginationDirective.pages"
+            [class.current]="paginationDirective.getCurrent() === page.value"
+            [class.ellipsis]="page.label === '...'">
+          <a (click)="paginationDirective.setCurrent(page.value)"
+             (keyup.enter)="paginationDirective.setCurrent(page.value)"
+             *ngIf="paginationDirective.getCurrent() !== page.value"
+             tabindex="0">
+            <span class="show-for-sr">{{ screenReaderPageLabel }} </span>
+            <span>{{ page.label }}</span>
+          </a>
+          <ng-container *ngIf="paginationDirective.getCurrent() === page.value">
+            <span class="show-for-sr">{{ screenReaderCurrentLabel }} </span>
+            <span>{{ page.label }}</span>
+          </ng-container>
+        </li>
+        <li *ngIf="directionLinks"
+            [class.disabled]="paginationDirective.isLastPage()"
+            class="pagination-next">
+          <a (click)="paginationDirective.next()"
+             (keyup.enter)="paginationDirective.next()"
+             *ngIf="!paginationDirective.isLastPage()"
+             [attr.aria-label]="nextLabel + ' ' + screenReaderPageLabel"
+             tabindex="0">
+            {{ nextLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+          </a>
+          <span *ngIf="paginationDirective.isLastPage()">
+            {{ nextLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+          </span>
+        </li>
+      </ul>
+    </pagination-template>
+  </div>
+  <div #paginationRange
+       *ngIf="config.paginationRangeEnabled"
+       [class.ngx-table__table--dark-pagination-range]="config.tableLayout.theme === 'dark'"
+       class="ngx-pagination-range">
+    <div class="ngx-dropdown ngx-pagination-range-dropdown"
+         id="rowAmount">
+      <div class="ngx-btn-group">
+        <div (click)="showRange = !showRange"
+             class="ngx-pagination-range-dropdown-button">
+          {{selectedLimit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
+        </div>
+        <ul *ngIf="showRange"
+            class="ngx-menu">
+          <li (click)="changeLimit(limit, false)"
+              *ngFor="let limit of ranges"
+              [class.ngx-pagination-range--selected]="limit === selectedLimit"
+              class="ngx-pagination-range-dropdown-button-item">
+            <span>{{limit}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

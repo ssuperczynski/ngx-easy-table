@@ -1,0 +1,116 @@
+<div class="docs-container off-canvas off-canvas-sidebar-show">
+  <div class="docs-navbar">
+    <button (click)="showMenu = !showMenu"
+            *ngIf="!showMenu"
+            class="off-canvas-display btn btn-action s-circle">
+      <i class="icon icon-menu"></i>
+    </button>
+  </div>
+
+  <div [class.active]="showMenu"
+       class="docs-sidebar off-canvas-sidebar"
+       id="sidebar">
+    <a class="btn btn-primary"
+       href="https://github.com/ssuperczynski/ngx-easy-table"
+       rel="noreferrer"
+       target="_blank">GitHub
+    </a>
+    <div class="docs-nav">
+      <div class="accordion-container">
+        <div class="accordion">
+          <input checked
+                 hidden
+                 id="accordion-api"
+                 name="accordion-api"
+                 title="API"
+                 type="checkbox"/>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li [attr.data-content]="'Documentation'"
+                  class="divider"></li>
+              <li class="menu-item">
+                <a (click)="select({ link: 'installation', name: 'Installation' })"
+                   [routerLink]="['/installation']"
+                   href="#"
+                   id="installation">
+                  <i class="icon icon-link"></i> Installation
+                </a>
+              </li>
+              <li class="menu-item">
+                <a (click)="select({ link: 'api-doc', name: 'API doc' })"
+                   [routerLink]="['/api-doc']"
+                   href="#"
+                   id="api-doc">
+                  <i class="icon icon-link"></i> API doc
+                </a>
+              </li>
+              <li class="menu-item">
+                <a (click)="select({ link: 'doc', name: 'Doc' })"
+                   [routerLink]="['/doc']"
+                   href="#"
+                   id="doc">
+                  <i class="icon icon-link"></i> Doc
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            <input (input)="onMenuSearch($event)"
+                   class="form-input input-sm menu-search"
+                   id="menu-search"
+                   placeholder="Search"
+                   type="search"/>
+          </label>
+        </div>
+        <div *ngFor="let position of menu | keyvalue"
+             class="accordion">
+          <input checked
+                 hidden
+                 id="accordion-{{ position.key }}"
+                 name="accordion-{{ position.key }}"
+                 title="{{ position.key }}"
+                 type="checkbox"/>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li [attr.data-content]="position.key"
+                  class="divider"></li>
+              <li *ngFor="let row of position.value | menuSearch: searchTerm"
+                  class="menu-item">
+                <a [routerLink]="[row.link]"
+                   href="#"
+                   id="{{ row.link }}">
+                  <i class="icon icon-link"></i> {{ row.name }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a (click)="showMenu = !showMenu"
+     class="off-canvas-overlay btn btn-link btn-action">
+    <i class="icon icon-cross icon-2x float-right"></i>
+  </a>
+
+  <div class="docs-content off-canvas-content"
+       id="content">
+    <div class="container mt-2">
+      <div *ngIf="selected && !excludedLinks">
+        <h3>{{ selected.name }}</h3>
+        <div class="mb-2">
+          <a class="btn"
+             href="https://github.com/paddls/ngx-easy-table/tree/master/projects/ngx-easy-table-app/src/app/demo/{{ selected.link }}/{{ selected.link }}.component.ts"
+             rel="noreferrer"
+             target="_blank">
+            See code here
+          </a>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

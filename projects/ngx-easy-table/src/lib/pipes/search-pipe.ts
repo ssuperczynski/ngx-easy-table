@@ -9,12 +9,10 @@ import { Subject } from 'rxjs';
 export class SearchPipe implements PipeTransform {
   private filters: { [key: string]: string } = {};
 
-  transform(
-    array: any[],
-    filter: Array<{ value: string; key: string }>,
-    filteredCountSubject: Subject<number>,
-    config?: Config
-  ): any {
+  public transform(array: any[],
+                   filter: Array<{ value: string; key: string }>,
+                   filteredCountSubject: Subject<number>,
+                   config?: Config): any {
     filteredCountSubject.next(0);
     if (typeof array === 'undefined') {
       return;
@@ -26,7 +24,6 @@ export class SearchPipe implements PipeTransform {
     filter.forEach((f) => {
       this.filters[f.key] = f.value.toString().toLocaleLowerCase();
       if (Object.keys(f).length === 0 || f.value === '') {
-        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete this.filters[f.key];
       }
     });

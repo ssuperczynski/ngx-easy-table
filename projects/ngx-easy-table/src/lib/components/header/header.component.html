@@ -1,0 +1,9 @@
+<label for="search_{{ unifyKey(column.key) }}">
+  <input #input
+         (input)="onSearch(input)"
+         aria-label="Search"
+         class="ngx-table__header-search"
+         id="search_{{ unifyKey(column.key) }}"
+         placeholder="{{ column.placeholder ? column.placeholder : column.title }}"
+         type="text"/>
+</label>

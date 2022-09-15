@@ -2,7 +2,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { BaseComponent } from './base.component';
+import { NgxTableComponent } from './ngx-table.component';
 
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -16,20 +16,32 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TableTHeadComponent } from '../thead/thead.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
+const COMPONENTS: any[] = [
+  NgxTableComponent,
+  HeaderComponent,
+  PaginationComponent,
+  TableTHeadComponent
+];
+
+const PIPES: any[] = [
+  SearchPipe,
+  RenderPipe,
+  GlobalSearchPipe,
+  SortPipe
+];
+
 @NgModule({
   declarations: [
-    BaseComponent,
-    HeaderComponent,
-    PaginationComponent,
-    TableTHeadComponent,
-
-    // Pipes
-    SearchPipe,
-    RenderPipe,
-    GlobalSearchPipe,
-    SortPipe,
+    ...COMPONENTS,
+    ...PIPES
   ],
-  imports: [CommonModule, NgxPaginationModule, DragDropModule, ScrollingModule],
-  exports: [BaseComponent],
+  imports: [
+    CommonModule,
+    NgxPaginationModule,
+    DragDropModule,
+    ScrollingModule
+  ],
+  exports: [NgxTableComponent],
 })
-export class BaseModule {}
+export class BaseModule {
+}

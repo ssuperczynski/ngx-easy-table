@@ -6,6 +6,7 @@ import { Config } from '..';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
+
   private defaultArray: any[] = [];
 
   private static isNaN(aV: any, bV: any): boolean {
@@ -31,7 +32,7 @@ export class SortPipe implements PipeTransform {
     return 0;
   }
 
-  transform(array: any[], filter: { order: string; key: string }, config?: Config): any[] {
+  public transform(array: any[], filter: { order: string; key: string }, config?: Config): any[] {
     if (this.defaultArray.length === 0) {
       this.defaultArray = array;
     }

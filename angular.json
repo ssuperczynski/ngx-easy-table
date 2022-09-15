@@ -3,8 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demo": {
-      "root": "",
+    "ngx-easy-table": {
+      "root": "projects/ngx-easy-table",
+      "sourceRoot": "projects/ngx-easy-table/src",
+      "projectType": "library",
+      "prefix": "ngx-easy-table",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-easy-table/tsconfig.lib.json",
+            "project": "projects/ngx-easy-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-easy-table/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-easy-table/**/*.ts",
+              "projects/ngx-easy-table/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-easy-table-app": {
+      "root": "projects/ngx-easy-table-app",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
@@ -17,12 +46,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["highlight.js", "export-to-csv"],
-            "outputPath": "dist/demo",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "highlight.js",
+              "export-to-csv"
+            ],
+            "outputPath": "dist/ngx-easy-table-app",
+            "index": "projects/ngx-easy-table-app/src/index.html",
+            "main": "projects/ngx-easy-table-app/src/main.ts",
+            "polyfills": "projects/ngx-easy-table-app/src/polyfills.ts",
+            "tsConfig": "projects/ngx-easy-table-app/tsconfig.app.json",
             "assets": [
               "src/assets",
               "src/favicon.ico",
@@ -47,8 +79,8 @@
             ],
             "styles": [
               "node_modules/highlight.js/styles/rainbow.css",
-              "src/assets/main.scss",
-              "src/assets/sample.scss",
+              "projects/ngx-easy-table-app/src/assets/main.scss",
+              "projects/ngx-easy-table-app/src/assets/sample.scss",
               "projects/ngx-easy-table/assets/style.scss"
             ],
             "scripts": [],
@@ -64,8 +96,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/ngx-easy-table-app/src/environments/environment.ts",
+                  "with": "projects/ngx-easy-table-app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": {
@@ -103,66 +135,36 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build"
+            "browserTarget": "ngx-easy-table-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo:build:production"
+              "browserTarget": "ngx-easy-table-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
-          }
-        }
-      }
-    },
-    "ngx-easy-table": {
-      "root": "projects/ngx-easy-table",
-      "sourceRoot": "projects/ngx-easy-table/src",
-      "projectType": "library",
-      "prefix": "ngx-easy-table",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/ngx-easy-table/tsconfig.lib.json",
-            "project": "projects/ngx-easy-table/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-easy-table/tsconfig.lib.prod.json"
-            }
+            "browserTarget": "ngx-easy-table-app:build"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/ngx-easy-table/**/*.ts",
-              "projects/ngx-easy-table/**/*.html"
+              "projects/ngx-easy-table-app/**/*.ts",
+              "projects/ngx-easy-table-app/**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "demo",
   "cli": {
     "analytics": false,
-    "defaultCollection": "@angular-eslint/schematics",
-    "cache": {
-      "enabled": true,
-      "path": ".cache",
-      "environment": "all"
-    }
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

@@ -5,7 +5,8 @@ import { Subject } from 'rxjs';
   name: 'global',
 })
 export class GlobalSearchPipe implements PipeTransform {
-  transform(array: any[], filter: string, filteredCountSubject: Subject<number>): any {
+
+  public transform(array: any[], filter: string, filteredCountSubject: Subject<number>): any {
     filteredCountSubject.next(0);
     if (typeof array === 'undefined') {
       return;

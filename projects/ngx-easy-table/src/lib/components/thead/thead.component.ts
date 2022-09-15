@@ -14,42 +14,78 @@ import { StyleService } from '../../services/style.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: '[table-thead]',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: '[lib-thead]',
   templateUrl: './thead.component.html',
   styles: [
     `
-      .cdk-drag-preview {
-        text-align: left;
-        padding-top: 9px;
-        padding-left: 4px;
-        color: #50596c;
-        border: 1px solid #e7e9ed;
-      }
+        .cdk-drag-preview {
+            text-align: left;
+            padding-top: 9px;
+            padding-left: 4px;
+            color: #50596c;
+            border: 1px solid #e7e9ed;
+        }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [StyleService],
 })
 export class TableTHeadComponent {
+
+  @Input()
+  public config: Config;
+
+  @Input()
+  public columns: Columns[];
+
+  @Input()
+  public sortKey: string | null;
+
+  @Input()
+  public sortState: Map<string, string>;
+
+  @Input()
+  public selectAllTemplate;
+
+  @Input()
+  public filtersTemplate;
+
+  @Input()
+  public additionalActionsTemplate: TemplateRef<void>;
+
+  @Output()
+  public readonly filter = new EventEmitter<Array<{ key: string; value: string }>>();
+
+  @Output()
+  public readonly order = new EventEmitter<Columns>();
+
+  @Output()
+  public readonly selectAll = new EventEmitter<void>();
+
+  @Output()
+  public readonly event = new EventEmitter<{ event: string; value: any }>();
+
   public menuActive = false;
+
   public openedHeaderActionTemplate: string | null = null;
+
   public startOffset;
+
   public onSelectAllBinded = this.onSelectAll.bind(this);
 
-  @Input() config: Config;
-  @Input() columns: Columns[];
-  @Input() sortKey;
-  @Input() sortState;
-  @Input() selectAllTemplate;
-  @Input() filtersTemplate;
-  @Input() additionalActionsTemplate: TemplateRef<void>;
-  @Output() readonly filter = new EventEmitter<Array<{ key: string; value: string }>>();
-  @Output() readonly order = new EventEmitter<Columns>();
-  @Output() readonly selectAll = new EventEmitter<void>();
-  @Output() readonly event = new EventEmitter<{ event: string; value: any }>();
-  @ViewChild('th') private th;
-  @ViewChildren('headerDropdown') headerDropdown;
-  @ViewChild('additionalActionMenu') additionalActionMenu;
+  @ViewChild('th')
+  private th: any;
+
+  @ViewChildren('headerDropdown')
+  private headerDropdown: any;
+
+  @ViewChild('additionalActionMenu')
+  private additionalActionMenu: any;
+
+  constructor(public readonly styleService: StyleService) {
+  }
+
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement: any): void {
     if (
@@ -69,8 +105,6 @@ export class TableTHeadComponent {
     }
   }
 
-  constructor(public readonly styleService: StyleService) {}
-
   getColumnDefinition(column: Columns): boolean {
     return column.searchEnabled || typeof column.searchEnabled === 'undefined';
   }
@@ -80,7 +114,7 @@ export class TableTHeadComponent {
   }
 
   isOrderEnabled(column: Columns): boolean {
-    const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
+    const columnOrderEnabled = column.orderEnabled === undefined ? true : column.orderEnabled;
     return this.config.orderEnabled && columnOrderEnabled;
   }
 
@@ -103,7 +137,7 @@ export class TableTHeadComponent {
     this.selectAll.emit();
   }
 
-  onMouseDown(event: MouseEvent, th: HTMLTableHeaderCellElement): void {
+  onMouseDown(event: MouseEvent, th: HTMLTableCellElement): void {
     if (!this.config.resizeColumn) {
       return;
     }

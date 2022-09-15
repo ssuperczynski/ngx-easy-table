@@ -3,7 +3,7 @@
   "version": "15.3.0",
   "description": "Angular easy table",
   "typings": "index.ts",
-  "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
+  "repository": "https://github.com/paddls/ngx-easy-table.git",
   "license": "MIT",
   "peerDependencies": {
     "@angular/cdk": ">=11.0.0",
@@ -21,9 +21,9 @@
   },
   "engineStrict": true,
   "bugs": {
-    "url": "https://github.com/ssuperczynski/ngx-easy-table/issues"
+    "url": "https://github.com/paddls/ngx-easy-table/issues"
   },
-  "homepage": "https://github.com/ssuperczynski/ngx-easy-table",
+  "homepage": "https://github.com/paddls/ngx-easy-table",
   "main": "main.js",
   "keywords": [
     "angular",

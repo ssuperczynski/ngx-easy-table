@@ -2,19 +2,23 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Columns } from '../..';
 
 @Component({
-  selector: 'table-header',
-  templateUrl: './header.html',
+  selector: 'lib-header',
+  templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Input() column: Columns;
-  @Output() readonly update = new EventEmitter<Array<{ key: string; value: string }>>();
 
-  unifyKey(key: string): string {
+  @Input()
+  public column: Columns;
+
+  @Output()
+  public readonly update = new EventEmitter<Array<{ key: string; value: string }>>();
+
+  public unifyKey(key: string): string {
     return key.replace('.', '_');
   }
 
-  onSearch(input: HTMLInputElement): void {
-    this.update.emit([{ value: input.value, key: this.column.key }]);
+  public onSearch(input: HTMLInputElement): void {
+    this.update.emit([{value: input.value, key: this.column.key}]);
   }
 }
