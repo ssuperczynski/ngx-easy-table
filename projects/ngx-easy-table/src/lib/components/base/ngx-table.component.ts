@@ -30,8 +30,11 @@ import { filter, takeUntil, throttleTime } from 'rxjs/operators';
 type ColumnKeyType = string | number | boolean;
 
 interface RowContextMenuPosition {
+
   top: string | null;
+
   left: string | null;
+
   value: any | null;
 }
 
@@ -95,6 +98,9 @@ export class NgxTableComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   @Output()
   public readonly event = new EventEmitter<{ event: string; value: any }>();
 
+  @Output()
+  public readonly filteredCount$: Subject<number> = new Subject<number>();
+
   @ContentChild(TemplateRef, {static: true})
   public rowTemplate: TemplateRef<any>;
 
@@ -112,8 +118,6 @@ export class NgxTableComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   public term: any;
 
   public filterCount = -1;
-
-  public filteredCountSubject = new Subject<number>();
 
   public tableClass: string | null = null;
 
@@ -158,7 +162,7 @@ export class NgxTableComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   public constructor(private readonly cdr: ChangeDetectorRef,
                      private readonly scrollDispatcher: ScrollDispatcher,
                      public readonly styleService: StyleService) {
-    this.filteredCountSubject.pipe(takeUntil(this.unsubscribe)).subscribe((count) => {
+    this.filteredCount$.pipe(takeUntil(this.unsubscribe)).subscribe((count) => {
       setTimeout(() => {
         this.filterCount = count;
         this.cdr.detectChanges();

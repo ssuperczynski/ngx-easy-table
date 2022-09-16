@@ -41,8 +41,8 @@
         <ng-container *ngFor="
               let row of data
                 | sort: sortBy
-                | search: term:filteredCountSubject
-                | global: globalSearchTerm:filteredCountSubject
+                | search: term:filteredCount$
+                | global: globalSearchTerm:filteredCount$
                 | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index
             ">
@@ -77,8 +77,8 @@
         <ng-container *cdkVirtualFor="
               let row of data
                 | sort: sortBy
-                | search: term:filteredCountSubject
-                | global: globalSearchTerm:filteredCountSubject;
+                | search: term:filteredCount$
+                | global: globalSearchTerm:filteredCount$;
               let rowIndex = index
             ">
           <tr #contextMenu
@@ -131,8 +131,8 @@
         <ng-container *ngFor="
               let row of data
                 | sort: sortBy
-                | search: term:filteredCountSubject
-                | global: globalSearchTerm:filteredCountSubject
+                | search: term:filteredCount$
+                | global: globalSearchTerm:filteredCount$
                 | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index
             ">
@@ -218,8 +218,8 @@
         <ng-container *cdkVirtualFor="
               let row of data
                 | sort: sortBy
-                | search: term:filteredCountSubject
-                | global: globalSearchTerm:filteredCountSubject;
+                | search: term:filteredCount$
+                | global: globalSearchTerm:filteredCount$;
               let rowIndex = index
             ">
           <tr [class.ngx-table__table-row--selected]="
@@ -298,8 +298,8 @@
       <ng-container *ngFor="
             let group of grouped
               | sort: sortBy:config
-              | search: term:filteredCountSubject:config
-              | global: globalSearchTerm:filteredCountSubject
+              | search: term:filteredCount$:config
+              | global: globalSearchTerm:filteredCount$
               | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
             let rowIndex = index
           ">
@@ -349,8 +349,8 @@
       <ng-container *ngFor="
             let row of data
               | sort: sortBy
-              | search: term:filteredCountSubject
-              | global: globalSearchTerm:filteredCountSubject
+              | search: term:filteredCount$
+              | global: globalSearchTerm:filteredCount$
               | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
             let rowIndex = index
           ">
