@@ -83,7 +83,11 @@ export class TableTHeadComponent {
   @ViewChild('additionalActionMenu')
   private additionalActionMenu: any;
 
-  constructor(public readonly styleService: StyleService) {
+  public constructor(public readonly styleService: StyleService) {
+  }
+
+  public get arrowDefinition(): boolean {
+    return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
   @HostListener('document:click', ['$event.target'])

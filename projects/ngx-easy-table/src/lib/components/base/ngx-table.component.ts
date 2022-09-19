@@ -187,7 +187,7 @@ export class NgxTableComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     return 30;
   }
 
-  get arrowDefinition(): boolean {
+  public get arrowDefinition(): boolean {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 

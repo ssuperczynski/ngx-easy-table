@@ -54,9 +54,8 @@
             <ng-container [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
                           [ngTemplateOutlet]="rowTemplate">
             </ng-container>
-            <td *ngIf="config.detailsTemplate">
+            <td *ngIf="config.detailsTemplate && arrowDefinition">
                 <span (click)="collapseRow(rowIndex)"
-                      *ngIf="arrowDefinition"
                       [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
                       class="ngx-icon">
                 </span>
@@ -91,21 +90,14 @@
             <ng-container [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
                           [ngTemplateOutlet]="rowTemplate">
             </ng-container>
-            <td *ngIf="config.detailsTemplate">
+            <td *ngIf="config.detailsTemplate && arrowDefinition">
                 <span (click)="collapseRow(rowIndex)"
-                      *ngIf="arrowDefinition"
-                      [ngClass]="
-                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
-                  "
-                      class="ngx-icon"
-                >
+                      [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
+                      class="ngx-icon">
                 </span>
             </td>
           </tr>
-          <tr *ngIf="
-                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
-                config.collapseAllRows
-              ">
+          <tr *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
             <td [attr.colspan]="columns.length + 1">
               <ng-container [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
                             [ngTemplateOutlet]="detailsTemplate">
@@ -188,20 +180,14 @@
                 </ng-container>
               </td>
             </ng-container>
-            <td *ngIf="config.additionalActions || config.detailsTemplate">
+            <td *ngIf="config.additionalActions || (config.detailsTemplate && arrowDefinition)">
                 <span (click)="collapseRow(rowIndex)"
-                      *ngIf="arrowDefinition"
-                      [ngClass]="
-                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
-                  "
+                      [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
                       class="ngx-icon">
                 </span>
             </td>
           </tr>
-          <tr *ngIf="
-                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
-                config.collapseAllRows
-              ">
+          <tr *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
             <td *ngIf="config.checkboxes || config.radio"></td>
             <td [attr.colspan]="columns.length + 1">
               <ng-container [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
@@ -270,20 +256,14 @@
                 </ng-container>
               </td>
             </ng-container>
-            <td *ngIf="config.additionalActions || config.detailsTemplate">
+            <td *ngIf="config.additionalActions || (config.detailsTemplate && arrowDefinition)">
                 <span (click)="collapseRow(rowIndex)"
-                      *ngIf="arrowDefinition"
-                      [ngClass]="
-                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
-                  "
+                      [ngClass]="isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'"
                       class="ngx-icon">
                 </span>
             </td>
           </tr>
-          <tr *ngIf="
-                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
-                config.collapseAllRows
-              ">
+          <tr *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
             <td *ngIf="config.checkboxes || config.radio"></td>
             <td [attr.colspan]="columns.length + 1">
               <ng-container [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
