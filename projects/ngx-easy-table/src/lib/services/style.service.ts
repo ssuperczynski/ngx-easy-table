@@ -5,15 +5,23 @@ import { CellClass, CellStyle, RowClass, RowStyle } from '..';
 export class StyleService {
 
   public setRowClass(val: RowClass): void {
-    const selector = `#table > tbody > tr:nth-child(${val.row})`;
+    const selector = `#table > tbody > tr:nth-child(${ val.row })`;
     const row = document.querySelector(selector) as HTMLTableRowElement;
     if (row) {
       row.classList.add(val.className);
     }
   }
 
+  public removeRowClass(val: RowClass): void {
+    const selector = `#table > tbody > tr:nth-child(${ val.row })`;
+    const row = document.querySelector(selector) as HTMLTableRowElement;
+    if (row) {
+      row.classList.remove(val.className);
+    }
+  }
+
   public setCellClass(val: CellClass): void {
-    const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
+    const selector = `#table > tbody > tr:nth-child(${ val.row }) > td:nth-child(${ val.cell })`;
     const cell = document.querySelector(selector) as HTMLTableCellElement;
     if (cell) {
       cell.classList.add(val.className);

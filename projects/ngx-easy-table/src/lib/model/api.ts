@@ -16,6 +16,7 @@ export enum API {
   setPaginationDisplayLimit = 'setPaginationDisplayLimit',
   setTableClass = 'setTableClass',
   setRowClass = 'setRowClass',
+  removeRowClass = 'removeRowClass',
   setCellClass = 'setCellClass',
   setRowStyle = 'setRowStyle',
   setCellStyle = 'setCellStyle',
@@ -61,6 +62,7 @@ export type ApiType =
   | { type: API.setPaginationDisplayLimit; value: number }
   | { type: API.setTableClass; value: string | null }
   | { type: API.setRowClass; value: RowClass | RowClass[] }
+  | { type: API.removeRowClass; value: RowClass | RowClass[] }
   | { type: API.setCellClass; value: CellClass | CellClass[] }
   | { type: API.setRowStyle; value: RowStyle | RowStyle[] }
   | { type: API.setCellStyle; value: CellStyle | CellStyle[] }

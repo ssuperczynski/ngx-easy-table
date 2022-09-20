@@ -18,6 +18,8 @@ export interface Columns {
 
   searchEnabled?: boolean;
 
+  searchPredicate?: (row: any) => boolean;
+
   orderBy?: string;
 
   cssClass?: { name: string; includeHeader: boolean };

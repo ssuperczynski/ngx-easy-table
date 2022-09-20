@@ -162,7 +162,7 @@ export class NgxTableComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   public constructor(private readonly cdr: ChangeDetectorRef,
                      private readonly scrollDispatcher: ScrollDispatcher,
                      public readonly styleService: StyleService) {
-    this.filteredCount$.pipe(takeUntil(this.unsubscribe)).subscribe((count) => {
+    this.filteredCount$.pipe(takeUntil(this.unsubscribe)).subscribe((count: number) => {
       setTimeout(() => {
         this.filterCount = count;
         this.cdr.detectChanges();
@@ -535,6 +535,14 @@ export class NgxTableComponent implements OnInit, OnChanges, AfterViewInit, OnDe
       case API.setRowClass:
         if (Array.isArray(event.value)) {
           event.value.forEach((val) => this.styleService.setRowClass(val));
+          break;
+        }
+        this.styleService.setRowClass(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.removeRowClass:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => this.styleService.removeRowClass(val));
           break;
         }
         this.styleService.setRowClass(event.value);
