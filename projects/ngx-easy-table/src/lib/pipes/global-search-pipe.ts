@@ -22,7 +22,7 @@ export class GlobalSearchPipe implements PipeTransform {
       (acc: boolean, curr: Columns) =>
         acc ||
         curr?.searchPredicate?.(row) ||
-        (['number', 'boolean', 'string'].includes(typeof row?.[curr.key]) && `${ row?.[curr.key] }`.includes(filter)),
+        (['number', 'boolean', 'string'].includes(typeof row?.[curr.key]) && `${ row?.[curr.key] }`.toLocaleLowerCase().includes(filter.toLocaleLowerCase())),
       false
     );
 
