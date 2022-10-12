@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public readonly version = environment.VERSION;
-  public showMenu = true;
+  public showMenu = false;
   public selected: Link;
   public searchTerm = '';
   public readonly menu = {
