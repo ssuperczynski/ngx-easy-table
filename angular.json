@@ -155,14 +155,13 @@
       }
     }
   },
-  "defaultProject": "demo",
   "cli": {
     "analytics": false,
-    "defaultCollection": "@angular-eslint/schematics",
     "cache": {
       "enabled": true,
       "path": ".cache",
       "environment": "all"
-    }
+    },
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }
