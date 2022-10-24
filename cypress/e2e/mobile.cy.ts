@@ -7,13 +7,13 @@ context('Mobile resolution', () => {
   });
 
   it('collapses row if mobile resolution detected', () => {
-    cy.get('#content > div > div > h3')
-      .click()
+    cy.get('#mobile')
+      .click({ force: true })
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1)')
       .contains('KONGENE')
       .get('#expandButton-0')
       .should('exist')
-      .click()
+      .click({ force: true })
       .get('#table > tbody > tr:nth-child(2) > td > div > h2')
       .contains('+1 (949) 527-2108');
   });
