@@ -52,7 +52,7 @@
     "@angular/platform-browser": "^14.2.5",
     "@angular/platform-browser-dynamic": "^14.2.5",
     "@angular/router": "^14.2.5",
-    "@types/node": "^16.11.65",
+    "@types/node": "^18.11.4",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "bootstrap": "^4.6.2",
@@ -78,7 +78,7 @@
     "zone.js": "~0.11.8"
   },
   "engines": {
-    "node": ">=12.0.0",
+    "node": ">=14.0.0",
     "npm": ">=6.0.0"
   },
   "engineStrict": true,
