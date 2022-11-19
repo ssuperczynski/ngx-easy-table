@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, API, DefaultConfig, Config, APIDefinition, Pagination } from 'ngx-easy-table';
-import { PageEvent } from '@angular/material/paginator';
+import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 
 @Component({
   selector: 'app-custom-pagination',
