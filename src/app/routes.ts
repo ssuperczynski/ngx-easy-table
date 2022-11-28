@@ -67,6 +67,7 @@ import {
   InfiniteScrollServerTemplateComponent,
   CheckboxAsRadioComponent,
   RadioComponent,
+  OnDragOverComponent,
 } from './demo';
 import { ROUTE } from './route-names';
 
@@ -134,6 +135,7 @@ export const routes = [
   { path: ROUTE.NESTED_OBJECT, component: NestedObjectComponent },
   { path: ROUTE.CUSTOM_PAGINATION, component: CustomPaginationComponent },
   { path: ROUTE.REORDER, component: ReorderComponent },
+  { path: ROUTE.ON_DRAG_OVER, component: OnDragOverComponent },
   { path: ROUTE.INFINITE_SCROLL, component: InfiniteScrollComponent },
   { path: ROUTE.INFINITE_SCROLL_SERVER, component: InfiniteScrollServerComponent },
   { path: ROUTE.INFINITE_SCROLL_SERVER_TEMPLATE, component: InfiniteScrollServerTemplateComponent },

@@ -36,6 +36,7 @@ export interface Config {
   reorderDelay?: number;
   infiniteScroll?: boolean;
   infiniteScrollThrottleTime?: number;
+  onDragOver?: boolean;
   tableLayout: {
     style: STYLE | string | null;
     theme: THEME | string | null;

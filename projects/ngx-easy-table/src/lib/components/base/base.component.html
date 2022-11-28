@@ -1,6 +1,14 @@
-<div class="ngx-container" [class.ngx-container--dark]="config.tableLayout.theme === 'dark'">
+<div
+  class="ngx-container"
+  [class.ngx-container--dark]="config.tableLayout.theme === 'dark'"
+  (dragenter)="dragEnter($event)"
+  (dragover)="dragOver($event)"
+  (dragleave)="dragLeave($event)"
+  (drop)="drop($event)"
+>
   <table
     [id]="id"
+    #table
     [ngClass]="tableClass === null || tableClass === '' ? 'ngx-table' : tableClass"
     [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
     [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"

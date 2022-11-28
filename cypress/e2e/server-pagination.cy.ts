@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 context('Server pagination', () => {
-  xdescribe('test pagination flow', () => {
+  describe('test pagination flow', () => {
     it('gets correct phone', () => {
       cy.intercept(
         'GET',

@@ -90,6 +90,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
   @ViewChild('contextMenu') contextMenu;
+  @ViewChild('table') table;
   @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
 
   @HostListener('document:click', ['$event.target'])
@@ -555,5 +556,37 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
       // eslint-disable-next-line no-console
       console.log({ event, value });
     }
+  }
+
+  dragEnter($event: DragEvent): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+  }
+
+  dragOver($event: DragEvent): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+  }
+
+  dragLeave($event: DragEvent): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+  }
+
+  drop($event: DragEvent): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+    const file = $event.dataTransfer?.files?.[0];
+    if (file?.type !== 'application/json') {
+      // eslint-disable-next-line no-console
+      console.log('File not allowed');
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.onload = (event) => {
+      this.data = JSON.parse(event?.target?.result as string);
+      this.cdr.markForCheck();
+    };
+    fileReader.readAsText(file);
   }
 }
