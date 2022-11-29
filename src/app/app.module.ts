@@ -70,6 +70,7 @@ import {
   InfiniteScrollServerTemplateComponent,
   CheckboxAsRadioComponent,
   RadioComponent,
+  OnDragOverComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -159,6 +160,7 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
     InfiniteScrollServerTemplateComponent,
     CheckboxAsRadioComponent,
     RadioComponent,
+    OnDragOverComponent,
   ],
   bootstrap: [AppComponent],
   providers: [

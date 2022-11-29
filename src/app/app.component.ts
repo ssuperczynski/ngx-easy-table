@@ -48,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.MOBILE, name: 'Mobile view' },
       { link: ROUTE.NESTED_OBJECT, name: 'Nested object' },
       { link: ROUTE.REORDER, name: 'Reorder' },
+      { link: ROUTE.ON_DRAG_OVER, name: 'On Drag Over' },
       { link: ROUTE.INFINITE_SCROLL, name: 'Infinite scroll (experimental)' },
       { link: ROUTE.INFINITE_SCROLL_SERVER, name: 'Infinite scroll server (experimental)' },
       {

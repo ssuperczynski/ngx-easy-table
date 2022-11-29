@@ -1,0 +1,12 @@
+<div>
+  <ngx-table
+    [configuration]="configuration"
+    [data]="data"
+    [columns]="columns"
+    [noResultsTemplate]="noResultsTemplate"
+  ></ngx-table>
+</div>
+
+<ng-template #noResultsTemplate>
+  <td [attr.colspan]="columns.length" class="no-results">Drag/drop JSON file into the table</td>
+</ng-template>
