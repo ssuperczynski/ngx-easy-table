@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     defaults:
       run:
         working-directory: ./
@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: '16.x'
 
       - uses: actions/cache@v2
         with:
@@ -29,11 +29,11 @@ jobs:
       - name: lint
         run: npm run lint
 
-      - name: build demo
-        run: npm run build
-
       - name: build lib
         run: npm run build:lib
+
+      - name: build demo
+        run: npm run build
 
       - name: e2e
         run: npm run cy:ci

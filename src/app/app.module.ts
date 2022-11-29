@@ -75,7 +75,7 @@ import {
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/material/legacy-paginator';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 
 @NgModule({
