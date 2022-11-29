@@ -21,9 +21,6 @@ export class CustomIntableSortComponent implements OnInit {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    this.configuration.orderEnabled = true;
-    this.configuration.orderEventOnly = true;
-    this.configuration.headerEnabled = true;
     this.columns = [
       { key: 'phone', title: 'Phone' },
       { key: 'age', title: 'Age' },
