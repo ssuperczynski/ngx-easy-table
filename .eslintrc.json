@@ -78,7 +78,6 @@
         "no-duplicate-string": "off",
         "arrow-body-style": "off",
         "id-blacklist": "error",
-        "no-underscore-dangle": "off",
         "import/no-extraneous-dependencies": "off",
         "import/no-internal-modules": "off",
         "import/order": "off",

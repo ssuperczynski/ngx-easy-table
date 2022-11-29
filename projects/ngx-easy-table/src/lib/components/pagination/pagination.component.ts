@@ -23,7 +23,6 @@ export interface PaginationRange {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent implements OnChanges {
-  private currentPage = 1;
   @ViewChild('paginationDirective', { static: true })
   paginationDirective: PaginationControlsDirective;
   @ViewChild('paginationRange') paginationRange;
@@ -41,24 +40,6 @@ export class PaginationComponent implements OnChanges {
   public nextLabel = '';
   public directionLinks = true;
 
-  private _rowCount: number;
-  get rowCount(): number {
-    return this._rowCount;
-  }
-
-  @Input()
-  set rowCount(value: number) {
-    this._rowCount = value;
-
-    if (this._rowCount < (this.currentPage - 1) * this.selectedLimit) {
-      this.currentPage = 1;
-      this.updateRange.emit({
-        page: this.currentPage,
-        limit: this.selectedLimit,
-      });
-    }
-  }
-
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement: any): void {
     if (this.paginationRange && !this.paginationRange.nativeElement.contains(targetElement)) {
@@ -74,7 +55,6 @@ export class PaginationComponent implements OnChanges {
   }
 
   onPageChange(page: number): void {
-    this.currentPage = page;
     this.updateRange.emit({
       page,
       limit: this.selectedLimit,
@@ -86,9 +66,8 @@ export class PaginationComponent implements OnChanges {
       this.showRange = !this.showRange;
     }
     this.selectedLimit = limit;
-    this.currentPage = 1;
     this.updateRange.emit({
-      page: this.currentPage,
+      page: 1,
       limit,
     });
   }
