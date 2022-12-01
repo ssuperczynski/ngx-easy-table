@@ -399,9 +399,9 @@
     </tr>
     </tbody>
     <tbody *ngIf="config.isLoading">
+    <ng-container *ngIf="loadingTemplate"
+                  [ngTemplateOutlet]="loadingTemplate"></ng-container>
     <tr class="ngx-table__body-loading">
-      <ng-container *ngIf="loadingTemplate"
-                    [ngTemplateOutlet]="loadingTemplate"></ng-container>
       <td *ngIf="!loadingTemplate"
           [attr.colspan]="columns && columns.length + 1">
         <div [style.height.px]="loadingHeight"
