@@ -17,10 +17,11 @@ import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-tab
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BootstrapComponent implements OnInit {
-  @ViewChild('table', { static: true }) table: APIDefinition;
+  @ViewChild('table', { static: false }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;
+  toggle = true;
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
@@ -57,5 +58,9 @@ export class BootstrapComponent implements OnInit {
       type: API.setRowClass,
       value: { row, className },
     });
+  }
+
+  toggleView() {
+    this.toggle = !this.toggle;
   }
 }

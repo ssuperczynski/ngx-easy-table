@@ -87,7 +87,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string; value: any }>();
-  @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef, { static: false }) public rowTemplate: TemplateRef<any>;
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
   @ViewChild('contextMenu') contextMenu;
   @ViewChild('table') table;

@@ -13,7 +13,7 @@ export class CheckboxAsRadioComponent implements OnInit {
   public columns: Columns[];
   public data: Company[] = [];
   public selected;
-  @ViewChild('table', { static: true }) table: APIDefinition;
+  @ViewChild('table', { static: false }) table: APIDefinition;
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
