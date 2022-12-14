@@ -13,7 +13,7 @@ export class FilterHeaderTemplateComponent implements OnInit {
   levelHeaderActionTemplate: TemplateRef<any>;
   @ViewChild('companyHeaderActionTemplate', { static: true })
   companyHeaderActionTemplate: TemplateRef<any>;
-  @ViewChild('table', { static: true }) table: APIDefinition;
+  @ViewChild('table', { static: false }) table: APIDefinition;
   public columns: Columns[];
   data: Company[] = [];
   dataCopy: Company[] = [];
@@ -24,7 +24,6 @@ export class FilterHeaderTemplateComponent implements OnInit {
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.checkboxes = true;
-    this.configuration.additionalActions = true;
     this.configuration.fixedColumnWidth = true;
     this.columns = [
       { key: 'name', title: 'Name' },
