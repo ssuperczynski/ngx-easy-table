@@ -16,7 +16,7 @@ export class MobileComponent implements OnInit {
   public data: Company[] = [];
   public toggledRows = new Set<number>();
 
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
 
   @HostListener('window:resize', [])
   onResize(): void {

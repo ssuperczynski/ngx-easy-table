@@ -16,11 +16,11 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InlineRowComponent implements OnInit {
-  @ViewChild('phoneTpl', { static: false }) phoneTpl: TemplateRef<any>;
-  @ViewChild('ageTpl', { static: false }) ageTpl: TemplateRef<any>;
-  @ViewChild('companyTpl', { static: false }) companyTpl: TemplateRef<any>;
-  @ViewChild('nameTpl', { static: false }) nameTpl: TemplateRef<any>;
-  @ViewChild('actionTpl', { static: false }) actionTpl: TemplateRef<any>;
+  @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
+  @ViewChild('ageTpl', { static: true }) ageTpl: TemplateRef<any>;
+  @ViewChild('companyTpl', { static: true }) companyTpl: TemplateRef<any>;
+  @ViewChild('nameTpl', { static: true }) nameTpl: TemplateRef<any>;
+  @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
 
   @ViewChild('phone') phone: ElementRef<any>;
   @ViewChild('age') age: ElementRef<any>;

@@ -20,7 +20,7 @@ import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomPaginationComponent implements OnInit, AfterViewInit {
-  @ViewChild('table', { static: false }) public table: APIDefinition;
+  @ViewChild('table') public table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;

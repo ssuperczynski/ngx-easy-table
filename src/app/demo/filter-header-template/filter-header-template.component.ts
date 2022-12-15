@@ -13,7 +13,7 @@ export class FilterHeaderTemplateComponent implements OnInit {
   levelHeaderActionTemplate: TemplateRef<any>;
   @ViewChild('companyHeaderActionTemplate', { static: true })
   companyHeaderActionTemplate: TemplateRef<any>;
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[];
   data: Company[] = [];
   dataCopy: Company[] = [];

@@ -15,7 +15,7 @@ import { API, Columns, APIDefinition, DefaultConfig, Config } from 'ngx-easy-tab
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApiComponent implements OnInit, AfterViewInit {
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;

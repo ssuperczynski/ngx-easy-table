@@ -27,7 +27,7 @@ interface EventObject {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServerPaginationComponent implements OnInit, OnDestroy {
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },

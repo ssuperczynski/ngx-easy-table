@@ -17,7 +17,7 @@ import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-tab
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BootstrapComponent implements OnInit {
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;
