@@ -13,7 +13,7 @@ import { Columns } from 'ngx-easy-table';
 })
 export class ContextMenuComponent implements OnInit {
   @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;

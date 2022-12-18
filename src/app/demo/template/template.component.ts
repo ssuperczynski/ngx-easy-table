@@ -10,7 +10,7 @@ import { API, APIDefinition } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplateComponent implements OnInit {
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[] = [
     { key: 'name', title: 'Name', width: '15%', orderEnabled: true, searchEnabled: true },
     { key: 'age', title: 'Age', width: '15%', orderEnabled: true, searchEnabled: false },

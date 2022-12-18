@@ -19,7 +19,7 @@ import { Subject } from 'rxjs';
   styles: [],
 })
 export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   private unsubscribe = new Subject<void>();
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },

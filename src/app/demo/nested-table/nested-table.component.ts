@@ -10,7 +10,7 @@ import { API, APIDefinition } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NestedTableComponent implements OnInit {
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public toggledRows = new Set<number>();
   public columns: Columns[] = [
     { key: 'name', title: 'Name', width: '15%' },

@@ -9,7 +9,7 @@ import { Columns, Config, DefaultConfig, Event as ngxEvent } from 'ngx-easy-tabl
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InlineComponent implements OnInit {
-  @ViewChild('phoneTpl', { static: false }) phoneTpl: TemplateRef<any>;
+  @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
   public columns: Columns[];
   data: Company[] = [];
   public configuration: Config;

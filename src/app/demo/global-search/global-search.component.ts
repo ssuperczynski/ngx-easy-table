@@ -9,7 +9,7 @@ import { Columns, API, APIDefinition, DefaultConfig, Config } from 'ngx-easy-tab
   styles: [],
 })
 export class GlobalSearchComponent implements OnInit {
-  @ViewChild('table', { static: false }) table: APIDefinition;
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
