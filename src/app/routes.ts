@@ -68,6 +68,7 @@ import {
   CheckboxAsRadioComponent,
   RadioComponent,
   OnDragOverComponent,
+  DynamicComponentComponent,
 } from './demo';
 import { ROUTE } from './route-names';
 
@@ -128,6 +129,7 @@ export const routes = [
   { path: ROUTE.PINNED, component: PinnedComponent },
   { path: ROUTE.COLUMN_CLASS, component: ColumnClassComponent },
   { path: ROUTE.NESTED_TABLE, component: NestedTableComponent },
+  { path: ROUTE.DYNAMIC_COMPONENT, component: DynamicComponentComponent },
   { path: 'persist-state-router/:state', component: PersistStateRouterComponent },
   { path: ROUTE.MOBILE, component: MobileComponent },
   { path: ROUTE.LOADING_TEMPLATE, component: LoadingTemplateComponent },

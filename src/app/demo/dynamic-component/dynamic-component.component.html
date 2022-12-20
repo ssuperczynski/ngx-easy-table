@@ -1,0 +1,42 @@
+<div class="columns">
+  <div class="column col-12">
+    <small class="mb-2">
+      Click "Open CDK" or "Open Ref" button to create a dynamic component.
+    </small>
+  </div>
+  <div class="column col-12">
+    <button
+      (click)="toggleCdk()"
+      type="button"
+      cdkOverlayOrigin
+      #trigger="cdkOverlayOrigin"
+      class="btn mr-1"
+    >
+      {{ isCDKOpen ? 'Close' : 'Open' }} CDK
+    </button>
+    <button
+      (click)="toggleRef()"
+      type="button"
+      cdkOverlayOrigin
+      #trigger="cdkOverlayOrigin"
+      class="btn"
+    >
+      {{ isRefOpen ? 'Close' : 'Open' }} Ref
+    </button>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="trigger"
+      [cdkConnectedOverlayOpen]="isCDKOpen"
+    >
+      <div class="popover">
+        <ngx-table
+          [data]="data"
+          #table
+          [configuration]="configuration"
+          [columns]="columns"
+        ></ngx-table>
+      </div>
+    </ng-template>
+    <div #container></div>
+  </div>
+</div>

@@ -64,3 +64,4 @@ export * from './infinite-scroll-server-template/infinite-scroll-server-template
 export * from './checkbox-as-radio/checkbox-as-radio.component';
 export * from './radio/radio.component';
 export * from './ondragover/ondragover.component';
+export * from './dynamic-component/dynamic-component.component';

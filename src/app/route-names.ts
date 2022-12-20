@@ -64,5 +64,6 @@ export class ROUTE {
   public static readonly INFINITE_SCROLL_SERVER_TEMPLATE = 'infinite-scroll-server-template';
   public static readonly REORDER = 'reorder';
   public static readonly ON_DRAG_OVER = 'ondragover';
+  public static readonly DYNAMIC_COMPONENT = 'dynamic-component';
   public static readonly PERSIST_STATE_ROUTER = (state: string) => `persist-state-router/${state}`;
 }
