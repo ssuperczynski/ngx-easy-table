@@ -71,12 +71,15 @@ import {
   CheckboxAsRadioComponent,
   RadioComponent,
   OnDragOverComponent,
+  DynamicComponentComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/material/legacy-paginator';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { SmallTableComponent } from './demo/dynamic-component/small-table/small-table.component';
 
 @NgModule({
   imports: [
@@ -88,6 +91,7 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
     HighlightModule,
     NoopAnimationsModule,
     MatPaginatorModule,
+    OverlayModule,
   ],
   declarations: [
     // pipes
@@ -161,6 +165,8 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
     CheckboxAsRadioComponent,
     RadioComponent,
     OnDragOverComponent,
+    DynamicComponentComponent,
+    SmallTableComponent,
   ],
   bootstrap: [AppComponent],
   providers: [

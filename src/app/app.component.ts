@@ -36,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.DYNAMIC_ROW, name: 'Dynamic row' },
       { link: ROUTE.HORIZONTAL_SCROLL, name: 'Horizontal scroll' },
       { link: ROUTE.DYNAMIC_CONFIGURATION, name: 'Dynamic configuration' },
+      { link: ROUTE.DYNAMIC_COMPONENT, name: 'Dynamic component' },
       { link: ROUTE.EXPORTS, name: 'Exports' },
       { link: ROUTE.RESIZABLE, name: 'Column resizer' },
       { link: ROUTE.COLUMN_WIDTH, name: 'Column width' },
