@@ -23,7 +23,20 @@ export class SummaryFooterComponent implements OnInit {
       { key: 'isActive', title: 'STATUS' },
     ];
     this.configuration = { ...DefaultConfig };
+    this.configuration.searchEnabled = true;
     this.data = data;
     this.ageSummary = this.data.map((_) => _.age).reduce((acc, cur) => cur + acc, 0);
+  }
+
+  onEvent($event: { event: string; value: { key: string; value: string }[] }) {
+    if ($event.event !== 'onSearch') {
+      return;
+    }
+    const filterKey = $event.value[0].key;
+    const filterVal = $event.value[0].value;
+    this.ageSummary = this.data
+      .filter((item) => `${item[filterKey]}`.includes(filterVal))
+      .map((_) => _.age)
+      .reduce((acc, cur) => cur + acc, 0);
   }
 }

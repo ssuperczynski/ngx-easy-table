@@ -16,11 +16,12 @@ export class CheckboxesComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns = [
-      { key: '', title: '', searchEnabled: false },
-      { key: 'name', title: 'Name' },
-      { key: 'company', title: 'Company' },
-      { key: 'name', title: 'Supervisor' },
-      { key: 'phone', title: 'Phone' },
+      { key: '', title: '', searchEnabled: false, width: '5%' },
+      { key: 'name', title: 'Name', width: '25%' },
+      { key: 'company', title: 'Company', width: '20%' },
+      { key: 'name', title: 'Supervisor', width: '20%' },
+      { key: 'phone', title: 'Phone', width: '20%' },
+      { key: 'age', title: 'Age', width: '10%' },
     ];
     this.configuration = { ...DefaultConfig };
     this.data = data;
@@ -28,6 +29,10 @@ export class CheckboxesComponent implements OnInit {
 
   onChange(row: any): void {
     const index = this.data.indexOf(row);
-    this.selected.add(index);
+    if (this.selected.has(index)) {
+      this.selected.delete(index);
+    } else {
+      this.selected.add(index);
+    }
   }
 }

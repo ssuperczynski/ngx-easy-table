@@ -58,22 +58,21 @@
                 | sort: sortBy
                 | search: term:filteredCountSubject
                 | global: globalSearchTerm:filteredCountSubject
-                | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-              let rowIndex = index
+                | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id }
             "
           >
             <tr
-              (click)="onClick($event, row, '', null, rowIndex)"
+              (click)="onClick($event, row, '', null, data.indexOf(row))"
               #contextMenu
-              (contextmenu)="onRowContextMenu($event, row, '', null, rowIndex)"
-              (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
+              (contextmenu)="onRowContextMenu($event, row, '', null, data.indexOf(row))"
+              (dblclick)="onDoubleClick($event, row, '', null, data.indexOf(row))"
               [class.ngx-table__table-row--selected]="
-                rowIndex === selectedRow && !config.selectCell
+                data.indexOf(row) === selectedRow && !config.selectCell
               "
             >
               <ng-container
                 [ngTemplateOutlet]="rowTemplate"
-                [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+                [ngTemplateOutletContext]="{ $implicit: row, index: data.indexOf(row) }"
               >
               </ng-container>
               <td *ngIf="config.detailsTemplate">
@@ -81,23 +80,25 @@
                   class="ngx-icon"
                   *ngIf="arrowDefinition"
                   [ngClass]="
-                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
+                    isRowCollapsed(data.indexOf(row))
+                      ? 'ngx-icon-arrow-down'
+                      : 'ngx-icon-arrow-right'
                   "
-                  (click)="collapseRow(rowIndex)"
+                  (click)="collapseRow(data.indexOf(row))"
                 >
                 </span>
               </td>
             </tr>
             <tr
               *ngIf="
-                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
+                (config.detailsTemplate && selectedDetailsTemplateRowId.has(data.indexOf(row))) ||
                 config.collapseAllRows
               "
             >
               <td [attr.colspan]="columns.length + 1">
                 <ng-container
                   [ngTemplateOutlet]="detailsTemplate"
-                  [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+                  [ngTemplateOutletContext]="{ $implicit: row, index: data.indexOf(row) }"
                 >
                 </ng-container>
               </td>
@@ -184,22 +185,21 @@
                 | sort: sortBy
                 | search: term:filteredCountSubject
                 | global: globalSearchTerm:filteredCountSubject
-                | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-              let rowIndex = index
+                | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id }
             "
           >
             <tr
               [class.ngx-table__table-row--selected]="
-                rowIndex === selectedRow && !config.selectCell
+                data.indexOf(row) === selectedRow && !config.selectCell
               "
             >
               <td *ngIf="config.checkboxes">
                 <label class="ngx-form-checkbox">
                   <input
                     type="checkbox"
-                    id="checkbox-{{ rowIndex }}"
-                    [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
-                    (change)="onCheckboxSelect($event, row, rowIndex)"
+                    id="checkbox-{{ data.indexOf(row) }}"
+                    [checked]="isSelected || selectedCheckboxes.has(data.indexOf(row))"
+                    (change)="onCheckboxSelect($event, row, data.indexOf(row))"
                   />
                   <em class="ngx-form-icon"></em>
                 </label>
@@ -208,18 +208,20 @@
                 <label>
                   <input
                     type="radio"
-                    id="radio-{{ rowIndex }}"
+                    id="radio-{{ data.indexOf(row) }}"
                     name="radio"
-                    (change)="onRadioSelect($event, row, rowIndex)"
+                    (change)="onRadioSelect($event, row, data.indexOf(row))"
                   />
                 </label>
               </td>
               <ng-container *ngFor="let column of columns; let colIndex = index">
                 <td
-                  (click)="onClick($event, row, column.key, colIndex, rowIndex)"
+                  (click)="onClick($event, row, column.key, colIndex, data.indexOf(row))"
                   #contextMenu
-                  (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
-                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
+                  (contextmenu)="
+                    onRowContextMenu($event, row, column.key, colIndex, data.indexOf(row))
+                  "
+                  (dblclick)="onDoubleClick($event, row, column.key, colIndex, data.indexOf(row))"
                   [class.pinned-left]="column.pinned"
                   [ngClass]="column.cssClass ? column.cssClass.name : ''"
                   [style.left]="styleService.pinnedWidth(column.pinned, colIndex)"
@@ -228,7 +230,7 @@
                   "
                   [class.ngx-table__table-cell--selected]="
                     colIndex === selectedCol &&
-                    rowIndex === selectedRow &&
+                    data.indexOf(row) === selectedRow &&
                     !config.selectCol &&
                     !config.selectRow
                   "
@@ -239,7 +241,7 @@
                     [ngTemplateOutlet]="column.cellTemplate"
                     [ngTemplateOutletContext]="{
                       $implicit: row,
-                      rowIndex: rowIndex,
+                      rowIndex: data.indexOf(row),
                       column: column
                     }"
                   >
@@ -251,16 +253,18 @@
                   class="ngx-icon"
                   *ngIf="arrowDefinition"
                   [ngClass]="
-                    isRowCollapsed(rowIndex) ? 'ngx-icon-arrow-down' : 'ngx-icon-arrow-right'
+                    isRowCollapsed(data.indexOf(row))
+                      ? 'ngx-icon-arrow-down'
+                      : 'ngx-icon-arrow-right'
                   "
-                  (click)="collapseRow(rowIndex)"
+                  (click)="collapseRow(data.indexOf(row))"
                 >
                 </span>
               </td>
             </tr>
             <tr
               *ngIf="
-                (config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) ||
+                (config.detailsTemplate && selectedDetailsTemplateRowId.has(data.indexOf(row))) ||
                 config.collapseAllRows
               "
             >
@@ -268,7 +272,7 @@
               <td [attr.colspan]="columns.length + 1">
                 <ng-container
                   [ngTemplateOutlet]="detailsTemplate"
-                  [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }"
+                  [ngTemplateOutletContext]="{ $implicit: row, index: data.indexOf(row) }"
                 >
                 </ng-container>
               </td>
@@ -444,22 +448,23 @@
               | sort: sortBy
               | search: term:filteredCountSubject
               | global: globalSearchTerm:filteredCountSubject
-              | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-            let rowIndex = index
+              | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id }
           "
         >
-          <tr class="ngx-draggable-row"
-              cdkDrag
-              (cdkDragStarted)="onDragStart($event)"
-              [cdkDragStartDelay]="config.reorderDelay || 0"
-              cdkDragLockAxis="y">
+          <tr
+            class="ngx-draggable-row"
+            cdkDrag
+            (cdkDragStarted)="onDragStart($event)"
+            [cdkDragStartDelay]="config.reorderDelay || 0"
+            cdkDragLockAxis="y"
+          >
             <td *ngIf="config.checkboxes">
               <label class="ngx-form-checkbox">
                 <input
                   type="checkbox"
-                  id="checkbox-draggable-{{ rowIndex }}"
-                  [checked]="isSelected || selectedCheckboxes.has(rowIndex)"
-                  (change)="onCheckboxSelect($event, row, rowIndex)"
+                  id="checkbox-draggable-{{ data.indexOf(row) }}"
+                  [checked]="isSelected || selectedCheckboxes.has(data.indexOf(row))"
+                  (change)="onCheckboxSelect($event, row, data.indexOf(row))"
                 />
                 <em class="ngx-form-icon"></em>
               </label>
@@ -468,22 +473,22 @@
               <label>
                 <input
                   type="radio"
-                  id="radio-draggable-{{ rowIndex }}"
+                  id="radio-draggable-{{ data.indexOf(row) }}"
                   name="radio"
-                  (change)="onRadioSelect($event, row, rowIndex)"
+                  (change)="onRadioSelect($event, row, data.indexOf(row))"
                 />
               </label>
             </td>
             <ng-container *ngFor="let column of columns; let colIndex = index">
               <td
-                (click)="onClick($event, row, column.key, colIndex, rowIndex)"
-                (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
+                (click)="onClick($event, row, column.key, colIndex, data.indexOf(row))"
+                (dblclick)="onDoubleClick($event, row, column.key, colIndex, data.indexOf(row))"
                 [class.ngx-table__table-col--selected]="
                   colIndex === selectedCol && !config.selectCell
                 "
                 [class.ngx-table__table-cell--selected]="
                   colIndex === selectedCol &&
-                  rowIndex === selectedRow &&
+                  data.indexOf(row) === selectedRow &&
                   !config.selectCol &&
                   !config.selectRow
                 "
@@ -494,7 +499,7 @@
                   [ngTemplateOutlet]="column.cellTemplate"
                   [ngTemplateOutletContext]="{
                     $implicit: row,
-                    rowIndex: rowIndex,
+                    rowIndex: data.indexOf(row),
                     column: column
                   }"
                 >
