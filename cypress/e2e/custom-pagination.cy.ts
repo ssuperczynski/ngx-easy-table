@@ -9,7 +9,7 @@ context('Custom pagination', () => {
     cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(4) > div')
       .contains('KONGENE')
       .get(
-        '#content > div > app-custom-pagination > mat-paginator > div > div > div.mat-paginator-range-actions > button.mat-paginator-navigation-next.mat-icon-button.mat-button-base._mat-animation-noopable'
+        '#content > div > app-custom-pagination > mat-paginator > div > div > div.mat-mdc-paginator-range-actions > button.mat-mdc-tooltip-trigger.mat-mdc-paginator-navigation-next.mdc-icon-button.mat-mdc-icon-button._mat-animation-noopable.mat-unthemed.mat-mdc-button-base'
       )
       .click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(4) > div')

@@ -1,7 +1,18 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 * {
   font-family: Montserrat, sans-serif;
+}
+
+code,
+.hljs-keyword,
+.hljs-string,
+.hljs-title,
+.hljs-attr,
+.hljs-meta,
+.hljs-comment,
+.hljs-variable,
+.hljs-property,
+.hljs-number {
+  font-family: 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', Menlo, Courier, monospace;
 }
 
 ul li,
