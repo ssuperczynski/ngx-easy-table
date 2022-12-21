@@ -26,7 +26,6 @@ export class BootstrapComponent implements OnInit {
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.checkboxes = true;
-    this.configuration.additionalActions = true;
     this.configuration.fixedColumnWidth = true;
     this.columns = [
       { key: 'phone', title: 'Phone' },

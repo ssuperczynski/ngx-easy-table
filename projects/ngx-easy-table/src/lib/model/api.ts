@@ -1,7 +1,6 @@
 export enum API {
   rowContextMenuClicked = 'rowContextMenuClicked',
   setInputValue = 'setInputValue',
-  toolPanelClicked = 'toolPanelClicked',
   toggleRowIndex = 'toggleRowIndex',
   toggleCheckbox = 'toggleCheckbox',
   onGlobalSearch = 'onGlobalSearch',
@@ -46,7 +45,6 @@ export interface CellStyle {
 export type ApiType =
   | { type: API.rowContextMenuClicked }
   | { type: API.setInputValue; value: Array<{ key: string; value: string }> }
-  | { type: API.toolPanelClicked }
   | { type: API.toggleRowIndex; value: number }
   | { type: API.toggleCheckbox; value: number }
   | { type: API.onGlobalSearch; value: string }

@@ -217,10 +217,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
     if (this.config.selectRow) {
       this.selectedRow = rowIndex;
     }
-    if (this.config.selectCol && colIndex) {
+    if (this.config.selectCol && `${colIndex}`) {
       this.selectedCol = colIndex;
     }
-    if (this.config.selectCell && colIndex) {
+    if (this.config.selectCell && `${colIndex}`) {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
@@ -427,9 +427,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
           left: null,
           value: null,
         };
-        break;
-      case API.toolPanelClicked:
-        // TODO
         break;
       case API.toggleRowIndex:
         this.collapseRow(event.value);
