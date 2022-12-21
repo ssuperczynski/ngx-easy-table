@@ -141,4 +141,8 @@ export class AppComponent implements OnInit, OnDestroy {
   onMenuSearch(event: Event): void {
     this.searchTerm = (event.target as HTMLInputElement).value;
   }
+
+  clear() {
+    this.searchTerm = '';
+  }
 }

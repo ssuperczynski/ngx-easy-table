@@ -67,13 +67,17 @@
         </div>
         <div class="form-group">
           <label class="form-label">
-            <input
-              class="form-input input-sm menu-search"
-              type="search"
-              (input)="onMenuSearch($event)"
-              id="menu-search"
-              placeholder="Search"
-            />
+            <div class="input-group">
+              <input
+                class="form-input input menu-search"
+                type="search"
+                [(ngModel)]="searchTerm"
+                (input)="onMenuSearch($event)"
+                id="menu-search"
+                placeholder="Search"
+              />
+              <button class="btn btn-primary input-group-btn" (click)="clear()">X</button>
+            </div>
           </label>
         </div>
         <div class="accordion" *ngFor="let position of menu | keyvalue">
