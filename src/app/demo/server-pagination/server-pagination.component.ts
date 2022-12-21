@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
-import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -78,31 +78,18 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
     this.companyService
       .getCompanies(params)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(
-        (response) => {
-          this.data = response.body;
-          // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
-          this.pagination.count =
-            this.pagination.count === -1
-              ? response.body
-                ? response.body.length
-                : 0
-              : this.pagination.count;
-          this.pagination = { ...this.pagination };
-          this.configuration.isLoading = false;
-          this.cdr.detectChanges();
-          this.setRowStyle();
-        },
-        (error) => {
-          console.error('ERROR: ', error.message);
-        }
-      );
-  }
-
-  private setRowStyle(): void {
-    this.table.apiEvent({
-      type: API.setRowStyle,
-      value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
-    });
+      .subscribe((response) => {
+        this.data = response.body;
+        // ensure this.pagination.count is set only once and contains count of the whole array, not just paginated one
+        this.pagination.count =
+          this.pagination.count === -1
+            ? response.body
+              ? response.body.length
+              : 0
+            : this.pagination.count;
+        this.pagination = { ...this.pagination };
+        this.configuration.isLoading = false;
+        this.cdr.detectChanges();
+      });
   }
 }
