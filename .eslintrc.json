@@ -9,12 +9,13 @@
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/recommended--extra",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:sonarjs/recommended"
+        "plugin:sonarjs/recommended",
+        "plugin:rxjs/recommended"
       ],
-      "plugins": ["eslint-plugin-react", "eslint-plugin-rxjs", "sonarjs"],
+      "plugins": ["eslint-plugin-rxjs", "sonarjs"],
       "rules": {
         "@angular-eslint/component-selector": [
           "off",
@@ -100,16 +101,6 @@
         "no-useless-constructor": "off",
         "prefer-object-spread": "error",
         "prefer-template": "off",
-        "react/jsx-curly-spacing": "off",
-        "react/jsx-equals-spacing": "off",
-        "react/jsx-tag-spacing": [
-          "off",
-          {
-            "afterOpening": "allow",
-            "closingSlash": "allow"
-          }
-        ],
-        "react/jsx-wrap-multilines": "off",
         "rxjs/no-unsafe-takeuntil": "error",
         "space-before-function-paren": "off",
         "space-in-parens": ["off", "never"]
