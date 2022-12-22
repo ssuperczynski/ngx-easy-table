@@ -8,7 +8,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DynamicRowComponent implements OnInit {
-  @ViewChild('actionTpl') actionTpl: TemplateRef<any>;
+  @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
   public data;
   public columns: Columns[];
   public configuration: Config;
