@@ -43,8 +43,8 @@ export class ApiDocComponent {
   value: 1,
 });`;
 
-  public readonly setCheckboxCode = `this.table.apiEvent({
-  type: API.setCheckbox,
+  public readonly toggleCheckboxCode = `this.table.apiEvent({
+  type: API.toggleCheckbox,
   value: 1,
 });`;
 

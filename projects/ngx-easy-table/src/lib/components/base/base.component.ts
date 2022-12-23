@@ -448,11 +448,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
           });
         }
         this.onSearch(event.value);
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
         break;
       case API.onGlobalSearch:
         this.onGlobalSearch(event.value);
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
         break;
       case API.setRowClass:
         if (Array.isArray(event.value)) {
@@ -460,7 +460,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
           break;
         }
         this.styleService.setRowClass(event.value);
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
         break;
       case API.setCellClass:
         if (Array.isArray(event.value)) {
@@ -485,7 +485,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
         break;
       case API.setTableClass:
         this.tableClass = event.value;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
         break;
       case API.getPaginationTotalItems:
         return this.paginationComponent.paginationDirective.getTotalItems();
