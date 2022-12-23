@@ -25,7 +25,6 @@ export class ApiComponent implements OnInit, AfterViewInit {
   public last;
   public checked = {
     paginationEnabled: true,
-    headerEnabled: true,
     searchEnabled: true,
     collapseAllRows: false,
     isLoading: false,

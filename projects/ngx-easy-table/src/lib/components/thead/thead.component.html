@@ -184,7 +184,10 @@
     </div>
   </th>
 </tr>
-<tr *ngIf="config.searchEnabled && !filtersTemplate" class="ngx-table__sort-header">
+<tr
+  [style.display]="config.searchEnabled && !filtersTemplate ? 'table-row' : 'none'"
+  class="ngx-table__search-header"
+>
   <th *ngIf="config.checkboxes || config.radio"></th>
   <ng-container *ngFor="let column of columns; let colIndex = index">
     <th

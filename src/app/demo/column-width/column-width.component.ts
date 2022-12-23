@@ -13,7 +13,7 @@ export class ColumnWidthComponent implements OnInit {
     { key: 'phone', title: 'Phone', placeholder: 'Search', width: '15%' },
     { key: 'age', title: 'Age', placeholder: 'Søg', width: '5%' },
     { key: 'company', title: 'Company', placeholder: 'Pesquisa', width: '15%' },
-    { key: 'name', title: 'Name', placeholder: 'поиск', width: '15%' },
+    { key: 'name', title: 'Name', placeholder: 'Ricerca', width: '15%' },
     { key: 'isActive', title: 'STATUS', placeholder: 'Suche', width: '15%' },
   ];
   data: Company[] = [];
@@ -21,6 +21,7 @@ export class ColumnWidthComponent implements OnInit {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
+    this.configuration.searchEnabled = true;
     this.data = data;
   }
 }
