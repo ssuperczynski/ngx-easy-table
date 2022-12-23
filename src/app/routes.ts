@@ -69,11 +69,13 @@ import {
   RadioComponent,
   OnDragOverComponent,
   DynamicComponentComponent,
+  LandingComponent,
+  StickyComponent,
 } from './demo';
 import { ROUTE } from './route-names';
 
 export const routes = [
-  { path: '', component: BasicComponent },
+  { path: '', component: LandingComponent },
   { path: ROUTE.BASIC, component: BasicComponent },
   { path: ROUTE.SEARCH, component: SearchComponent },
   { path: ROUTE.PAGINATION, component: PaginationComponent },
@@ -141,7 +143,9 @@ export const routes = [
   { path: ROUTE.INFINITE_SCROLL, component: InfiniteScrollComponent },
   { path: ROUTE.INFINITE_SCROLL_SERVER, component: InfiniteScrollServerComponent },
   { path: ROUTE.INFINITE_SCROLL_SERVER_TEMPLATE, component: InfiniteScrollServerTemplateComponent },
-  { path: '**', component: BasicComponent },
+  { path: ROUTE.LANDING, component: LandingComponent },
+  { path: ROUTE.STICKY, component: StickyComponent },
+  { path: '**', component: LandingComponent },
 ];
 
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes, { useHash: true });

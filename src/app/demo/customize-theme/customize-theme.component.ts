@@ -38,9 +38,4 @@ export class CustomizeThemeComponent implements OnInit {
     this.configuration.tableLayout.style = size;
     this.configuration = { ...this.configuration };
   }
-
-  setTheme(theme: string): void {
-    this.configuration.tableLayout.theme = theme;
-    this.configuration = { ...this.configuration };
-  }
 }

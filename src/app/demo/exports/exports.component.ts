@@ -26,23 +26,6 @@ export class ExportsComponent implements OnInit {
     this.data = data;
   }
 
-  exportToExcel(): void {
-    // Here is simple example how to export to excel by https://www.npmjs.com/package/xlsx
-    // try {
-    //   /* generate worksheet */
-    //   const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
-    //
-    //   /* generate workbook and add the worksheet */
-    //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    //
-    //   /* save to file */
-    //   XLSX.writeFile(wb, 'file.xlsx');
-    // } catch (err) {
-    //   console.error('export error', err);
-    // }
-  }
-
   exportToCSV(): void {
     const options = {
       fieldSeparator: ',',

@@ -1,0 +1,84 @@
+.section-hero {
+  padding: 1rem 0.5rem;
+}
+
+.section-hero .docs-brand {
+  position: absolute;
+  top: 0.85rem;
+}
+
+.section-hero .docs-brand h2 {
+  color: #5755d9;
+}
+
+.section-hero .column {
+  padding: 0.4rem;
+}
+
+.section-ads {
+  padding: 1rem 0.5rem;
+}
+
+.section-updates {
+  padding: 4.5rem 0.5rem 2.5rem 0.5rem;
+}
+
+.section-updates .card {
+  border: 0;
+  margin-bottom: 1rem;
+}
+
+.section-features {
+  padding: 4.5rem 0.5rem;
+}
+
+.section-features .column {
+  padding: 0.4rem;
+}
+
+.section-footer {
+  color: #bcc3ce;
+  padding: 1.8rem 0.75rem 1rem;
+  position: relative;
+  z-index: 200;
+}
+
+.section-footer a {
+  color: #66758c;
+}
+.grid-hero {
+  padding-bottom: 2rem;
+  padding-top: 6rem;
+}
+
+.grid-hero h1 {
+  color: #3b4351;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.grid-hero h2 {
+  color: #455060;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid-hero h2 u {
+  border-bottom: 0.1rem solid currentColor;
+  padding-bottom: 0.05rem;
+  text-decoration: none;
+}
+
+.grid-hero .card {
+  padding: 0.5rem;
+}
+
+.grid-hero .card .card-title {
+  color: #5755d9;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}

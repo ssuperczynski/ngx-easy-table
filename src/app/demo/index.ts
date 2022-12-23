@@ -65,3 +65,5 @@ export * from './checkbox-as-radio/checkbox-as-radio.component';
 export * from './radio/radio.component';
 export * from './ondragover/ondragover.component';
 export * from './dynamic-component/dynamic-component.component';
+export * from './landing/landing.component';
+export * from './sticky/sticky.component';
