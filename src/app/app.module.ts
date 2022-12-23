@@ -72,6 +72,8 @@ import {
   RadioComponent,
   OnDragOverComponent,
   DynamicComponentComponent,
+  LandingComponent,
+  StickyComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
@@ -167,6 +169,8 @@ import { SmallTableComponent } from './demo/dynamic-component/small-table/small-
     OnDragOverComponent,
     DynamicComponentComponent,
     SmallTableComponent,
+    LandingComponent,
+    StickyComponent,
   ],
   bootstrap: [AppComponent],
   providers: [

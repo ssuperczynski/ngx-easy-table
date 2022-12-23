@@ -83,6 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.LOADING_TEMPLATE, name: 'Loading template' },
       { link: ROUTE.ADDITIONAL_ACTIONS_TEMPLATE, name: 'Additional actions' },
       { link: ROUTE.CUSTOM_PAGINATION, name: 'Custom pagination' },
+      { link: ROUTE.STICKY, name: 'Sticky' },
     ],
     select: [
       { link: ROUTE.SELECT_ROW, name: 'Select row' },
@@ -135,7 +136,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   get excludedLinks(): boolean {
-    return [ROUTE.BASIC, ROUTE.API_DOC, ROUTE.DOC, ROUTE.INSTALLATION].includes(this.selected.link);
+    return [ROUTE.LANDING, ROUTE.API_DOC, ROUTE.DOC, ROUTE.INSTALLATION].includes(
+      this.selected.link
+    );
   }
 
   onMenuSearch(event: Event): void {

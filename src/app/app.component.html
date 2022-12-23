@@ -35,6 +35,16 @@
               <li class="menu-item">
                 <a
                   href="#"
+                  [routerLink]="['/landing']"
+                  (click)="select({ link: 'landing', name: 'Site' })"
+                  id="landing"
+                >
+                  <i class="icon icon-link"></i> Site
+                </a>
+              </li>
+              <li class="menu-item">
+                <a
+                  href="#"
                   [routerLink]="['/installation']"
                   (click)="select({ link: 'installation', name: 'Installation' })"
                   id="installation"
