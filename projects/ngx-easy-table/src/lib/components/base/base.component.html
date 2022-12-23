@@ -299,7 +299,7 @@
                 rowIndex === selectedRow && !config.selectCell
               "
             >
-              <td *ngIf="config.checkboxes">
+              <td *ngIf="config.checkboxes" width="3%">
                 <label class="ngx-form-checkbox">
                   <input
                     type="checkbox"
@@ -310,7 +310,7 @@
                   <em class="ngx-form-icon"></em>
                 </label>
               </td>
-              <td *ngIf="config.radio">
+              <td *ngIf="config.radio" width="3%">
                 <label>
                   <input
                     type="radio"
