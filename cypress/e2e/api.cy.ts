@@ -21,7 +21,7 @@ context('API', () => {
       .contains('+1 (878) 515-3653');
   });
   it('sets column value and uses filter by column when search row is removed from the DOM', () => {
-    cy.get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(3)')
+    cy.get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(2)')
       .click()
       .get('#buttonClearAllInputs')
       .click({ force: true })
@@ -49,7 +49,7 @@ context('API', () => {
       .click({ force: true });
   });
   it('sets column value and uses filter by column when search row is present in the DOM', () => {
-    cy.get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(3)')
+    cy.get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(2)')
       .click()
       .get('#buttonClearAllInputs')
       .click({ force: true })

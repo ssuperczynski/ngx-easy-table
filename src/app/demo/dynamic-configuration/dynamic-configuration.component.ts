@@ -13,7 +13,6 @@ export class DynamicConfigurationComponent implements OnInit {
   data: Company[] = [];
   checked = {
     paginationEnabled: true,
-    headerEnabled: true,
     searchEnabled: true,
     collapseAllRows: false,
     isLoading: false,
