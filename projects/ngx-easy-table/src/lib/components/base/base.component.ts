@@ -294,6 +294,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
+    this.config.rows = pagination.limit;
     this.emitEvent(Event.onPagination, pagination);
   }
 
