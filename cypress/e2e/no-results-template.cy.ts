@@ -7,7 +7,7 @@ context('No results template', () => {
 
   it('show custom "no-results-template"', () => {
     cy.get('#table > tbody > tr:nth-child(1) > td:nth-child(1)').contains(
-      "I didn't find any results for you :("
+      'I didn\'t find any results for you :('
     );
   });
 });

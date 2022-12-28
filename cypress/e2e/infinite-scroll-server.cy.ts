@@ -149,7 +149,7 @@ context('Infinite scroll server', () => {
         // .get(tenthItem)
         // .should('not.be.visible')
         .get('#table > tbody > cdk-virtual-scroll-viewport')
-        .scrollTo(0, 500, { duration: 200 })
+        .scrollTo(0, 500, {duration: 200})
         .get(tenthItem)
         .should('to.be.visible');
     });
