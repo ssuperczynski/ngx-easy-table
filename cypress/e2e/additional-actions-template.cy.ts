@@ -7,22 +7,18 @@ context('Additional actions template', () => {
 
   it('checks if additional actions menu works', () => {
     cy.get('#search_phone')
-      .should('not.exist')
+      .should('not.be.visible')
       .get('#table > thead > tr > th.ngx-table__header-cell-additional-actions > div > a')
       .click()
-      .get(
-        '#table > thead > tr > th.ngx-table__header-cell-additional-actions > div > ul > ul > li:nth-child(2)'
-      )
+      .get('#enableSearch')
       .click()
       .get('#search_phone')
-      .should('exist');
+      .should('be.visible');
   });
   it('checks if clicking outside table closes additional actions menu', () => {
     cy.get('#table > thead > tr > th.ngx-table__header-cell-additional-actions > div > a')
       .click()
-      .get(
-        '#table > thead > tr > th.ngx-table__header-cell-additional-actions > div > ul > ul > li:nth-child(2)'
-      )
+      .get('#enableSearch')
       .should('exist')
       .get('#content > div > div > h3')
       .click()

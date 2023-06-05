@@ -146,8 +146,6 @@ context('Infinite scroll server', () => {
       const tenthItem =
         '#table > tbody > cdk-virtual-scroll-viewport > div.cdk-virtual-scroll-content-wrapper > tr:nth-child(10) > td:nth-child(3) > div';
       cy.wait('@firstCall')
-        // .get(tenthItem)
-        // .should('not.be.visible')
         .get('#table > tbody > cdk-virtual-scroll-viewport')
         .scrollTo(0, 500, { duration: 200 })
         .get(tenthItem)

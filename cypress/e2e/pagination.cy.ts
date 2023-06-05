@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 context('Pagination', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('http://127.0.0.1:4202/#/pagination');
   });
 
@@ -29,13 +29,17 @@ context('Pagination', () => {
       .contains('+1 (902) 500-3665');
   });
   it('gets correct phone when pagination NEXT button clicked', () => {
-    cy.get('#pagination-controls > ul > li.pagination-next > a')
+    cy.get('#pagination-controls > ul > li:nth-child(4) > a')
+      .click()
+      .get('#pagination-controls > ul > li.pagination-next > a')
       .click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
       .contains('+1 (882) 527-2652');
   });
   it('gets correct phone when pagination PREV button clicked', () => {
-    cy.get('#pagination-controls > ul > li.pagination-previous > a')
+    cy.get('#pagination-controls > ul > li:nth-child(5) > a')
+      .click()
+      .get('#pagination-controls > ul > li.pagination-previous > a')
       .click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
       .contains('+1 (902) 500-3665');
