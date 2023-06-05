@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 context('Dynamic configuration', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('http://127.0.0.1:4202/#/dynamic-configuration');
   });
 

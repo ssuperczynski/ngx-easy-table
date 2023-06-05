@@ -11,8 +11,8 @@
 </div>
 <ng-template #additionalActionsTemplate>
   <ul>
-    <li class="position" (click)="csvExportWhole()">CSV export</li>
-    <li class="position" (click)="enableSearch()">Enable search</li>
-    <li class="position" (click)="toggle()">Toggle Phone</li>
+    <li class="position" id="csvExport" (click)="csvExportWhole()">CSV export</li>
+    <li class="position" id="enableSearch" (click)="enableSearch()">Enable search</li>
+    <li class="position" id="togglePhone" (click)="toggle()">Toggle Phone</li>
   </ul>
 </ng-template>

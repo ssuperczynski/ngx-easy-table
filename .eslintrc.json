@@ -10,7 +10,6 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/recommended--extra",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:sonarjs/recommended",
         "plugin:rxjs/recommended"
@@ -41,8 +40,6 @@
         "@angular-eslint/prefer-output-readonly": "error",
         "@angular-eslint/use-component-selector": "error",
         "@angular-eslint/use-component-view-encapsulation": "off",
-        "@typescript-eslint/ban-ts-comment": "error",
-        "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/explicit-member-accessibility": [
           "off",
           {
@@ -62,16 +59,11 @@
             }
           }
         ],
-        "@typescript-eslint/no-dynamic-delete": "error",
-        "@typescript-eslint/no-empty-function": "error",
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-extraneous-class": "off",
         "@typescript-eslint/member-ordering": "off",
-        "@typescript-eslint/no-for-in-array": "error",
-        "@typescript-eslint/no-inferrable-types": "error",
         "@typescript-eslint/no-namespace": "off",
         "@typescript-eslint/prefer-for-of": "off",
-        "@typescript-eslint/naming-convention": "off",
         "sonarjs/no-duplicate-string": "off",
         "@typescript-eslint/semi": ["off", null],
         "arrow-parens": ["off", "always"],

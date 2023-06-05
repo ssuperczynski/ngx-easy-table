@@ -299,7 +299,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestro
   }
 
   toggleCheckbox(rowIndex: number): void {
-    /* eslint-disable @typescript-eslint/no-unused-expressions */
     this.selectedCheckboxes.has(rowIndex)
       ? this.selectedCheckboxes.delete(rowIndex)
       : this.selectedCheckboxes.add(rowIndex);
