@@ -27,7 +27,7 @@
     "@angular/forms": "^16.1.7",
     "@angular/material": "^16.1.6",
     "export-to-csv": "^0.2.1",
-    "ngx-highlightjs": "^6.1.2",
+    "ngx-highlightjs": "^10.0.0",
     "spectre.css": "^0.5.9",
     "tslib": "^2.0.0"
   },
