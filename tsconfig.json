@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "module": "es2020",
+    "module": "ES2022",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -16,11 +16,8 @@
     "experimentalDecorators": true,
     "baseUrl": "./",
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": [
-      "es2017",
+      "ES2022",
       "dom"
     ],
     "useDefineForClassFields": false
