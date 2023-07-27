@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Config } from '../..';
-import { PaginationControlsDirective } from 'ngx-pagination';
+import {PaginationControlsDirective} from "../../features/pagination";
 
 export interface PaginationRange {
 

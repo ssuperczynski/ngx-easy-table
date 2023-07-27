@@ -29,7 +29,6 @@
     "export-to-csv": "^0.2.1",
     "ngx-highlightjs": "^6.1.2",
     "spectre.css": "^0.5.9",
-    "ngx-pagination": "^5.0.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

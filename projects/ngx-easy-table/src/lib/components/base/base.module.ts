@@ -12,9 +12,9 @@ import { RenderPipe } from '../../pipes/render-pipe';
 import { SearchPipe } from '../../pipes/search-pipe';
 import { SortPipe } from '../../pipes/sort.pipe';
 
-import { NgxPaginationModule } from 'ngx-pagination';
 import { TableTHeadComponent } from '../thead/thead.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import {NgxPaginationModule} from "../../features/pagination";
 
 const COMPONENTS: any[] = [
   NgxTableComponent,
