@@ -24,7 +24,6 @@ export * from './custom-filters/custom-filters.component';
 export * from './toggle-column/toggle-column.component';
 export * from './dynamic-configuration/dynamic-configuration.component';
 export * from './checkbox-default/checkbox-default.component';
-export * from './exports/exports.component';
 export * from './resizable/resizable.component';
 export * from './column-width/column-width.component';
 export * from './fixed-width/fixed-width.component';

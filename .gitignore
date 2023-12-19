@@ -50,3 +50,4 @@ cypress/videos
 /cypress/screenshots/
 projects/ngx-easy-table/node_modules
 .cache
+.eslintcache
