@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
-import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-additional-actions-template',
@@ -10,16 +9,6 @@ import { ExportToCsv } from 'export-to-csv';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdditionalActionsTemplateComponent implements OnInit {
-  private csvOptions = {
-    fieldSeparator: ',',
-    quoteStrings: '"',
-    decimalSeparator: '.',
-    showLabels: true,
-    showTitle: false,
-    useTextFile: false,
-    useBom: true,
-    useKeysAsHeaders: true,
-  };
   private toggleChecked = false;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
@@ -35,11 +24,6 @@ export class AdditionalActionsTemplateComponent implements OnInit {
     this.configuration = { ...DefaultConfig };
     this.configuration.additionalActions = true;
     this.data = data;
-  }
-
-  public csvExportWhole(): void {
-    const csvExporter = new ExportToCsv(this.csvOptions);
-    csvExporter.generateCsv(this.data);
   }
 
   public toggle(): void {

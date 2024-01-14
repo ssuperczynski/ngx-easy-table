@@ -14,7 +14,7 @@
         "plugin:sonarjs/recommended",
         "plugin:rxjs/recommended"
       ],
-      "plugins": ["eslint-plugin-rxjs", "sonarjs"],
+      "plugins": ["eslint-plugin-rxjs", "sonarjs", "security"],
       "rules": {
         "@angular-eslint/component-selector": [
           "off",
