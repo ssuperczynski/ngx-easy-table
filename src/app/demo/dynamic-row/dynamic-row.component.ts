@@ -37,7 +37,7 @@ export class DynamicRowComponent implements OnInit {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  addRow(): void {
+  appendRow(): void {
     this.data = [
       ...this.data,
       {
@@ -47,6 +47,19 @@ export class DynamicRowComponent implements OnInit {
         limit: this.randNumber(800, 1200),
         balance: this.randNumber(800, 3000),
       },
+    ];
+  }
+
+  prependRow(): void {
+    this.data = [
+      {
+        status: 'ACTIVE',
+        amount: this.randNumber(1, 5),
+        company: 'foo',
+        limit: this.randNumber(800, 1200),
+        balance: this.randNumber(800, 3000),
+      },
+      ...this.data,
     ];
   }
 

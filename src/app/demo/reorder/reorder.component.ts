@@ -23,7 +23,6 @@ export class ReorderComponent implements OnInit {
     ];
     this.data = data;
     this.configuration = { ...DefaultConfig };
-    this.configuration.rowReorder = true;
     this.configuration.columnReorder = true;
     this.configuration.fixedColumnWidth = false;
   }

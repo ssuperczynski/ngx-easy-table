@@ -4,15 +4,17 @@ import {
   OnInit,
   ViewChild,
   ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, APIDefinition, DefaultConfig, Config } from 'ngx-easy-table';
+import { APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { SmallTableComponent } from './small-table/small-table.component';
 
 @Component({
   selector: 'app-dynamic-component',
   templateUrl: './dynamic-component.component.html',
   styleUrls: ['./dynamic-component.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DynamicComponentComponent implements OnInit {

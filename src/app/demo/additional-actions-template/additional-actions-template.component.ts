@@ -21,8 +21,7 @@ export class AdditionalActionsTemplateComponent implements OnInit {
   public configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = { ...DefaultConfig };
-    this.configuration.additionalActions = true;
+    this.configuration = { ...DefaultConfig, searchEnabled: false, additionalActions: true };
     this.data = data;
   }
 
@@ -47,6 +46,9 @@ export class AdditionalActionsTemplateComponent implements OnInit {
   }
 
   public enableSearch(): void {
-    this.configuration.searchEnabled = !this.configuration.searchEnabled;
+    this.configuration = {
+      ...this.configuration,
+      searchEnabled: !this.configuration.searchEnabled,
+    };
   }
 }

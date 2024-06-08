@@ -15,16 +15,22 @@
       </label>
       <div class="form-group">
         <label class="form-radio form-inline">
-          <input type="radio" name="style" (change)="setHeight('tiny')" />
-          <i class="form-icon"></i> Style tiny
+          <input type="radio" name="height" (change)="setHeight('tiny')" />
+          <i class="form-icon"></i> Style small
         </label>
         <label class="form-radio form-inline">
-          <input type="radio" name="style" checked (change)="setHeight('normal')" />
+          <input type="radio" name="height" checked (change)="setHeight('normal')" />
           <i class="form-icon"></i> Style normal
         </label>
+      </div>
+      <div class="form-group">
         <label class="form-radio form-inline">
-          <input type="radio" name="style" (change)="setHeight('big')" />
-          <i class="form-icon"></i> Style big
+          <input type="radio" name="style" checked (change)="setTheme('light')" />
+          <i class="form-icon"></i> Light
+        </label>
+        <label class="form-radio form-inline">
+          <input type="radio" name="style" (change)="setTheme('dark')" />
+          <i class="form-icon"></i> Dark
         </label>
       </div>
     </div>

@@ -2,16 +2,25 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  HostListener,
+  inject,
   Input,
   Output,
   TemplateRef,
   ViewChild,
-  ViewChildren,
 } from '@angular/core';
 import { Columns, Config, Event } from '../..';
-import { StyleService } from '../../services/style.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDragHandle,
+  CdkDropList,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
+import { NgClass, NgFor, NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { SearchComponent } from '../header/search.component';
+import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
+import { Store } from '@ngrx/store';
+import * as Actions from '../../actions/table.actions';
 
 @Component({
   selector: '[table-thead]',
@@ -27,69 +36,50 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
       }
     `,
   ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [StyleService],
+  imports: [
+    NgTemplateOutlet,
+    SearchComponent,
+    NgStyle,
+    NgClass,
+    NgIf,
+    NgFor,
+    CdkDrag,
+    CdkDragHandle,
+    CdkDropList,
+    CdkMenuTrigger,
+    CdkMenu,
+    CdkMenuItem,
+  ],
 })
 export class TableTHeadComponent {
-  public menuActive = false;
-  public openedHeaderActionTemplate: string | null = null;
   public startOffset;
   public onSelectAllBinded = this.onSelectAll.bind(this);
 
+  private store = inject(Store);
+
   @Input() config: Config;
   @Input() columns: Columns[];
-  @Input() sortKey;
-  @Input() sortState;
+  @Input() headerActionTemplates: { [key: string]: TemplateRef<any> } = {};
   @Input() selectAllTemplate;
   @Input() filtersTemplate;
   @Input() additionalActionsTemplate: TemplateRef<void>;
-  @Output() readonly filter = new EventEmitter<Array<{ key: string; value: string }>>();
-  @Output() readonly order = new EventEmitter<Columns>();
   @Output() readonly selectAll = new EventEmitter<void>();
   @Output() readonly event = new EventEmitter<{ event: string; value: any }>();
   @ViewChild('th') private th;
-  @ViewChildren('headerDropdown') headerDropdown;
-  @ViewChild('additionalActionMenu') additionalActionMenu;
-  @HostListener('document:click', ['$event.target'])
-  public onClick(targetElement: any): void {
-    if (
-      this.additionalActionMenu &&
-      !this.additionalActionMenu.nativeElement.contains(targetElement)
-    ) {
-      this.menuActive = false;
-    }
 
-    // if click outside the header then close opened Header Action Template
-    if (
-      this.openedHeaderActionTemplate &&
-      // if no header have the clicked point
-      !this.headerDropdown.toArray().some((ref) => ref.nativeElement.contains(targetElement))
-    ) {
-      this.openedHeaderActionTemplate = null;
-    }
-  }
-
-  constructor(public readonly styleService: StyleService) {}
-
-  getColumnDefinition(column: Columns): boolean {
-    return column.searchEnabled || typeof column.searchEnabled === 'undefined';
-  }
-
-  orderBy(column: Columns): void {
-    this.order.emit(column);
+  orderBy(col: Columns): void {
+    const column = { key: col.key, orderBy: col.orderBy, orderEnabled: col.orderEnabled };
+    this.store.dispatch(Actions.setOrder({ column }));
   }
 
   isOrderEnabled(column: Columns): boolean {
-    const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
-    return this.config.orderEnabled && columnOrderEnabled;
+    return this.config.orderEnabled && (column.orderEnabled ?? true);
   }
 
   columnDrop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
-  }
-
-  onSearch($event: Array<{ key: string; value: string }>): void {
-    this.filter.emit($event);
   }
 
   getColumnWidth(column: any): string | null {
@@ -103,7 +93,7 @@ export class TableTHeadComponent {
     this.selectAll.emit();
   }
 
-  onMouseDown(event: MouseEvent, th: HTMLTableHeaderCellElement): void {
+  onMouseDown(event: MouseEvent, th: HTMLTableCellElement): void {
     if (!this.config.resizeColumn) {
       return;
     }
@@ -136,23 +126,5 @@ export class TableTHeadComponent {
     });
     this.th.style.cursor = 'default';
     this.th = undefined;
-  }
-
-  showHeaderActionTemplateMenu(column: Columns): void {
-    if (!column.headerActionTemplate) {
-      console.error('Column [headerActionTemplate] property not defined');
-    }
-    if (this.openedHeaderActionTemplate === column.key) {
-      this.openedHeaderActionTemplate = null;
-      return;
-    }
-    this.openedHeaderActionTemplate = column.key;
-  }
-
-  showMenu(): void {
-    if (!this.additionalActionsTemplate) {
-      console.error('[additionalActionsTemplate] property not defined');
-    }
-    this.menuActive = !this.menuActive;
   }
 }

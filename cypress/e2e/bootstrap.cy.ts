@@ -9,7 +9,7 @@ context('Bootstrap', () => {
       .click()
       .get('#table')
       .should('have.class', 'table table-bordered table-striped table-sm')
-      .get('#buttonSetSpectre')
+      .get('#buttonSetCustom')
       .click()
       .get('#table')
       .should('have.class', 'ngx-table')

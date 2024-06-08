@@ -4,6 +4,16 @@
       <h5 class="color-green font-light">{{ row.status }}</h5>
     </td>
     <td class="row__progressbar">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Default striped example"
+        aria-valuenow="10"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <div class="progress-bar" [style.width.%]="row.amount"></div>
+      </div>
       {{ row.amount }}
     </td>
     <td>
@@ -12,8 +22,9 @@
       </div>
     </td>
     <td>
-      <div class="d-inline circle" [style.color]="row.balance < 2000 ? 'red' : 'green'"></div>
-      {{ row.balance }}
+      <div class="d-inline" [style.color]="row.balance < 2000 ? 'red' : 'green'">
+        {{ row.balance }}
+      </div>
     </td>
     <td [style.backgroundColor]="row.limit <= 2000 ? '#FFB6C1' : ''">
       <span class="font-small">{{ row.limit }}</span>

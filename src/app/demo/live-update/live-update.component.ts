@@ -5,8 +5,8 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { interval, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { interval, Subject, tap } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 interface Data {
@@ -51,18 +51,24 @@ export class LiveUpdateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    interval(300)
+    interval(600)
       .pipe(
-        map(() => {
-          this.data[LiveUpdateComponent.random(0, 7)].limit = LiveUpdateComponent.random(500, 3000);
-          this.data[LiveUpdateComponent.random(0, 7)].balance = LiveUpdateComponent.random(
-            900,
-            1100
-          );
-          this.data[LiveUpdateComponent.random(0, 7)].amount = LiveUpdateComponent.random(
-            100,
-            7100
-          );
+        tap(() => {
+          let idx = LiveUpdateComponent.random(0, 7);
+          this.data = this.data.map((d, index) => {
+            if (index === idx) {
+              return {
+                status: d.status,
+                company: d.company,
+                limit: LiveUpdateComponent.random(500, 3000),
+                balance: LiveUpdateComponent.random(900, 1100),
+                amount: LiveUpdateComponent.random(1, 100),
+              };
+            }
+
+            return d;
+          });
+
           this.cdr.markForCheck();
         }),
         takeUntil(this.ngUnsubscribe$)

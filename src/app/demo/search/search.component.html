@@ -1,12 +1,15 @@
-<div class="container">
-  <div class="columns">
-    <div class="column col-12">
-      <small>You can use comma separator, to filter by more than one value</small>
-    </div>
+<div class="row">
+  <div class="col-12">
+    <small>You can use comma separator, to filter by more than one value</small>
   </div>
-  <div class="columns">
-    <div class="column col-12">
-      <ngx-table [configuration]="configuration" [data]="data" [columns]="columns"> </ngx-table>
-    </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      (event)="onEvent($event)"
+    ></ngx-table>
   </div>
 </div>

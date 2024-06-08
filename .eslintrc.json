@@ -1,6 +1,5 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -99,13 +98,13 @@
         "@angular-eslint/template/conditional-complexity": [
           "error",
           {
-            "maxComplexity": 8
+            "maxComplexity": 6
           }
         ],
         "@angular-eslint/template/cyclomatic-complexity": [
           "error",
           {
-            "maxComplexity": 60
+            "maxComplexity": 50
           }
         ],
         "@angular-eslint/template/i18n": "off",

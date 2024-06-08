@@ -14,8 +14,7 @@ export class RadioComponent implements OnInit {
   public data: Company[] = [];
 
   ngOnInit(): void {
-    this.configuration = { ...DefaultConfig };
-    this.configuration.radio = true;
+    this.configuration = { ...DefaultConfig, radio: true };
     this.columns = [
       { key: 'name', title: 'Name' },
       { key: 'company', title: 'Company' },
@@ -23,5 +22,9 @@ export class RadioComponent implements OnInit {
       { key: 'phone', title: 'Phone' },
     ];
     this.data = data;
+  }
+
+  onEvent($event: any) {
+    console.log('event received', $event);
   }
 }
