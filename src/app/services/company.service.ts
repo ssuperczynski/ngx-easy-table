@@ -1,13 +1,13 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class CompanyService {
+  private http = inject(HttpClient);
+
   private readonly BACKEND_URL =
     'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?';
-
-  constructor(private http: HttpClient) {}
 
   getCompanies(params = '', observe = true): Observable<HttpResponse<Company[]>> {
     return this.http.get<Company[]>(`${this.BACKEND_URL}${params}`, {

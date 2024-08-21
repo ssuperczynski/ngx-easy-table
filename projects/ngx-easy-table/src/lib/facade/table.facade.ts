@@ -1,12 +1,12 @@
 import * as Actions from '../actions/table.actions';
 import { Store } from '@ngrx/store';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CellClass, CellStyle, RowClass, RowStyle } from '../model/api';
 import { Columns } from '../model/columns';
 
 @Injectable()
 export class Facade {
-  constructor(private store: Store) {}
+  private store = inject(Store);
 
   setPagination(page: number, itemsPerPage: number): void {
     this.store.dispatch(

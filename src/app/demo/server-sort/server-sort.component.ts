@@ -4,6 +4,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
+  inject,
 } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
@@ -28,6 +29,9 @@ interface EventObject {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServerSortComponent implements OnInit, OnDestroy {
+  private readonly companyService = inject(CompanyService);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -45,11 +49,6 @@ export class ServerSortComponent implements OnInit, OnDestroy {
     sort: '',
     order: '',
   };
-
-  constructor(
-    private readonly companyService: CompanyService,
-    private readonly cdr: ChangeDetectorRef
-  ) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };

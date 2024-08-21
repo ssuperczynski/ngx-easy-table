@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { environment } from '../environments/environment';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -17,7 +17,7 @@ export interface Link {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public readonly version = environment.VERSION;

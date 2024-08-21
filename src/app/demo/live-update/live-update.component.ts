@@ -4,6 +4,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
+  inject,
 } from '@angular/core';
 import { interval, Subject, tap } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -24,6 +25,8 @@ interface Data {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LiveUpdateComponent implements OnInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+
   data: Data[] = [
     { status: 'ACTIVE', amount: 1, company: 'Foo', limit: 1000, balance: 2000 },
     { status: 'INACTIVE', amount: 2, company: 'Bar', limit: 1000, balance: 900 },
@@ -46,8 +49,6 @@ export class LiveUpdateComponent implements OnInit, OnDestroy {
   static random(min: number, max: number): number {
     return Math.floor(min + Math.random() * (max - min + 1));
   }
-
-  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
