@@ -35,5 +35,8 @@ jobs:
       - name: build demo
         run: npm run build
 
+      - name: link lib
+        run: npm run link
+
       - name: e2e
         run: npm run cy:ci

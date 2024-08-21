@@ -25,7 +25,8 @@
     "publish:lib:next": "npm run build:lib && cd dist/ngx-easy-table && npm publish --tag next",
     "size": "npm run build:lib && cd dist/ngx-easy-table && npm pack && ls -lh *.tgz",
     "build:lib": "cd projects/ngx-easy-table && npm install && ng build ngx-easy-table && sass assets/style.scss ../../dist/ngx-easy-table/style.css",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "link": "cd dist/ngx-easy-table && npm link && cd ../.. && npm link ngx-easy-table"
   },
   "license": "MIT",
   "dependencies": {
