@@ -33,10 +33,7 @@ jobs:
         run: npm run build:lib
 
       - name: build demo
-        run: npm run build
-
-      - name: link lib
-        run: npm run link
+        run: npm run build:prod
 
       - name: e2e
         run: npm run cy:ci
