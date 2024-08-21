@@ -29,7 +29,7 @@
     "@angular/animations": "^18.2.0",
     "@angular/forms": "^18.2.0",
     "@angular/material": "^18.2.0",
-    "ngx-easy-table": "^15.6.0",
+    "ngx-easy-table": "^15.7.0",
     "ngx-highlightjs": "^12.0.0"
   },
   "devDependencies": {
