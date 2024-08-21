@@ -20,7 +20,10 @@
     "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2020", "dom"],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "ngx-easy-table": ["dist/ngx-easy-table"]
+    }
   },
   "angularCompilerOptions": {
     "strictMetadataEmit": true,
