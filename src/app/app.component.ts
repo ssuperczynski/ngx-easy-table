@@ -63,7 +63,6 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.LIVE_UPDATE, name: 'Live update' },
       { link: ROUTE.ROW_TEMPLATE, name: 'Row details' },
       { link: ROUTE.COL_TEMPLATE, name: 'Col template' },
-      { link: ROUTE.GROUP_ROWS, name: 'Group rows (experimental)' },
       { link: ROUTE.COLLAPSED_ROWS, name: 'Collapsed rows' },
       { link: ROUTE.CHECKBOXES, name: 'Checkboxes template' },
       { link: ROUTE.CHECKBOX_DEFAULT, name: 'Checkboxes default' },

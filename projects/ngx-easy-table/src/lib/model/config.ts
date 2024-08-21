@@ -1,5 +1,6 @@
 export interface Config {
   searchEnabled: boolean;
+  /* @deprecated Will be removed in the next version */
   headerEnabled: boolean;
   orderEnabled: boolean;
   orderEventOnly?: boolean;
@@ -13,6 +14,7 @@ export interface Config {
   serverPagination: boolean;
   isLoading: boolean;
   detailsTemplate: boolean;
+  /* @deprecated Will be removed in the next version */
   groupRows: boolean;
   paginationRangeEnabled: boolean;
   collapseAllRows: boolean;
@@ -25,9 +27,11 @@ export interface Config {
   showDetailsArrow?: boolean;
   showContextMenu?: boolean;
   persistState?: boolean;
+  /* @deprecated Will be removed in the next version */
   paginationMaxSize?: number;
   threeWaySort?: boolean;
   columnReorder?: boolean;
+  /* @deprecated Will be removed in the next version */
   rowReorder?: boolean;
   reorderDelay?: number;
   infiniteScroll?: boolean;

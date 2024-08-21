@@ -11,7 +11,7 @@
         ],
         "createDefaultProgram": true
       },
-      "plugins": ["eslint-plugin-rxjs", "sonarjs"],
+      "plugins": ["sonarjs"],
       "rules": {
         "@angular-eslint/component-selector": [
           "off",
@@ -90,7 +90,6 @@
         "no-useless-constructor": "off",
         "prefer-object-spread": "error",
         "prefer-template": "off",
-        "rxjs/no-unsafe-takeuntil": "error",
         "space-before-function-paren": "off",
         "space-in-parens": ["off", "never"]
       }

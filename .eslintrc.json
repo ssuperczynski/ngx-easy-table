@@ -8,13 +8,8 @@
         "project": ["tsconfig.json", "e2e/tsconfig.json"],
         "createDefaultProgram": true
       },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:sonarjs/recommended",
-        "plugin:rxjs/recommended"
-      ],
-      "plugins": ["eslint-plugin-rxjs", "sonarjs", "security"],
+      "extends": ["plugin:@angular-eslint/recommended", "plugin:sonarjs/recommended-legacy"],
+      "plugins": ["sonarjs", "security"],
       "rules": {
         "@angular-eslint/component-selector": [
           "off",
@@ -93,7 +88,6 @@
         "no-useless-constructor": "off",
         "prefer-object-spread": "error",
         "prefer-template": "off",
-        "rxjs/no-unsafe-takeuntil": "error",
         "space-before-function-paren": "off",
         "space-in-parens": ["off", "never"]
       }

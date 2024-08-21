@@ -15,35 +15,21 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "allowedCommonJsDependencies": ["highlight.js"],
-            "outputPath": "dist/demo",
+            "outputPath": {
+              "base": "dist/demo"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/assets",
               "src/favicon.ico",
               "src/sitemap.xml",
               "src/_headers",
-              "src/manifest.webmanifest",
-              {
-                "glob": "spectre.min.css",
-                "input": "./node_modules/spectre.css/dist",
-                "output": "./assets/"
-              },
-              {
-                "glob": "spectre-exp.min.css",
-                "input": "./node_modules/spectre.css/dist",
-                "output": "./assets/"
-              },
-              {
-                "glob": "spectre-icons.min.css",
-                "input": "./node_modules/spectre.css/dist",
-                "output": "./assets/"
-              }
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "node_modules/highlight.js/styles/rainbow.css",
@@ -53,12 +39,11 @@
             ],
             "scripts": [],
             "aot": false,
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -83,8 +68,6 @@
               "aot": true,
               "crossOrigin": "anonymous",
               "extractLicenses": true,
-              "vendorChunk": true,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
