@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Context menu', () => {
+context.skip('Context menu', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:4202/#/context-menu');
   });

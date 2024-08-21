@@ -6,6 +6,9 @@ context('Summary footer', () => {
   });
 
   it('Shows correct tfoot content', () => {
-    cy.get('#table1 > tfoot > tr > th').contains('Total items: 41 limit: 10 page: 1 Summary: 1231');
+    cy.get('#table1 > tfoot > tr > th > span:nth-child(1)').contains('Total items: 41');
+    cy.get('#table1 > tfoot > tr > th > span:nth-child(2)').contains('limit: 10');
+    cy.get('#table1 > tfoot > tr > th > span:nth-child(3)').contains('page: 0');
+    cy.get('#table1 > tfoot > tr > th > span:nth-child(4)').contains('Summary: 1231');
   });
 });

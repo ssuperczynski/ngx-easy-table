@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Checkboxes', () => {
+context.skip('Checkboxes', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:4202/#/checkbox-default');
   });

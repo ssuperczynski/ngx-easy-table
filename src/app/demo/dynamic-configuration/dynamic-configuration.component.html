@@ -1,25 +1,35 @@
-<div class="columns">
-  <div class="column col-12">
+<div class="row">
+  <div class="col">
     <div class="form-group">
-      <label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('paginationEnabled', $event)" />
-        <i class="form-icon"></i> Pagination
+      <label class="form-checkbox form-inline" for="pagination">
+        <input
+          type="checkbox"
+          id="pagination"
+          [checked]="true"
+          (change)="toggle('paginationEnabled', $event)"
+        />
+        Pagination
       </label>
-      <label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('searchEnabled', $event)" />
-        <i class="form-icon"></i> Search
+      <label class="form-checkbox form-inline" for="search">
+        <input
+          type="checkbox"
+          id="search"
+          [checked]="true"
+          (change)="toggle('searchEnabled', $event)"
+        />
+        Search
       </label>
-      <label class="form-checkbox form-inline">
-        <input type="checkbox" (change)="toggle('collapseAllRows', $event)" />
-        <i class="form-icon"></i> Collapse rows
+      <label class="form-checkbox form-inline" for="collapse">
+        <input type="checkbox" id="collapse" (change)="toggle('collapseAllRows', $event)" />
+        Collapse rows
       </label>
-      <label class="form-checkbox form-inline">
+      <label class="form-checkbox form-inline" for="checkbox-is-loading">
         <input type="checkbox" id="checkbox-is-loading" (change)="toggle('isLoading', $event)" />
-        <i class="form-icon"></i> Is loading
+        Is loading
       </label>
-      <label class="form-checkbox form-inline">
-        <input type="checkbox" id="checkbox-checkboxes" (change)="toggle('checkboxes', $event)" />
-        <i class="form-icon"></i> Checkboxes
+      <label class="form-checkbox form-inline" for="checkboxes">
+        <input type="checkbox" id="checkboxes" (change)="toggle('checkboxes', $event)" />
+        Checkboxes
       </label>
       <label class="form-checkbox form-inline">
         <input
@@ -27,7 +37,7 @@
           id="checkbox-fixedColumnWidth"
           (change)="toggle('fixedColumnWidth', $event)"
         />
-        <i class="form-icon"></i> Fixed column
+        Fixed column
       </label>
     </div>
   </div>

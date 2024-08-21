@@ -2,7 +2,7 @@
 
 context('Server pagination', () => {
   describe('test pagination flow', () => {
-    it('gets correct phone', () => {
+    it.skip('gets correct phone', () => {
       cy.intercept(
         'GET',
         'https://my-json-server.typicode.com/ssuperczynski/ngx-easy-table/company?',

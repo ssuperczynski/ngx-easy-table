@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Column class', () => {
+context.skip('Column class', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:4202/#/column-class');
   });

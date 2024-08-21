@@ -57,7 +57,11 @@
   </ng-container>
   <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows">
     <div *ngIf="config.additionalActions">
-      <button class="btn btn-link btn-outline-light" [cdkMenuTriggerFor]="menu">
+      <button
+        id="additional-actions"
+        class="btn btn-link btn-outline-light"
+        [cdkMenuTriggerFor]="menu"
+      >
         <span class="ngx-icon ngx-icon-menu"></span>
       </button>
       <ng-template #menu>
@@ -139,7 +143,11 @@
   </ng-container>
   <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows">
     <div *ngIf="config.additionalActions">
-      <button class="btn btn-link btn-outline-light" [cdkMenuTriggerFor]="menu">
+      <button
+        id="additional-actions-column-reorder"
+        class="btn btn-link btn-outline-light"
+        [cdkMenuTriggerFor]="menu"
+      >
         <span class="ngx-icon ngx-icon-menu"></span>
       </button>
       <ng-template #menu>

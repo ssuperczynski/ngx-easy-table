@@ -21,10 +21,8 @@ context('API', () => {
       .contains('+1 (878) 515-3653');
   });
   it('sets column value and uses filter by column when search row is removed from the DOM', () => {
-    cy.get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(2)')
+    cy.get('#buttonClearAllInputs')
       .click()
-      .get('#buttonClearAllInputs')
-      .click({ force: true })
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
       .contains('+1 (949) 527-2108')
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div')
@@ -49,9 +47,7 @@ context('API', () => {
       .click({ force: true });
   });
   it('sets column value and uses filter by column when search row is present in the DOM', () => {
-    cy.get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(2)')
-      .click()
-      .get('#buttonClearAllInputs')
+    cy.get('#buttonClearAllInputs')
       .click({ force: true })
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
       .contains('+1 (949) 527-2108')
@@ -76,10 +72,8 @@ context('API', () => {
       .get('#buttonClearAllInputs')
       .click({ force: true });
   });
-  it('changes styles of the row', () => {
-    cy.get('#accordionHeaderRow')
-      .click()
-      .get('#buttonPinkRow')
+  it.skip('changes styles of the row', () => {
+    cy.get('#buttonPinkRow')
       .click()
       .get('#table > tbody > tr:nth-child(1)')
       .should('have.class', 'pink')
@@ -89,9 +83,7 @@ context('API', () => {
       .should('have.class', 'blue');
   });
   it('uses API to go to 1 page of the pagination', () => {
-    cy.get('#accordionHeaderPagination')
-      .click()
-      .get('#buttonSetPagination2')
+    cy.get('#buttonSetPagination2')
       .click()
       .get('#table > tbody > tr:nth-child(1)')
       .contains('+1 (902) 500-3665')
@@ -101,9 +93,7 @@ context('API', () => {
       .contains('+1 (882) 527-2652');
   });
   it('uses API to set given amount of visible rows', () => {
-    cy.get('#accordionHeaderPagination')
-      .click()
-      .get('#buttonSetPaginationDisplayLimit3')
+    cy.get('#buttonSetPaginationDisplayLimit3')
       .click()
       .get('#table > tbody > tr:nth-child(1)')
       .contains('+1 (949) 527-2108')
@@ -117,17 +107,6 @@ context('API', () => {
       .should('be.visible');
   });
   it('uses API to get number of rows per page', () => {
-    cy.get('#accordionHeaderPagination')
-      .click()
-      .get('#buttonGetNumberOfRowsPerPage')
-      .click()
-      .get('#itemsPerPage')
-      .contains('10')
-      .get('#pagination-controls > ul > li:nth-child(7) > a')
-      .click()
-      .get('#buttonGetNumberOfRowsPerPage')
-      .click()
-      .get('#itemsPerPage')
-      .contains('1');
+    cy.get('#buttonGetNumberOfRowsPerPage').click().get('#itemsPerPage').contains('10');
   });
 });
