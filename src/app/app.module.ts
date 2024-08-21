@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -83,21 +83,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { SmallTableComponent } from './demo/dynamic-component/small-table/small-table.component';
 
 @NgModule({
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    FormsModule,
-    TableModule,
-    routing,
-    HighlightModule,
-    NoopAnimationsModule,
-    MatPaginatorModule,
-    OverlayModule,
-  ],
   declarations: [
     // pipes
     MenuSearchPipe,
-
     // components
     AppComponent,
     BasicComponent,
@@ -171,6 +159,16 @@ import { SmallTableComponent } from './demo/dynamic-component/small-table/small-
     StickyComponent,
   ],
   bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    TableModule,
+    routing,
+    HighlightModule,
+    NoopAnimationsModule,
+    MatPaginatorModule,
+    OverlayModule,
+  ],
   providers: [
     {
       provide: HIGHLIGHT_OPTIONS,
@@ -181,6 +179,7 @@ import { SmallTableComponent } from './demo/dynamic-component/small-table/small-
         },
       },
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
 })
 export class AppModule {}
