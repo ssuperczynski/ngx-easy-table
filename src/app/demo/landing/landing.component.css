@@ -1,5 +1,10 @@
 .section-hero {
   padding: 1rem 0.5rem;
+  background-image: linear-gradient(180deg, rgb(228 227 227 / 1%), rgba(255, 255, 255, 1) 85%),
+    radial-gradient(ellipse at top left, rgb(253 187 13 / 50%), transparent 50%),
+    radial-gradient(ellipse at top right, rgb(241 236 218 / 50%), transparent 50%),
+    radial-gradient(ellipse at center right, rgba(112, 44, 249, 0.5), transparent 50%),
+    radial-gradient(ellipse at center left, rgb(204 151 86 / 17%), transparent 50%);
 }
 
 .section-hero .docs-brand {
@@ -23,11 +28,6 @@
   padding: 4.5rem 0.5rem 2.5rem 0.5rem;
 }
 
-.section-updates .card {
-  border: 0;
-  margin-bottom: 1rem;
-}
-
 .section-features {
   padding: 4.5rem 0.5rem;
 }
@@ -46,6 +46,7 @@
 .section-footer a {
   color: #66758c;
 }
+
 .grid-hero {
   padding-bottom: 2rem;
   padding-top: 6rem;
@@ -70,15 +71,4 @@
   border-bottom: 0.1rem solid currentColor;
   padding-bottom: 0.05rem;
   text-decoration: none;
-}
-
-.grid-hero .card {
-  padding: 0.5rem;
-}
-
-.grid-hero .card .card-title {
-  color: #5755d9;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0;
 }

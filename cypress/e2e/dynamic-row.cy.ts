@@ -6,7 +6,7 @@ context('Dynamic row', () => {
   });
 
   it('creates 6th and 7th row', () => {
-    cy.get('#add-row-button')
+    cy.get('#append-row-button')
       .click()
       .click()
       .get('#table > tbody > tr:nth-child(6) > td:nth-child(1) > div')

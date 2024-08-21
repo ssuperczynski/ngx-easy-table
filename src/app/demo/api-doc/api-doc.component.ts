@@ -73,11 +73,6 @@ export class ApiDocComponent {
   value: { row: 1, cell: 3, attr: 'background', value: '#fd5e5ed4' },
 });`;
 
-  public readonly setTableClassCode = `this.table.apiEvent({
-  type: API.setTableClass,
-  value: 'table table-bordered table-striped table-sm',
-});`;
-
   public readonly setPaginationCode = `this.table.apiEvent({
   type: API.setPaginationCurrentPage,
   value: 2,

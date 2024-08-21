@@ -29,6 +29,7 @@ export class SummaryFooterComponent implements OnInit {
   }
 
   onEvent($event: { event: string; value: { key: string; value: string }[] }) {
+    // TODO event.onSearch doesn't work yet
     if ($event.event !== 'onSearch') {
       return;
     }

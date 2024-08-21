@@ -12,7 +12,7 @@ export class CheckboxDefaultComponent implements OnInit {
   public configuration: Config;
   public columns: Columns[];
   public data: Company[] = [];
-  public selected = new Set();
+  public selected = new Set(); // TODO consume it from reducer
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };

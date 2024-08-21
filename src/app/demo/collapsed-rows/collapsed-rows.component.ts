@@ -28,7 +28,6 @@ export class CollapsedRowsComponent implements OnInit {
 
   toggleRows(): void {
     this.toggled = !this.toggled;
-    this.configuration.collapseAllRows = this.toggled;
-    this.configuration = { ...this.configuration };
+    this.configuration = { ...this.configuration, collapseAllRows: this.toggled };
   }
 }

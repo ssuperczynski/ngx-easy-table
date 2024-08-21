@@ -14,8 +14,6 @@ export interface Config {
   serverPagination: boolean;
   isLoading: boolean;
   detailsTemplate: boolean;
-  /* @deprecated Will be removed in the next version */
-  groupRows: boolean;
   paginationRangeEnabled: boolean;
   collapseAllRows: boolean;
   checkboxes: boolean;
@@ -23,16 +21,11 @@ export interface Config {
   resizeColumn: boolean;
   fixedColumnWidth: boolean;
   horizontalScroll: boolean;
-  logger: boolean;
   showDetailsArrow?: boolean;
   showContextMenu?: boolean;
   persistState?: boolean;
-  /* @deprecated Will be removed in the next version */
-  paginationMaxSize?: number;
   threeWaySort?: boolean;
   columnReorder?: boolean;
-  /* @deprecated Will be removed in the next version */
-  rowReorder?: boolean;
   reorderDelay?: number;
   infiniteScroll?: boolean;
   infiniteScrollThrottleTime?: number;
@@ -48,7 +41,6 @@ export interface Config {
 
 export enum STYLE {
   TINY = 'tiny',
-  BIG = 'big',
   NORMAL = 'normal',
 }
 

@@ -20,8 +20,8 @@ export class ColumnClassComponent implements OnInit {
     this.columns = [
       { key: 'phone', title: 'Phone' },
       { key: 'age', title: 'Age' },
-      { key: 'company', title: 'Company', cssClass: { includeHeader: false, name: 'blue' } },
-      { key: 'level', title: 'Level', cssClass: { includeHeader: true, name: 'pink' } },
+      { key: 'company', title: 'Company', cssClass: { name: 'blue' } },
+      { key: 'level', title: 'Level', cssClass: { name: 'pink' } },
       { key: 'address.number', title: 'Number' },
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'STATUS' },

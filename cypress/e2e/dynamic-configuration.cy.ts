@@ -6,8 +6,7 @@ context('Dynamic configuration', () => {
   });
 
   it('collapses details row', () => {
-    const collapseRowSelector =
-      '#content > div > app-dynamic-configuration > div:nth-child(1) > div > div > label:nth-child(3)';
+    const collapseRowSelector = '#collapse';
     cy.get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div')
       .contains('+1 (878) 515-3653')
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(2) > div')
@@ -22,8 +21,7 @@ context('Dynamic configuration', () => {
       .click();
   });
   it('enables loading mode', () => {
-    const loadingModeSelector =
-      '#content > div > app-dynamic-configuration > div:nth-child(1) > div > div > label:nth-child(4)';
+    const loadingModeSelector = '#checkbox-is-loading';
     cy.get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div')
       .contains('+1 (878) 515-3653')
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(2) > div')

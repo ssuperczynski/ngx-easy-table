@@ -4,8 +4,9 @@
     id="search_{{ unifyKey(column.key) }}"
     aria-label="Search"
     placeholder="{{ column.placeholder ? column.placeholder : column.title }}"
-    class="ngx-table__header-search"
+    class="form-control form-control-sm"
     #input
+    [value]="modifiers.filters.get(column.key) ?? null"
     (input)="onSearch(input)"
   />
 </label>

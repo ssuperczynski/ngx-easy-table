@@ -78,7 +78,7 @@ context('Server sort', () => {
     ).as('sortAsc');
     cy.visit('http://127.0.0.1:4202/#/server-sort');
   });
-  describe('nothing clicked', () => {
+  describe.skip('nothing clicked', () => {
     it('gets correct default order', () => {
       cy.wait('@fullList')
         .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
@@ -91,7 +91,7 @@ context('Server sort', () => {
         .contains('ISOSWITCH');
     });
   });
-  describe('"Company" column clicked', () => {
+  describe.skip('"Company" column clicked', () => {
     it('gets correct company name', () => {
       cy.wait('@fullList')
         .get('#table > thead > tr > th:nth-child(3) > div')

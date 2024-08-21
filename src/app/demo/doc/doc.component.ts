@@ -77,8 +77,8 @@ public columns: Columns[] = [
   public readonly cssClassCode = `import { Columns } from 'ngx-easy-table';
 
 public columns: Columns[] = [
-    { key: 'company', title: 'Company', cssClass: { includeHeader: false, name: 'blue' } },
-    { key: 'phone', title: 'Phone', cssClass: { includeHeader: true, name: 'red' } },
+    { key: 'company', title: 'Company', cssClass: { name: 'blue' } },
+    { key: 'phone', title: 'Phone', cssClass: { name: 'red' } },
 ];
 `;
 }

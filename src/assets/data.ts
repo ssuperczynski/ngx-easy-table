@@ -1,6 +1,4 @@
-import { Columns } from 'ngx-easy-table';
-
-/* eslint-disable max-lines, id-blacklist */
+/* eslint-disable max-lines */
 export interface Company {
   phone: string;
   age: number;
@@ -13,7 +11,7 @@ export interface Company {
   imgUrl?: string;
 }
 
-export const columns: Columns[] = [
+export const columns = [
   { key: 'phone', title: 'Phone' },
   { key: 'age', title: 'Age' },
   { key: 'company', title: 'Company' },

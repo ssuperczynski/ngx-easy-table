@@ -21,6 +21,5 @@ export class NoResultsTemplateComponent implements OnInit {
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
-    this.configuration.horizontalScroll = false;
   }
 }

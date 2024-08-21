@@ -12,10 +12,6 @@ export enum Event {
   onInfiniteScrollEnd = 'onInfiniteScrollEnd',
   onColumnResizeMouseDown = 'onColumnResizeMouseDown',
   onColumnResizeMouseUp = 'onColumnResizeMouseUp',
-  /* @deprecated Will be removed in the next version */
-  onRowDrop = 'onRowDrop',
-  /* @deprecated Will be removed in the next version */
-  onReorderStart = 'onReorderStart',
   onRowCollapsedShow = 'onRowCollapsedShow',
   onRowCollapsedHide = 'onRowCollapsedHide',
   onRowContextMenu = 'onRowContextMenu',

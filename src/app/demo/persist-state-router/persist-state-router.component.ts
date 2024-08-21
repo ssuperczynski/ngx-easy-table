@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
@@ -19,6 +20,8 @@ import { Subject } from 'rxjs';
   styles: [],
 })
 export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterViewInit {
+  private route = inject(ActivatedRoute);
+
   @ViewChild('table') table: APIDefinition;
   private unsubscribe = new Subject<void>();
   public columns: Columns[] = [
@@ -32,8 +35,6 @@ export class PersistStateRouterComponent implements OnInit, OnDestroy, AfterView
   public configuration: Config;
   public sortColumn: string;
   public sortOrder: 'asc' | 'desc';
-
-  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };

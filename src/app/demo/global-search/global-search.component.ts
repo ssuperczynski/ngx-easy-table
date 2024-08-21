@@ -30,4 +30,11 @@ export class GlobalSearchComponent implements OnInit {
       value: (event.target as HTMLInputElement).value,
     });
   }
+
+  clear() {
+    this.table.apiEvent({
+      type: API.onGlobalSearch,
+      value: '',
+    });
+  }
 }

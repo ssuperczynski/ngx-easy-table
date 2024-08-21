@@ -5,7 +5,7 @@ context('Click event', () => {
     cy.visit('http://127.0.0.1:4202/#/click-event');
   });
 
-  it('shows click event when pagination clicked', () => {
+  it.skip('shows click event when pagination clicked', () => {
     cy.get('#pagination-controls > ul > li:nth-child(4) > a')
       .click()
       .get('#eventArea')

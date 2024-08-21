@@ -1,21 +1,18 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CompanyService } from '../../services/company.service';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { data } from '../../../assets/data';
 
 @Component({
   selector: 'app-async',
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.css'],
-  providers: [CompanyService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsyncComponent implements OnInit {
   public configuration: Config;
   public data$: Observable<any>;
   public columns: Columns[];
-
-  constructor(private companyService: CompanyService) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
@@ -26,6 +23,6 @@ export class AsyncComponent implements OnInit {
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'STATUS' },
     ];
-    this.data$ = this.companyService.getCompanies('', false);
+    this.data$ = of(data);
   }
 }

@@ -22,7 +22,6 @@ export class ApiComponent implements OnInit, AfterViewInit {
   public total;
   public current;
   public itemsPerPage;
-  public last;
   public checked = {
     paginationEnabled: true,
     searchEnabled: true,
@@ -39,7 +38,6 @@ export class ApiComponent implements OnInit, AfterViewInit {
       { key: 'age', title: 'Age', width: '10%' },
       { key: 'company', title: 'Company', width: '15%' },
       { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
       { key: 'isActive', title: 'STATUS', width: '15%' },
     ];
     this.data = data;
@@ -52,8 +50,10 @@ export class ApiComponent implements OnInit, AfterViewInit {
   toggle(key: string, event: Event): void {
     const isChecked = (event.currentTarget as HTMLInputElement).checked;
     this.checked[key] = isChecked;
-    this.configuration[key] = isChecked;
-    this.configuration = { ...this.configuration };
+    this.configuration = {
+      ...this.configuration,
+      [key]: isChecked,
+    };
   }
 
   resetSearchInput(): void {
@@ -93,17 +93,12 @@ export class ApiComponent implements OnInit, AfterViewInit {
     this.current = this.table.apiEvent({
       type: API.getPaginationCurrentPage,
     });
+    this.current = JSON.stringify(this.current);
   }
 
   getTotal(): void {
     this.total = this.table.apiEvent({
       type: API.getPaginationTotalItems,
-    });
-  }
-
-  getLastPage(): void {
-    this.last = this.table.apiEvent({
-      type: API.getPaginationLastPage,
     });
   }
 
@@ -120,7 +115,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setCellClass(row: number, cell: number, className: string): void {
+  setCellClass(row: number, cell: string, className: string): void {
     this.table.apiEvent({
       type: API.setCellClass,
       value: { row, cell, className },
@@ -130,7 +125,11 @@ export class ApiComponent implements OnInit, AfterViewInit {
   setRowStyle(): void {
     this.table.apiEvent({
       type: API.setRowStyle,
-      value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
+      value: [
+        { row: 1, attr: '--bs-table-bg', value: 'lightblue' },
+        { row: 2, attr: '--bs-table-hover-color', value: 'red' },
+        { row: 3, attr: '--bs-table-bg', value: '#f8d7da' },
+      ],
     });
   }
 
@@ -147,15 +146,15 @@ export class ApiComponent implements OnInit, AfterViewInit {
       value: [
         {
           row: 1,
-          className: 'gray',
+          className: 'table-secondary',
         },
         {
           row: 2,
-          className: 'pink',
+          className: 'table-danger',
         },
         {
           row: 4,
-          className: 'yellow',
+          className: 'table-warning',
         },
       ],
     });
@@ -167,18 +166,18 @@ export class ApiComponent implements OnInit, AfterViewInit {
       value: [
         {
           row: 1,
-          cell: 2,
-          className: 'gray',
+          cell: 'age',
+          className: 'table-secondary',
+        },
+        {
+          row: 3,
+          cell: 'name',
+          className: 'table-info',
         },
         {
           row: 4,
-          cell: 6,
-          className: 'pink',
-        },
-        {
-          row: 4,
-          cell: 3,
-          className: 'yellow',
+          cell: 'age',
+          className: 'table-dark',
         },
       ],
     });

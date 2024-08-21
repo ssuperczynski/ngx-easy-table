@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/ngx-easy-table",
     "declarationMap": true,
-    "module": "es2015",
+    "module": "es2020",
     "moduleResolution": "node",
     "declaration": true,
     "noUnusedLocals": true,
@@ -14,10 +14,12 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "inlineSources": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "types": [],
-    "lib": ["dom", "es2018"]
+    "lib": ["dom", "es2020"]
   },
   "angularCompilerOptions": {
     "compilationMode": "partial",
@@ -27,6 +29,5 @@
     "strictInjectionParameters": true,
     "enableResourceInlining": true,
     "strictTemplates": true
-  },
-  "exclude": []
+  }
 }

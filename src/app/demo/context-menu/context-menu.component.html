@@ -11,24 +11,18 @@
   </div>
 </div>
 <ng-template #rowContextMenu let-object>
-  <ul class="menu">
-    <li class="menu-item">
-      <div class="c-hand" (click)="editCell(object)">Edit cell</div>
-      <div class="c-hand" (click)="copyCell(object)">Copy cell</div>
-      <div class="divider"></div>
-      <div>Version: 1.2.3</div>
-    </li>
-  </ul>
+  <span (click)="editCell(object)">Edit cell</span>
+  <span (click)="showDetails(object)">Show details</span>
 </ng-template>
 <ng-template #phoneTpl let-row let-rowIndex="rowIndex">
   <div class="phone" *ngIf="edit !== rowIndex">Phone: {{ row.phone }}</div>
   <div *ngIf="edit === rowIndex">
-    <input
-      type="text"
-      placeholder="Phone"
-      (blur)="update($event)"
-      class="form-label"
-      [value]="row.phone"
-    />
+    <input type="text" placeholder="Phone" class="form-label" [(ngModel)]="phone" />
+    <button class="btn btn-sm" (click)="update(phone)">Save</button>
   </div>
 </ng-template>
+<div class="card mt-2" *ngIf="details">
+  <div class="card-body">
+    {{ JSON.stringify(details) }}
+  </div>
+</div>

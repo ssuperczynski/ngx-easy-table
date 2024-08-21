@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
-import { API, APIDefinition, Config, DefaultConfig } from 'ngx-easy-table';
-import { Columns } from 'ngx-easy-table';
+import { APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-context-menu',
@@ -18,10 +17,11 @@ export class ContextMenuComponent implements OnInit {
   public data: Company[] = [];
   public configuration: Config;
   public edit: number;
+  public phone: string;
+  public details = null;
 
   ngOnInit(): void {
-    this.configuration = { ...DefaultConfig };
-    this.configuration.showContextMenu = true;
+    this.configuration = { ...DefaultConfig, showContextMenu: true };
     this.columns = [
       { key: 'phone', title: 'Phone', width: '15%', cellTemplate: this.phoneTpl },
       { key: 'age', title: 'Age', width: '10%' },
@@ -32,28 +32,23 @@ export class ContextMenuComponent implements OnInit {
     this.data = data;
   }
 
-  copyCell(object: any): void {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = JSON.stringify(object.row);
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
-    this.table.apiEvent({ type: API.rowContextMenuClicked });
-  }
-
   editCell(object: any): void {
+    this.phone = object.row.phone;
     this.edit = object.rowId;
-    this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
-  update(event: Event): void {
-    this.data[this.edit].phone = (event.target as HTMLInputElement).value;
+  update(phone: string): void {
+    this.data = [
+      ...this.data.map((row, index) => {
+        return index === this.edit ? { ...row, phone: phone } : row;
+      }),
+    ];
     this.edit = -1;
   }
+
+  showDetails(object: any): void {
+    this.details = object;
+  }
+
+  protected readonly JSON = JSON;
 }

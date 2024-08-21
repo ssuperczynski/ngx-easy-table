@@ -3,6 +3,7 @@
   [id]="'table1'"
   [summaryTemplate]="summaryTemplateRef"
   [data]="data"
+  (event)="onEvent($event)"
   [columns]="columns"
 >
 </ngx-table>
@@ -11,22 +12,6 @@
     <span class="mb-2">Total items: {{ total }} </span>
     <span class="mb-2">limit: {{ limit }} </span>
     <span class="mb-2">page: {{ page }} </span>
+    <span class="mb-2">Summary: {{ ageSummary }} </span>
   </th>
-</ng-template>
-<hr />
-<ngx-table
-  [configuration]="configuration"
-  [id]="'table2'"
-  [summaryTemplate]="summaryTemplateRef2"
-  [data]="data"
-  (event)="onEvent($event)"
-  [columns]="columns"
->
-</ngx-table>
-<ng-template #summaryTemplateRef2 let-total="total" let-limit="limit" let-page="page">
-  <th>Total items: {{ total }}</th>
-  <th>Summary: {{ ageSummary }}</th>
-  <th>page: {{ page }}</th>
-  <th></th>
-  <th></th>
 </ng-template>

@@ -35,7 +35,7 @@
               "node_modules/highlight.js/styles/rainbow.css",
               "src/assets/main.scss",
               "src/assets/sample.scss",
-              "projects/ngx-easy-table/assets/style.scss"
+              "dist/ngx-easy-table/style.css"
             ],
             "scripts": [],
             "aot": false,

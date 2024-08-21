@@ -4,5 +4,11 @@
   "lib": {
     "entryFile": "src/public_api.ts"
   },
-  "allowedNonPeerDependencies": ["ngx-pagination", "@angular/cdk"]
+  "allowedNonPeerDependencies": [
+    "@angular/cdk",
+    "@angular/material",
+    "@ngrx/store",
+    "@ngrx/effects",
+    "bootstrap"
+  ]
 }

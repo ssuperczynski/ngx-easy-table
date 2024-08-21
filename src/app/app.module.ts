@@ -22,14 +22,11 @@ import {
   FilterTemplateComponent,
   FixedWidthComponent,
   GlobalSearchComponent,
-  GroupRowsComponent,
   HorizontalScrollComponent,
   LiveUpdateComponent,
-  ManyTablesComponent,
   ModalComponent,
   NoResultsTemplateComponent,
   PaginationComponent,
-  PaginationRangeComponent,
   PersistStateComponent,
   ResizableComponent,
   RowTemplateComponent,
@@ -55,13 +52,11 @@ import {
   InstallationComponent,
   PinnedComponent,
   ColumnClassComponent,
-  NestedTableComponent,
   PersistStateRouterComponent,
   MobileComponent,
   LoadingTemplateComponent,
   AdditionalActionsTemplateComponent,
   NestedObjectComponent,
-  CustomPaginationComponent,
   FilterHeaderTemplateComponent,
   ReorderComponent,
   InfiniteScrollComponent,
@@ -77,7 +72,6 @@ import {
 import { TableModule } from 'ngx-easy-table';
 import { MenuSearchPipe } from './pipes/menu-search-pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { SmallTableComponent } from './demo/dynamic-component/small-table/small-table.component';
@@ -103,8 +97,6 @@ import { SmallTableComponent } from './demo/dynamic-component/small-table/small-
     ServerPaginationComponent,
     RowTemplateComponent,
     ServerSortComponent,
-    GroupRowsComponent,
-    ManyTablesComponent,
     DynamicRowComponent,
     CustomSortComponent,
     CollapsedRowsComponent,
@@ -124,7 +116,6 @@ import { SmallTableComponent } from './demo/dynamic-component/small-table/small-
     FilterTemplateComponent,
     CustomIntableSortComponent,
     PersistStateComponent,
-    PaginationRangeComponent,
     AsyncComponent,
     SelectAllTemplateComponent,
     NoResultsTemplateComponent,
@@ -138,13 +129,11 @@ import { SmallTableComponent } from './demo/dynamic-component/small-table/small-
     InstallationComponent,
     PinnedComponent,
     ColumnClassComponent,
-    NestedTableComponent,
     PersistStateRouterComponent,
     MobileComponent,
     LoadingTemplateComponent,
     AdditionalActionsTemplateComponent,
     NestedObjectComponent,
-    CustomPaginationComponent,
     FilterHeaderTemplateComponent,
     ReorderComponent,
     InfiniteScrollComponent,
@@ -166,7 +155,6 @@ import { SmallTableComponent } from './demo/dynamic-component/small-table/small-
     routing,
     HighlightModule,
     NoopAnimationsModule,
-    MatPaginatorModule,
     OverlayModule,
   ],
   providers: [

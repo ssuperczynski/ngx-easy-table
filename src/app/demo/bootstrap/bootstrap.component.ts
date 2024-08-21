@@ -37,21 +37,6 @@ export class BootstrapComponent implements OnInit {
     this.data = data;
   }
 
-  setBootstrap(): void {
-    this.setClass('table table-bordered table-striped table-sm');
-  }
-
-  setNormal(): void {
-    this.setClass('');
-  }
-
-  private setClass(name: string): void {
-    this.table.apiEvent({
-      type: API.setTableClass,
-      value: name,
-    });
-  }
-
   setRowClass(row: number, className: string): void {
     this.table.apiEvent({
       type: API.setRowClass,

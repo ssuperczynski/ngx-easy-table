@@ -5,7 +5,6 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 @Component({
   selector: 'app-sort',
   templateUrl: './sort.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SortComponent implements OnInit {
@@ -20,9 +19,8 @@ export class SortComponent implements OnInit {
   configuration: Config;
 
   ngOnInit(): void {
-    this.configuration = { ...DefaultConfig };
-    this.configuration.orderEnabled = true;
-    this.configuration.threeWaySort = true;
+    this.configuration = { ...DefaultConfig, orderEnabled: true };
+    // this.configuration.threeWaySort = true;
     this.data = data;
   }
 }

@@ -1,10 +1,15 @@
-<div class="columns">
-  <div class="column col-2">
-    <button (click)="addRow()" id="add-row-button" class="btn btn-primary">Add row</button>
+<div class="row">
+  <div class="col mb-2">
+    <button (click)="appendRow()" id="append-row-button" class="btn btn-primary me-2">
+      Append row
+    </button>
+    <button (click)="prependRow()" id="prepend-row-button" class="btn btn-primary">
+      Prepend row
+    </button>
   </div>
 </div>
-<div class="columns">
-  <div class="column col-12">
+<div class="row">
+  <div class="col-12">
     <ngx-table [configuration]="configuration" [data]="data" [columns]="columns"> </ngx-table>
   </div>
 </div>

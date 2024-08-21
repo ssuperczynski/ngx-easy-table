@@ -1,25 +1,18 @@
-<div class="container">
-  <div class="columns">
-    <div class="column col-12">
-      <small>Click in the table to submit the event to the parent component</small>
-    </div>
+<div class="row">
+  <div class="col-12">
+    <small
+      >Open browser's console. Click in the table to submit the event to the parent component</small
+    >
   </div>
-  <div class="columns">
-    <div class="column col-12">
-      <div id="eventArea">
-        {{ clicked }}
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column col-12">
-      <ngx-table
-        [configuration]="configuration"
-        [data]="data"
-        [columns]="columns"
-        (event)="eventEmitted($event)"
-      >
-      </ngx-table>
-    </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      (event)="eventEmitted($event)"
+    >
+    </ngx-table>
   </div>
 </div>

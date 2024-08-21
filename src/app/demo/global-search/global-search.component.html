@@ -7,7 +7,7 @@
   <div class="column col-12">
     <form class="form-horizontal">
       <div class="form-group">
-        <div class="col-3 col-sm-12 col-ml-auto">
+        <div class="col-4 col-sm-12">
           <input
             class="form-input"
             type="text"
@@ -15,6 +15,9 @@
             (input)="onChange($event)"
             placeholder="Search"
           />
+        </div>
+        <div class="col-1">
+          <button class="btn btn-primary" (click)="clear()">Clear</button>
         </div>
       </div>
     </form>

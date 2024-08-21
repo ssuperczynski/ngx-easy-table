@@ -9,13 +9,7 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OnDragOverComponent implements OnInit {
-  public columns: Columns[] = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-  ];
+  public columns: Columns[] = [];
   data: Company[] = [];
   public configuration: Config;
 
