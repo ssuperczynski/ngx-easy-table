@@ -27,6 +27,7 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
+              "src/robots.txt",
               "src/sitemap.xml",
               "src/_headers",
               "src/manifest.webmanifest"
