@@ -17,22 +17,21 @@ export class DynamicConfigurationComponent implements OnInit {
     collapseAllRows: false,
     isLoading: false,
     checkboxes: false,
-    draggable: false,
     fixedColumnWidth: false,
-    logger: false,
   };
   public configuration: Config;
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
+    this.configuration.paginationEnabled = true;
+    this.configuration.searchEnabled = true;
     this.data = data;
     this.columns = columns;
   }
 
   toggle(key: string, event: Event): void {
     const isChecked = (event.currentTarget as HTMLInputElement).checked;
-    this.checked[key] = isChecked;
-    this.configuration[key] = isChecked;
-    this.configuration = { ...this.configuration };
+    this.checked = { ...this.checked, [key]: isChecked };
+    this.configuration = { ...this.configuration, [key]: isChecked };
   }
 }

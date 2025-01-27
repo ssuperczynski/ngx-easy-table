@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
 
@@ -9,11 +15,11 @@ import { Columns, Config, DefaultConfig, Event } from 'ngx-easy-table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfiniteScrollComponent implements OnInit {
+  private cdr = inject(ChangeDetectorRef);
+
   public configuration: Config;
   public columns: Columns[];
   public data: Company[] = [];
-
-  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.columns = [

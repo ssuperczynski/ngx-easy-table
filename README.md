@@ -34,8 +34,7 @@ See https://ngx-easy-table.eu/#/doc
 ## Development
 
 - 1st tab - `npm run watch:table`
-- 2nd tab - `cd dist/ngx-easy-table && npm link`
-- 2nd tab - go back to project root dir and `npm link ngx-easy-table`
+- 2nd tab - `npm run link`
 - 2nd tab - `npm run start`
 
 At the end run `npm run cy:ci` to make sure everything works.

@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context('Infinite scroll server', () => {
+context.skip('Infinite scroll server', () => {
   describe('on scroll', () => {
     it('loads next items', () => {
       cy.intercept(

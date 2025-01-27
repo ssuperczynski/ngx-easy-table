@@ -19,17 +19,21 @@
     "cy:run": "cypress run --headless --browser chrome",
     "cy:ci": "start-server-and-test cy:serve http://127.0.0.1:4202 cy:run",
     "watch:table": "ng build ngx-easy-table --watch",
+    "watch:styles": "sass projects/ngx-easy-table/assets:dist/ngx-easy-table --watch",
+    "build:styles": "sass projects/ngx-easy-table/assets:dist/ngx-easy-table",
     "publish:lib": "npm run build:lib && cd dist/ngx-easy-table && npm publish",
     "publish:lib:next": "npm run build:lib && cd dist/ngx-easy-table && npm publish --tag next",
-    "build:lib": "ng build ngx-easy-table && sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss",
-    "prepare": "husky install"
+    "size": "npm run build:lib && cd dist/ngx-easy-table && npm pack && ls -lh *.tgz",
+    "build:lib": "cd projects/ngx-easy-table && npm install && ng build ngx-easy-table && sass assets/style.scss ../../dist/ngx-easy-table/style.css",
+    "prepare": "husky install",
+    "link": "cd dist/ngx-easy-table && npm link && cd ../.. && npm link ngx-easy-table"
   },
   "license": "MIT",
   "dependencies": {
     "@angular/animations": "^18.2.0",
     "@angular/forms": "^18.2.0",
     "@angular/material": "^18.2.0",
-    "ngx-easy-table": "^15.7.0",
+    "ngx-easy-table": "file:dist/ngx-easy-table",
     "ngx-highlightjs": "^12.0.0"
   },
   "devDependencies": {

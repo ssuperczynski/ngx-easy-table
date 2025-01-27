@@ -1,15 +1,6 @@
 :host ::ng-deep .ngx-table__header-title {
   color: deeppink;
 }
-:host ::ng-deep .ngx-pagination-range-dropdown-button {
-  color: deeppink;
-}
 :host ::ng-deep #table > tbody > tr > td {
-  color: hotpink;
-}
-:host ::ng-deep #pagination-controls > pagination-template > ul > li.current > span {
-  color: hotpink;
-}
-:host ::ng-deep #pagination-controls > pagination-template > ul > li > a > span {
   color: hotpink;
 }

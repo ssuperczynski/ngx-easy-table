@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
@@ -27,6 +28,9 @@ interface EventObject {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServerPaginationComponent implements OnInit, OnDestroy {
+  private readonly companyService = inject(CompanyService);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   @ViewChild('table') table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
@@ -43,11 +47,6 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
     count: -1,
   };
   private ngUnsubscribe: Subject<void> = new Subject<void>();
-
-  constructor(
-    private readonly companyService: CompanyService,
-    private readonly cdr: ChangeDetectorRef
-  ) {}
 
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };

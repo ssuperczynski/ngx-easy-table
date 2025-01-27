@@ -10,7 +10,6 @@ import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 })
 export class ClickEventComponent implements OnInit {
   public columns: Columns[];
-  public clicked: string;
   public data: Company[] = [];
   public configuration: Config;
 
@@ -27,8 +26,6 @@ export class ClickEventComponent implements OnInit {
   }
 
   eventEmitted($event: { event: string; value: any }): void {
-    this.clicked = JSON.stringify($event);
-    // eslint-disable-next-line no-console
     console.log('$event', $event);
   }
 }

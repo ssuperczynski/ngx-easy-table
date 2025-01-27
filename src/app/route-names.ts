@@ -14,8 +14,6 @@ export class ROUTE {
   public static readonly SELECT_COL = 'select-col';
   public static readonly SELECT_CELL = 'select-cell';
   public static readonly ROW_TEMPLATE = 'row-template';
-  public static readonly GROUP_ROWS = 'group-rows';
-  public static readonly MANY_TABLES = 'many-tables';
   public static readonly DYNAMIC_ROW = 'dynamic-row';
   public static readonly CUSTOM_SORT = 'custom-sort';
   public static readonly COLLAPSED_ROWS = 'collapsed-rows';
@@ -27,7 +25,6 @@ export class ROUTE {
   public static readonly CUSTOM_FILTERS = 'custom-filters';
   public static readonly TOGGLE_COLUMN = 'toggle-column';
   public static readonly DYNAMIC_CONFIGURATION = 'dynamic-configuration';
-  public static readonly EXPORTS = 'exports';
   public static readonly RESIZABLE = 'resizable';
   public static readonly COLUMN_WIDTH = 'column-width';
   public static readonly FIXED_WIDTH = 'fixed-width';
@@ -39,7 +36,6 @@ export class ROUTE {
   public static readonly FILTER_HEADER_TEMPLATE = 'filter-header-template';
   public static readonly CUSTOM_INTABLE_SORT = 'custom-intable-sort';
   public static readonly PERSIST_STATE = 'persist-state';
-  public static readonly PAGINATION_RANGE = 'pagination-range';
   public static readonly ASYNC = 'async';
   public static readonly SELECT_ALL_TEMPLATE = 'select-all-template';
   public static readonly NO_RESULTS_TEMPLATE = 'no-results-template';
@@ -58,7 +54,6 @@ export class ROUTE {
   public static readonly LOADING_TEMPLATE = 'loading-template';
   public static readonly ADDITIONAL_ACTIONS_TEMPLATE = 'additional-actions-template';
   public static readonly NESTED_OBJECT = 'nested-object';
-  public static readonly CUSTOM_PAGINATION = 'custom-pagination';
   public static readonly INFINITE_SCROLL = 'infinite-scroll';
   public static readonly INFINITE_SCROLL_SERVER = 'infinite-scroll-server';
   public static readonly INFINITE_SCROLL_SERVER_TEMPLATE = 'infinite-scroll-server-template';

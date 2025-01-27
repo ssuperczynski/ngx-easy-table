@@ -8,7 +8,7 @@ context('Additional actions template', () => {
   it('checks if additional actions menu works', () => {
     cy.get('#search_phone')
       .should('not.be.visible')
-      .get('#table > thead > tr > th.ngx-table__header-cell-additional-actions > div > a')
+      .get('#additional-actions')
       .click()
       .get('#enableSearch')
       .click()
@@ -16,11 +16,11 @@ context('Additional actions template', () => {
       .should('be.visible');
   });
   it('checks if clicking outside table closes additional actions menu', () => {
-    cy.get('#table > thead > tr > th.ngx-table__header-cell-additional-actions > div > a')
+    cy.get('#additional-actions')
       .click()
       .get('#enableSearch')
       .should('exist')
-      .get('#content > div > div > h3')
+      .get('body > app-table > div > div > div.col-10 > div > h3')
       .click()
       .get('#table > tbody > ul > ul > li > div:nth-child(1)')
       .should('not.exist');

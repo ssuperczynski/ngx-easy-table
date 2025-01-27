@@ -4,6 +4,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
+  inject,
 } from '@angular/core';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { takeUntil } from 'rxjs/operators';
@@ -18,14 +19,15 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfiniteScrollServerComponent implements OnInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+  private readonly companyService = inject(CompanyService);
+
   public configuration: Config;
   public columns: Columns[];
   public data: Company[] = [];
   public totalLength = 0;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   private offset = 1;
-
-  constructor(private cdr: ChangeDetectorRef, private readonly companyService: CompanyService) {}
 
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();

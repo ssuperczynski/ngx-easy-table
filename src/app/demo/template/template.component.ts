@@ -25,9 +25,7 @@ export class TemplateComponent implements OnInit {
   public toggledRows = new Set<number>();
 
   ngOnInit(): void {
-    this.configuration = { ...DefaultConfig };
-    this.configuration.detailsTemplate = true;
-    this.configuration.showDetailsArrow = false;
+    this.configuration = { ...DefaultConfig, detailsTemplate: true, showDetailsArrow: false };
     this.data = data;
   }
 

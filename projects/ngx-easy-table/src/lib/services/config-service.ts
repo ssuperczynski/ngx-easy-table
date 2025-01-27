@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Config, STYLE, THEME } from '../model/config';
 
-// eslint-disable-next-line, no-underscore-dangle, id-blacklist, id-match
+// eslint-disable-next-line
 export const DefaultConfig: Config = {
   searchEnabled: false,
   headerEnabled: true,
@@ -17,7 +17,6 @@ export const DefaultConfig: Config = {
   serverPagination: false,
   isLoading: false,
   detailsTemplate: false,
-  groupRows: false,
   paginationRangeEnabled: true,
   collapseAllRows: false,
   checkboxes: false,
@@ -25,11 +24,9 @@ export const DefaultConfig: Config = {
   resizeColumn: false,
   fixedColumnWidth: true,
   horizontalScroll: false,
-  logger: false,
   showDetailsArrow: false,
   showContextMenu: false,
   persistState: false,
-  paginationMaxSize: 5,
   threeWaySort: false,
   onDragOver: false,
   tableLayout: {

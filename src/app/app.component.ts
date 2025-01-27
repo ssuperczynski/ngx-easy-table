@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { environment } from '../environments/environment';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -17,7 +17,7 @@ export interface Link {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public readonly version = environment.VERSION;
@@ -32,12 +32,10 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.SERVER_PAGINATION, name: 'Server pagination' },
       { link: ROUTE.SERVER_SORT, name: 'Server sort' },
       { link: ROUTE.CLICK_EVENT, name: 'Click event' },
-      { link: ROUTE.MANY_TABLES, name: 'Many tables' },
       { link: ROUTE.DYNAMIC_ROW, name: 'Dynamic row' },
       { link: ROUTE.HORIZONTAL_SCROLL, name: 'Horizontal scroll' },
       { link: ROUTE.DYNAMIC_CONFIGURATION, name: 'Dynamic configuration' },
       { link: ROUTE.DYNAMIC_COMPONENT, name: 'Dynamic component' },
-      { link: ROUTE.EXPORTS, name: 'Exports' },
       { link: ROUTE.RESIZABLE, name: 'Column resizer' },
       { link: ROUTE.COLUMN_WIDTH, name: 'Column width' },
       { link: ROUTE.FIXED_WIDTH, name: 'Fixed width' },
@@ -69,19 +67,16 @@ export class AppComponent implements OnInit, OnDestroy {
       { link: ROUTE.CHECKBOX_AS_RADIO, name: 'Checkbox as radio' },
       { link: ROUTE.RADIO, name: 'Radio' },
       { link: ROUTE.CUSTOMIZE_THEME, name: 'Customize theme' },
-      { link: ROUTE.NESTED_TABLE, name: 'Nested table' },
       { link: ROUTE.INLINE_CELL, name: 'Edit cell' },
       { link: ROUTE.INLINE_ROW, name: 'Edit row' },
       { link: ROUTE.STYLES, name: 'Styles' },
       { link: ROUTE.SUMMARY_FOOTER, name: 'Summary footer' },
       { link: ROUTE.FILTER_TEMPLATE, name: 'Filter template' },
       { link: ROUTE.FILTER_HEADER_TEMPLATE, name: 'Filter header template' },
-      { link: ROUTE.PAGINATION_RANGE, name: 'Pagination range' },
       { link: ROUTE.SELECT_ALL_TEMPLATE, name: 'Select All template' },
       { link: ROUTE.NO_RESULTS_TEMPLATE, name: 'No Results template' },
       { link: ROUTE.LOADING_TEMPLATE, name: 'Loading template' },
       { link: ROUTE.ADDITIONAL_ACTIONS_TEMPLATE, name: 'Additional actions' },
-      { link: ROUTE.CUSTOM_PAGINATION, name: 'Custom pagination' },
       { link: ROUTE.STICKY, name: 'Sticky' },
     ],
     select: [
@@ -102,7 +97,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ],
     api: [
       { link: ROUTE.API, name: 'API' },
-      { link: ROUTE.BOOTSTRAP, name: 'Bootstrap (experimental)' },
+      { link: ROUTE.BOOTSTRAP, name: 'Bootstrap' },
     ],
   };
 

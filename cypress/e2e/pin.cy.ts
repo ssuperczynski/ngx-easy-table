@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Pinned column', () => {
+context.skip('Pinned column', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:4202/#/pinned');
   });

@@ -20,22 +20,46 @@ export class CustomizeThemeComponent implements OnInit {
   }
 
   borderless(): void {
-    this.configuration.tableLayout.borderless = !this.configuration.tableLayout.borderless;
-    this.configuration = { ...this.configuration };
+    this.configuration = {
+      ...this.configuration,
+      tableLayout: {
+        ...this.configuration.tableLayout,
+        borderless: !this.configuration.tableLayout.borderless,
+      },
+    };
   }
 
   hoverable(): void {
-    this.configuration.tableLayout.hover = !this.configuration.tableLayout.hover;
-    this.configuration = { ...this.configuration };
+    this.configuration = {
+      ...this.configuration,
+      tableLayout: {
+        ...this.configuration.tableLayout,
+        hover: !this.configuration.tableLayout.hover,
+      },
+    };
   }
 
   striped(): void {
-    this.configuration.tableLayout.striped = !this.configuration.tableLayout.striped;
-    this.configuration = { ...this.configuration };
+    this.configuration = {
+      ...this.configuration,
+      tableLayout: {
+        ...this.configuration.tableLayout,
+        striped: !this.configuration.tableLayout.striped,
+      },
+    };
   }
 
   setHeight(size: string): void {
-    this.configuration.tableLayout.style = size;
-    this.configuration = { ...this.configuration };
+    this.configuration = {
+      ...this.configuration,
+      tableLayout: { ...this.configuration.tableLayout, style: size },
+    };
+  }
+
+  setTheme(theme: string): void {
+    this.configuration = {
+      ...this.configuration,
+      tableLayout: { ...this.configuration.tableLayout, theme: theme },
+    };
   }
 }

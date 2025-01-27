@@ -15,7 +15,7 @@ export class PinnedComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns = [
-      { key: 'phone', title: 'Phone', pinned: true, orderBy: 'asc' },
+      { key: 'phone', title: 'Phone', pinned: true },
       { key: 'age', title: 'Age' },
       { key: 'company', title: 'Company' },
       { key: 'name', title: 'Name' },
@@ -31,9 +31,7 @@ export class PinnedComponent implements OnInit {
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'Active' },
     ];
-    this.configuration = { ...DefaultConfig };
-    this.configuration.horizontalScroll = true;
-    this.configuration.searchEnabled = true;
+    this.configuration = { ...DefaultConfig, horizontalScroll: true };
     this.data = data;
   }
 }

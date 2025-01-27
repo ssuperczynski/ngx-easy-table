@@ -25,4 +25,8 @@ export class SearchComponent implements OnInit {
     this.configuration.searchEnabled = true;
     this.data = data;
   }
+
+  onEvent($event: any) {
+    console.log('event received', $event);
+  }
 }

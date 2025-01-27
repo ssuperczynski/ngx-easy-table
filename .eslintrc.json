@@ -1,6 +1,5 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -65,7 +64,6 @@
         "eol-last": "off",
         "no-duplicate-string": "off",
         "arrow-body-style": "off",
-        "id-blacklist": "error",
         "import/no-extraneous-dependencies": "off",
         "import/no-internal-modules": "off",
         "import/order": "off",
@@ -99,13 +97,13 @@
         "@angular-eslint/template/conditional-complexity": [
           "error",
           {
-            "maxComplexity": 8
+            "maxComplexity": 6
           }
         ],
         "@angular-eslint/template/cyclomatic-complexity": [
           "error",
           {
-            "maxComplexity": 60
+            "maxComplexity": 50
           }
         ],
         "@angular-eslint/template/i18n": "off",
